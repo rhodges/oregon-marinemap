@@ -50,7 +50,7 @@ First you will need to checkout a copy of the default branch of MarineMap Oregon
 Using settings.py and settings_local.py
 ---------------------------------------
 
-Take a look at ``oregon-marinemap/mmo/settings_local.template`` and 
+Take a look at ``oregon-marinemap/omm/settings_local.template`` and 
 ``settings.py``. MarineMap uses a simple splitsetting scheme as described 
 `here <http://code.djangoproject.com/wiki/SplitSettings#Multiplesettingfilesimportingfromeachother>`_. 
 What this enables is the ability to specify standard 
