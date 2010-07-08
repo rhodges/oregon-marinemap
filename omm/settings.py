@@ -4,7 +4,7 @@ from lingcod.common.default_settings import *
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 #moved to settings_local
-#DATABASE_ENGINE = 'postgresql_psycopg2'
+DATABASE_ENGINE = 'postgresql_psycopg2'
 #DATABASE_NAME = 'oregon'
 #DATABASE_USER = 'postgres'
 
