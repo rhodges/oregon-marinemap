@@ -8,11 +8,11 @@ Introduction
 ************
 
 These instructions will walk you through developing a basic implementation of
-MarineMap Oregon. This includes installing the Lingcod base app and the Oregon specific app 
-from the development repository, setting up a database, testing that everything installed smoothly, then doing some
-basic customization. By the end you'll have an application that will perform
+MarineMap Oregon. This includes installing from the development repository, 
+setting up a database, and testing that everything installed smoothly. 
+By the end you'll have an application that will perform
 all the `basic functions <http://code.google.com/p/marinemap/wiki/FeaturesAndRequirements>`_
-needed to start drawing MPAs on a map.
+needed to start drawing Marine Reserves and Energy Sites on a map.
 
 
 Project Structure
@@ -21,7 +21,7 @@ Project Structure
 It is important to understand how a MarineMap application is structured. There are essentially two codebases:
 
     * Lingcod - a python module providing a set of django apps that contain the core functionality common to all MarineMap instances.
-    * the project code - in this case, MarineMap Oregon, a django project that implements and extends the functionality provided by Lingcod.
+    * MarineMap Oregon - a django project that implements and extends the functionality provided by Lingcod.
 
 By seperating the two codebases, we can more easily maintain multiple MarineMap projects while continuing to improve the underlying core functionality.
 
@@ -29,17 +29,18 @@ By seperating the two codebases, we can more easily maintain multiple MarineMap 
 Install Dependencies
 ********************
 
-There are various dependencies required for both the base project and the Oregon specific project.  
-Before you proceed any further on the MarineMap Oregon specific site, you will need to install 
-Lingcod's dependencies and Lingcod itself. For detailed instructions, please follow
-the `Getting Started <http://maps11.msi.ucsb.edu/getting_started.html>`_ documentation for the Lingcod base application.
+There are various dependencies required for both the base project (Lingcod) and the Oregon specific project.  
+Before you proceed any further, please follow the
+`Getting Started <http://maps11.msi.ucsb.edu/getting_started.html>`_ documentation for the Lingcod base application.
+After you have completed the Lingcod `Getting Started <http://maps11.msi.ucsb.edu/getting_started.html>`_ 
+instructions, you'll want to return here to continue with the MarineMap Oregon installation instructions that follow.
  
  
 Installing MarineMap Oregon
 ***************************
 
-After you have worked through the `Getting Started <http://maps11.msi.ucsb.edu/getting_started.html>`_ documentation for the Lingcod base application, 
-you are now ready to install the MarineMap Oregon specific project.  
+After you have worked through the `Getting Started <http://maps11.msi.ucsb.edu/getting_started.html>`_ 
+documentation for the Lingcod base application, you are now ready to install the MarineMap Oregon specific project.  
 
 First you will need to checkout a copy of the default branch of MarineMap Oregon from the `project page <http://code.google.com/p/oregon-marinemap/source/checkout>`_ ::
 
@@ -67,7 +68,7 @@ uncomment the following line::
 Alter ``SECRET_Key`` to make it unique. Next uncomment and alter the following
 lines as needed to allow this application to connect to your local database::
 
-    # DATABASE_NAME = 'oregon'
+    # DATABASE_NAME = 'oregon-marinemap'
     # DATABASE_USER = 'postgres'
     # DATABASE_PASSWORD = 'my-secret-password'
     
@@ -89,8 +90,8 @@ Then use the 'install_media' management command to merge all the media files int
     python manage.py install_media
 
 
-setup the database
-------------------
+Setting Up the Database
+-----------------------
 
 Create a database, accessible by the connection settings above, using a tool
 like `pgAdmin <http://www.pgadmin.org/>`_. It is very important that this
@@ -105,9 +106,25 @@ is to set up postgis in the default postgres database called template1::
    psql -d template1 -c "GRANT ALL ON geometry_columns TO PUBLIC;" # Enabling users to alter spatial tables.
    psql -d template1 -c "GRANT ALL ON spatial_ref_sys TO PUBLIC;"
 
-Once the template is spatially enabled, create your project database::
+.. note::
+    
+    ``POSTGIS_SQL_PATH`` is intended as a shortcut variable to the directory that houses the ``postgis.sql`` and 
+    ``spatial_ref_sys.sql`` files.  It may be the case that these files will be found in ``contrib/postgis-1.x/``, rather
+    than just ``contrib/`` (the instructions above assume the latter).  To find out, run ``pg_config --sharedir`` 
+    on its own and ``cd`` into that directory.  From there you can check to see if the ``postgis.sql`` and 
+    ``spatial_ref_sys.sql`` scripts reside in ``contrib/`` or ``contrib/postgis-1.x/``, and adjust the 
+    ``POSTGIS_SQL_PATH`` assignment accordingly.
+    
+There is also a special ``cleangeometry`` function that is used by MarineMap but not included with PostGIS.
+To load this function, you'll want to load the contents of ``marinemap/lingcod/common/cleangeometry.sql`` into 
+template1::
 
-   createdb oregon -U postgres
+    psql -f <path to marinemap>/lingcod/common/cleangeometry.sql -d template1
+    
+Once ``template1`` is spatially enabled and contains the additional ``cleangeometry`` function, you can 
+create your project database::
+
+   createdb oregon-marinemap -U postgres
 
 To setup the database schema and populate with some initial data, run the 
 django syncdb command from within the ``oregon-marinemap/omm`` directory::
@@ -128,6 +145,23 @@ for those applications which are under `migration control <http://south.aeracode
     ``oregon-marinemap/omm``, ``import settings``, and look for any errors.
 
     
+Loading the Study Region
+------------------------
+
+If you have a study region of your own that you would like to load, use the following management commands::
+    
+    python manage.py create_study_region --name my_study_region /data/shapefiles/study_region
+    python manage.py change_study_region 1
+    
+If you do not have a study region of your own or would simple prefer to use our sample study region::
+
+    python manage.py loaddata tsp/fixtures/example_data.json
+    
+Adding Public Data Layer
+------------------------
+
+See the `Data Layers <http://maps11.msi.ucsb.edu/layers.html>`_ documentation for adding public datasets.
+    
 Verify and Run the dev server
 -----------------------------
 
@@ -142,7 +176,8 @@ If everything looks good, turn on the dev server::
 Hit http://localhost:8000/admin/ in a browser and use the authentication
 credentials specified when syncdb was run.
 
-At http://localhost:8000/ the interface should render with sample data.
+At http://localhost:8000/ the interface should render a study region, any added data layers, 
+and allow for the drawing of marine reserves.
 
 
 Next Steps
