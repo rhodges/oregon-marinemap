@@ -1,13 +1,17 @@
 from lingcod.mpa.forms import MpaForm as BaseMpaForm
 from lingcod.array.forms import ArrayForm as BaseArrayForm
-from models import Mpa, MpaArray
+from models import Habitat, MpaArray
+from django import forms
+
+#if the names of the following two classes are changed, the related settings should also be changed (MPA_FORM, ARRAY_FORM)
 
 class ArrayForm(BaseArrayForm):
     class Meta(BaseArrayForm.Meta):
         model = MpaArray
         exclude = ('sharing_groups',)
 
-class MpaForm(BaseMpaForm):
+class HabitatForm(BaseMpaForm):
+    name = forms.CharField(label='Habitat Name')
     class Meta:
-        model = Mpa
-        exclude = ('sharing_groups','content_type','object_id',)
+        model = Habitat
+        exclude = ('sharing_groups','content_type','object_id','designation')

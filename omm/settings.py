@@ -23,9 +23,9 @@ TEMPLATE_DIRS = ( os.path.realpath(os.path.join(os.path.dirname(__file__), 'temp
 
 INSTALLED_APPS += ( 'tsp', )
 
-MPA_CLASS = 'tsp.models.Mpa'
+MPA_CLASS = 'tsp.models.Habitat'
 ARRAY_CLASS = 'tsp.models.MpaArray'
-MPA_FORM = 'tsp.forms.MpaForm'
+MPA_FORM = 'tsp.forms.HabitatForm'
 ARRAY_FORM = 'tsp.forms.ArrayForm'
 
 # Make this unique, and don't share it with anybody.

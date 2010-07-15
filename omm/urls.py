@@ -25,6 +25,7 @@ urlpatterns = patterns('',
     (r'^staticmap/', include('lingcod.staticmap.urls')),
     (r'^news/', include('lingcod.news.urls')),
     (r'^admin/', include(admin.site.urls)),
+    (r'^tsp/', include('tsp.urls')),
 
 )
 
