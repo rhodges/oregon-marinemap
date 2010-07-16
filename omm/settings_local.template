@@ -34,6 +34,3 @@
 
 # This should be set to 1 (for localhost), 2 (for dev server), or 3 (for production)
 # SITE_ID = 1
-
-# The following can be uncommented and changed to whatever you would like the default folder under My Shapes to be named
-# KML_UNATTACHED_NAME = 'Default Folder name (under the My Shapes tab)'
