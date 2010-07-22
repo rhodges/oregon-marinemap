@@ -33,7 +33,7 @@
   </Style>
  {% endfor %}
 
-  <!-- Default style for undesignated Habitats -->
+  <!-- Default style for undesignated AOIs -->
   <Style id="defaultstyle">
     <IconStyle>
         <!-- Almost transparent = it is hoverable/clickable but not really visible -->

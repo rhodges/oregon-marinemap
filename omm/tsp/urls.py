@@ -3,8 +3,8 @@ from lingcod.common.utils import get_mpa_form
 
 #the following url pattern was acquired from lingcod.mpa.urls
 
-HabitatForm = get_mpa_form()
+AOIForm = get_mpa_form()
 
 urlpatterns = patterns('lingcod.rest.views',
-    url(r'^form/$', 'form_resources', {'form_class': HabitatForm, 'create_title': 'Create a New Nearshore Habitat'}, name='nsh_create_form'),
+    url(r'^form/$', 'form_resources', {'form_class': AOIForm, 'create_title': 'Create a New Area of Inquiry'}, name='aoi_create_form'),
 )

@@ -23,13 +23,13 @@ TEMPLATE_DIRS = ( os.path.realpath(os.path.join(os.path.dirname(__file__), 'temp
 
 INSTALLED_APPS += ( 'tsp', )
 
-MPA_CLASS = 'tsp.models.Habitat'
+MPA_CLASS = 'tsp.models.AOI'
 ARRAY_CLASS = 'tsp.models.MpaArray'
-MPA_FORM = 'tsp.forms.HabitatForm'
+MPA_FORM = 'tsp.forms.AOIForm'
 ARRAY_FORM = 'tsp.forms.ArrayForm'
 
 # The following is used to assign a name to the default folder under My Shapes 
-KML_UNATTACHED_NAME = 'Nearshore Habitats'
+KML_UNATTACHED_NAME = 'Areas of Inquiry'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '3j9~fjio+adjf93jda()#Jfk3ljf-ea9#$@#90dsfj9@0aj3()*fj3iow2f'
