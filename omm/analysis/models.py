@@ -1,0 +1,96 @@
+from django.contrib.gis.db import models
+from django.conf import settings
+
+class OregonPorts(models.Model):
+    gid = models.IntegerField(primary_key=True)
+    objectid = models.IntegerField(db_column='OBJECTID') # Field name made lower case.
+    name = models.CharField(max_length=100, db_column='NAME') # Field name made lowercase.
+    county = models.CharField(max_length=35, db_column='COUNTY') # Field name made lowercase.
+    harbor = models.CharField(max_length=5, db_column='Harbor') # Field name made lowercase.
+    geometry = models.PointField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Oregon Ports")
+    objects = models.GeoManager()
+    
+class Counties(models.Model):
+    objectid_1 = models.IntegerField(db_column='OBJECTID_1')
+    objectid = models.IntegerField()
+    county_nam = models.CharField(max_length=15)
+    cobcode = models.CharField(max_length=5)
+    shape_leng = models.FloatField(db_column='Shape_Leng')
+    shape_area = models.FloatField(db_column='Shape_Area')
+    geometry = models.PolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="County Boundaries")
+    objects = models.GeoManager()
+    
+class Islands(models.Model):
+    objectid = models.IntegerField()
+    area = models.FloatField(db_column='AREA')
+    perimeter = models.FloatField(db_column='PERIMETER')
+    org_bnd_field = models.IntegerField(db_column='ORG_BND_')
+    org_bnd_id = models.IntegerField(db_column='ORG_BND_ID')
+    status = models.CharField(max_length=5, db_column='STATUS')
+    nwrunit = models.CharField(max_length=3, db_column='NWRUNIT')
+    nwrname = models.CharField(max_length=3, db_column='NWRNAME')
+    ifwsno = models.CharField(max_length=5, db_column='IFWSNO')
+    acreage = models.FloatField(db_column='ACREAGE')
+    tractno = models.CharField(max_length=15, db_column='TRACTNO')
+    islandno = models.CharField(max_length=10, db_column='ISLANDNO')
+    name = models.CharField(max_length=50, db_column='NameNOAA')
+    shape_leng = models.FloatField(db_column='Shape_Leng')
+    shape_area = models.FloatField(db_column='Shape_Area')
+    geometry = models.PolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Islands")
+    objects = models.GeoManager()
+    
+class RockyShores(models.Model):
+    objectid = models.IntegerField()
+    rsindx = models.IntegerField()
+    name = models.CharField(max_length=45)
+    desig = models.IntegerField()
+    reg = models.FloatField()
+    site = models.IntegerField()
+    size_field = models.IntegerField()
+    bc = models.IntegerField()
+    pc = models.IntegerField()
+    it_cl = models.IntegerField()
+    bm_cl = models.IntegerField()
+    te_species = models.CharField(max_length=12)
+    visitor = models.IntegerField()
+    ed_u = models.IntegerField()
+    com_u = models.IntegerField()
+    rec_u = models.IntegerField()
+    shape_leng = models.FloatField()
+    shape_area = models.FloatField()
+    geometry = models.PolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Rocky Shores")
+    objects = models.GeoManager()    
+
+class Cities(models.Model):
+    objectid = models.IntegerField()
+    fips_code = models.CharField(max_length=5)
+    city_name = models.CharField(max_length=50)
+    acres = models.FloatField()
+    gis_prc_dt = models.CharField(max_length=10)
+    effectv_dt = models.CharField(max_length=15)
+    shape_leng = models.FloatField()
+    shape_area = models.FloatField()
+    geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="City Boundaries")
+    objects = models.GeoManager()    
+    
+class Shoreline(models.Model):
+    objectid = models.IntegerField()
+    fnode_field = models.FloatField()
+    tnode_field = models.FloatField()
+    lpoly_field = models.FloatField()
+    rpoly_field = models.FloatField()
+    length = models.FloatField()
+    esi_line_field = models.FloatField()
+    esi_line_i = models.FloatField()
+    fnode_1 = models.FloatField()
+    tnode_1 = models.FloatField()
+    lpoly_1 = models.FloatField()
+    rpoly_1 = models.FloatField()
+    esi_field = models.FloatField()
+    esi_id = models.FloatField()
+    esi = models.CharField(max_length=10)
+    line = models.CharField(max_length=1)
+    source_id = models.FloatField()
+    shape_leng = models.FloatField()
+    geometry = models.MultiLineStringField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Shoreline")
+    objects = models.GeoManager()    
