@@ -26,6 +26,7 @@ urlpatterns = patterns('',
     (r'^news/', include('lingcod.news.urls')),
     (r'^admin/', include(admin.site.urls)),
     (r'^tsp/', include('tsp.urls')),
+    (r'^analysis/', include('analysis.urls')),
 
 )
 

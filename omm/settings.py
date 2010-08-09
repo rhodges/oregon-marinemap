@@ -21,12 +21,17 @@ ROOT_URLCONF = 'omm.urls'
 
 TEMPLATE_DIRS = ( os.path.realpath(os.path.join(os.path.dirname(__file__), 'templates').replace('\\','/')), )
 
-INSTALLED_APPS += ( 'tsp', )
+INSTALLED_APPS += ( 'tsp', 
+                    'analysis',)
 
 MPA_CLASS = 'tsp.models.AOI'
 ARRAY_CLASS = 'tsp.models.MpaArray'
 MPA_FORM = 'tsp.forms.AOIForm'
 ARRAY_FORM = 'tsp.forms.ArrayForm'
+
+COMPRESS_CSS['application']['source_filenames'] += (
+    'omm/css/aoi_analysis.css',
+)
 
 # The following is used to assign a name to the default folder under My Shapes 
 KML_UNATTACHED_NAME = 'Areas of Inquiry'
