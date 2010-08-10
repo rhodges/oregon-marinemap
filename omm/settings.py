@@ -8,7 +8,7 @@ DATABASE_ENGINE = 'postgresql_psycopg2'
 #DATABASE_NAME = 'oregon-marinemap'
 #DATABASE_USER = 'postgres'
 
-GEOMETRY_DB_SRID = 2992
+GEOMETRY_DB_SRID = 99999
 
 TIME_ZONE = 'America/Vancouver'
 LANGUAGE_CODE = 'en-us'

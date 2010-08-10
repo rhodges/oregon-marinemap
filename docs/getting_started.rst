@@ -144,16 +144,31 @@ for those applications which are under `migration control <http://south.aeracode
     and if none are missing jump into a python shell from
     ``oregon-marinemap/omm``, ``import settings``, and look for any errors.
 
-    
+Adding Custom Spatial Reference
+--------------------------------
+
+There is a custom Albers projection that is used for the Oregon data layers.  
+It is called NOAA-NMFS and has traditionally been given the SRID of 99999.
+You'll want to add this to both PostGIS and GeoDjango via the following strategies.
+
+Add the following to the bottom of your GeoDjango/nad/epsg file::
+
+    +proj=aea +ellps=GRS80 +lat_0=41.0 +lon_0=-117.0 +lat_1=43.0 +lat_2=48.0 +x_0=700000.0 +y_0=0 +datum=NAD83 +units=m +no_defs
+
+Then run the following command from shell to add the projection to your spatial_ref_sys table::
+
+    from django.contrib.gis.utils import add_postgis_srs
+    add_postgis_srs(99999)
+      
 Loading the Study Region
 ------------------------
 
 If you have a study region of your own that you would like to load, use the following management commands::
     
-    python manage.py create_study_region --name my_study_region /data/shapefiles/study_region
+    python manage.py create_study_region --name my_study_region <path to study region>/study_region.shp
     python manage.py change_study_region 1
     
-If you do not have a study region of your own or would simple prefer to use our sample study region::
+If you do not have a study region of your own or would simply prefer to use our sample study region::
 
     python manage.py loaddata tsp/fixtures/example_data.json
     

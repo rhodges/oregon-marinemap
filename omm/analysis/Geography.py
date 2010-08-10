@@ -54,7 +54,7 @@ Determines the Nearest 3 Ports for the given nearshore habitat shape
 Called by display_geo_analysis
 '''    
 def get_nearest_ports(nsh):
-    ports = OregonPorts.objects.all()
+    ports = Ports.objects.all()
     distance_to_ports = [(nsh.geometry_final.distance(port.geometry), port.name) for port in ports]
     distance_to_ports.sort()
     closest3 = [tuple[1] for tuple in distance_to_ports[:3]]
@@ -66,7 +66,7 @@ Called by display_geo_analysis
 '''    
 def get_nearest_cities(nsh):
     cities = Cities.objects.all()
-    distance_to_cities = [(nsh.geometry_final.distance(city.geometry.centroid), city.city_name) for city in cities]
+    distance_to_cities = [(nsh.geometry_final.distance(city.geometry.centroid), city.name) for city in cities]
     distance_to_cities.sort()
     closest3 = [tuple[1] for tuple in distance_to_cities[:3]]
     return closest3    
@@ -113,15 +113,14 @@ def is_intertidal(nsh):
             return True
     return False        
     
-  
 '''
 Determines any overlapping Islands for the given nearshore habitat shape
 Called by display_geo_analysis
 '''    
 def get_islands(nsh):
     islands = Islands.objects.all()
-    island_tuples = [(island.geometry.intersects(nsh.geometry_final), island.name) for island in islands]
-    inter_islands = [tuple[1] for tuple in island_tuples if tuple[0]==True]
+    inter_islands = [island for island in islands if island.geometry.intersects(nsh.geometry_final)==True]
+    #inter_islands = [tuple for tuple in island_tuples if tuple==True]
     return inter_islands        
     
 '''
