@@ -15,7 +15,7 @@ def display_geo_analysis(request, nsh_id, template='Geo_Report.html'):
     #nsh = AOI.objects.get(id=nsh_id)
     nsh = get_object_or_404(AOI, pk=nsh_id)
     #get adjacent county
-    county = get_adjacent_county(nsh)
+    counties = get_adjacent_counties(nsh)
     #get nearest 3 ports
     ports = get_nearest_ports(nsh)
     #get nearest 3 cities
@@ -32,7 +32,7 @@ def display_geo_analysis(request, nsh_id, template='Geo_Report.html'):
     islands = len(get_islands(nsh))
     #get ratio to territorial sea
     ratio = get_ratio(nsh)
-    context = {'aoi': nsh, 'county': county, 'ports': ports, 'cities': cities, 'rockyshores': rockyshores, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'ratio': ratio}
+    context = {'aoi': nsh, 'county': counties, 'ports': ports, 'cities': cities, 'rockyshores': rockyshores, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'ratio': ratio}
     return render_to_response(template, RequestContext(request, context)) 
     #return HttpResponse('adjacent county: ' + county + ' nearest ports: ' + ports)
     
@@ -40,14 +40,10 @@ def display_geo_analysis(request, nsh_id, template='Geo_Report.html'):
 Determines the Adjacent County for the given nearshore habitat shape
 Called by display_geo_analysis
 '''
-def get_adjacent_county(nsh):
+def get_adjacent_counties(nsh):
     counties = Counties.objects.all()
-    for county in counties:
-        #the following returns the first intersection found
-        #it does not account for AOIs that intersect multiple counties
-        if county.geometry.intersects(nsh.geometry_final):
-            return county.county_nam
-    return 'this geometry does not intersect an Oregon county'
+    intersecting_counties = [county.name for county in counties if county.geometry.intersects(nsh.geometry_final)]
+    return intersecting_counties
     
 '''
 Determines the Nearest 3 Ports for the given nearshore habitat shape

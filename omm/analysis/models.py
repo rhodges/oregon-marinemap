@@ -43,7 +43,7 @@ class Ports(models.Model):
 class Counties(models.Model):
     objectid_1 = models.IntegerField()
     objectid = models.IntegerField()
-    county_nam = models.CharField(max_length=15)
+    name = models.CharField(max_length=15)
     cobcode = models.CharField(max_length=5)
     shape_leng = models.FloatField()
     shape_area = models.FloatField()
@@ -84,7 +84,7 @@ class RockyShores(models.Model):
     pc = models.IntegerField()
     it_cl = models.IntegerField()
     bm_cl = models.IntegerField()
-    te_species = models.CharField(max_length=12)
+    te_species = models.CharField(max_length=12, null=True, blank=True)
     visitor = models.IntegerField()
     ed_u = models.IntegerField()
     com_u = models.IntegerField()

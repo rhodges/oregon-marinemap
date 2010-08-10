@@ -64,7 +64,7 @@ class Migration(SchemaMigration):
             ('geometry', self.gf('django.contrib.gis.db.models.fields.MultiPolygonField')(srid=99999, null=True, blank=True)),
             ('cobcode', self.gf('django.db.models.fields.CharField')(max_length=5)),
             ('shape_leng', self.gf('django.db.models.fields.FloatField')()),
-            ('county_nam', self.gf('django.db.models.fields.CharField')(max_length=15)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=15)),
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
         ))
         db.send_create_signal('analysis', ['Counties'])
