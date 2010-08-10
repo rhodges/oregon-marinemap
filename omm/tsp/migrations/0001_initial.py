@@ -8,28 +8,29 @@ class Migration(SchemaMigration):
     
     def forwards(self, orm):
         
-        # Adding model 'Mpa'
-        db.create_table('tsp_mpa', (
-            ('geometry_orig', self.gf('django.contrib.gis.db.models.fields.PolygonField')(srid=2992, null=True, blank=True)),
+        # Adding model 'AOI'
+        db.create_table('tsp_aoi', (
+            ('geometry_orig', self.gf('django.contrib.gis.db.models.fields.PolygonField')(srid=99999, null=True, blank=True)),
             ('designation', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['mpa.MpaDesignation'], null=True, blank=True)),
             ('date_modified', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
+            ('description', self.gf('django.db.models.fields.TextField')(default='', null=True, blank=True)),
             ('object_id', self.gf('django.db.models.fields.PositiveIntegerField')(null=True, blank=True)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
             ('content_type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['contenttypes.ContentType'], null=True, blank=True)),
             ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
-            ('geometry_final', self.gf('django.contrib.gis.db.models.fields.PolygonField')(srid=2992, null=True, blank=True)),
+            ('geometry_final', self.gf('django.contrib.gis.db.models.fields.PolygonField')(srid=99999, null=True, blank=True)),
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length='255')),
         ))
-        db.send_create_signal('tsp', ['Mpa'])
+        db.send_create_signal('tsp', ['AOI'])
 
-        # Adding M2M table for field sharing_groups on 'Mpa'
-        db.create_table('tsp_mpa_sharing_groups', (
+        # Adding M2M table for field sharing_groups on 'AOI'
+        db.create_table('tsp_aoi_sharing_groups', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('mpa', models.ForeignKey(orm['tsp.mpa'], null=False)),
+            ('aoi', models.ForeignKey(orm['tsp.aoi'], null=False)),
             ('group', models.ForeignKey(orm['auth.group'], null=False))
         ))
-        db.create_unique('tsp_mpa_sharing_groups', ['mpa_id', 'group_id'])
+        db.create_unique('tsp_aoi_sharing_groups', ['aoi_id', 'group_id'])
 
         # Adding model 'MpaArray'
         db.create_table('tsp_mpaarray', (
@@ -55,11 +56,11 @@ class Migration(SchemaMigration):
     
     def backwards(self, orm):
         
-        # Deleting model 'Mpa'
-        db.delete_table('tsp_mpa')
+        # Deleting model 'AOI'
+        db.delete_table('tsp_aoi')
 
-        # Removing M2M table for field sharing_groups on 'Mpa'
-        db.delete_table('tsp_mpa_sharing_groups')
+        # Removing M2M table for field sharing_groups on 'AOI'
+        db.delete_table('tsp_aoi_sharing_groups')
 
         # Deleting model 'MpaArray'
         db.delete_table('tsp_mpaarray')
@@ -115,14 +116,15 @@ class Migration(SchemaMigration):
             'sort': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
             'url': ('django.db.models.fields.URLField', [], {'max_length': '200'})
         },
-        'tsp.mpa': {
-            'Meta': {'object_name': 'Mpa'},
+        'tsp.aoi': {
+            'Meta': {'object_name': 'AOI'},
             'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['contenttypes.ContentType']", 'null': 'True', 'blank': 'True'}),
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'date_modified': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'description': ('django.db.models.fields.TextField', [], {'default': "''"}),
             'designation': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['mpa.MpaDesignation']", 'null': 'True', 'blank': 'True'}),
-            'geometry_final': ('django.contrib.gis.db.models.fields.PolygonField', [], {'srid': '2992', 'null': 'True', 'blank': 'True'}),
-            'geometry_orig': ('django.contrib.gis.db.models.fields.PolygonField', [], {'srid': '2992', 'null': 'True', 'blank': 'True'}),
+            'geometry_final': ('django.contrib.gis.db.models.fields.PolygonField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'geometry_orig': ('django.contrib.gis.db.models.fields.PolygonField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': "'255'"}),
             'object_id': ('django.db.models.fields.PositiveIntegerField', [], {'null': 'True', 'blank': 'True'}),
