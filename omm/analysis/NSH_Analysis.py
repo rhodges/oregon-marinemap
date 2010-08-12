@@ -35,7 +35,6 @@ def display_nsh_analysis(request, nsh_id, type):
         from Biology import display_bio_analysis
         return display_bio_analysis(request, nsh_id)
     else: #must be Human Uses
-        #from Human import display_hum_analysis
-        #return display_hum_analysis(request, nsh_id)
-        return HttpResponse('Human Use requests not currently handled')
+        from Human import display_hum_analysis
+        return display_hum_analysis(request, nsh_id)
     
