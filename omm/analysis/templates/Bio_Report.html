@@ -1,0 +1,113 @@
+{% extends 'common/panel.html' %}
+{% block title %}{{aoi.name}} Biological Analysis{% endblock title %}
+{% block panel %}
+<h3>Intertidal Biological Characteristics</h3>
+<div class='freetext'>
+<br>
+<table  style='width:450px' class='impact_analysis_container'>
+    <tbody>
+        <tr class="grey">
+            <td><b>Pinniped Haulouts</b></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>{{haulouts}}</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="grey">
+            <td><b>Pinniped Site</b></td>
+            <td></td>
+            <td><b>Pinniped Location</b></td>
+        </tr>
+        {% for site in haulout_sites %}
+        <tr class="{% cycle '' 'grey' %}">
+            <td>{{site.0}}</td>
+            <td></td>
+            <td>{{site.1}}</td>
+        </tr>
+        {% endfor %}
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr class="grey">
+            <td><b>Stellar Sea Lion Rookeries</b></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>?</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="grey">
+            <td><b>Bird Colonies</b></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>{{bird_colonies}}</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="grey">
+            <td><b>Bird Species</b></td>
+            <td></td>
+            <td><b>Bird Species Count</b></td>
+        </tr>
+        {% for details in bird_details %}
+        <tr class="{% cycle '' 'grey' %}">
+            <td>{{details.0}}</td>
+            <td></td>
+            <td>{{details.1}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+<h3>Subtidal Biological Characteristics</h3>
+<div class='freetext'>
+<br>
+<table  style='width:450px' class='impact_analysis_container'>
+    <tbody>
+        <tr class="grey">
+            <td><b>Habitat Type</b></td>
+            <td></td>
+            <td><b>Habitat Proportion</b></td>
+        </tr>
+        {% for proportion in habitat_proportions %}
+        <tr class="{% cycle '' 'grey' %}">
+            <td>{{proportion.0}}</td>
+            <td></td>
+            <td>{{proportion.1|floatformat:'1'}} %</td>
+        </tr>
+        {% endfor %}
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr class="grey">
+            <td><b>Predicted Fish Species</b></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>missing data layer</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="grey">
+            <td><b>Kelp Survey Year</b></td>
+            <td><b>Area Recorded</b></td>
+            <td><b>Percent Coverage</b></td>
+        </tr>
+        {% for data in kelp_data %}
+        <tr class="{% cycle '' 'grey' %}">
+            <td>{{data.0}}</td>
+            <td>{{data.1|floatformat:'1'}} {{area_units}}</td>
+            <td>{{data.2|floatformat:'1'}} %</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+<br>
+{% endblock panel %}
+
