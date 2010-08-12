@@ -32,9 +32,8 @@ def display_nsh_analysis(request, nsh_id, type):
         from Physical import display_phy_analysis
         return display_phy_analysis(request, nsh_id)
     elif type_is_bio(type): 
-        #from Biological import display_bio_analysis
-        #return display_bio_analysis(request, nsh_id)
-        return HttpResponse('Biological requests not currently handled')
+        from Biology import display_bio_analysis
+        return display_bio_analysis(request, nsh_id)
     else: #must be Human Uses
         #from Human import display_hum_analysis
         #return display_hum_analysis(request, nsh_id)
