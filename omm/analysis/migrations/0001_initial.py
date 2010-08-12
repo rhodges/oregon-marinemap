@@ -158,7 +158,7 @@ class Migration(SchemaMigration):
         'analysis.counties': {
             'Meta': {'object_name': 'Counties'},
             'cobcode': ('django.db.models.fields.CharField', [], {'max_length': '5'}),
-            'county_nam': ('django.db.models.fields.CharField', [], {'max_length': '15'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '15'}),
             'geometry': ('django.contrib.gis.db.models.fields.MultiPolygonField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'objectid': ('django.db.models.fields.IntegerField', [], {}),

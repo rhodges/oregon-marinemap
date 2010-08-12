@@ -12,7 +12,6 @@ Renders the Geographic Report template
 Called by NSH_Analysis.display_nsh_analysis
 '''
 def display_geo_analysis(request, nsh_id, template='Geo_Report.html'):
-    #nsh = AOI.objects.get(id=nsh_id)
     nsh = get_object_or_404(AOI, pk=nsh_id)
     #get adjacent county
     counties = get_adjacent_counties(nsh)
@@ -28,16 +27,15 @@ def display_geo_analysis(request, nsh_id, template='Geo_Report.html'):
     perimeter = get_perimeter(nsh)
     #determine whether nsh touches the Oregon Shoreline (including any island shorelines)
     intertidal = is_intertidal(nsh)
-    #get islands that reside within nsh boundaries
-    islands = len(get_islands(nsh))
+    #get number of islands that reside within nsh boundaries
+    islands = get_num_islands(nsh)
     #get ratio to territorial sea
     ratio = get_ratio(nsh)
     context = {'aoi': nsh, 'county': counties, 'ports': ports, 'cities': cities, 'rockyshores': rockyshores, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'ratio': ratio}
     return render_to_response(template, RequestContext(request, context)) 
-    #return HttpResponse('adjacent county: ' + county + ' nearest ports: ' + ports)
     
 '''
-Determines the Adjacent County for the given nearshore habitat shape
+Determines the Adjacent Counties for the given nearshore habitat shape
 Called by display_geo_analysis
 '''
 def get_adjacent_counties(nsh):
@@ -46,7 +44,7 @@ def get_adjacent_counties(nsh):
     return intersecting_counties
     
 '''
-Determines the Nearest 3 Ports for the given nearshore habitat shape
+Determines the Nearest 3 Ports (in order of proximity) for the given nearshore habitat shape
 Called by display_geo_analysis
 '''    
 def get_nearest_ports(nsh):
@@ -57,7 +55,7 @@ def get_nearest_ports(nsh):
     return closest3
     
 '''
-Determines the Nearest 3 Cities for the given nearshore habitat shape
+Determines the Nearest 3 Cities (in order of proximity) for the given nearshore habitat shape
 Called by display_geo_analysis
 '''    
 def get_nearest_cities(nsh):
@@ -68,7 +66,7 @@ def get_nearest_cities(nsh):
     return closest3    
     
 '''
-Determines the Nearest 3 Rocky Shores for the given nearshore habitat shape
+Determines the Nearest 3 Rocky Shores (in order of proximity) for the given nearshore habitat shape
 Called by display_geo_analysis
 '''    
 def get_nearest_rockyshores(nsh):
@@ -110,17 +108,16 @@ def is_intertidal(nsh):
     return False        
     
 '''
-Determines any overlapping Islands for the given nearshore habitat shape
+Determines the number of overlapping Islands for the given nearshore habitat shape
 Called by display_geo_analysis
 '''    
-def get_islands(nsh):
+def get_num_islands(nsh):
     islands = Islands.objects.all()
     inter_islands = [island for island in islands if island.geometry.intersects(nsh.geometry_final)==True]
-    #inter_islands = [tuple for tuple in island_tuples if tuple==True]
-    return inter_islands        
+    return len(inter_islands)
     
 '''
-Determines the Ratio for the given nearshore habitat shape area and the territorial sea area
+Determines the Ratio for the given nearshore habitat area and the territorial sea area
 Called by display_geo_analysis
 '''    
 def get_ratio(nsh):
