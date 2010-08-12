@@ -1,6 +1,8 @@
 from django.contrib.gis.db import models
 from django.conf import settings
 
+#Used for Geographic Reports
+
 class Cities(models.Model):
     objectid = models.IntegerField()
     fips_code = models.CharField(max_length=5)
@@ -94,6 +96,8 @@ class RockyShores(models.Model):
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Rocky Shores")
     objects = models.GeoManager()    
     
+#Used for Physical Reports    
+    
 class ClosedShoreline(models.Model):
     objectid = models.IntegerField()
     fnode = models.IntegerField()
@@ -115,3 +119,5 @@ class Lithology(models.Model):
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Territorial Sea Lithology")
     objects = models.GeoManager()
+    
+    
