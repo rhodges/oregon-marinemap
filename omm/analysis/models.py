@@ -93,3 +93,25 @@ class RockyShores(models.Model):
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Rocky Shores")
     objects = models.GeoManager()    
+    
+class ClosedShoreline(models.Model):
+    objectid = models.IntegerField()
+    fnode = models.IntegerField()
+    tnode = models.IntegerField()
+    lpoly = models.IntegerField()
+    rpoly = models.IntegerField()
+    length = models.FloatField()
+    esi_ln = models.IntegerField()
+    esi_ln_id = models.IntegerField()
+    shape_leng = models.FloatField()
+    geometry = models.MultiLineStringField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Closed Shoreline")
+    objects = models.GeoManager()    
+    
+class Lithology(models.Model):
+    objectid = models.IntegerField()
+    lith_inter = models.CharField(max_length=24)
+    lithology = models.CharField(max_length=20)
+    shape_leng = models.FloatField()
+    shape_area = models.FloatField()
+    geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Territorial Sea Lithology")
+    objects = models.GeoManager()

@@ -9,7 +9,6 @@ Accessed via named url when user selects a type (Geographic, Physical, Biologica
 def nsh_analysis(request, nsh_id, type):
     from NSH_Analysis import display_nsh_analysis
     return display_nsh_analysis(request, nsh_id, type)
-    #return HttpResponse(nsh_id + type + 'nsh')
     
 '''
 Accessed via named url when user selects a type (Geographic, Physical, Biological, Human Uses) to run aes analysis on 
