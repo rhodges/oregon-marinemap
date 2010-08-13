@@ -14,7 +14,7 @@ def nsh_analysis(request, nsh_id, type):
 Accessed via named url when user selects a type (Geographic, Physical, Biological, Human Uses) to run aes analysis on 
 '''
 def aes_analysis(request, aes_id, type):
-    return HttpResponse(aes_id + type + 'aes')
+    return HttpResponse('Energy Site Analysis is not yet available.')
         
     
 '''
