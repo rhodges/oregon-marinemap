@@ -98,6 +98,13 @@
             <td><b>Area Recorded</b></td>
             <td><b>Percent Coverage</b></td>
         </tr>
+        {% if kelp_data == '---' %}
+        <tr>
+            <td>{{kelp_data}}</td>
+            <td>{{kelp_data}}</td>
+            <td>{{kelp_data}}</td>
+        </tr>
+        {% else %}
         {% for data in kelp_data %}
         <tr class="{% cycle '' 'grey' %}">
             <td>{{data.0}}</td>
@@ -105,6 +112,7 @@
             <td>{{data.2|floatformat:'1'}} %</td>
         </tr>
         {% endfor %}
+        {% endif %}
     </tbody>
 </table>
 </div>

@@ -7,15 +7,30 @@
 <table  style='width:450px' class='impact_analysis_container'>
     <tbody>
         <tr class="grey">
-            <td><b>Nearest State Park</b></td>
+            <td><b>Nearest State Parks</b></td>
             <td></td>
-            <td>Nearest Public Access</td>
+            <td><b>Distances</b></td>
         </tr>
-        <tr>
+        {% for park in parks %}
+        <tr class="{% cycle '' 'grey' %}">
+            <td>{{park.0}}</td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td>{{park.1|floatformat:'1'}} {{length_units}}</td>
         </tr>
+        {% endfor %}
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr class="grey">
+            <td><b>Nearest Public Access Sites</b></td>
+            <td></td>
+            <td><b>Distances</b></td>
+        </tr>
+        {% for site in access_sites %}
+        <tr class="{% cycle '' 'grey' %}">
+            <td>{{site.0}}</td>
+            <td></td>
+            <td>{{site.1|floatformat:'1'}} {{length_units}}</td>
+        </tr>
+        {% endfor %}
     </tbody>
 </table>
 </div>
@@ -26,37 +41,41 @@
 <table  style='width:450px' class='impact_analysis_container'>
     <tbody>
         <tr class="grey">
-            <td><b>Dredge Materials Disposal</b></td>
+            <td><b>Dredge Materials Disposal Sites</b></td>
             <td></td>
+            <td></td>
+        </tr>
+        {% if dmd_sites.0 != '---' %}
+            {% for site in dmd_sites %}
+            <tr class="{% cycle '' 'grey' %}">
+                <td>{{site}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            {% endfor %}
+            <tr><td></td><td></td><td></td><td></td></tr>
+        {% else %}
+            <tr>
+                <td>{{dmd_sites.0}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="grey">
+                <td><b>Nearest DMD Sites</b></td>
+                <td></td>
+                <td><b>Distances</b></td>
+            </tr>
+            {% for site in nearest_dmds %}
+            <tr class="{% cycle '' 'grey' %}">
+                <td>{{site.0}}</td>
+                <td></td>
+                <td>{{site.1|floatformat:'1'}} {{length_units}}</td>
+            </tr>
+            {% endfor %}
+            <tr><td></td><td></td><td></td><td></td></tr>
+        {% endif %}
+        <tr class="grey">
             <td><b>NPDES Outfall</b></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="grey">
-            <td><b>Undersea Cables</b></td>
-            <td></td>
-            <td><b>Towlanes</b></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="grey">
-            <td><b>Wave Energy</b></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="grey">
-            <td><b>Closest DMD</b></td>
             <td></td>
             <td><b>Closest Outfall</b></td>
         </tr>
@@ -66,7 +85,27 @@
             <td></td>
         </tr>
         <tr class="grey">
+            <td><b>Undersea Cables</b></td>
+            <td></td>
             <td><b>Closest Cable</b></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="grey">
+            <td><b>Towlanes</b></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="grey">
+            <td><b>Wave Energy</b></td>
             <td></td>
             <td><b>Closest Wave Energy</b></td>
         </tr>
