@@ -36,7 +36,10 @@ Called by display_phy_analysis
 def get_haulout_details(nsh):
     pinniped_haulouts = PinnipedHaulouts.objects.all()
     inter_haulouts = [haulout for haulout in pinniped_haulouts if haulout.geometry.intersects(nsh.geometry_final)]
-    locations_and_sites = [(haulout.location, haulout.site) for haulout in inter_haulouts]
+    if len(inter_haulouts) != 0:
+        locations_and_sites = [(haulout.location, haulout.site) for haulout in inter_haulouts]
+    else:
+        locations_and_sites = [(default_value, default_value)]
     return locations_and_sites
     
 '''
