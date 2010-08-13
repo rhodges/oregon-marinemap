@@ -9,7 +9,7 @@
         <tr class="grey">
             <td><b>Nearest State Parks</b></td>
             <td></td>
-            <td><b>Distances</b></td>
+            <td><b>Proximity</b></td>
         </tr>
         {% for park in parks %}
         <tr class="{% cycle '' 'grey' %}">
@@ -22,7 +22,7 @@
         <tr class="grey">
             <td><b>Nearest Public Access Sites</b></td>
             <td></td>
-            <td><b>Distances</b></td>
+            <td><b>Proximity</b></td>
         </tr>
         {% for site in access_sites %}
         <tr class="{% cycle '' 'grey' %}">
@@ -40,12 +40,12 @@
 <br>
 <table  style='width:450px' class='impact_analysis_container'>
     <tbody>
-        <tr class="grey">
-            <td><b>Dredge Materials Disposal Sites</b></td>
-            <td></td>
-            <td></td>
-        </tr>
         {% if dmd_sites.0 != '---' %}
+            <tr class="grey">
+                <td><b>Dredge Materials Disposal Sites</b></td>
+                <td></td>
+                <td></td>
+            </tr>
             {% for site in dmd_sites %}
             <tr class="{% cycle '' 'grey' %}">
                 <td>{{site}}</td>
@@ -55,15 +55,10 @@
             {% endfor %}
             <tr><td></td><td></td><td></td><td></td></tr>
         {% else %}
-            <tr>
-                <td>{{dmd_sites.0}}</td>
-                <td></td>
-                <td></td>
-            </tr>
             <tr class="grey">
-                <td><b>Nearest DMD Sites</b></td>
+                <td><b>Nearest Dredge Materials Disposal Sites</b></td>
                 <td></td>
-                <td><b>Distances</b></td>
+                <td><b>Proximity</b></td>
             </tr>
             {% for site in nearest_dmds %}
             <tr class="{% cycle '' 'grey' %}">
@@ -74,46 +69,101 @@
             {% endfor %}
             <tr><td></td><td></td><td></td><td></td></tr>
         {% endif %}
+        {% if outfall_sites.0 != '---' %}
+            <tr class="grey">
+                <td><b>NPDES Outfall Sites</b></td>
+                <td></td>
+                <td></td>
+            </tr>
+            {% for site in outfall_sites %}
+            <tr class="{% cycle '' 'grey' %}">
+                <td>{{site}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            {% endfor %}
+            <tr><td></td><td></td><td></td><td></td></tr>
+        {% else %}
+            <tr class="grey">
+                <td><b>Nearest NPDES Outfall Sites</b></td>
+                <td></td>
+                <td><b>Proximity</b></td>
+            </tr>
+            {% for site in nearest_outfalls %}
+            <tr class="{% cycle '' 'grey' %}">
+                <td>{{site.0}}</td>
+                <td></td>
+                <td>{{site.1|floatformat:'1'}} {{length_units}}</td>
+            </tr>
+            {% endfor %}
+            <tr><td></td><td></td><td></td><td></td></tr>
+        {% endif %}
+        {% if cables.0 != '---' %}
+            <tr class="grey">
+                <td><b>Undersea Cable Routes</b></td>
+                <td></td>
+                <td></td>
+            </tr>
+            {% for cable in cables %}
+            <tr class="{% cycle '' 'grey' %}">
+                <td>{{cable}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            {% endfor %}
+            <tr><td></td><td></td><td></td><td></td></tr>
+        {% else %}
+            <tr class="grey">
+                <td><b>Nearest Undersea Cable Routes</b></td>
+                <td></td>
+                <td><b>Proximity</b></td>
+            </tr>
+            {% for cable in nearest_cables %}
+            <tr class="{% cycle '' 'grey' %}">
+                <td>{{cable.0}}</td>
+                <td></td>
+                <td>{{cable.1|floatformat:'1'}} {{length_units}}</td>
+            </tr>
+            {% endfor %}
+            <tr><td></td><td></td><td></td><td></td></tr>
+        {% endif %}
         <tr class="grey">
-            <td><b>NPDES Outfall</b></td>
+            <td><b>Tugboat Towlanes</b></td>
             <td></td>
-            <td><b>Closest Outfall</b></td>
+            <td></td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="grey">
-            <td><b>Undersea Cables</b></td>
-            <td></td>
-            <td><b>Closest Cable</b></td>
-        </tr>
-        <tr>
-            <td></td>
+            <td>{{towlanes}}</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="grey">
-            <td><b>Towlanes</b></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="grey">
-            <td><b>Wave Energy</b></td>
-            <td></td>
-            <td><b>Closest Wave Energy</b></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+        {% if wave_sites.0.0 != '---' %}
+            <tr class="grey">
+                <td><b>Wave Energy Sites</b></td>
+                <td></td>
+                <td><b>Proportion Within Energy Sites</b></td>
+            </tr>
+            {% for site in wave_sites %}
+            <tr class="{% cycle '' 'grey' %}">
+                <td>{{site.0}}</td>
+                <td></td>
+                <td>{{site.1|floatformat:'1'}} %</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr class="grey">
+                <td><b>Nearest Wave Energy Sites</b></td>
+                <td></td>
+                <td><b>Proximity</b></td>
+            </tr>
+            {% for site in nearest_wave_sites %}
+            <tr class="{% cycle '' 'grey' %}">
+                <td>{{site.0}}</td>
+                <td></td>
+                <td>{{site.1|floatformat:'1'}} {{length_units}}</td>
+            </tr>
+            {% endfor %}
+        {% endif %}
     </tbody>
 </table>
 </div>
@@ -124,25 +174,53 @@
 <table  style='width:450px' class='impact_analysis_container'>
     <tbody>
         <tr class="grey">
-            <td><b>Proximity to Ports</b></td>
+            <td><b>Nearest Ports</b></td>
             <td></td>
-            <td><b>Proximity to Existing State MMA</b></td>
+            <td><b>Proximity</b></td>
         </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+        {% for port in nearest_ports %}
+            <tr class="{% cycle '' 'grey' %}">
+                <td>{{port.0}}</td>
+                <td></td>
+                <td>{{port.1|floatformat:'1'}} {{length_units}}</td>
+            </tr>
+        {% endfor %}
         <tr class="grey">
-            <td><b>Proximity to ODFW Closures</b></td>
+            <td><b>Nearest State MMAs</b></td>
             <td></td>
-            <td><b>Proximity to EFH Conservation Areas</b></td>
+            <td><b>Proximity</b></td>
         </tr>
-        <tr>
+        {% for mma in nearest_mmas %}
+            <tr class="{% cycle '' 'grey' %}">
+                <td>{{mma.0}}</td>
+                <td></td>
+                <td>{{mma.1|floatformat:'1'}} {{length_units}}</td>
+            </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td><b>Nearest ODFW Closures</b></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td><b>Proximity</b></td>
         </tr>
+        {% for closure in nearest_closures %}
+            <tr class="{% cycle '' 'grey' %}">
+                <td>{{closure.0}}</td>
+                <td></td>
+                <td>{{closure.1|floatformat:'1'}} {{length_units}}</td>
+            </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td><b>Nearest EFH Conservation Areas</b></td>
+            <td></td>
+            <td><b>Proximity</b></td>
+        </tr>
+        {% for area in nearest_conservation_areas %}
+            <tr class="{% cycle '' 'grey' %}">
+                <td>{{area.0}}</td>
+                <td></td>
+                <td>{{area.1|floatformat:'1'}} {{length_units}}</td>
+            </tr>
+        {% endfor %}
     </tbody>
 </table>
 </div>
