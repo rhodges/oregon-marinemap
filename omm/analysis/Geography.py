@@ -100,12 +100,12 @@ def is_intertidal(nsh):
     shorelines = Shoreline.objects.all()
     for shoreline in shorelines:
         if nsh.geometry_final.intersects(shoreline.geometry):
-            return True
+            return 'Yes'
     islands = Islands.objects.all()
     for island in islands:
         if nsh.geometry_final.intersects(island.geometry):
-            return True
-    return False        
+            return 'Yes'
+    return 'No'        
     
 '''
 Determines the number of overlapping Islands for the given nearshore habitat shape
