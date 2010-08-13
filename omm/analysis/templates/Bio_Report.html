@@ -12,14 +12,14 @@
             <td></td>
         </tr>
         <tr>
-            <td>{{haulouts}}</td>
+            <td>{{num_haulouts}}</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="grey">
-            <td><b>Pinniped Site</b></td>
+            <td><b>Pinniped Sites</b></td>
             <td></td>
-            <td><b>Pinniped Location</b></td>
+            <td><b>Pinniped Locations</b></td>
         </tr>
         {% for site in haulout_sites %}
         <tr class="{% cycle '' 'grey' %}">
@@ -98,11 +98,11 @@
             <td><b>Area Recorded</b></td>
             <td><b>Percent Coverage</b></td>
         </tr>
-        {% if kelp_data == '---' %}
+        {% if kelp_data.0.2 == '---' %}
         <tr>
-            <td>{{kelp_data}}</td>
-            <td>{{kelp_data}}</td>
-            <td>{{kelp_data}}</td>
+            <td>{{kelp_data.0.0}}</td>
+            <td>{{kelp_data.0.1}}</td>
+            <td>{{kelp_data.0.2}}</td>
         </tr>
         {% else %}
         {% for data in kelp_data %}

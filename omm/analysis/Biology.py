@@ -16,7 +16,7 @@ Called by NSH_Analysis.display_nsh_analysis
 def display_bio_analysis(request, nsh_id, template='Bio_Report.html'):
     nsh = get_object_or_404(AOI, pk=nsh_id)
     #get pinniped haulout details
-    haulout_details = get_haulout_details(nsh)
+    num_haulouts, haulout_details = get_haulout_details(nsh)
     #get stellar sea lion rookery details
     
     #get bird colony details
@@ -26,7 +26,7 @@ def display_bio_analysis(request, nsh_id, template='Bio_Report.html'):
     #get kelp survey data
     kelp_data = get_kelp_data(nsh)
     
-    context = {'aoi': nsh, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'haulouts': len(haulout_details), 'haulout_sites': haulout_details, 'bird_colonies': len(bird_details), 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'kelp_data': kelp_data}
+    context = {'aoi': nsh, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'num_haulouts': num_haulouts, 'haulout_sites': haulout_details, 'bird_colonies': len(bird_details), 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'kelp_data': kelp_data}
     return render_to_response(template, RequestContext(request, context)) 
      
 '''
@@ -36,11 +36,12 @@ Called by display_phy_analysis
 def get_haulout_details(nsh):
     pinniped_haulouts = PinnipedHaulouts.objects.all()
     inter_haulouts = [haulout for haulout in pinniped_haulouts if haulout.geometry.intersects(nsh.geometry_final)]
-    if len(inter_haulouts) != 0:
+    num_haulouts = len(inter_haulouts)
+    if num_haulouts != 0:
         locations_and_sites = [(haulout.location, haulout.site) for haulout in inter_haulouts]
     else:
         locations_and_sites = [(default_value, default_value)]
-    return locations_and_sites
+    return num_haulouts, locations_and_sites
     
 '''
 Determines the Seabird Colony Details for the given nearshore habitat shape
@@ -91,7 +92,7 @@ def get_kelp_data(nsh):
     kelp_surveys = KelpSurveys.objects.all()
     inter_surveys = [survey for survey in kelp_surveys if survey.geometry.intersects(nsh.geometry_final)]
     if len(inter_surveys) == 0:
-        return default_value
+        return [('None Recorded', default_value, default_value)]
     survey_dict = {}
     for survey in inter_surveys:
         if survey.kelp90 != 0:
