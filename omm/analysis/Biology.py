@@ -87,6 +87,8 @@ Called by display_phy_analysis
 def get_kelp_data(nsh):
     kelp_surveys = KelpSurveys.objects.all()
     inter_surveys = [survey for survey in kelp_surveys if survey.geometry.intersects(nsh.geometry_final)]
+    if len(inter_surveys) == 0:
+        return default_value
     survey_dict = {}
     for survey in inter_surveys:
         if survey.kelp90 != 0:
