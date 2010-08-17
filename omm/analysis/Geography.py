@@ -5,6 +5,7 @@ from tsp.models import AOI
 from models import *
 from settings import *
 from lingcod.unit_converter.models import area_in_display_units, length_in_display_units
+from utils import get_nearest_geometries, get_intersecting_geometries
 
 '''
 Runs analysis for Geographic report
@@ -31,6 +32,7 @@ def display_geo_analysis(request, nsh_id, template='Geo_Report.html'):
     islands = get_num_islands(nsh)
     #get ratio to territorial sea
     ratio = get_ratio(nsh)
+    
     context = {'aoi': nsh, 'county': counties, 'ports': ports, 'cities': cities, 'rockyshores': rockyshores, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'ratio': ratio}
     return render_to_response(template, RequestContext(request, context)) 
     
@@ -39,43 +41,29 @@ Determines the Adjacent Counties for the given nearshore habitat shape
 Called by display_geo_analysis
 '''
 def get_adjacent_counties(nsh):
-    counties = Counties.objects.all()
-    intersecting_counties = [county.name for county in counties if county.geometry.intersects(nsh.geometry_final)]
-    return intersecting_counties
+    return get_intersecting_geometries(nsh, 'counties')
     
 '''
 Determines the Nearest 3 Ports (in order of proximity) for the given nearshore habitat shape
 Called by display_geo_analysis
 '''    
 def get_nearest_ports(nsh):
-    ports = Ports.objects.all()
-    distance_to_ports = [(nsh.geometry_final.distance(port.geometry), port.name) for port in ports]
-    distance_to_ports.sort()
-    closest3 = [tuple[1] for tuple in distance_to_ports[:3]]
-    return closest3
+    return get_nearest_geometries(nsh, 'ports')
     
 '''
 Determines the Nearest 3 Cities (in order of proximity) for the given nearshore habitat shape
 Called by display_geo_analysis
 '''    
 def get_nearest_cities(nsh):
-    cities = Cities.objects.all()
-    distance_to_cities = [(nsh.geometry_final.distance(city.geometry.centroid), city.name) for city in cities]
-    distance_to_cities.sort()
-    closest3 = [tuple[1] for tuple in distance_to_cities[:3]]
-    return closest3    
+    return get_nearest_geometries(nsh, 'cities')
     
 '''
 Determines the Nearest 3 Rocky Shores (in order of proximity) for the given nearshore habitat shape
 Called by display_geo_analysis
 '''    
 def get_nearest_rockyshores(nsh):
-    rockyshores = RockyShores.objects.all()
-    distance_to_rockyshores = [(nsh.geometry_final.distance(rockyshore.geometry.centroid), rockyshore.name) for rockyshore in rockyshores]
-    distance_to_rockyshores.sort()
-    closest3 = [tuple[1] for tuple in distance_to_rockyshores[:3]]
-    return closest3    
-
+    return get_nearest_geometries(nsh, 'rockyshores')
+    
 '''
 Determines the Area for the given nearshore habitat shape
 Called by display_geo_analysis

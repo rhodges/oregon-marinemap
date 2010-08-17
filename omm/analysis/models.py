@@ -262,7 +262,7 @@ class PublicAccess(models.Model):
     dat1 = models.FloatField()
     dat1_id = models.FloatField()
     siteid = models.FloatField()
-    loc = models.CharField(max_length=31)
+    name = models.CharField(max_length=31) #formerly known as loc
     addr = models.CharField(max_length=8, null=True, blank=True)
     county = models.CharField(max_length=9)
     range = models.CharField(max_length=7, null=True, blank=True)
@@ -348,7 +348,7 @@ class Outfalls(models.Model):
     facility_i = models.IntegerField()
     sic_code = models.IntegerField()
     legal_name = models.CharField(max_length=71)
-    common_nam = models.CharField(max_length=70)
+    name = models.CharField(max_length=70) #formerly known as common_nam
     city = models.CharField(max_length=14)
     county = models.CharField(max_length=9)
     permit_typ = models.CharField(max_length=13)
@@ -388,7 +388,7 @@ class Towlanes(models.Model):
     
 class WaveEnergyPermits(models.Model):
     objectid = models.IntegerField()
-    project = models.CharField(max_length=50)
+    name = models.CharField(max_length=50) #formerly known as project
     company = models.CharField(max_length=30)
     contact = models.CharField(max_length=40)
     permit_no = models.IntegerField()
@@ -427,7 +427,7 @@ class FisheryClosures(models.Model):
     
 class ConservationAreas(models.Model):
     objectid = models.IntegerField()
-    area_name = models.CharField(max_length=50, null=True, blank=True)
+    name = models.CharField(max_length=50, null=True, blank=True) #formerly known as area_name
     prohibit = models.CharField(max_length=65, null=True, blank=True)
     state = models.CharField(max_length=2, null=True, blank=True)
     shape_leng = models.FloatField()
