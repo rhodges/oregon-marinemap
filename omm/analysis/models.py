@@ -402,7 +402,6 @@ class WaveEnergyPermits(models.Model):
     area_miles = models.FloatField()
     acres = models.FloatField()
     hectares = models.FloatField()
-    label = models.CharField(max_length=50)
     shape_leng = models.FloatField()
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Wave Energy Preliminary Permits")
