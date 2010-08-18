@@ -17,10 +17,4 @@ def aes_analysis(request, aes_id, type):
     return HttpResponse('Energy Site Analysis is not yet available.')
         
     
-'''
-Accessed via named url when user selects a type (Geographic, Physical, Biological, Human Uses) to run aes analysis on 
-def aes_analysis_panel(request, aoi_id, type, template='aes_analysis_panel.html'):
-    aes = get_object_or_404(AOI, id=aoi_id)
-    return render_to_response(template, {'aes': aes} )
-'''
    
