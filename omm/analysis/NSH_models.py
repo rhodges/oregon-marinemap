@@ -1,6 +1,26 @@
 from django.contrib.gis.db import models
 from django.conf import settings
 
+
+#Used for Caching Report Context
+from tsp.models import AOI
+from picklefield import PickledObjectField
+    
+class NSHCache(models.Model):
+    type = models.CharField(max_length=50)
+    context = PickledObjectField()
+    wkt_hash = models.CharField(max_length=255)
+    
+    #ensure no duplicates (same geometry and type) 
+    def save(self, *args, **kwargs):
+        #remove any old entries
+        old_entries = NSHCache.objects.filter(wkt_hash=self.wkt_hash, type=self.type)
+        for entry in old_entries:
+            NSHCache.delete(entry)
+        #save the new entry
+        super(NSHCache, self).save(*args, **kwargs)
+
+
 #Used for Geographic Reports
 
 class Cities(models.Model):
@@ -95,7 +115,7 @@ class RockyShores(models.Model):
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Rocky Shores")
     objects = models.GeoManager()    
-    
+
 #Used for Physical Reports    
     
 class ClosedShoreline(models.Model):

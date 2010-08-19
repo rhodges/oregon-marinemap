@@ -1,4 +1,8 @@
 from django.http import HttpResponse
+from NSH_Geography import display_geo_analysis
+from NSH_Physical import display_phy_analysis
+from NSH_Biology import display_bio_analysis
+from NSH_Human import display_hum_analysis
 
 def type_is_geo(type):
     lc_type = type.lower()
@@ -26,15 +30,11 @@ def type_is_hum(type):
 
 def display_nsh_analysis(request, nsh_id, type):
     if type_is_geo(type):
-        from NSH_Geography import display_geo_analysis
         return display_geo_analysis(request, nsh_id)
     elif type_is_phy(type):
-        from NSH_Physical import display_phy_analysis
         return display_phy_analysis(request, nsh_id)
     elif type_is_bio(type): 
-        from NSH_Biology import display_bio_analysis
         return display_bio_analysis(request, nsh_id)
     else: #must be Human Uses
-        from NSH_Human import display_hum_analysis
         return display_hum_analysis(request, nsh_id)
     

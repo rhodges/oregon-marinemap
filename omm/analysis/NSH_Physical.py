@@ -5,6 +5,7 @@ from tsp.models import AOI
 from models import *
 from settings import *
 from lingcod.unit_converter.models import length_in_display_units, area_in_display_units
+from NSH_Cache import has_cache, get_cache, create_cache
 
 default_value = '---'
 
@@ -13,10 +14,27 @@ Runs analysis for Physical report
 Renders the Physical Report template
 Called by NSH_Analysis.display_nsh_analysis
 '''
-def display_phy_analysis(request, nsh_id, template='Phy_Report.html'):
+def display_phy_analysis(request, nsh_id, type='Physical', template='Phy_Report.html'):
     nsh = get_object_or_404(AOI, pk=nsh_id)
-    #Intertidal Shoreline Length
-    length = get_shoreline_length(nsh) #6 seconds
+    
+    #get context from cache or from running analysis
+    if has_cache(nsh, type):
+        #retrieve context from cache
+        context = get_cache(nsh, type)
+    else:
+        #get context by running analysis
+        context = run_phy_analysis(nsh)
+        #cache these results
+        create_cache(nsh, type, context)       
+    
+    return render_to_response(template, RequestContext(request, context)) 
+     
+'''
+Run the analysis and return the results as a context dictionary so they may be rendered with template
+'''    
+def run_phy_analysis(nsh):     
+     #Intertidal Shoreline Length
+    length = get_shoreline_length(nsh) 
     if length is None:
         length = 0.0
         percent_shoreline = default_value
@@ -25,15 +43,15 @@ def display_phy_analysis(request, nsh_id, template='Phy_Report.html'):
         shoreline_proportions = [(default_value, default_value)]
     else:
         #percent of Oregon Coast Shoreline
-        percent_shoreline = get_shoreline_percentage(nsh, length) #4 seconds
+        percent_shoreline = get_shoreline_percentage(nsh, length) 
         #number of islands
-        islands = get_num_islands(nsh) #2 seconds
+        islands = get_num_islands(nsh) 
         #total island area
-        island_area = get_island_area(nsh) #2 seconds
+        island_area = get_island_area(nsh) 
         #shoreline types and proportions
-        shoreline_proportions = get_shoreline_proportions(nsh) #3 seconds
+        shoreline_proportions = get_shoreline_proportions(nsh) 
     #subtidal area
-    subtidal_area = get_subtidal_area(nsh, island_area) # <1 second
+    subtidal_area = get_subtidal_area(nsh, island_area) 
     #percent shallow
     
     #percent deep
@@ -44,11 +62,10 @@ def display_phy_analysis(request, nsh_id, template='Phy_Report.html'):
     #average depth
     
     #proximity to shore
-    distance_to_shore = get_distance_to_shore(nsh) #2 seconds
+    distance_to_shore = get_distance_to_shore(nsh) 
     
-    context = {'aoi': nsh, 'default_value': default_value, 'length': length, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'percent_shoreline': percent_shoreline, 'islands': islands, 'island_area': island_area, 'shoreline_proportions': shoreline_proportions, 'subtidal_area': subtidal_area, 'distance_to_shore': distance_to_shore, 'lithology_proportions': lithology_proportions}
-    return render_to_response(template, RequestContext(request, context)) 
-     
+    return {'aoi': nsh, 'default_value': default_value, 'length': length, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'percent_shoreline': percent_shoreline, 'islands': islands, 'island_area': island_area, 'shoreline_proportions': shoreline_proportions, 'subtidal_area': subtidal_area, 'distance_to_shore': distance_to_shore, 'lithology_proportions': lithology_proportions}
+    
 '''
 Determines the Intertidal Shoreline Length for the given nearshore habitat shape
 Called by display_phy_analysis

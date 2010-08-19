@@ -6,14 +6,33 @@ from models import *
 from settings import *
 from lingcod.unit_converter.models import area_in_display_units, length_in_display_units
 from utils import get_nearest_geometries, get_intersecting_geometries
+from NSH_Cache import has_cache, get_cache, create_cache
 
 '''
 Runs analysis for Geographic report
 Renders the Geographic Report template
 Called by NSH_Analysis.display_nsh_analysis
 '''
-def display_geo_analysis(request, nsh_id, template='Geo_Report.html'):
+def display_geo_analysis(request, nsh_id, type='Geography', template='Geo_Report.html'):
+    #get aoi object
     nsh = get_object_or_404(AOI, pk=nsh_id)
+    
+    #get context from cache or from running analysis
+    if has_cache(nsh, type):
+        #retrieve context from cache
+        context = get_cache(nsh, type)
+    else:
+        #get context by running analysis
+        context = run_geo_analysis(nsh)
+        #cache these results
+        create_cache(nsh, type, context)       
+    
+    return render_to_response(template, RequestContext(request, context)) 
+    
+'''
+Run the analysis and return the results as a context dictionary so they may be rendered with template
+'''    
+def run_geo_analysis(nsh):
     #get adjacent county
     counties = get_adjacent_counties(nsh)
     #get nearest 3 ports
@@ -33,9 +52,9 @@ def display_geo_analysis(request, nsh_id, template='Geo_Report.html'):
     #get ratio to territorial sea
     ratio = get_ratio(nsh)
     
-    context = {'aoi': nsh, 'county': counties, 'ports': ports, 'cities': cities, 'rockyshores': rockyshores, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'ratio': ratio}
-    return render_to_response(template, RequestContext(request, context)) 
-    
+    #compile and return context
+    return {'aoi': nsh, 'county': counties, 'ports': ports, 'cities': cities, 'rockyshores': rockyshores, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'ratio': ratio}
+       
 '''
 Determines the Adjacent Counties for the given nearshore habitat shape
 Called by display_geo_analysis

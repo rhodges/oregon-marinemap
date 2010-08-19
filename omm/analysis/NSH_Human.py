@@ -6,6 +6,7 @@ from models import *
 from settings import *
 from lingcod.unit_converter.models import length_in_display_units, area_in_display_units
 from utils import get_nearest_geometries_with_distances, get_intersecting_geometries
+from NSH_Cache import has_cache, get_cache, create_cache
     
 default_value = '---'
 
@@ -14,8 +15,25 @@ Runs analysis for Human Considerations report
 Renders the Human Considerations Report template
 Called by NSH_Analysis.display_nsh_analysis
 '''
-def display_hum_analysis(request, nsh_id, template='Hum_Report.html'):
+def display_hum_analysis(request, nsh_id, type='Human', template='Hum_Report.html'):
     nsh = get_object_or_404(AOI, pk=nsh_id)
+    
+    #get context from cache or from running analysis
+    if has_cache(nsh, type):
+        #retrieve context from cache
+        context = get_cache(nsh, type)
+    else:
+        #get context by running analysis
+        context = run_hum_analysis(nsh)
+        #cache these results
+        create_cache(nsh, type, context)      
+    
+    return render_to_response(template, RequestContext(request, context)) 
+     
+'''
+Run the analysis and return the results as a context dictionary so they may be rendered with template
+'''    
+def run_hum_analysis(nsh):     
     #get nearest state parks
     nearest_parks = get_nearest_parks(nsh)
     #get nearest public access points
@@ -39,9 +57,8 @@ def display_hum_analysis(request, nsh_id, template='Hum_Report.html'):
     #get nearest conservation areas
     nearest_conservation_areas = get_nearest_conservation_areas(nsh)
     
-    context = {'aoi': nsh, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'dmd_sites': intersecting_dmds, 'nearest_dmds': nearest_dmds, 'outfall_sites': intersecting_outfalls, 'nearest_outfalls': nearest_outfalls, 'cables': intersecting_cables, 'nearest_cables': nearest_cables, 'towlanes': towlanes, 'wave_sites': intersecting_wave_sites, 'nearest_wave_sites': nearest_wave_sites, 'nearest_ports': nearest_ports, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
-    return render_to_response(template, RequestContext(request, context)) 
-     
+    return {'aoi': nsh, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'dmd_sites': intersecting_dmds, 'nearest_dmds': nearest_dmds, 'outfall_sites': intersecting_outfalls, 'nearest_outfalls': nearest_outfalls, 'cables': intersecting_cables, 'nearest_cables': nearest_cables, 'towlanes': towlanes, 'wave_sites': intersecting_wave_sites, 'nearest_wave_sites': nearest_wave_sites, 'nearest_ports': nearest_ports, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
+
 '''
 Determines the Nearest State Park for the given nearshore habitat shape
 Called by display_phy_analysis
