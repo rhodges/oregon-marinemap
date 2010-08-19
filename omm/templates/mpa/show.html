@@ -10,9 +10,6 @@
             <li><a href="#Attributes"><span>Information</span></a></li>
             <li><a href="#Habitats"><span>Nearshore Habitats</span></a></li>
             <li><a href="#Sites"><span>Energy Sites</span></a></li>
-            {% if perms.aoi.view_privateanalysis %}
-	            <li><a href="#PrivateAnalysis"><span>Private Analysis</span></a></li>				
-			{% endif %}
         </ul>
         <div id="Attributes">
             <ul class="metadata">
@@ -56,16 +53,5 @@
                 <p>This page contains Alternative Energy Site analysis information specific to your Area of Interest. </p>
             </div>
         </div>
-        {% if perms.aoi.view_privateanalysis %}
-        <div id="PrivateAnalysis" class="tabs">
-            <ul>
-                <li><a href="#Private_Instructions"><span>Instructions</span></a></li>
-            </ul>
-            <div id="Private_Instructions">
-                <h3>Private Analysis Instructions</h3>
-                <p>This page contains analysis information that is privvy to only those users that have been added to the Sample Private Analysis group. </p>
-            </div>
-        </div>			
-        {% endif %}
     </div>
 {% endblock panel %}

@@ -5,6 +5,7 @@ from tsp.models import AOI
 from models import *
 from settings import *
 from lingcod.unit_converter.models import length_in_display_units, area_in_display_units
+from NSH_Cache import has_cache, get_cache, create_cache
 
 default_value = '---'
 
@@ -13,8 +14,25 @@ Runs analysis for Biological report
 Renders the Biological Report template
 Called by NSH_Analysis.display_nsh_analysis
 '''
-def display_bio_analysis(request, nsh_id, template='Bio_Report.html'):
+def display_bio_analysis(request, nsh_id, type='Biological', template='Bio_Report.html'):
     nsh = get_object_or_404(AOI, pk=nsh_id)
+    
+    #get context from cache or from running analysis
+    if has_cache(nsh, type):
+        #retrieve context from cache
+        context = get_cache(nsh, type)
+    else:
+        #get context by running analysis
+        context = run_bio_analysis(nsh)
+        #cache these results
+        create_cache(nsh, type, context)       
+
+    return render_to_response(template, RequestContext(request, context)) 
+     
+'''
+Run the analysis and return the results as a context dictionary so they may be rendered with template
+'''    
+def run_bio_analysis(nsh):     
     #get pinniped haulout details
     num_haulouts, haulout_details = get_haulout_details(nsh)
     #get stellar sea lion rookery details
@@ -26,9 +44,8 @@ def display_bio_analysis(request, nsh_id, template='Bio_Report.html'):
     #get kelp survey data
     kelp_data = get_kelp_data(nsh)
     
-    context = {'aoi': nsh, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'num_haulouts': num_haulouts, 'haulout_sites': haulout_details, 'bird_colonies': len(bird_details), 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'kelp_data': kelp_data}
-    return render_to_response(template, RequestContext(request, context)) 
-     
+    return {'aoi': nsh, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'num_haulouts': num_haulouts, 'haulout_sites': haulout_details, 'bird_colonies': len(bird_details), 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'kelp_data': kelp_data}
+    
 '''
 Determines the Pinniped Haulout Details for the given nearshore habitat shape
 Called by display_phy_analysis
