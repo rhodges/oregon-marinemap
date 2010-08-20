@@ -43,7 +43,7 @@ def run_phy_analysis(nsh):
         shoreline_proportions = [(default_value, default_value)]
     else:
         #percent of Oregon Coast Shoreline
-        percent_shoreline = get_shoreline_percentage(nsh, length) 
+        percent_shoreline = get_shoreline_percentage(length) 
         #number of islands
         islands = get_num_islands(nsh) 
         #total island area
@@ -52,19 +52,48 @@ def run_phy_analysis(nsh):
         shoreline_proportions = get_shoreline_proportions(nsh) 
     #subtidal area
     subtidal_area = get_subtidal_area(nsh, island_area) 
-    #percent shallow
-    
-    #percent deep
-    
+    #percent percent shallow, percent deep, and average depth
+    perc_shallow, perc_deep, average_depth = get_depth_stats(nsh)
     #seafloor lithology
     lithology_proportions = get_lithology_proportions(nsh)
-    
-    #average depth
-    
     #proximity to shore
     distance_to_shore = get_distance_to_shore(nsh) 
     
-    return {'aoi': nsh, 'default_value': default_value, 'length': length, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'percent_shoreline': percent_shoreline, 'islands': islands, 'island_area': island_area, 'shoreline_proportions': shoreline_proportions, 'subtidal_area': subtidal_area, 'distance_to_shore': distance_to_shore, 'lithology_proportions': lithology_proportions}
+    return {'aoi': nsh, 'default_value': default_value, 'length': length, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'percent_shoreline': percent_shoreline, 'islands': islands, 'island_area': island_area, 'shoreline_proportions': shoreline_proportions, 'subtidal_area': subtidal_area, 'perc_shallow': perc_shallow, 'perc_deep': perc_deep, 'average_depth': average_depth, 'distance_to_shore': distance_to_shore, 'lithology_proportions': lithology_proportions}
+    
+def get_depth_stats(nsh):
+    bath_polys = Bathymetry.objects.all()
+    inter_polys = [poly for poly in bath_polys if poly.geometry.intersects(nsh.geometry_final)]
+    bath_dict = {}
+    total_area = 0.0
+    #generate depth dictionary {depth: total_area_at_that_depth}, and total area
+    #currently assuming there are enough polygons in each nsh that we don't need to take the area of intersection from each polygon
+    for poly in inter_polys:
+        area = poly.geometry.area
+        if poly.depth not in bath_dict.keys():
+            bath_dict[poly.depth] = area
+        else:
+            bath_dict[poly.depth] += area
+        total_area += area
+    shallow_area = 0.0
+    deep_area = 0.0
+    numerator = 0.0
+    denominator = 0.0
+    #determine the total area of shallow waters (<=25m), total area of deep waters (>25m)
+    #determine the average depth (depth * area / area)
+    for depth, area in bath_dict.items():
+        if -depth <= 25:
+            shallow_area += area
+        else:
+            deep_area += area
+        numerator += depth * area
+        denominator += area
+    perc_shallow = shallow_area / total_area * 100
+    perc_deep = deep_area / total_area * 100
+    average_depth = numerator / denominator
+    return perc_shallow, perc_deep, average_depth
+    
+    
     
 '''
 Determines the Intertidal Shoreline Length for the given nearshore habitat shape
@@ -87,7 +116,7 @@ def get_shoreline_length(nsh):
 Determines the Shoreline Percentage for the given nearshore habitat shape
 Called by display_phy_analysis
 '''
-def get_shoreline_percentage(nsh, length):  
+def get_shoreline_percentage(length):  
     shorelines = ClosedShoreline.objects.all()
     islands = Islands.objects.all()
     shorelines_length = sum([shoreline.geometry.length for shoreline in shorelines])
@@ -95,7 +124,7 @@ def get_shoreline_percentage(nsh, length):
     total_length = shorelines_length + islands_length
     total_length_converted_units = length_in_display_units(total_length)
     percentage = length / total_length_converted_units * 100
-    return percentage
+    return percentage 
       
 '''
 Determines the proportions for the various types of shoreline
@@ -115,8 +144,12 @@ def get_shoreline_proportions(nsh):
         total_length += tuple[1]
     esi_proportion_list = []
     for key in esi_length_dict.keys():
-        proportion = esi_length_dict[key] / total_length * 100
-        esi_proportion_list.append((key, proportion))
+        esi_shoretype = key
+        length = esi_length_dict[key]
+        proportion = length / total_length * 100
+        esi_proportion_list.append((proportion, esi_shoretype, length))
+    esi_proportion_list.sort()
+    esi_proportion_list.reverse()
     return esi_proportion_list    
     
 '''    
@@ -128,11 +161,11 @@ def esi_to_text(esi):
                     '3': 'Fine-grained Sandy Beaches', 
                     '4': 'Coarse-grained Sandy Beaches', 
                     '5': 'Mixed Sand and Gravel Beaches', 
-                    '6': 'Gravel/Riprap Beaches', 
+                    '6': 'Gravel Beaches / Exposed Riprap', 
                     '7': 'Exposed Tidal Flats', 
-                    '8': 'Sheltered Rocky/Artificial Shores', 
+                    '8': 'Sheltered Rocky / Artificial Shores', 
                     '9': 'Sheltered Tidal Flats', 
-                    '10': 'Marshes/Swamps/Mangroves', 
+                    '10': 'Marsh', 
                     'U': 'Undefined'    }
     return esi_dict[esi]
     

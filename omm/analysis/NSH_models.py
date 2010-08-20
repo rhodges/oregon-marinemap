@@ -3,6 +3,7 @@ from django.conf import settings
 
 
 #Used for Caching Report Context
+
 from tsp.models import AOI
 from picklefield import PickledObjectField
     
@@ -139,6 +140,11 @@ class Lithology(models.Model):
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Territorial Sea Lithology")
     objects = models.GeoManager()
+    
+class Bathymetry(models.Model):
+    depth = models.IntegerField() #formerly known as grid_code
+    geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Bathymetry Polygon")
+    objects = models.GeoManager()    
     
 #Used for Biological Reports    
     

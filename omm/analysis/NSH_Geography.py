@@ -48,7 +48,7 @@ def run_geo_analysis(nsh):
     #determine whether nsh touches the Oregon Shoreline (including any island shorelines)
     intertidal = is_intertidal(nsh)
     #get number of islands that reside within nsh boundaries
-    islands = get_num_islands(nsh)
+    islands = has_islands(nsh)
     #get ratio to territorial sea
     ratio = get_ratio(nsh)
     
@@ -118,10 +118,13 @@ def is_intertidal(nsh):
 Determines the number of overlapping Islands for the given nearshore habitat shape
 Called by display_geo_analysis
 '''    
-def get_num_islands(nsh):
+def has_islands(nsh):
     islands = Islands.objects.all()
     inter_islands = [island for island in islands if island.geometry.intersects(nsh.geometry_final)==True]
-    return len(inter_islands)
+    if len(inter_islands) > 0:
+        return 'Yes'
+    else:
+        return 'No'
     
 '''
 Determines the Ratio for the given nearshore habitat area and the territorial sea area
