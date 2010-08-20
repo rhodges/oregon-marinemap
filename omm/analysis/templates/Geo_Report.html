@@ -18,17 +18,17 @@
         <tr>
             <td>{{county.0}}</td>
             <td></td>
-            <td>{{ports.0}}</td>
+            <td>{{ports.0.0}}  ({{ports.0.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         <tr class="grey">
             <td>{{county.1}}</td>
             <td></td>
-            <td>{{ports.1}}</td>
+            <td>{{ports.1.0}}  ({{ports.1.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         <tr>
             <td>{{county.2}}</td>
             <td></td>
-            <td>{{ports.2}}</td>
+            <td>{{ports.2.0}}  ({{ports.2.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         <tr class="grey">
             <td><b>Nearest Cities</b></td>
@@ -36,19 +36,19 @@
             <td><b>Nearest Rocky Shore Areas</b></td>
         </tr>
         <tr>
-            <td>{{cities.0}}</td>
+            <td>{{cities.0.0}}  ({{cities.0.1|floatformat:'1'}} {{length_units}})</td>
             <td></td>
-            <td>{{rockyshores.0}}</td>
+            <td>{{rockyshores.0.0}}  ({{rockyshores.0.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         <tr class="grey">
-            <td>{{cities.1}}</td>
+            <td>{{cities.1.0}}  ({{cities.1.1|floatformat:'1'}} {{length_units}})</td>
             <td></td>
-            <td>{{rockyshores.1}}</td>
+            <td>{{rockyshores.1.0}}  ({{rockyshores.1.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         <tr>
-            <td>{{cities.2}}</td>
+            <td>{{cities.2.0}}  ({{cities.2.1|floatformat:'1'}} {{length_units}})</td>
             <td></td>
-            <td>{{rockyshores.2}}</td>
+            <td>{{rockyshores.2.0}}  ({{rockyshores.2.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
     </tbody>
 </table>
@@ -72,7 +72,7 @@
         <tr class="grey">
             <td><b>Intertidal</b></td>
             <td></td>
-            <td><b>Number of Islands</b></td>
+            <td><b>Islands</b></td>
         </tr>
         <tr>
             <td>{{intertidal}}</td>
@@ -87,7 +87,7 @@
         <tr>
             <td></td>
             <td></td>
-            <td>{{ratio|floatformat:'1'}} %</td>
+            <td>{{ratio|floatformat:'2'}} %</td>
         </tr>
     </tbody>
 </table>

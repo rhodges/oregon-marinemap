@@ -6,7 +6,7 @@ from NSH_Human import display_hum_analysis
 
 def type_is_geo(type):
     lc_type = type.lower()
-    if lc_type in ['geo', 'geometry']:
+    if lc_type in ['geo', 'geography']:
         return True
     return False
     
@@ -18,7 +18,7 @@ def type_is_phy(type):
     
 def type_is_bio(type):
     lc_type = type.lower()
-    if lc_type in ['bio', 'biological']:
+    if lc_type in ['bio', 'biology']:
         return True
     return False
     

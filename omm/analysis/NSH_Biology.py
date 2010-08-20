@@ -14,7 +14,7 @@ Runs analysis for Biological report
 Renders the Biological Report template
 Called by NSH_Analysis.display_nsh_analysis
 '''
-def display_bio_analysis(request, nsh_id, type='Biological', template='Bio_Report.html'):
+def display_bio_analysis(request, nsh_id, type='Biology', template='Bio_Report.html'):
     nsh = get_object_or_404(AOI, pk=nsh_id)
     
     #get context from cache or from running analysis

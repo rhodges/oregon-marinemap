@@ -16,7 +16,7 @@ def get_nearest_geometries(nsh, model_name, length=3):
     tuples = tuples[:length]
     nearest_shapes = []
     for tuple in tuples:
-        nearest_shapes.append(tuple[1].name)
+        nearest_shapes.append( (tuple[1].name, length_in_display_units(nsh.geometry_final.distance(tuple[1].geometry))) )
     return nearest_shapes
     
 '''
