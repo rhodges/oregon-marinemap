@@ -5,7 +5,7 @@ from tsp.models import AOI
 from models import *
 from settings import *
 from lingcod.unit_converter.models import area_in_display_units, length_in_display_units
-from utils import get_nearest_geometries, get_intersecting_geometries
+from utils import get_nearest_geometries_with_distances, get_intersecting_geometries
 from NSH_Cache import has_cache, get_cache, create_cache
 
 '''
@@ -60,28 +60,31 @@ Determines the Adjacent Counties for the given nearshore habitat shape
 Called by display_geo_analysis
 '''
 def get_adjacent_counties(nsh):
-    return get_intersecting_geometries(nsh, 'counties')
+    intersecting_geometries = get_intersecting_geometries(nsh, 'counties')
+    if len(intersecting_geometries) == 0:
+        intersecting_geometries.append(default_value)
+    return intersecting_geometries
     
 '''
 Determines the Nearest 3 Ports (in order of proximity) for the given nearshore habitat shape
 Called by display_geo_analysis
 '''    
 def get_nearest_ports(nsh):
-    return get_nearest_geometries(nsh, 'ports')
+    return get_nearest_geometries_with_distances(nsh, 'ports')
     
 '''
 Determines the Nearest 3 Cities (in order of proximity) for the given nearshore habitat shape
 Called by display_geo_analysis
 '''    
 def get_nearest_cities(nsh):
-    return get_nearest_geometries(nsh, 'cities')
+    return get_nearest_geometries_with_distances(nsh, 'cities')
     
 '''
 Determines the Nearest 3 Rocky Shores (in order of proximity) for the given nearshore habitat shape
 Called by display_geo_analysis
 '''    
 def get_nearest_rockyshores(nsh):
-    return get_nearest_geometries(nsh, 'rockyshores')
+    return get_nearest_geometries_with_distances(nsh, 'rockyshores')
     
 '''
 Determines the Area for the given nearshore habitat shape

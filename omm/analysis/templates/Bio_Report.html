@@ -9,58 +9,72 @@
         <tr class="grey">
             <td><b>Pinniped Haulouts</b></td>
             <td></td>
-            <td></td>
+            <td><b>Stellar Sea Lion Rookeries</b></td>
         </tr>
         <tr>
-            <td>{{num_haulouts}}</td>
+            {% if num_haulouts == 0 %}
+            <td>No ({{num_haulouts}} haulouts)</td>
+            {% else %}
+            <td>Yes ({{num_haulouts}} haulouts)</td>
+            {% endif %}
             <td></td>
-            <td></td>
+            {% if num_rookeries == 0 %}
+            <td>No ({{num_rookeries}} rookeries)</td>
+            {% else %}
+            <td>Yes ({{num_rookeries}} rookeries)</td>
+            {% endif %}
         </tr>
         <tr class="grey">
-            <td><b>Pinniped Sites</b></td>
-            <td></td>
-            <td><b>Pinniped Locations</b></td>
+            <td colspan="3"><b>Pinniped Haulout Details &nbsp; </b></td>
         </tr>
+    </tbody>
+</table>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
         {% for site in haulout_sites %}
-        <tr class="{% cycle '' 'grey' %}">
-            <td>{{site.0}}</td>
-            <td></td>
-            <td>{{site.1}}</td>
-        </tr>
+            <tr>
+                <td colspan="3">{{site.0.0}} , ({{site.0.1}})</td>
+            </tr>
+            {% for species in site.1 %}
+            <tr class="grey">
+                <td colspan="3">{{species}}</td>
+            </tr>
+            {% endfor %}
         {% endfor %}
         <tr><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+<br></br>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
         <tr class="grey">
-            <td><b>Stellar Sea Lion Rookeries</b></td>
-            <td></td>
-            <td></td>
+            <td colspan="3"><b>Bird Colonies &nbsp; </b></td>
         </tr>
         <tr>
-            <td>?</td>
-            <td></td>
-            <td></td>
+            {% if bird_colonies == 0 %}
+            <td colspan="3">No ({{bird_colonies}} colonies) &nbsp;</td>
+            {% else %}
+            <td colspan="3">Yes ({{bird_colonies}} colonies) &nbsp;</td>
+            {% endif %}
         </tr>
         <tr class="grey">
-            <td><b>Bird Colonies</b></td>
-            <td></td>
-            <td></td>
+            <td colspan="3"><b>Bird Colony Details &nbsp; </b></td>
         </tr>
-        <tr>
-            <td>{{bird_colonies}}</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="grey">
-            <td><b>Bird Species</b></td>
-            <td></td>
-            <td><b>Bird Species Count</b></td>
-        </tr>
+    </tbody>
+</table>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
         {% for details in bird_details %}
-        <tr class="{% cycle '' 'grey' %}">
-            <td>{{details.0}}</td>
-            <td></td>
-            <td>{{details.1}}</td>
-        </tr>
+                <tr>
+                    <td colspan="3">{{details.0.0}} , (Colony #{{details.0.1}})</td>
+                </tr>
+                {% for bird in details.1 %}
+                <tr class="grey">
+                    <td colspan="3">{{bird}}</td>
+                </tr>
+                {% endfor %}
         {% endfor %}
+        <tr><td></td><td></td><td></td><td></td></tr>
     </tbody>
 </table>
 </div>
@@ -71,51 +85,44 @@
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <tr class="grey">
-            <td><b>Habitat Type</b></td>
-            <td></td>
-            <td><b>Habitat Proportion</b></td>
+            <td colspan="3"><b>Habitat Type & Proportions</b></td>
         </tr>
-        {% for proportion in habitat_proportions %}
+        {% for details in habitat_proportions %}
         <tr class="{% cycle '' 'grey' %}">
-            <td>{{proportion.0}}</td>
-            <td></td>
-            <td>{{proportion.1|floatformat:'1'}} %</td>
+            <td colspan="3">{{details.0|floatformat:'2'}} % &nbsp; {{details.1}} &nbsp; ({{details.2|floatformat:'2'}} {{area_units}})</td>
         </tr>
         {% endfor %}
-        <tr><td></td><td></td><td></td><td></td></tr>
+        <br></br>
         <tr class="grey">
-            <td><b>Predicted Fish Species</b></td>
-            <td></td>
-            <td></td>
+            <td colspan="3"><b>Predicted Fish Species</b></td>
         </tr>
         <tr>
-            <td>?</td>
-            <td></td>
-            <td></td>
+            <td colspan="3">?</td>
         </tr>
+        <br></br>
         <tr class="grey">
             <td><b>Kelp Survey Year</b></td>
-            <td><b>Area Recorded</b></td>
-            <td><b>Percent Coverage</b></td>
+            <td colspan="2"><b>Kelp Proportions</b></td>
         </tr>
         {% if kelp_data.0.2 == '---' %}
         <tr>
             <td>{{kelp_data.0.0}}</td>
-            <td>{{kelp_data.0.1}}</td>
-            <td>{{kelp_data.0.2}}</td>
+            <td></td>
+            <td></td>
         </tr>
         {% else %}
         {% for data in kelp_data %}
         <tr class="{% cycle '' 'grey' %}">
             <td>{{data.0}}</td>
-            <td>{{data.1|floatformat:'1'}} {{area_units}}</td>
-            <td>{{data.2|floatformat:'1'}} %</td>
+            <td>{{data.1|floatformat:'2'}} {{area_units}}</td>
+            <td>{{data.2|floatformat:'2'}} %</td>
         </tr>
         {% endfor %}
         {% endif %}
+        <br></br>
     </tbody>
 </table>
 </div>
-<br>
+<br></br>
 {% endblock panel %}
 
