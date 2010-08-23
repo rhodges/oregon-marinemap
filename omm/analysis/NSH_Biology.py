@@ -36,15 +36,15 @@ def run_bio_analysis(nsh):
     #get pinniped haulout details
     num_haulouts, haulout_details = get_haulout_details(nsh)
     #get stellar sea lion rookery details
-    
+    num_rookeries = get_num_rookeries(nsh)
     #get bird colony details
-    bird_details = get_bird_colony_details(nsh)
+    num_colonies, bird_details = get_bird_colony_details(nsh)
     #get habitat types and proportions
     habitat_proportions = get_habitat_proportions(nsh)
     #get kelp survey data
     kelp_data = get_kelp_data(nsh)
     
-    return {'aoi': nsh, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'num_haulouts': num_haulouts, 'haulout_sites': haulout_details, 'bird_colonies': len(bird_details), 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'kelp_data': kelp_data}
+    return {'aoi': nsh, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'kelp_data': kelp_data}
     
 '''
 Determines the Pinniped Haulout Details for the given nearshore habitat shape
@@ -53,12 +53,33 @@ Called by display_phy_analysis
 def get_haulout_details(nsh):
     pinniped_haulouts = PinnipedHaulouts.objects.all()
     inter_haulouts = [haulout for haulout in pinniped_haulouts if haulout.geometry.intersects(nsh.geometry_final)]
+    
+    haulout_dict = {}
+    for haulout in inter_haulouts:
+        key_tuple = (haulout.location, haulout.site)
+        use_list = []
+        if haulout.pv_use > 0:
+            use_list.append('Pacific Harbor Seals')
+        if haulout.ej_use > 0:
+            use_list.append('Stellar Sea Lions')
+        if haulout.zc_use > 0:
+            use_list.append('California Sea Lions')
+        haulout_dict[key_tuple] = (use_list)
+    haulout_tuples = haulout_dict.items()
+    haulout_tuples.sort()
     num_haulouts = len(inter_haulouts)
-    if num_haulouts != 0:
-        locations_and_sites = [(haulout.location, haulout.site) for haulout in inter_haulouts]
-    else:
-        locations_and_sites = [(default_value, default_value)]
-    return num_haulouts, locations_and_sites
+    return num_haulouts, haulout_tuples
+    
+'''
+Determines the Pinniped Haulout Details for the given nearshore habitat shape
+Called by display_phy_analysis
+'''
+def get_num_rookeries(nsh):
+    pinniped_haulouts = PinnipedHaulouts.objects.all()
+    inter_haulouts = [haulout for haulout in pinniped_haulouts if haulout.geometry.intersects(nsh.geometry_final)]
+    rookeries = [haulout for haulout in inter_haulouts if haulout.ej_rookery > 0]
+    num_rookeries = len(rookeries)
+    return num_rookeries
     
 '''
 Determines the Seabird Colony Details for the given nearshore habitat shape
@@ -67,17 +88,20 @@ Called by display_phy_analysis
 def get_bird_colony_details(nsh):
     bird_colonies = SeabirdColonies.objects.all()
     inter_colonies = [colony for colony in bird_colonies if colony.geometry.intersects(nsh.geometry_final)]
-    species = [colony.species for colony in inter_colonies]
-    species_dict = {}
-    for spec in species:
-        if spec in species_dict.keys():
-            species_dict[spec] += 1
+    
+    colony_dict = {}
+    for colony in inter_colonies:
+        key_tuple = (colony.site_name, colony.colno)
+        if key_tuple in colony_dict.keys():
+            colony_dict[key_tuple].append(colony.species)
         else:
-            species_dict[spec] = 1
-    species_tuples = species_dict.items()
-    species_tuples.sort()
-    return species_tuples
-     
+            colony_dict[key_tuple] = [colony.species]
+        colony_dict[key_tuple].sort()
+    colony_tuples = colony_dict.items()
+    colony_tuples.sort()
+    num_colonies = len(inter_colonies)
+    return num_colonies, colony_tuples
+    
 '''
 Determines the areas and ratios for each represented lithology within the given nearshore habitat shape
 Called by display_phy_analysis
@@ -96,9 +120,12 @@ def get_habitat_proportions(nsh):
         total_area += tuple[1]
     habitat_proportion_list = []
     for key in habitat_dict.keys():
-        proportion = habitat_dict[key] / total_area * 100
-        habitat_proportion_list.append((key, proportion))
+        hab_type = key
+        area = habitat_dict[key]
+        proportion = area / total_area * 100
+        habitat_proportion_list.append((proportion, hab_type, area_in_display_units(area)))
     habitat_proportion_list.sort()
+    habitat_proportion_list.reverse()
     return habitat_proportion_list    
      
 '''
@@ -113,36 +140,41 @@ def get_kelp_data(nsh):
     survey_dict = {}
     for survey in inter_surveys:
         if survey.kelp90 != 0:
-            if survey.kelp90 not in survey_dict.keys():
-                survey_dict[survey.kelp90] = survey.geometry.intersection(nsh.geometry_final).area
+            key = 'Coastwide Survey ' + str(survey.kelp90)
+            if key not in survey_dict.keys():
+                survey_dict[key] = survey.geometry.intersection(nsh.geometry_final).area
             else:
-                survey_dict[survey.kelp90] += survey.geometry.intersection(nsh.geometry_final).area
+                survey_dict[key] += survey.geometry.intersection(nsh.geometry_final).area
         if survey.kelp96 != 0:
-            if survey.kelp96 not in survey_dict.keys():
-                survey_dict[survey.kelp96] = survey.geometry.intersection(nsh.geometry_final).area
+            key = 'Southern Oregon ' + str(survey.kelp96)
+            if key not in survey_dict.keys():
+                survey_dict[key] = survey.geometry.intersection(nsh.geometry_final).area
             else:
-                survey_dict[survey.kelp96] += survey.geometry.intersection(nsh.geometry_final).area
+                survey_dict[key] += survey.geometry.intersection(nsh.geometry_final).area
         if survey.kelp97 != 0:
-            if survey.kelp97 not in survey_dict.keys():
-                survey_dict[survey.kelp97] = survey.geometry.intersection(nsh.geometry_final).area
+            key = 'Southern Oregon ' + str(survey.kelp97)
+            if key not in survey_dict.keys():
+                survey_dict[key] = survey.geometry.intersection(nsh.geometry_final).area
             else:
-                survey_dict[survey.kelp97] += survey.geometry.intersection(nsh.geometry_final).area
+                survey_dict[key] += survey.geometry.intersection(nsh.geometry_final).area
         if survey.kelp98 != 0: 
-            if survey.kelp98 not in survey_dict.keys():
-                survey_dict[survey.kelp98] = survey.geometry.intersection(nsh.geometry_final).area
+            key = 'Southern Oregon ' + str(survey.kelp98)
+            if key not in survey_dict.keys():
+                survey_dict[key] = survey.geometry.intersection(nsh.geometry_final).area
             else:
-                survey_dict[survey.kelp98] += survey.geometry.intersection(nsh.geometry_final).area
+                survey_dict[key] += survey.geometry.intersection(nsh.geometry_final).area
         if survey.kelp99 != 0:
-            if survey.kelp99 not in survey_dict.keys():
-                survey_dict[survey.kelp99] = survey.geometry.intersection(nsh.geometry_final).area
+            key = 'Southern Oregon ' + str(survey.kelp99)
+            if key not in survey_dict.keys():
+                survey_dict[key] = survey.geometry.intersection(nsh.geometry_final).area
             else:
-                survey_dict[survey.kelp99] += survey.geometry.intersection(nsh.geometry_final).area
+                survey_dict[key] += survey.geometry.intersection(nsh.geometry_final).area
     survey_proportion_list = []
     for key in survey_dict.keys():
+        area = survey_dict[key]
         proportion = survey_dict[key] / nsh.geometry_final.area * 100
-        survey_proportion_list.append((key, area_in_display_units(survey_dict[key]), proportion))
+        survey_proportion_list.append((key, area_in_display_units(area), proportion))
     survey_proportion_list.sort()
-    survey_proportion_list.reverse()
     return survey_proportion_list    
     
      

@@ -20,15 +20,27 @@
             <td>{{percent_shoreline|floatformat:'2'}} %</td>
             {% endif %}
         </tr>
+    </tbody>
+</table>
+<br></br>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
         <tr class="grey">
-            <td colspan="3"><b>Shoreline Types and Proportions</b></td>
+            <td colspan="3"><b>Shoreline Types and Proportions &nbsp; </b></td>
         </tr>
         {% for proportion in shoreline_proportions %}
         <tr class="{% cycle '' 'grey' %}">
-            <td colspan="3">{{proportion.0|floatformat:'1'}}% &nbsp; {{proportion.1}} &nbsp; ({{proportion.2|floatformat:'2'}} {{length_units}})</td>
+            <td>&nbsp; &nbsp; {{proportion.0|floatformat:'0'}}%</td>
+            <td>&nbsp; &nbsp; {{proportion.1}}</td>
+            <td>({{proportion.2|floatformat:'2'}} {{length_units}})</td>
         </tr>
         {% endfor %}
         <tr><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+<br></br>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
         <tr class="grey">
             <td><b>Number of Islands</b></td>
             <td></td>
@@ -60,21 +72,29 @@
         <tr>
             <td>{{subtidal_area|floatformat:'1'}} {{area_units}}</td>
             <td></td>
-            <td>{{perc_shallow|floatformat:'1'}}% shallow<br/> {{perc_deep|floatformat:'1'}}% deep</td>
+            <td>{{perc_shallow|floatformat:'1'}} % &nbsp; shallow<br/> {{perc_deep|floatformat:'1'}} % &nbsp; deep</td>
         </tr>
+    </tbody>
+</table>
+<br></br>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
         <tr class="grey">
-            <td><b>Seafloor Lithology</b></td>
-            <td></td>
-            <td><b>Lithology Proportion</b></td>
+            <td colspan="3"><b>Seafloor Lithology &nbsp; </b></td>
         </tr>
         {% for proportion in lithology_proportions %}
         <tr class="{% cycle '' 'grey' %}">
-            <td>{{proportion.0}}</td>
-            <td></td>
-            <td>{{proportion.1|floatformat:'2'}} %</td>
+            <td>&nbsp; {{proportion.0|floatformat:'1'}}%</td>
+            <td>&nbsp; {{proportion.1}}</td>
+            <td>({{proportion.2|floatformat:'2'}} {{length_units}})</td>
         </tr>
         {% endfor %}
         <tr><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+<br></br>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
         <tr class="grey">
             <td><b>Average Depth</b></td>
             <td></td>
@@ -88,6 +108,6 @@
     </tbody>
 </table>
 </div>
-<br>
+<br></br>
 {% endblock panel %}
 

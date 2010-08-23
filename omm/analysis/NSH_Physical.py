@@ -234,7 +234,6 @@ Called by display_phy_analysis
 '''   
 def get_lithology_proportions(nsh):
     lithologies = Lithology.objects.all()
-    #inter_lithology_tuples = [(lithology.lithology, lithology.geometry.intersection(nsh.geometry_final).area) for lithology in lithologies]
     inter_lithologies = [lithology for lithology in lithologies if lithology.geometry.intersects(nsh.geometry_final)]
     inter_lithology_tuples = [(lithology.lithology, lithology.geometry.intersection(nsh.geometry_final).area) for lithology in inter_lithologies]
     total_area = 0.0
@@ -247,7 +246,11 @@ def get_lithology_proportions(nsh):
         total_area += tuple[1]
     lithology_proportion_list = []
     for key in lithology_dict.keys():
-        proportion = lithology_dict[key] / total_area * 100
-        lithology_proportion_list.append((key, proportion))
+        area = lithology_dict[key]
+        proportion = area / total_area * 100
+        lithology_proportion_list.append((proportion, key, area_in_display_units(area)))
     lithology_proportion_list.sort()
+    lithology_proportion_list.reverse()
     return lithology_proportion_list    
+
+    
