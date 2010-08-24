@@ -1,7 +1,29 @@
 from django.contrib.contenttypes.models import ContentType
 from lingcod.unit_converter.models import length_in_display_units
     
-default_value = '---'
+def type_is_geo(type):
+    lc_type = type.lower()
+    if lc_type in ['geo', 'geography']:
+        return True
+    return False
+    
+def type_is_phy(type):
+    lc_type = type.lower()
+    if lc_type in ['phy', 'physical']:
+        return True
+    return False
+    
+def type_is_bio(type):
+    lc_type = type.lower()
+    if lc_type in ['bio', 'biology']:
+        return True
+    return False
+    
+def type_is_hum(type):
+    lc_type = type.lower()
+    if lc_type in ['hum', 'human']:
+        return True
+    return False
 
 '''
 General method for obtaining the nearest geometries from a given model
