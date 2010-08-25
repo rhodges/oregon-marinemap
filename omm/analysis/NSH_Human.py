@@ -5,7 +5,7 @@ from tsp.models import AOI
 from models import *
 from settings import *
 from lingcod.unit_converter.models import length_in_display_units, area_in_display_units
-from utils import get_nearest_geometries, get_nearest_geometries_with_distances, get_intersecting_geometries
+from utils import ensure_type, get_nearest_geometries, get_nearest_geometries_with_distances, get_intersecting_geometries
 from NSH_Cache import has_cache, get_cache, create_cache
     
 default_value = '---'
@@ -15,25 +15,22 @@ Runs analysis for Human Considerations report
 Renders the Human Considerations Report template
 Called by NSH_Analysis.display_nsh_analysis
 '''
-def display_hum_analysis(request, nsh_id, type='Human', template='Hum_Report.html'):
-    nsh = get_object_or_404(AOI, pk=nsh_id)
-    
+def display_hum_analysis(request, nsh, type='Human', template='Hum_Report.html'):
+    type = ensure_type(type)
     #get context from cache or from running analysis
     if has_cache(nsh, type):
         #retrieve context from cache
         context = get_cache(nsh, type)
     else:
         #get context by running analysis
-        context = run_hum_analysis(nsh)
-        #cache these results
-        create_cache(nsh, type, context)      
+        context = run_hum_analysis(nsh, type)   
     
     return render_to_response(template, RequestContext(request, context)) 
      
 '''
-Run the analysis and return the results as a context dictionary so they may be rendered with template
+Run the analysis, create the cache, and return the results as a context dictionary so they may be rendered with template
 '''    
-def run_hum_analysis(nsh):     
+def run_hum_analysis(nsh, type):     
     #get nearest state parks
     nearest_parks = get_nearest_parks(nsh)
     #get nearest public access points
@@ -56,9 +53,12 @@ def run_hum_analysis(nsh):
     nearest_closures = get_nearest_fishery_closures(nsh)
     #get nearest conservation areas
     nearest_conservation_areas = get_nearest_conservation_areas(nsh)
+    #compile context
+    context = {'nsh': nsh, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
+    #cache these results
+    create_cache(nsh, type, context)   
+    return context
     
-    return {'nsh': nsh, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
-
 '''
 Determines the Nearest State Park for the given nearshore habitat shape
 Called by display_phy_analysis

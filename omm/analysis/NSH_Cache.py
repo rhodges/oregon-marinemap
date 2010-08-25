@@ -1,9 +1,11 @@
 from analysis.models import NSHCache
+from utils import ensure_type
 
 '''
 Checks to see if cache for a given nsh and type exists in NSHCache table
 '''
 def has_cache(nsh, type):
+    type = ensure_type(type)
     try:
         cache = NSHCache.objects.get(wkt_hash=nsh.geometry_final.wkt.__hash__(), type=type)
         return True
@@ -14,7 +16,6 @@ def has_cache(nsh, type):
 Retrieves cache for a given nsh and type from the NSHCache table
 '''
 def get_cache(nsh, type):
-    from utils import ensure_type
     type = ensure_type(type)
     try:
         cache = NSHCache.objects.get(wkt_hash=nsh.geometry_final.wkt.__hash__(), type=type)
@@ -29,7 +30,7 @@ Creates and saves a cache entry for a given nsh, type, and context from the NSHC
 '''
 def create_cache(nsh, type, context):
     cache = NSHCache()
-    cache.type = type
+    cache.type = ensure_type(type)
     cache.wkt_hash = nsh.geometry_final.wkt.__hash__()
     cache.context = context
     cache.save()
@@ -38,6 +39,7 @@ def create_cache(nsh, type, context):
 Remove a single geometry or single geometry with type from the cache table
 '''    
 def remove_cache(nsh, type=None):
+    type = ensure_type(type)
     if type is None:
         #remove all entries with same geometry
         entries = NSHCache.objects.filter(wkt_hash=nsh.geometry_final.wkt.__hash__())
@@ -51,6 +53,7 @@ def remove_cache(nsh, type=None):
 Remove all entries from cache table that have a particular type (Geography, Physical, Biological, or Human)
 '''    
 def remove_cache_of_type(type):
+    type = ensure_type(type)
     entries = NSHCache.objects.filter(type=type)
     for entry in entries:
         NSHCache.delete(entry)

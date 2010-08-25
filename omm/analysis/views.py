@@ -8,7 +8,8 @@ Accessed via named url when user selects a type (Geographic, Physical, Biologica
 '''
 def nsh_analysis(request, nsh_id, type):
     from NSH_Analysis import display_nsh_analysis
-    return display_nsh_analysis(request, nsh_id, type)
+    nsh = get_object_or_404(AOI, pk=nsh_id)
+    return display_nsh_analysis(request, nsh, type)
     
 '''
 Accessed via named url when user selects a type (Geographic, Physical, Biological, Human Uses) to run aes analysis on 
@@ -20,7 +21,6 @@ def print_report(request, nsh_id, type):
     from NSH_Analysis import print_nsh_report
     from lingcod.common.utils import get_mpa_class
     from lingcod.sharing.utils import can_user_view
-    from utils import type_is_geo
     user_can_view, response = can_user_view(get_mpa_class(), nsh_id, request.user)
     if not user_can_view:
         return response
