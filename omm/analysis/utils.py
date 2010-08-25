@@ -11,7 +11,7 @@ def ensure_type(type):
     if type_is_hum(type):
         return 'Human'
     else:
-        raise ObjectDoesNotExist("Type: '" + type + "' can not be mapped to Geography, Physical, Biology, or Human.")
+        return None
     
 def type_is_geo(type):
     lc_type = type.lower()
