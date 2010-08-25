@@ -38,26 +38,23 @@ def create_cache(nsh, type, context):
 '''
 Remove a single geometry or single geometry with type from the cache table
 '''    
-def remove_cache(nsh, type=None):
+def remove_cache(nsh=None, type=None):
     type = ensure_type(type)
-    if type is None:
-        #remove all entries with same geometry
+    if type is None and nsh is None:
+        raise Exception("For clearing all cached data, use clear_cache instead.")
+    elif type is None:
+        #remove all entries with given geometry
         entries = NSHCache.objects.filter(wkt_hash=nsh.geometry_final.wkt.__hash__())
+    elif nsh is None:
+        #remove all entries with given type
+        entries = NSHCache.objects.filter(type=type)
     else:
         #remove only the entry with the given type and the same geometry
         entries = NSHCache.objects.filter(wkt_hash=nsh.geometry_final.wkt.__hash__(), type=type)
+    #remove entries from NSHCache
     for entry in entries:
         NSHCache.delete(entry)
-    
-'''
-Remove all entries from cache table that have a particular type (Geography, Physical, Biological, or Human)
-'''    
-def remove_cache_of_type(type):
-    type = ensure_type(type)
-    entries = NSHCache.objects.filter(type=type)
-    for entry in entries:
-        NSHCache.delete(entry)
-    
+       
 '''
 Clear all entries from cache table
 '''    
