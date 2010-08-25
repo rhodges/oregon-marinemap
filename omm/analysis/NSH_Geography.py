@@ -25,8 +25,8 @@ def display_geo_analysis(request, nsh_id, type='Geography', template='Geo_Report
         #get context by running analysis
         context = run_geo_analysis(nsh)
         #cache these results
-        create_cache(nsh, type, context)       
-    
+        create_cache(nsh, type, context)    
+        
     return render_to_response(template, RequestContext(request, context)) 
     
 '''
@@ -53,7 +53,7 @@ def run_geo_analysis(nsh):
     ratio = get_ratio(nsh)
     
     #compile and return context
-    return {'aoi': nsh, 'county': counties, 'ports': ports, 'cities': cities, 'rockyshores': rockyshores, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'ratio': ratio}
+    return {'nsh': nsh, 'county': counties, 'ports': ports, 'cities': cities, 'rockyshores': rockyshores, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'ratio': ratio}
        
 '''
 Determines the Adjacent Counties for the given nearshore habitat shape

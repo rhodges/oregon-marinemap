@@ -1,5 +1,5 @@
 {% extends 'common/panel.html' %}
-{% block title %}{{aoi.name}} Biological Analysis{% endblock title %}
+{% block title %}{{nsh.name}} Biological Analysis{% endblock title %}
 {% block panel %}
 <h3>Intertidal Biological Characteristics</h3>
 <div class='freetext'>
@@ -104,7 +104,7 @@
             <td><b>Kelp Survey Year</b></td>
             <td colspan="2"><b>Kelp Proportions</b></td>
         </tr>
-        {% if kelp_data.0.2 == '---' %}
+        {% if kelp_data.0.2 == default_value %}
         <tr>
             <td>{{kelp_data.0.0}}</td>
             <td></td>
@@ -124,5 +124,10 @@
 </table>
 </div>
 <br></br>
+<div style='font-size: small'><a target='_blank' href='{% url printable_bio_report nsh.id "bio" %}'>View Printable Biology Report</a></div>
+<br></br>
+<div style='font-size: small'><a target='_blank' href='{% url printable_comprehensive_report nsh.id "all" %}'>View Printable Comprehensive Report</a></div>
+<br></br>
+
 {% endblock panel %}
 

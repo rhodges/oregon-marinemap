@@ -14,12 +14,15 @@ def has_cache(nsh, type):
 Retrieves cache for a given nsh and type from the NSHCache table
 '''
 def get_cache(nsh, type):
+    from utils import ensure_type
+    type = ensure_type(type)
     try:
         cache = NSHCache.objects.get(wkt_hash=nsh.geometry_final.wkt.__hash__(), type=type)
         return cache.context
     except:
         from django.core.exceptions import ObjectDoesNotExist
         raise ObjectDoesNotExist("Cache object not found:  make sure has_cache() is called prior to calling get_cache()")
+    
     
 '''
 Creates and saves a cache entry for a given nsh, type, and context from the NSHCache table
