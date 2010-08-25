@@ -109,9 +109,9 @@
 </table>
 </div>
 <br></br>
-<div style='font-size: small'><a target='_blank' href='{% url printable_phy_report nsh.id "phy" %}'>View Printable Physical Report</a></div>
+<div style='font-size: small'><a target='_blank' href='{% url printable_report nsh.id "phy" %}'>View Printable Physical Report</a></div>
 <br></br>
-<div style='font-size: small'><a target='_blank' href='{% url printable_comprehensive_report nsh.id "all" %}'>View Printable Comprehensive Report</a></div>
+<div style='font-size: small'><a target='_blank' href='{% url printable_report nsh.id "all" %}'>View Printable Comprehensive Report</a></div>
 <br></br>
 
 {% endblock panel %}

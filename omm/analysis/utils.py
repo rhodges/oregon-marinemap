@@ -1,6 +1,9 @@
 from django.contrib.contenttypes.models import ContentType
 from lingcod.unit_converter.models import length_in_display_units
     
+'''
+ensures the given type is either of the form that is to be used in the db, or is None
+'''
 def ensure_type(type):
     if type_is_geo(type):
         return 'Geography'

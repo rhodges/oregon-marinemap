@@ -8,7 +8,10 @@ from NSH_Human import display_hum_analysis, run_hum_analysis
 from utils import type_is_geo, type_is_phy, type_is_bio, type_is_hum
 from NSH_Cache import has_cache, get_cache
 
-
+'''
+calls display_<type>_analysis for a given type
+called by views.nsh_analysis
+'''
 def display_nsh_analysis(request, nsh, type):
     if type_is_geo(type):
         return display_geo_analysis(request, nsh)
@@ -19,6 +22,10 @@ def display_nsh_analysis(request, nsh, type):
     else: #must be Human Uses
         return display_hum_analysis(request, nsh)
     
+'''
+calls run_<type>_analysis for a given type
+called by get_or_create_cache
+'''    
 def run_nsh_analysis(nsh, type):   
     if type_is_geo(type):
         return run_geo_analysis(nsh, type)
@@ -29,6 +36,10 @@ def run_nsh_analysis(nsh, type):
     else: #must be Human Uses
         return run_hum_analysis(nsh, type)
     
+'''
+renders template with type-specific context
+called by views.print_report
+'''    
 def print_nsh_report(request, nsh, type, template=None):
     if type_is_geo(type):
         template='printable_nsh_geo_report.html'
@@ -43,7 +54,10 @@ def print_nsh_report(request, nsh, type, template=None):
     context = get_or_create_cache(nsh, type)
     return render_to_response(template, RequestContext(request, context))
     
-      
+'''
+retrieves the type-specific context from cache, or if not yet cached, by running the analysis
+called by print_nsh_report
+'''      
 def get_or_create_cache(nsh, type):
     if type == 'all':
         all_context = {}
