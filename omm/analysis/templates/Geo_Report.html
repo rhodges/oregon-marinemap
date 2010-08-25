@@ -1,5 +1,5 @@
 {% extends 'common/panel.html' %}
-{% block title %}{{aoi.name}} Geographic Analysis{% endblock title %}
+{% block title %}{{nsh.name}} Geographic Analysis{% endblock title %}
 {% block panel %}
 <h3>Geographic Setting Report</h3>
 <div class='freetext'>
@@ -95,6 +95,11 @@
     </tbody>
 </table>
 </div>
-<br>
+<br></br>
+<div style='font-size: small'><a target='_blank' href='{% url printable_geo_report nsh.id "geo" %}'>View Printable Geography Report</a></div>
+<br></br>
+<div style='font-size: small'><a target='_blank' href='{% url printable_comprehensive_report nsh.id "all" %}'>View Printable Comprehensive Report</a></div>
+<br></br>
+
 {% endblock panel %}
 

@@ -1,0 +1,234 @@
+<h1>{{ nsh.name }} Human Uses Analysis Report</h1>
+
+<div class="freetext">
+<h4>Report Summary</h4>
+<table class='allowed_uses'>
+<tr><td width=150>Type:</td><td>Human Uses</td></tr>
+<tr><td width=150>Nearshore Habitat:</td><td>{{ nsh.name }}</td></tr>
+<tr><td width=150>ID #:</td><td>{{ nsh.id }}</td></tr>
+</table>
+</div>
+
+<div class='freetext'>
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="humheader" colspan="2">Community & Recreational Considerations</font></th>
+        </tr>
+        <tr>
+            <th>Nearest State Parks</th>
+            <th>Nearest Public Access</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+            {% for park in parks %}
+                {{park.0}} State Park &nbsp; ({{park.1|floatformat:'2'}} {{length_units}})</br>
+            {% endfor %}
+            </td>
+            <td>
+            {% for site in access_sites %}
+                {{site.0}} &nbsp; ({{site.1|floatformat:'1'}} {{length_units}})</br>
+            {% endfor %}
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="humheader" colspan="5">Existing or Proposed Transportation & Infrasructure Considerations</font></th>
+        </tr>
+        <tr>
+            <th>Dredge Materials Disposal</th>
+            <th>NPDES Outfall</th>
+            <th>Undersea Cables</th>
+            <th>Towlanes</th>
+            <th>Wave Energy</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{dmd_data.0}}</td>
+            <td>{{outfall_data.0}}</td>
+            <td>{{cable_data.0}}</td>
+            <td>{{towlanes}}</td>
+            <td>{{wave_energy_data.0}}</td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            {% if dmd_data.0 == 'Yes' %}
+                <th>Intersecting DMD Sites</th>
+            {% else %}
+                <th>Closest DMD Sites</th>
+            {% endif %}
+            
+            {% if outfall_data.0 == 'Yes' %}
+                <th>Intersecting Outfall Sites</th>
+            {% else %}
+                <th>Closest Outfall</th>
+            {% endif %}
+            
+            {% if cable_data.0 == 'Yes' %}
+                <th>Intersecting Cables</th>
+            {% else %}
+                <th>Closest Cable</th>
+            {% endif %}
+            
+            <th></th>
+            
+            {% if wave_energy_data.0 == 'Yes' %}
+                <th>Intersecting Wave Energy</th>
+            {% else %}
+                <th>Closest Wave Energy</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                {% if dmd_data.0 == 'Yes' %}
+                    {% for data in dmd_data.1 %}
+                        {{data}}</br>
+                    {% endfor %}
+                {% else %}
+                    {{dmd_data.1.0}} ({{dmd_data.1.1|floatformat:'2'}} {{length_units}})
+                {% endif %}
+            </td>
+            <td>
+                {% if outfall_data.0 == 'Yes' %}
+                    {% for data in outfall_data.1 %}
+                        {{data}}</br>
+                    {% endfor %}
+                {% else %}
+                    {{outfall_data.1.0}} ({{outfall_data.1.1|floatformat:'2'}} {{length_units}})
+                {% endif %}
+            </td>
+            <td>
+                {% if cable_data.0 == 'Yes' %}
+                    {% for data in cable_data.1 %}
+                        {{data}}</br>
+                    {% endfor %}
+                {% else %}
+                    {{cable_data.1.0}} ({{cable_data.1.1|floatformat:'2'}} {{length_units}})
+                {% endif %}
+            </td>
+            <td></td>
+            <td>
+                {% if wave_energy_data.0 == 'Yes' %}
+                    {% for data in wave_energy_data.1 %}
+                        {{data}}</br>
+                    {% endfor %}
+                {% else %}
+                    {{wave_energy_data.1.0.0}} ({{wave_energy_data.1.0.1|floatformat:'2'}} {{length_units}})
+                {% endif %}
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="humheader" colspan="4">Fishery Considerations</font></th>
+        </tr>
+        <tr>
+            <th>Proximity to Ports</th>
+            <th>Proximity to Existing State MMAs</th>
+            <th>Proximity to ODFW Closures</th>
+            <th>Proximity to EFH Conservation Areas</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                {% for port in nearest_ports %}
+                    {{port.0}} ({{port.1|floatformat:'1'}} {{length_units}})</br>
+                {% endfor %}
+            </td>
+            <td>
+                {% for mma in nearest_mmas %}
+                    {{mma.0}} ({{mma.1|floatformat:'1'}} {{length_units}})</br>
+                {% endfor %}
+            </td>
+            <td>
+                {% for closure in nearest_closures %}
+                    {{closure.0}} ({{closure.1|floatformat:'1'}} {{length_units}})</br>
+                {% endfor %}
+            </td>
+            <td>
+                {% for area in nearest_conservation_areas %}
+                    {{area.0}} ({{area.1|floatformat:'1'}} {{length_units}})</br>
+                {% endfor %}
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+</div>
+
+<style type="text/css">
+table.marinemap-table {
+    font-size:12px;
+    width:100%;
+    border:solid 1px #fff;
+    margin:3px;
+}
+
+table.marinemap-table th.humheader {
+    background-color:#FEAB30;
+    color:#F0F0F0;
+    font-family:helvetica;
+    font-weight:bold;
+}
+
+table.marinemap-table th {
+    background-color:#D0D0D0;
+    color:#344E63;
+    font-weight:bold;
+}
+
+table.marinemap-table th.left {
+    background-color:#D0D0D0;
+    color:#344E63;
+    font-weight:bold;
+    text-align:left;
+}
+
+table.marinemap-table td {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    text-align:center;
+}
+
+table.marinemap-table td.left {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    text-align:left;
+    vertical-align: text-top;
+}
+
+table.marinemap-table thead tr {
+    background:#FAFAFA url(../images/toolbar-bg.png) repeat-x scroll left bottom;
+    text-align:center;
+}
+
+table.marinemap-table tbody {
+    background-color:white;
+}
+
+table.marinemap-table tr.zebra {
+    background-color:#eee;
+}
+</style>
+
+

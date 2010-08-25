@@ -1,5 +1,5 @@
 {% extends 'common/panel.html' %}
-{% block title %}{{aoi.name}} Biological Analysis{% endblock title %}
+{% block title %}{{nsh.name}} Biological Analysis{% endblock title %}
 {% block panel %}
 <h3>Community & Recreational Considerations</h3>
 <div class='freetext'>
@@ -42,7 +42,7 @@
         </tr>
         {% if dmd_data.0 == 'Yes' %}
         <tr class="grey">
-            <td colspan="3"><b>Intersecting NPDES Outfall Sites</b></td>
+            <td colspan="3"><b>Intersecting DMD Sites</b></td>
         </tr>        
         {% for data in dmd_data.1 %}
         <tr>
@@ -52,7 +52,7 @@
         <tr><td></td><td></td><td></td><td></td></tr>
         {% else %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest Dredge Materials Disposal Sites</b></td>
+            <td colspan="3"><b>Nearest DMD Sites</b></td>
         </tr>
         <tr>
             <td colspan="3">{{dmd_data.1.0}} ({{dmd_data.1.1|floatformat:'2'}} {{length_units}})</td>
@@ -193,7 +193,10 @@
     </tbody>
 </table>
 </div>
-
-<br>
+<br></br>
+<div style='font-size: small'><a target='_blank' href='{% url printable_hum_report nsh.id "hum" %}'>View Printable Human Uses Report</a></div>
+<br></br>
+<div style='font-size: small'><a target='_blank' href='{% url printable_comprehensive_report nsh.id "all" %}'>View Printable Comprehensive Report</a></div>
+<br></br>
 {% endblock panel %}
 

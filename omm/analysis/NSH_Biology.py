@@ -44,7 +44,7 @@ def run_bio_analysis(nsh):
     #get kelp survey data
     kelp_data = get_kelp_data(nsh)
     
-    return {'aoi': nsh, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'kelp_data': kelp_data}
+    return {'nsh': nsh, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'kelp_data': kelp_data}
     
 '''
 Determines the Pinniped Haulout Details for the given nearshore habitat shape

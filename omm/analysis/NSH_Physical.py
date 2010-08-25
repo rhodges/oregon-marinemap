@@ -59,7 +59,7 @@ def run_phy_analysis(nsh):
     #proximity to shore
     distance_to_shore = get_distance_to_shore(nsh) 
     
-    return {'aoi': nsh, 'default_value': default_value, 'length': length, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'percent_shoreline': percent_shoreline, 'islands': islands, 'island_area': island_area, 'shoreline_proportions': shoreline_proportions, 'subtidal_area': subtidal_area, 'perc_shallow': perc_shallow, 'perc_deep': perc_deep, 'average_depth': average_depth, 'distance_to_shore': distance_to_shore, 'lithology_proportions': lithology_proportions}
+    return {'nsh': nsh, 'default_value': default_value, 'length': length, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'percent_shoreline': percent_shoreline, 'islands': islands, 'island_area': island_area, 'shoreline_proportions': shoreline_proportions, 'subtidal_area': subtidal_area, 'perc_shallow': perc_shallow, 'perc_deep': perc_deep, 'average_depth': average_depth, 'distance_to_shore': distance_to_shore, 'lithology_proportions': lithology_proportions}
     
 def get_depth_stats(nsh):
     bath_polys = Bathymetry.objects.all()

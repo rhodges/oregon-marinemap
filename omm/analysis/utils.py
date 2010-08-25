@@ -1,6 +1,18 @@
 from django.contrib.contenttypes.models import ContentType
 from lingcod.unit_converter.models import length_in_display_units
     
+def ensure_type(type):
+    if type_is_geo(type):
+        return 'Geography'
+    if type_is_phy(type):
+        return 'Physical'
+    if type_is_bio(type):
+        return 'Biology'
+    if type_is_hum(type):
+        return 'Human'
+    else:
+        raise ObjectDoesNotExist("Type: '" + type + "' can not be mapped to Geography, Physical, Biology, or Human.")
+    
 def type_is_geo(type):
     lc_type = type.lower()
     if lc_type in ['geo', 'geography']:

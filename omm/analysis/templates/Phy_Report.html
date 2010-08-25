@@ -1,5 +1,5 @@
 {% extends 'common/panel.html' %}
-{% block title %}{{aoi.name}} Physical Analysis{% endblock title %}
+{% block title %}{{nsh.name}} Physical Analysis{% endblock title %}
 {% block panel %}
 <h3>Intertidal Physical Characteristics</h3>
 <div class='freetext'>
@@ -109,5 +109,10 @@
 </table>
 </div>
 <br></br>
+<div style='font-size: small'><a target='_blank' href='{% url printable_phy_report nsh.id "phy" %}'>View Printable Physical Report</a></div>
+<br></br>
+<div style='font-size: small'><a target='_blank' href='{% url printable_comprehensive_report nsh.id "all" %}'>View Printable Comprehensive Report</a></div>
+<br></br>
+
 {% endblock panel %}
 
