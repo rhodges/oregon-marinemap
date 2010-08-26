@@ -146,7 +146,7 @@ class Bathymetry(models.Model):
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Bathymetry Polygon")
     objects = models.GeoManager()    
     
-#Used for Biological Reports    
+#Used for Biology Reports    
     
 class PinnipedHaulouts(models.Model):
     objectid = models.IntegerField()
@@ -260,6 +260,42 @@ class KelpSurveys(models.Model):
     shape_leng = models.FloatField()
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Kelp Surveys")
+    objects = models.GeoManager()    
+    
+class GeologicalHabitat(models.Model):
+    objectid_1 = models.IntegerField()
+    area = models.FloatField()
+    perimeter = models.FloatField()
+    orsghg3rp_field = models.IntegerField()
+    orsghg3rp1 = models.IntegerField()
+    or_sgh_v3_field = models.IntegerField()
+    objectid_2 = models.IntegerField()
+    or_sgh_v31 = models.FloatField()
+    or_sgh_v_1 = models.FloatField()
+    or_sgh_v_2 = models.IntegerField()
+    or_sgh_v_3 = models.IntegerField()
+    poly_field = models.IntegerField()
+    subclass = models.CharField(max_length=13, null=True, blank=True)
+    subclass_field = models.IntegerField()
+    rings_ok = models.IntegerField()
+    rings_nok = models.IntegerField()
+    objectid = models.FloatField()
+    structure = models.CharField(max_length=20)
+    structure2 = models.CharField(max_length=20)
+    geo_hab = models.CharField(max_length=10)
+    properties = models.CharField(max_length=50, null=True, blank=True)
+    geo_hab2 = models.CharField(max_length=15)
+    sgh_prefix = models.CharField(max_length=5)
+    sgh_lith1 = models.CharField(max_length=15)
+    sgh_lith2 = models.CharField(max_length=15, null=True, blank=True)
+    sgh_lith = models.CharField(max_length=30)
+    sgh_combo = models.CharField(max_length=30)
+    len = models.FloatField()
+    shape_leng = models.FloatField()
+    shape_le_1 = models.FloatField()
+    shape_le_2 = models.FloatField()
+    shape_area = models.FloatField()
+    geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Surficial Geological Habitats")
     objects = models.GeoManager()    
     
 # Used for Human Considerations Reports
