@@ -80,18 +80,21 @@
             <th class="bioheader" colspan="5">Subtidal Biological Characteristics</font></th>
         </tr>
         <tr>
-            <th>Habitat Types & Proportions</th>
-            <th>Predicted Fish Species</th>
+            <th class="left">Habitat Types & Proportions</th>
+            <th class="left">Predicted Fish Species</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>
+            <td class="left">
             {% for details in habitat_proportions %}
                 {{details.0|floatformat:'2'}} % &nbsp; {{details.1}} &nbsp; ({{details.2|floatformat:'2'}} {{area_units}})</br>
             {% endfor %}
             </td>
-            <td>
+            <td class="left">
+            {% for fish in fish_list %}
+                {{fish}}</br>
+            {% endfor %}
             </td>
         </tr>
     </tbody>
@@ -117,6 +120,7 @@
         {% endif %}
     </tbody>
 </table>
+<br></br>
 
 </div>
 

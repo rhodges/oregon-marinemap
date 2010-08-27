@@ -96,9 +96,11 @@
         <tr class="grey">
             <td colspan="3"><b>Predicted Fish Species</b></td>
         </tr>
-        <tr>
-            <td colspan="3">?</td>
+        {% for fish in fish_list %}
+        <tr class="{% cycle '' 'grey' %}">
+            <td colspan="3">{{fish}}</td>
         </tr>
+        {% endfor %}
         <br></br>
         <tr class="grey">
             <td><b>Kelp Survey Year</b></td>
