@@ -45,27 +45,29 @@
     </tbody>
     <thead>
         <tr>
-            <th class="left" colspan="2">Pinniped Haulout Details</th>
-            <th class="left" colspan="2">Bird Colony Details</th>
+            <th colspan="2">Pinniped Haulout Details</th>
+            <th colspan="2">Bird Colony Details</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-        <td class="left" colspan="2">
+        <td class="top" colspan="2">
         {% for site in haulout_sites %}
             {{site.0.0}} , ({{site.0.1}})</br>
             {% for species in site.1 %}
                 &nbsp; &nbsp; &nbsp; {{species}} </br>
             {% endfor %}
+            </br>
         {% endfor %}
         </td>
         
-        <td class="left" colspan="2">
+        <td colspan="2">
         {% for details in bird_details %}
             {{details.0.0}} , (Colony #{{details.0.1}})</br>
             {% for bird in details.1 %}
                 &nbsp; &nbsp; &nbsp; {{bird}}</br>
             {% endfor %}
+            </br>
         {% endfor %}
         </td>
             
