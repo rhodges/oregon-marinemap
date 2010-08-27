@@ -39,10 +39,12 @@ def run_bio_analysis(nsh, type):
     num_colonies, bird_details = get_bird_colony_details(nsh)
     #get habitat types and proportions
     habitat_proportions = get_habitat_proportions(nsh)
+    #get fish list
+    fish_list = get_fish_list(nsh)
     #get kelp survey data
     kelp_data = get_kelp_data(nsh)
     #compile context
-    context = {'nsh': nsh, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'kelp_data': kelp_data}
+    context = {'nsh': nsh, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'fish_list': fish_list, 'kelp_data': kelp_data}
     #cache these results
     create_cache(nsh, type, context)   
     return context
@@ -178,4 +180,70 @@ def get_kelp_data(nsh):
     survey_proportion_list.sort()
     return survey_proportion_list    
     
-     
+def get_fish_list(nsh):
+    #get habitat types
+    habs = GeologicalHabitat.objects.all()
+    inter_habs = [hab for hab in habs if hab.geometry.intersects(nsh.geometry_final)]
+    hab_set = []
+    for hab in inter_habs:
+        sgh = hab.sgh_prefix + "/" + hab.sgh_lith1.lower()
+        if hab.sgh_lith2 is not None:
+            sgh += "/" + hab.sgh_lith2.lower()
+        if sgh not in hab_set:
+            hab_set.append(sgh)
+    #hab_types = [hab.sgh_combo for hab in inter_habs]
+    #hab_set = list(set(hab_types))
+    hab_str = ','.join(hab for hab in hab_set)
+    
+    #get latitude range
+    import settings
+    from django.contrib.gis.geos import Polygon
+    nsh_geom = nsh.geometry_final
+    poly = Polygon.from_bbox(nsh_geom.extent)
+    poly.srid = settings.GEOMETRY_DB_SRID
+    poly.transform(4326)
+    latmin = poly.extent[1]
+    latmax = poly.extent[3]
+    #turns out the following messes with the wkt hash of the geometry used in caching
+    #the cache is basically not found for Biology with the following code present:  
+    #nsh_geom.transform(4326) #transform into lat/lon
+    #latmin = nsh_geom.extent[1]
+    #latmax = nsh_geom.extent[3]
+    #nsh_geom.transform(settings.GEOMETRY_DB_SRID)
+    
+    #get depth range
+    baths = Bathymetry.objects.all()
+    inter_baths = [bath for bath in baths if bath.geometry.intersects(nsh.geometry_final)]
+    depths = [bath.depth for bath in inter_baths]
+    depths.sort()
+    deepmax = -depths[0] #smallest value will be the deepest
+    deepmin = -depths[-1] #both should be expressed as a positive value
+    
+    #generate fish query
+    query = "https://www.webapps.nwfsc.noaa.gov/pacoos/listfish?"
+    query += "hab=" + hab_str
+    query += "&latmin=" + str(latmin)
+    query += "&latmax=" + str(latmax)
+    query += "&depmin=" + str(deepmin)
+    query += "&depmax=" + str(deepmax)
+    
+    #acquire the page source
+    import urllib
+    sock = urllib.urlopen(query)
+    sourcelines = sock.readlines()
+    sock.close()
+        
+    #scrape the fish names
+    hrefs = [line for line in sourcelines if line.find("A HREF") != -1]
+    fish = [href[href.find(')">')+3:href.find('</A>')] for href in hrefs]
+    
+    #scrape the latin names
+    spans = [line for line in sourcelines if line.find("<span style=font-style:italic;>") != -1]
+    latin_names = [span[span.find(";>")+2:span.find(")")] for span in spans]
+    
+    #create fish list
+    fish_list = []
+    for name in latin_names:
+        fish_list.append(fish.pop(0) + " (" + name + ") ")
+    fish_list.sort()
+    return fish_list
