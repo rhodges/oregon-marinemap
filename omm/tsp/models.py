@@ -8,6 +8,6 @@ from lingcod.array.models import MpaArray as BaseMpaArray
 class AOI(BaseMpa):
     description = models.TextField(default="", null=True, blank=True)
 
-class MpaArray(BaseMpaArray):
+class AOIArray(BaseMpaArray):
     pass
 
