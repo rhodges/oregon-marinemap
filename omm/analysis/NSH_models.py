@@ -1,10 +1,6 @@
 from django.contrib.gis.db import models
 from django.conf import settings
-
-
 #Used for Caching Report Context
-
-from tsp.models import AOI
 from picklefield import PickledObjectField
     
 class NSHCache(models.Model):
