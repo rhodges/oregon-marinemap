@@ -117,7 +117,7 @@
         <atom:link rel="alt" href="{{ mpa_shapefile }}" title="as shapefile" type="application/shapefile" />
         {% endif %}
 
-        <atom:link rel="alt" href="{% url staticmap-show "default" %}?mpas={{mpa.id}}&amp;attachment=true" title="as image (PNG)" type="application/shapefile" />
+        <atom:link rel="alt" href="{% url staticmap-show "default" %}?mpas={{mpa.id}}&amp;attachment=true&amp;autozoom=true" title="as image (PNG)" type="application/shapefile" />
         <visibility>1</visibility>
         <ExtendedData>
             <Data name="mpaid"><value>{{ mpa.id }}</value></Data>

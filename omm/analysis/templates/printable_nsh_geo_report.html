@@ -1,4 +1,8 @@
-<h1>{{ nsh.name }} Geography Analysis Report</h1>
+<h1 align="center">{{ nsh.name }} Geography Analysis Report</h1>
+
+<div align="middle" >
+<img src="{% url staticmap-show 'default' %}?mpas={{ nsh.id }}&amp;autozoom=true&amp;width=308&amp;height=400">
+</div>
 
 <div class="freetext">
 <h4>Report Summary</h4>
