@@ -84,8 +84,8 @@
     </Rule>
 </Style>
 
-<!-- NOTE that mpa_style is overridden in staticmap if designations are provided -->
-<Style name="mpa_style">
+<!-- NOTE that aoi_style is overridden in staticmap if designations are provided -->
+<Style name="aoi_style">
     <Rule>
         <PolygonSymbolizer>
             <CssParameter name="fill">rgb(220,100,12)</CssParameter>
@@ -183,14 +183,14 @@
     </Datasource>
 </Layer>
 
-<Layer name="mpa" status="on" srs="+init=epsg:GEOMETRY_DB_SRID">
-    <!-- NOTE that the 'mpa_style' is overridden by staticmap to provide styling accd to designation -->
-    <StyleName>mpa_style</StyleName>
+<Layer name="aoi" status="on" srs="+init=epsg:GEOMETRY_DB_SRID">
+    <!-- NOTE that the 'aoi_style' is overridden by staticmap to provide styling accd to designation -->
+    <StyleName>aoi_style</StyleName>
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="geometry_field">geometry_final</Parameter>
-      <!-- NOTE that the subselect for mpa MUST have all these fields for filtering purposes -->
-      <Parameter name="table">(select id, geometry_final, name, designation_id from MM_MPA) as mpa</Parameter>
+      <!-- NOTE that the subselect for aoi MUST have all these fields for filtering purposes -->
+      <Parameter name="table">(select id, geometry_final, name, designation_id from MM_MPA) as aoi</Parameter>
       DATABASE_CONNECTION
     </Datasource>
 </Layer>
@@ -205,15 +205,14 @@
 </Layer>
 
 <Layer name="extent" status="on" srs="+init=epsg:GEOMETRY_DB_SRID">
-    <!-- NOTE that the 'mpa_style' is overridden by staticmap to provide styling accd to designation -->
     <StyleName>extent_style</StyleName>
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="geometry_field">geometry_final</Parameter>
-      <!-- NOTE that the subselect for mpa MUST have all these fields for filtering purposes -->
-      <Parameter name="table">(select id, st_transform(st_setsrid(st_makebox2d(st_point(st_xmin(st_transform(geometry_final,GEOMETRY_CLIENT_SRID))-OUTLINE_X_OFFSET, st_ymin(st_transform(geometry_final,GEOMETRY_CLIENT_SRID))-OUTLINE_Y_OFFSET), st_point(st_xmax(st_transform(geometry_final,GEOMETRY_CLIENT_SRID))+OUTLINE_X_OFFSET, st_ymax(st_transform(geometry_final,GEOMETRY_CLIENT_SRID))+OUTLINE_Y_OFFSET)), GEOMETRY_CLIENT_SRID), GEOMETRY_DB_SRID) as geometry_final, name, designation_id from MM_MPA) as mpa</Parameter> 
+      <!-- NOTE that the subselect for aoi MUST have all these fields for filtering purposes -->
+      <Parameter name="table">(select id, st_transform(st_setsrid(st_makebox2d(st_point(st_xmin(st_transform(geometry_final,GEOMETRY_CLIENT_SRID))-OUTLINE_X_OFFSET, st_ymin(st_transform(geometry_final,GEOMETRY_CLIENT_SRID))-OUTLINE_Y_OFFSET), st_point(st_xmax(st_transform(geometry_final,GEOMETRY_CLIENT_SRID))+OUTLINE_X_OFFSET, st_ymax(st_transform(geometry_final,GEOMETRY_CLIENT_SRID))+OUTLINE_Y_OFFSET)), GEOMETRY_CLIENT_SRID), GEOMETRY_DB_SRID) as geometry_final, name, designation_id from MM_MPA) as aoi</Parameter> 
       <!-- tried the following, but it seems mapnik isn't limited to the bounding box when rendering the image, so the extent did not accurately reflect the extent of the zoomed in image -->
-      <!-- <Parameter name="table">(select id, st_transform(st_setsrid(st_makebox2d(st_point(X_MIN, Y_MIN), st_point(X_MAX, Y_MAX)), GEOMETRY_CLIENT_SRID), GEOMETRY_DB_SRID) as geometry_final, name, designation_id from MM_MPA) as mpa</Parameter> -->
+      <!-- <Parameter name="table">(select id, st_transform(st_setsrid(st_makebox2d(st_point(X_MIN, Y_MIN), st_point(X_MAX, Y_MAX)), GEOMETRY_CLIENT_SRID), GEOMETRY_DB_SRID) as geometry_final, name, designation_id from MM_MPA) as aoi</Parameter> -->
       DATABASE_CONNECTION
     </Datasource>
 </Layer>
