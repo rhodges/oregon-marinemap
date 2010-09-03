@@ -31,13 +31,19 @@ def print_report(request, nsh_id, type):
 Empties NSHCache table
 Handles POST requests
 '''
-def adminClearCache(request, template='admin/analysis/cache_is_cleared.html'):
-    from NSH_Cache import clear_cache
+def adminClearCache(request, type=None, template='admin/analysis/cache_is_cleared.html'):
+    from NSH_Cache import clear_cache, remove_cache
+    from utils import ensure_type
     if not request.user.is_staff:
         return HttpResponse('You do not have permission to view this feature', status=401)
     if request.method == 'POST':
-        clear_cache(i_am_sure=True)
-        return render_to_response( template, RequestContext(request, {}) )  
+        type = ensure_type(type)
+        if type is None:
+            clear_cache(i_am_sure=True)
+            return render_to_response( template, RequestContext(request, {"type": "All"}) )  
+        else:
+            remove_cache(type=type)
+            return render_to_response( template, RequestContext(request, {"type": type}) )  
     
         
     
