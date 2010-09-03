@@ -39,4 +39,13 @@ KML_UNATTACHED_NAME = 'Areas of Inquiry'
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '3j9~fjio+adjf93jda()#Jfk3ljf-ea9#$@#90dsfj9@0aj3()*fj3iow2f'
 
+#These two variables are used to determine the extent of the zoomed in image in lingcod.staticmap
+#If one or both are set to None or deleted entirely than zoom will default to a dynamic zoom generator
+STATICMAP_WIDTH_BUFFER = .04
+STATICMAP_HEIGHT_BUFFER = .12
+#These two variables are used in conjunction with the above two variables to create a map extent indicator
+#which is basically a rectangle on another map that outlines the extent of the zoomed in area
+STATICMAP_OUTLINE_X_OFFSET = .07
+STATICMAP_OUTLINE_Y_OFFSET = .14
+
 from settings_local import *
