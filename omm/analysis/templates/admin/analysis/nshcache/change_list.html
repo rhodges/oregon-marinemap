@@ -23,12 +23,44 @@
   <div id="content-main">
     <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
       
-      <form action="../../../analysis/adminClearNShCache" method="post">{% csrf_token %}
+      <form action="../../../analysis/adminClearNShCache/geo/" method="post">{% csrf_token %}
+      {% if cl.formset %}
+        {{ cl.formset.management_form }}
+      {% endif %}
+      Remove Nearshore Habitat Cache Data Related to Geography:  
+      <input type="submit" value="Clear Geography Cache">
+      </form>
+      
+      <form action="../../../analysis/adminClearNShCache/phy/" method="post">{% csrf_token %}
+      {% if cl.formset %}
+        {{ cl.formset.management_form }}
+      {% endif %}
+      Remove Nearshore Habitat Cache Data Related to Physical:  
+      <input type="submit" value="Clear Physical Cache">
+      </form>
+      
+      <form action="../../../analysis/adminClearNShCache/bio/" method="post">{% csrf_token %}
+      {% if cl.formset %}
+        {{ cl.formset.management_form }}
+      {% endif %}
+      Remove Nearshore Habitat Cache Data Related to Biology:  
+      <input type="submit" value="Clear Biology Cache">
+      </form>
+      
+      <form action="../../../analysis/adminClearNShCache/hum/" method="post">{% csrf_token %}
+      {% if cl.formset %}
+        {{ cl.formset.management_form }}
+      {% endif %}
+      Remove Nearshore Habitat Cache Data Related to Human Uses:  
+      <input type="submit" value="Clear Human Use Cache">
+      </form>
+      
+      <form action="../../../analysis/adminClearNShCache/all/" method="post">{% csrf_token %}
       {% if cl.formset %}
         {{ cl.formset.management_form }}
       {% endif %}
       Remove All Nearshore Habitat Cache Data:  
-      <input type="submit" value="Clear Cache">
+      <input type="submit" value="Clear All Cache">
       </form>
       WARNING:  This will remove all cached data related to Nearshore Habitats!
     </div>

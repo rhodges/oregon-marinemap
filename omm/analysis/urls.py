@@ -8,5 +8,5 @@ urlpatterns = patterns('',
     #user requested printable reports
     url(r'nsh/print_report/(\d+)/(\w+)', print_report, name='printable_report'),
     #admin request cache events
-    url(r'adminClearNShCache', adminClearCache),
+    url(r'adminClearNShCache/(\w+)/', adminClearCache),
 )  
