@@ -44,7 +44,7 @@ SECRET_KEY = '3j9~fjio+adjf93jda()#Jfk3ljf-ea9#$@#90dsfj9@0aj3()*fj3iow2f'
 STATICMAP_WIDTH_BUFFER = .04
 STATICMAP_HEIGHT_BUFFER = .12
 #These two variables are used in conjunction with the above two variables to create a map extent indicator
-#which is basically a rectangle on another map that outlines the extent of the zoomed in area
+#which is basically a rectangle on another map that outlines the extent of the zoomed in area (see oregon.xml)
 STATICMAP_OUTLINE_X_OFFSET = .07
 STATICMAP_OUTLINE_Y_OFFSET = .14
 

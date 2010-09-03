@@ -39,6 +39,8 @@ def create_cache(nsh, type, context):
 Remove a single geometry or single geometry with type from the cache table
 '''    
 def remove_cache(nsh=None, type=None):
+    if type is not None and ensure_type(type) is None:
+        raise Exception("The type you entered is not a valid type.")
     type = ensure_type(type)
     if type is None and nsh is None:
         raise Exception("For clearing all cached data, use clear_cache instead.")
