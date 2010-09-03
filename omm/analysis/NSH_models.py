@@ -463,7 +463,7 @@ class WaveEnergyPermits(models.Model):
     shape_leng = models.FloatField()
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Wave Energy Preliminary Permits")
-    objects = models.GeoManager()    
+    objects = models.GeoManager() 
     
 class MarineManagedAreas(models.Model):
     objectid = models.IntegerField()
