@@ -26,7 +26,7 @@
     <Rule>
         <LineSymbolizer>
             <CssParameter name="stroke">rgb(0,0,0)</CssParameter>
-            <CssParameter name="stroke-width">1</CssParameter>
+            <CssParameter name="stroke-width">.4</CssParameter>
         </LineSymbolizer>
         <MaxScaleDenominator>1000000</MaxScaleDenominator>
     </Rule>
@@ -103,9 +103,9 @@
     <Rule>
         <LineSymbolizer>
             <CssParameter name="stroke">rgb(255,0,0)</CssParameter>
-            <CssParameter name="stroke-width">3</CssParameter>
+            <CssParameter name="stroke-width">2</CssParameter>
         </LineSymbolizer>>
-        <MinScaleDenominator>1000000</MinScaleDenominator>
+        <MinScaleDenominator>2000000</MinScaleDenominator>
         <Filter> MPA_FILTER </Filter>
     </Rule>
 </Style>
@@ -211,7 +211,9 @@
       <Parameter name="type">postgis</Parameter>
       <Parameter name="geometry_field">geometry_final</Parameter>
       <!-- NOTE that the subselect for mpa MUST have all these fields for filtering purposes -->
-      <Parameter name="table">(select id, st_setsrid(st_buffer(st_box2d(geometry_final), 10000),99999) as geometry_final, name, designation_id from MM_MPA) as mpa</Parameter>
+      <Parameter name="table">(select id, st_transform(st_setsrid(st_makebox2d(st_point(st_xmin(st_transform(geometry_final,GEOMETRY_CLIENT_SRID))-OUTLINE_X_OFFSET, st_ymin(st_transform(geometry_final,GEOMETRY_CLIENT_SRID))-OUTLINE_Y_OFFSET), st_point(st_xmax(st_transform(geometry_final,GEOMETRY_CLIENT_SRID))+OUTLINE_X_OFFSET, st_ymax(st_transform(geometry_final,GEOMETRY_CLIENT_SRID))+OUTLINE_Y_OFFSET)), GEOMETRY_CLIENT_SRID), GEOMETRY_DB_SRID) as geometry_final, name, designation_id from MM_MPA) as mpa</Parameter> 
+      <!-- tried the following, but it seems mapnik isn't limited to the bounding box when rendering the image, so the extent did not accurately reflect the extent of the zoomed in image -->
+      <!-- <Parameter name="table">(select id, st_transform(st_setsrid(st_makebox2d(st_point(X_MIN, Y_MIN), st_point(X_MAX, Y_MAX)), GEOMETRY_CLIENT_SRID), GEOMETRY_DB_SRID) as geometry_final, name, designation_id from MM_MPA) as mpa</Parameter> -->
       DATABASE_CONNECTION
     </Datasource>
 </Layer>
