@@ -1,0 +1,12 @@
+{% extends 'common/map.html' %}
+
+{% block layersConfig %}
+    // setup which kml files are shown in the data layers panel
+    lingcod.addLayer('{% url studyregion-kml %}', {setExtent: true});
+    lingcod.addLayer('{% url public-data-layers %}');            
+    {% if user.is_authenticated %}
+        lingcod.addLayer('{% url private-data-layers session_key=session_key %}');            
+    {% endif %}
+    lingcod.addLayer("{% url public-fishing-data-layers %}");
+{% endblock layersConfig %}
+
