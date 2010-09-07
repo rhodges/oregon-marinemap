@@ -22,7 +22,8 @@ ROOT_URLCONF = 'omm.urls'
 TEMPLATE_DIRS = ( os.path.realpath(os.path.join(os.path.dirname(__file__), 'templates').replace('\\','/')), )
 
 INSTALLED_APPS += ( 'tsp', 
-                    'analysis',)
+                    'analysis',
+                    'fishing_layers')
 
 MPA_CLASS = 'tsp.models.AOI'
 ARRAY_CLASS = 'tsp.models.AOIArray'
