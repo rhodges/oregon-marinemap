@@ -7,16 +7,17 @@ from django.conf import settings
 import os
 
  
-def get_fishing_layers(request):
+def get_public_fishing_layers(request):
     """Returns uploaded kml from the :class:`PublicFishingLayer <fishing_layers.models.PublicFishingLayer>` object marked ``active``.
     """
     layer = get_object_or_404(PublicFishingLayer, active=True)
     return HttpResponse(layer.kml.read(), mimetype=mimetypes.KML)
     
-def get_map(request, layer_name, z=None, x=None, y=None, ext=None, root=settings.GIS_DATA_ROOT):
-    user = request.user
-    root_path = os.path.join(root, layer_name)
+def get_public_map(request, layer_name, z=None, x=None, y=None, ext=None, root=settings.GIS_DATA_ROOT):
+    root_path = os.path.join(root, 'public_maps', layer_name)
+    return get_map(root_path, z, x, y, ext)
     
+def get_map(root_path, z, x, y, ext):    
     if z is None:
         doc_file = os.path.join(root_path, 'doc.kml')
         doc_kml = open(doc_file).read()
@@ -25,10 +26,20 @@ def get_map(request, layer_name, z=None, x=None, y=None, ext=None, root=settings
         kml_file = os.path.join(root_path, z, x, y+'.kml')
         tile_kml = open(kml_file).read()
         return HttpResponse(tile_kml, mimetype=mimetypes.KML)
-    else:
+    elif ext == 'kmz':
+        kmz_file = os.path.join(root_path, z, x, y+'.kmz')
+        tile_kmz = open(kmz_file).read()
+        return HttpResponse(tile_kmz, mimetype=mimetypes.KMZ)
+    elif ext == 'png':
         png_file = os.path.join(root_path, z, x, y+'.png')
         tile_png = open(png_file, "rb").read()
         return HttpResponse(tile_png, mimetype='image/png')
+    elif ext == 'jpg':
+        png_file = os.path.join(root_path, z, x, y+'.jpg')
+        tile_png = open(png_file, "rb").read()
+        return HttpResponse(tile_png, mimetype='image/jpg')
+    else:
+        return HttpResponse("Unrecognized extension in request object: " + ext, status=501)
    
 def get_contour(request, session_key, input_username, group_name, layer_name, z=None, x=None, y=None, ext=None, root=settings.GIS_DATA_ROOT):
     load_session(request, session_key)
@@ -64,7 +75,7 @@ def get_contour(request, session_key, input_username, group_name, layer_name, z=
         return HttpResponse(tile, mimetype='image/png')
 
         
-def get_other(request, folder, file, root=settings.GIS_DATA_ROOT):
+def get_public_other(request, folder, file, root=settings.GIS_DATA_ROOT):
     #legend is stored in GIS_DATA_ROOT/images
     doc_path = os.path.join(root, folder, file)
     if folder == 'images':
