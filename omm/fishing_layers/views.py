@@ -79,12 +79,19 @@ def get_contour(root_path, z, x, y, ext):
         return HttpResponse(tile, mimetype='image/png')
 
         
-def get_public_other(request, folder, file, root=settings.GIS_DATA_ROOT):
+def get_public_other(request, folder, file, ext, root=settings.GIS_DATA_ROOT):
     #legend is stored in GIS_DATA_ROOT/images
-    doc_path = os.path.join(root, folder, file)
+    file_name = file + '.' + ext
+    doc_path = os.path.join(root, folder, file_name)
     if folder == 'images':
+        if ext.lower() == 'png':
+            mimetype = 'image/png'
+        elif ext.lower() == 'jpg':
+            mimetype = 'image/png'
+        else:
+            return HttpResponse("Unrecognized extension in request object: " + ext, status=501)
         contents = open(doc_path, "rb").read()
-        return HttpResponse(contents, mimetype='image/png')
+        return HttpResponse(contents, mimetype=mimetype)
     else:
         return HttpResponse(folder + ' not implemented', status=501)
  
