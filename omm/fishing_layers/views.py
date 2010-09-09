@@ -41,15 +41,19 @@ def get_map(root_path, z, x, y, ext):
     else:
         return HttpResponse("Unrecognized extension in request object: " + ext, status=501)
    
-def get_contour(request, session_key, input_username, group_name, layer_name, z=None, x=None, y=None, ext=None, root=settings.GIS_DATA_ROOT):
+def get_public_contour(request, layer_name, z=None, x=None, y=None, ext=None, root=settings.GIS_DATA_ROOT):
+    root_path = os.path.join(root, 'public_contours', layer_name)
+    return get_contour(root_path, z, x, y, ext)
+    
+def get_contour(root_path, z, x, y, ext):    
+    '''
     load_session(request, session_key)
     user = request.user
     if user.is_anonymous() or not user.is_authenticated():
         return HttpResponse('You must be logged in', status=401)
     elif input_username and user.username != input_username:
         return HttpResponse('Access denied', status=401)
-        
-    root_path = os.path.join(root, 'pvc', group_name, layer_name)
+    '''    
     if z is None:
         doc_file = os.path.join(root_path, 'doc.kml')
         doc_kml = open(doc_file).read()
