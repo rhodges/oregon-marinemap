@@ -17,7 +17,10 @@ Accessed via named url when user selects a type (Geographic, Physical, Biologica
 def aes_analysis(request, aes_id, type):
     return HttpResponse('Energy Site Analysis is not yet available.')
     
-def print_report(request, nsh_id, type):
+'''
+Accessed via named url when user selects View Printable Report from analysis templates
+'''    
+def print_nsh_report(request, nsh_id, type):
     from NSH_Analysis import print_nsh_report
     from lingcod.common.utils import get_mpa_class
     from lingcod.sharing.utils import can_user_view
@@ -31,7 +34,7 @@ def print_report(request, nsh_id, type):
 Empties NSHCache table
 Handles POST requests
 '''
-def adminClearCache(request, type=None, template='admin/analysis/cache_is_cleared.html'):
+def adminClearNSHCache(request, type=None, template='admin/analysis/cache_is_cleared.html'):
     from NSH_Cache import clear_cache, remove_cache
     from utils import ensure_type
     if not request.user.is_staff:

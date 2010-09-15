@@ -6,7 +6,7 @@ urlpatterns = patterns('',
     url(r'nsh/(\d+)/(\w+)', nsh_analysis, name='nsh_analysis'),
     url(r'aes/(\d+)/(\w+)', aes_analysis, name='aes_analysis'),
     #user requested printable reports
-    url(r'nsh/print_report/(\d+)/(\w+)', print_report, name='printable_report'),
+    url(r'nsh/print_report/(\d+)/(\w+)', print_nsh_report, name='printable_nsh_report'),
     #admin request cache events
-    url(r'adminClearNShCache/(\w+)/', adminClearCache),
+    url(r'adminClearNShCache/(\w+)/', adminClearNSHCache),
 )  
