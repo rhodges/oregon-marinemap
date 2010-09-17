@@ -1,9 +1,9 @@
 <h1 align="center">{{ nsh.name }} Geography Analysis Report</h1>
 
-<div align="middle" >
-    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ nsh.id }}&amp;autozoom=true&amp;width=308&amp;height=400">
+<div class="img" align="middle">
+    <img src="{% url staticmap-show 'default' %}?mpas={{ nsh.id }}&amp;autozoom=true&amp;width=308&amp;height=400">
     &nbsp; &nbsp;
-    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ nsh.id }}&amp;width=154&amp;height=200">
+    <img src="{% url staticmap-show 'default' %}?mpas={{ nsh.id }}&amp;width=154&amp;height=200">
 </div>
 
 <div class="freetext">
@@ -80,11 +80,18 @@
 </div>
 
 <style type="text/css">
+div.img {
+    margin-left: auto;
+    margin-right: auto;
+    zoom: 80%;
+}
+
 table.marinemap-table {
     font-size:12px;
     width:100%;
     border:solid 1px #ccc;
     margin:5px;
+    padding-top:4px;
 }
 
 table.marinemap-table th.geoheader {

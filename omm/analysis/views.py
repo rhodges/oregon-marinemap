@@ -18,17 +18,29 @@ def aes_analysis(request, aes_id, type):
     return HttpResponse('Energy Site Analysis is not yet available.')
     
 '''
-Accessed via named url when user selects View Printable Report from analysis templates
-'''    
-def print_nsh_report(request, nsh_id, type):
-    from NSH_Analysis import print_nsh_report
+'''
+def pdf_nsh_report(request, nsh_id, type):
+    from NSH_Analysis import pdf_report
     from lingcod.common.utils import get_mpa_class
     from lingcod.sharing.utils import can_user_view
     user_can_view, response = can_user_view(get_mpa_class(), nsh_id, request.user)
     if not user_can_view:
         return response
     nsh = get_object_or_404(AOI, pk=nsh_id)
-    return print_nsh_report(request, nsh, type)
+    return pdf_report(request, nsh, type)
+    
+'''
+Accessed via named url when user selects View Printable Report from analysis templates
+'''    
+def print_nsh_report(request, nsh_id, type):
+    from NSH_Analysis import printable_report
+    from lingcod.common.utils import get_mpa_class
+    from lingcod.sharing.utils import can_user_view
+    user_can_view, response = can_user_view(get_mpa_class(), nsh_id, request.user)
+    if not user_can_view:
+        return response
+    nsh = get_object_or_404(AOI, pk=nsh_id)
+    return printable_report(request, nsh, type)
     
 '''
 Empties NSHCache table
