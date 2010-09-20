@@ -69,7 +69,7 @@ Called from within pisaDocument via link_callback parameter
 def fetch_resources(uri, rel):
     import os
     import settings
-    from lingcod.staticmap.views import save_to_temp
+    from lingcod.staticmap.Temp_Save import save_to_temp
     params = get_params_from_uri(uri)
     if len(params) > 0:
         path = save_to_temp(params)
