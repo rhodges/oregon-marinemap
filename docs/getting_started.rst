@@ -35,7 +35,7 @@ Before you proceed any further, please follow the
 After you have completed the Lingcod `Getting Started <http://maps11.msi.ucsb.edu/getting_started.html>`_ 
 instructions, you'll want to return here to continue with the MarineMap Oregon installation instructions that follow.
  
-Additional dependencies particular to the oregon-marinemap project can be found in the ``omm_requirements.txt`` file
+Additional dependencies particular to the MarineMap Oregon project can be found in the ``omm_requirements.txt`` file
 located in the base directory of ``oregon-marinemap``.
  
 Installing MarineMap Oregon
