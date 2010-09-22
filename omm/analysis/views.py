@@ -46,7 +46,7 @@ def print_nsh_report(request, nsh_id, type):
 Empties NSHCache table
 Handles POST requests
 '''
-def adminClearNSHCache(request, type=None, template='admin/analysis/cache_is_cleared.html'):
+def admin_clear_nsh_cache(request, type=None, template='admin/analysis/cache_is_cleared.html'):
     from nsh_cache import clear_cache, remove_cache
     from utils import ensure_type
     if not request.user.is_staff:
