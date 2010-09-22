@@ -64,7 +64,7 @@ def pdf_report(request, nsh, type):
     
 '''
 Returns a path to desired resource (image file)
-Called from within pisaDocument via link_callback parameter
+Called from within pisaDocument via link_callback parameter (from pdf_report)
 '''    
 def fetch_resources(uri, rel):
     import os

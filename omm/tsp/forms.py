@@ -6,6 +6,7 @@ from django import forms
 #if the names of the following two classes are changed, the related settings should also be changed (MPA_FORM, ARRAY_FORM)
 
 class ArrayForm(BaseArrayForm):
+    name = forms.CharField(label='AOI Group Name')
     class Meta(BaseArrayForm.Meta):
         model = AOIArray
         exclude = ('sharing_groups',)
