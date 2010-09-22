@@ -1,0 +1,12 @@
+########
+# pip requirements file for oregon-marinemap
+# this should install requirements particular to the oregon marinemap project
+#
+# NOTE:  See marinemap/marinemap_requirements.txt for the all other requirements related to the marinemap codebase.
+#
+#############
+
+# Dependencies
+html5lib>=0.9
+reportlab>=2.4
+pisa>=3.0.33
