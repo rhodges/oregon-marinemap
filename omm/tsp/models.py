@@ -12,14 +12,5 @@ class AOI(BaseMpa):
 class AOIArray(BaseMpaArray):
     pass
     
-class MRS(BaseMpa):
-    description = models.TextField(default="", null=True, blank=True)
-    
-class MRS_original(models.Model):
-    import settings
-    sitename = models.CharField(default="", max_length="255", null=True, blank=True)
-    label = models.CharField(default="", max_length="255", null=True, blank=True)
-    geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True)
-    objects = models.Manager()
 
 
