@@ -49,11 +49,10 @@ def printable_report(request, nsh, type):
 renders printable template as pdf
 called by views.pdf_nsh_report
 '''    
-def pdf_report(request, nsh, type):
+def pdf_report(request, nsh, type, template='pdf_nsh_comprehensive_report.html'):
     from django.template.loader import render_to_string
     import ho.pisa as pisa 
     import cStringIO as StringIO
-    template = get_printable_template(type)
     context = get_or_create_cache(nsh, type)
     html = render_to_string(template, context)
     result = StringIO.StringIO()

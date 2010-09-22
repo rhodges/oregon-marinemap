@@ -1,18 +1,17 @@
-<h1 align="center">{{ geo.nsh.name }} Comprehensive Analysis Report</h1>
+
+<h1 align="center">{{ geo.nsh.name }}</h1>
+<h1 align="center">Comprehensive Analysis Report</h1>
 
 <div class="img" align="middle" >
-    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ geo.nsh.id }}&amp;autozoom=true&amp;width=308&amp;height=400">
-    &nbsp; &nbsp;
-    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ geo.nsh.id }}&amp;width=154&amp;height=200">
-</div>
-
-<div class="freetext">
-<h4>Report Summary</h4>
-<table class='allowed_uses'>
-<tr><td width=150>Type:</td><td>Comprehensive</td></tr>
-<tr><td width=150>Nearshore Habitat:</td><td>{{ geo.nsh.name }}</td></tr>
-<tr><td width=150>ID #:</td><td>{{ geo.nsh.id }}</td></tr>
-</table>
+    <table width="100%">
+        <tr>
+            <td></td>
+            <td>
+                &nbsp; <img class="aoi" align="right" src="{% url staticmap-show 'default' %}?mpas={{ geo.nsh.id }}&amp;autozoom=true&amp;width=308&amp;height=400">
+            </td>
+            <td></td>
+        </tr>
+    </table>
 </div>
 
 <div class='freetext'>
@@ -34,27 +33,27 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{geo.county.0}}</td>
-            <td>{{geo.ports.0.0}}  ({{geo.ports.0.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.cities.0.0}}  ({{geo.cities.0.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.rockyshores.0.0}}  ({{geo.rockyshores.0.1|floatformat:'1'}} {{geo.length_units}})</td>
-        </tr>
-        <tr>
-            <td>{{geo.county.1}}</td>
-            <td>{{geo.ports.1.0}}  ({{geo.ports.1.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.cities.1.0}}  ({{geo.cities.1.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.rockyshores.1.0}}  ({{geo.rockyshores.1.1|floatformat:'1'}} {{geo.length_units}})</td>
-        </tr>
-        <tr>
-            <td>{{geo.county.2}}</td>
-            <td>{{geo.ports.2.0}}  ({{geo.ports.2.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.cities.2.0}}  ({{geo.cities.2.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.rockyshores.2.0}}  ({{geo.rockyshores.2.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td valign="top">     {{geo.county.0}} 
+                <br> {{geo.county.1}} 
+                <br> {{geo.county.2}}
+            </td>
+            <td>     {{geo.ports.0.0}}  ({{geo.ports.0.1|floatformat:'1'}}{{geo.length_units}})
+                <br> {{geo.ports.1.0}}  ({{geo.ports.1.1|floatformat:'1'}}{{geo.length_units}})
+                <br> {{geo.ports.2.0}}  ({{geo.ports.2.1|floatformat:'1'}}{{geo.length_units}})
+            </td>
+            <td>     {{geo.cities.0.0}}  ({{geo.cities.0.1|floatformat:'1'}}{{geo.length_units}})
+                <br> {{geo.cities.1.0}}  ({{geo.cities.1.1|floatformat:'1'}}{{geo.length_units}})
+                <br> {{geo.cities.2.0}}  ({{geo.cities.2.1|floatformat:'1'}}{{geo.length_units}})
+            </td>
+            <td>     {{geo.rockyshores.0.0}}  ({{geo.rockyshores.0.1|floatformat:'1'}}{{geo.length_units}})
+                <br> {{geo.rockyshores.1.0}}  ({{geo.rockyshores.1.1|floatformat:'1'}}{{geo.length_units}})
+                <br> {{geo.rockyshores.2.0}}  ({{geo.rockyshores.2.1|floatformat:'1'}}{{geo.length_units}})
+            </td>
         </tr>
     </tbody>
 </table>
 
-<br></br>
+<br>
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
@@ -70,11 +69,11 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{geo.area|floatformat:'2'}} ({{geo.area_units}})</td>
-            <td>{{geo.perimeter|floatformat:'2'}} ({{geo.length_units}})</td>
+            <td>{{geo.area|floatformat:'2'}} {{geo.area_units}}</td>
+            <td>{{geo.perimeter|floatformat:'2'}} {{geo.length_units}}</td>
             <td>{{geo.intertidal}}</td>
             <td>{{geo.islands}}</td>
-            <td>{{geo.ratio|floatformat:'2'}} %</td>
+            <td>{{geo.ratio|floatformat:'2'}}%</td>
         </tr>
     </tbody>
 </table>
@@ -97,28 +96,28 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{phy.length|floatformat:'2'}} ({{phy.length_units}})</td>
+            <td valign="top">{{phy.length|floatformat:'2'}} {{phy.length_units}}</td>
             {% if phy.percent_shoreline == phy.default_value %}
-            <td>{{phy.default_value}}</td>
+            <td valign="top">{{phy.default_value}}</td>
             {% else %}
-            <td>{{phy.percent_shoreline|floatformat:'2'}} %</td>
+            <td valign="top">{{phy.percent_shoreline|floatformat:'2'}}%</td>
             {% endif %}
-            <td colspan="3">
+            <td valign="top" colspan="3">
                 {% for proportion in phy.shoreline_proportions %}
-                    {{proportion.0|floatformat:'0'}}% &nbsp; &nbsp; {{proportion.1}} &nbsp; &nbsp; ({{proportion.2|floatformat:'2'}} {{phy.length_units}}) </br>
+                    {{proportion.0|floatformat:'0'}}% &nbsp; &nbsp; {{proportion.1}} &nbsp; &nbsp; ({{proportion.2|floatformat:'2'}}{{phy.length_units}}) </br>
                 {% endfor %}
             </td>
-            <td>{{phy.islands}} islands</td>
+            <td valign="top">{{phy.islands}} islands</td>
             {% if phy.island_area == phy.default_value %}
-            <td>{{phy.default_value}}</td>
+            <td valign="top">{{phy.default_value}}</td>
             {% else %}
-            <td>{{phy.island_area|floatformat:'3'}} ({{phy.area_units}})</td>
+            <td valign="top">{{phy.island_area|floatformat:'3'}} {{phy.area_units}}</td>
             {% endif %}
         </tr>
     </tbody>
 </table>
 
-<br></br>
+<br>
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
@@ -134,20 +133,24 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{phy.subtidal_area|floatformat:'1'}} ({{phy.area_units}})</td>
-            <td>{{phy.perc_shallow|floatformat:'1'}} % &nbsp; shallow<br/> {{phy.perc_deep|floatformat:'1'}} % &nbsp; deep</td>
-            <td colspan="2">
+            <td valign="top">{{phy.subtidal_area|floatformat:'1'}} {{phy.area_units}}</td>
+            <td valign="top">{{phy.perc_shallow|floatformat:'1'}}% &nbsp; shallow<br/> {{phy.perc_deep|floatformat:'1'}} % &nbsp; deep</td>
+            <td valign="top" colspan="2">
                 {% for proportion in phy.lithology_proportions %}
-                    {{proportion.0|floatformat:'1'}}% &nbsp; {{proportion.1}} &nbsp; ({{proportion.2|floatformat:'2'}} {{phy.length_units}}) </br>
+                    {{proportion.0|floatformat:'1'}}% &nbsp; {{proportion.1}} &nbsp; ({{proportion.2|floatformat:'2'}}{{phy.length_units}}) </br>
                 {% endfor %}
             </td>
-            <td>{{phy.average_depth|floatformat:'2'}} (meters)</td>
-            <td>{{phy.distance_to_shore|floatformat:'1'}} ({{phy.length_units}})</td>
+            <td valign="top">{{phy.average_depth|floatformat:'2'}} meters</td>
+            <td valign="top">{{phy.distance_to_shore|floatformat:'1'}} {{phy.length_units}}</td>
         </tr>
     </tbody>
 </table>
 
 <!-- Biology Report -->
+
+<div>
+    <pdf:nextpage />
+</div>
 
 <br></br>
 <table class='marinemap-table' rules=rows>
@@ -190,7 +193,7 @@
     </thead>
     <tbody>
         <tr>
-        <td class="top" colspan="2">
+        <td class="top" colspan="2" valign="top">
         {% for site in bio.haulout_sites %}
             {{site.0.0}} , ({{site.0.1}})</br>
             {% for species in site.1 %}
@@ -202,11 +205,11 @@
         
         <td colspan="2">
         {% for details in bio.bird_details %}
-            {{details.0.0}} , (Colony #{{details.0.1}})</br>
+            {{details.0.0}} , (Colony #{{details.0.1}})<br>
             {% for bird in details.1 %}
-                &nbsp; &nbsp; &nbsp; {{bird}}</br>
+                {{bird}} &nbsp;
             {% endfor %}
-            </br>
+            <br><br>
         {% endfor %}
         </td>
             
@@ -214,27 +217,27 @@
     </tbody>
 </table>
 
-<br></br>
+<br>
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="bioheader" colspan="5">Subtidal Biological Characteristics</th>
+            <th class="bioheader" colspan="2">Subtidal Biological Characteristics</th>
         </tr>
         <tr>
             <th>Habitat Types & Proportions</th>
-            <th>Predicted Fish Species <br></br>(Provided by <a target="_blank" href="http://www.nwfsc.noaa.gov/">NOAA's Northwest Fisheries Science Center)</a></th>
+            <th>Predicted Fish Species <br>(Provided by <a target="_blank" href="http://www.nwfsc.noaa.gov/">NOAA's Northwest Fisheries Science Center)</p></a></th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td class="top">
+            <td valign="top" class="top">
             {% for details in bio.habitat_proportions %}
-                {{details.0|floatformat:'2'}} % &nbsp; {{details.1}} &nbsp; ({{details.2|floatformat:'2'}} {{bio.area_units}})</br>
+                {{details.0|floatformat:'2'}}% &nbsp; {{details.1}} &nbsp; ({{details.2|floatformat:'2'}} {{bio.area_units}})</br>
             {% endfor %}
             </td>
             <td>
             {% for fish in bio.fish_list %}
-                {{fish}}</br>
+                {{fish}} &nbsp;
             {% endfor %}
             </td>
         </tr>
@@ -279,146 +282,146 @@
         <tr>
             <td>
             {% for park in hum.parks %}
-                {{park.0}} State Park &nbsp; ({{park.1|floatformat:'2'}} {{hum.length_units}})</br>
+                {{park.0}} State Park &nbsp; ({{park.1|floatformat:'2'}}{{hum.length_units}})</br>
             {% endfor %}
             </td>
             <td>
             {% for site in hum.access_sites %}
-                {{site.0}} &nbsp; ({{site.1|floatformat:'1'}} {{hum.length_units}})</br>
+                {{site.0}} &nbsp; ({{site.1|floatformat:'1'}}{{hum.length_units}})</br>
             {% endfor %}
             </td>
         </tr>
     </tbody>
 </table>
 
-<br></br>
+<br>
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="humheader" colspan="5">Existing or Proposed Transportation & Infrasructure Considerations</th>
+            <th class="humheader" colspan="9">Existing or Proposed Transportation & Infrasructure Considerations</th>
         </tr>
         <tr>
-            <th>Dredge Materials Disposal</th>
-            <th>NPDES Outfall</th>
-            <th>Undersea Cables</th>
+            <th colspan="2">Dredge Materials Disposal</th>
+            <th colspan="2">NPDES Outfall</th>
+            <th colspan="2">Undersea Cables</th>
             <th>Towlanes</th>
-            <th>Wave Energy</th>
+            <th colspan="2">Wave Energy</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>{{hum.dmd_data.0}}</td>
-            <td>{{hum.outfall_data.0}}</td>
-            <td>{{hum.cable_data.0}}</td>
+            <td colspan="2">{{hum.dmd_data.0}}</td>
+            <td colspan="2">{{hum.outfall_data.0}}</td>
+            <td colspan="2">{{hum.cable_data.0}}</td>
             <td>{{hum.towlanes}}</td>
-            <td>{{hum.wave_energy_data.0}}</td>
+            <td colspan="2">{{hum.wave_energy_data.0}}</td>
         </tr>
     </tbody>
     <thead>
         <tr>
             {% if hum.dmd_data.0 == 'Yes' %}
-                <th>Intersecting DMD Sites</th>
+                <th colspan="2">Intersecting DMD Sites</th>
             {% else %}
-                <th>Closest DMD Sites</th>
+                <th colspan="2">Closest DMD Sites</th>
             {% endif %}
             
             {% if hum.outfall_data.0 == 'Yes' %}
-                <th>Intersecting Outfall Sites</th>
+                <th colspan="2">Intersecting Outfall Sites</th>
             {% else %}
-                <th>Closest Outfall</th>
+                <th colspan="2">Closest Outfall</th>
             {% endif %}
             
             {% if hum.cable_data.0 == 'Yes' %}
-                <th>Intersecting Cables</th>
+                <th colspan="2">Intersecting Cables</th>
             {% else %}
-                <th>Closest Cable</th>
+                <th colspan="2">Closest Cable</th>
             {% endif %}
             
             <th></th>
             
             {% if hum.wave_energy_data.0 == 'Yes' %}
-                <th>Intersecting Wave Energy</th>
+                <th colspan="2">Intersecting Wave Energy</th>
             {% else %}
-                <th>Closest Wave Energy</th>
+                <th colspan="2">Closest Wave Energy</th>
             {% endif %}
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>
+            <td valign="top" colspan="2">
                 {% if hum.dmd_data.0 == 'Yes' %}
                     {% for data in hum.dmd_data.1 %}
                         {{data}}</br>
                     {% endfor %}
                 {% else %}
-                    {{hum.dmd_data.1.0}} ({{hum.dmd_data.1.1|floatformat:'2'}} {{hum.length_units}})
+                    {{hum.dmd_data.1.0}} ({{hum.dmd_data.1.1|floatformat:'2'}}{{hum.length_units}})
                 {% endif %}
             </td>
-            <td>
+            <td valign="top" colspan="2">
                 {% if hum.outfall_data.0 == 'Yes' %}
                     {% for data in hum.outfall_data.1 %}
                         {{data}}</br>
                     {% endfor %}
                 {% else %}
-                    {{hum.outfall_data.1.0}} ({{hum.outfall_data.1.1|floatformat:'2'}} {{hum.length_units}})
+                    {{hum.outfall_data.1.0}} ({{hum.outfall_data.1.1|floatformat:'2'}}{{hum.length_units}})
                 {% endif %}
             </td>
-            <td>
+            <td valign="top" colspan="2">
                 {% if hum.cable_data.0 == 'Yes' %}
                     {% for data in hum.cable_data.1 %}
                         {{data}}</br>
                     {% endfor %}
                 {% else %}
-                    {{hum.cable_data.1.0}} ({{hum.cable_data.1.1|floatformat:'2'}} {{hum.length_units}})
+                    {{hum.cable_data.1.0}} ({{hum.cable_data.1.1|floatformat:'2'}}{{hum.length_units}})
                 {% endif %}
             </td>
             <td></td>
-            <td>
+            <td valign="top" colspan="2">
                 {% if hum.wave_energy_data.0 == 'Yes' %}
                     {% for data in hum.wave_energy_data.1 %}
                         {{data}}</br>
                     {% endfor %}
                 {% else %}
-                    {{hum.wave_energy_data.1.0.0}} ({{hum.wave_energy_data.1.0.1|floatformat:'2'}} {{hum.length_units}})
+                    {{hum.wave_energy_data.1.0.0}} ({{hum.wave_energy_data.1.0.1|floatformat:'2'}}{{hum.length_units}})
                 {% endif %}
             </td>
         </tr>
     </tbody>
 </table>
 
-<br></br>
+<br>
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="humheader" colspan="4">Fishery Considerations</th>
+            <th class="humheader" colspan="7">Fishery Considerations</th>
         </tr>
         <tr>
             <th>Proximity to Ports</th>
-            <th>Proximity to Existing State MMAs</th>
-            <th>Proximity to ODFW Closures</th>
-            <th>Proximity to EFH Conservation Areas</th>
+            <th colspan="2">Proximity to Existing State MMAs</th>
+            <th colspan="2">Proximity to ODFW Closures</th>
+            <th colspan="2">Proximity to EFH Conservation Areas</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>
+            <td valign="top">
                 {% for port in hum.nearest_ports %}
-                    {{port.0}} ({{port.1|floatformat:'1'}} {{hum.length_units}})</br>
+                    {{port.0}} ({{port.1|floatformat:'1'}}{{hum.length_units}})</br>
                 {% endfor %}
             </td>
-            <td>
+            <td valign="top" colspan="2">
                 {% for mma in hum.nearest_mmas %}
-                    {{mma.0}} ({{mma.1|floatformat:'1'}} {{hum.length_units}})</br>
+                    {{mma.0}} ({{mma.1|floatformat:'1'}}{{hum.length_units}})</br>
                 {% endfor %}
             </td>
-            <td>
+            <td valign="top" colspan="2">
                 {% for closure in hum.nearest_closures %}
-                    {{closure.0}} ({{closure.1|floatformat:'1'}} {{hum.length_units}})</br>
+                    {{closure.0}} ({{closure.1|floatformat:'1'}}{{hum.length_units}})</br>
                 {% endfor %}
             </td>
-            <td>
+            <td valign="top" colspan="2">
                 {% for area in hum.nearest_conservation_areas %}
-                    {{area.0}} ({{area.1|floatformat:'1'}} {{hum.length_units}})</br>
+                    {{area.0}} ({{area.1|floatformat:'1'}}{{hum.length_units}})</br>
                 {% endfor %}
             </td>
         </tr>
@@ -431,18 +434,26 @@
 </div>
 
 <style type="text/css">
-div.img {
-    margin-left: auto;
-    margin-right: auto;
+div.img img.aoi {
     zoom: 80%;
 }
 
+div.img img.sr {
+    zoom: 80%;
+    vertical-align: text-top;
+}
+
+table.summary-table {
+    font-family:helvetica;
+    font-size:11px;
+}
+
 table.marinemap-table {
-    font-size:12px;
+    font-size:9px;
     width:100%;
     border:solid 1px #fff;
     margin:3px;
-    padding-top:4px;
+    padding-top:3px;
 }
 
 table.marinemap-table th.geoheader {
@@ -476,7 +487,6 @@ table.marinemap-table th.humheader {
 table.marinemap-table th {
     background-color:#D0D0D0;
     color:#344E63;
-    font-weight:bold;
 }
 
 table.marinemap-table th.left {
@@ -489,14 +499,12 @@ table.marinemap-table th.left {
 table.marinemap-table td {
     background-color:#EBF5F5;
     color:#344E63;
-    font-weight:bold;
     text-align:center;
 }
 
 table.marinemap-table td.left {
     background-color:#EBF5F5;
     color:#344E63;
-    font-weight:bold;
     text-align:left;
     vertical-align: text-top;
 }
@@ -504,7 +512,6 @@ table.marinemap-table td.left {
 table.marinemap-table td.top {
     background-color:#EBF5F5;
     color:#344E63;
-    font-weight:bold;
     vertical-align: text-top;
 }
 
