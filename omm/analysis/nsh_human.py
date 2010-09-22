@@ -5,7 +5,7 @@ from models import *
 from settings import *
 from lingcod.unit_converter.models import length_in_display_units, area_in_display_units
 from utils import ensure_type, get_nearest_geometries, get_nearest_geometries_with_distances, get_intersecting_geometries
-from NSH_Cache import has_cache, get_cache, create_cache
+from nsh_cache import has_cache, get_cache, create_cache
     
 default_value = '---'
 

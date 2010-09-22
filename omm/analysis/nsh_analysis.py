@@ -1,12 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from NSH_Geography import display_geo_analysis, run_geo_analysis
-from NSH_Physical import display_phy_analysis, run_phy_analysis
-from NSH_Biology import display_bio_analysis, run_bio_analysis
-from NSH_Human import display_hum_analysis, run_hum_analysis
+from nsh_geography import display_geo_analysis, run_geo_analysis
+from nsh_physical import display_phy_analysis, run_phy_analysis
+from nsh_biology import display_bio_analysis, run_bio_analysis
+from nsh_human import display_hum_analysis, run_hum_analysis
 from utils import type_is_geo, type_is_phy, type_is_bio, type_is_hum
-from NSH_Cache import has_cache, get_cache
+from nsh_cache import has_cache, get_cache
 
 '''
 calls display_<type>_analysis for a given type

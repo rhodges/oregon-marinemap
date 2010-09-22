@@ -5,7 +5,7 @@ from models import *
 from settings import *
 from lingcod.unit_converter.models import length_in_display_units, area_in_display_units
 from utils import ensure_type
-from NSH_Cache import has_cache, get_cache, create_cache
+from nsh_cache import has_cache, get_cache, create_cache
 
 default_value = '---'
 
