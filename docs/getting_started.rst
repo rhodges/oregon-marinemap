@@ -37,6 +37,9 @@ instructions, you'll want to return here to continue with the MarineMap Oregon i
  
 Additional dependencies particular to the MarineMap Oregon project can be found in the ``omm_requirements.txt`` file
 located in the base directory of ``oregon-marinemap``.
+
+PLEASE NOTE:  At the time of this writing, there exists a relevant comment in ``omm_requirements.txt`` that outlines a 
+code change that should be made to the ``PIL`` library to prevent errors relating to the creation of PDF documents.  
  
 Installing MarineMap Oregon
 ***************************
