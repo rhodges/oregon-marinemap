@@ -35,13 +35,7 @@
      <Link>
       <href>{% absurl kmlapp-array-kmz input_array_id=a.array.id,session_key=session_key %}</href>
      </Link>
-    {% url array_summary_excel a.array.pk as array_summary_excel %}
-    {# {% if user.is_staff and array_summary_excel %} #}
-		<atom:link rel="alt" href="{{array_summary_excel}}" title="Array Spreadsheet" type="application/ms-excel" />
-    {# {% endif %} #}	
-	{% url array_replication_excel a.array.pk as array_replication_excel %}
-	<atom:link rel="alt" href="{{array_replication_excel}}" title="Habitat Replication Spreadsheet" type="application/ms-excel" />
-	
+     
     </NetworkLink>
 {% else %}
     {% if use_array_folders %}
