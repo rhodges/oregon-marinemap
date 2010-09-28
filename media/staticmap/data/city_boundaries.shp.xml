@@ -1,0 +1,3769 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadata>
+	<idinfo>
+		<citation>
+			<citeinfo>
+				<origin>Geographic Information Services Unit, Oregon Department of Transportation (ODOT)</origin>
+				<pubdate>February 7, 2007</pubdate>
+				<title>City Limits, ODOT, 2007</title>
+				<geoform>map</geoform>
+				<pubinfo>
+					<pubplace>Salem, Oregon, USA</pubplace>
+					<publish>Geographic Information Services Unit, Oregon Department of Transportation (ODOT)</publish>
+				</pubinfo>
+				<ftname Sync="TRUE">CUL_City_Limits_ODOT_2007</ftname><onlink Sync="TRUE"></onlink></citeinfo>
+		</citation>
+		<descript>
+			<abstract>This data represents the Oregon City Limit boundaries.  Each city limit is defined as a continuous area within the statutory boundary of an incorporated city, which is the smallest subdivision of an annexed area.  It is represented as spatial data (polygon with label point).</abstract>
+			<purpose>The use of city limits information was identified as a need for general planning purposes within ODOT.  It was determined that this would be a frequently used data set that needed to be both spatially referenced and attributed in a GIS base layer.  The decision was made to create a statewide coverage of the boundary outlining the city limits for each of the 242 incorporated cities. An incorporated city may have multiple areas that are not contiguous.  Each such area is represented separately with its own polygon.  The area of the city limits will be calculated from the polygons created.</purpose>
+			<supplinf>An area may be annexed into a city from an unincorporated area or from another incorporated city.  Each annexation may have multiple parts, which are not necessarily contiguous.  When an area is annexed from another city, this may create one or more  fragments, which are subdivisions of one or more existing parts.</supplinf>
+			<langdata Sync="TRUE">en</langdata></descript>
+		<timeperd>
+			<timeinfo>
+				<sngdate>
+					<caldate>20070207</caldate>
+					<time>Unknown</time>
+				</sngdate>
+			</timeinfo>
+			<current>publication date</current>
+		</timeperd>
+		<status>
+			<progress>Complete</progress>
+			<update>As Needed</update>
+		</status>
+		<spdom>
+			<bounding>
+				<westbc>-124.807486</westbc>
+				<eastbc>-116.419828</eastbc>
+				<northbc>46.218776</northbc>
+				<southbc>41.920156</southbc>
+			</bounding>
+			<lboundng><leftbc Sync="TRUE">85552.496000</leftbc><rightbc Sync="TRUE">705173.369000</rightbc><bottombc Sync="TRUE">121858.511200</bottombc><topbc Sync="TRUE">601904.319500</topbc></lboundng></spdom>
+		<keywords>
+			<theme>
+				<themekt>None</themekt>
+				<themekey>city limits</themekey>
+				<themekey>limit</themekey>
+				<themekey>limits</themekey>
+				<themekey>city</themekey>
+				<themekey>1:24,000</themekey>
+				<themekey>boundary</themekey>
+				<themekey>incorporated</themekey>
+				<themekey>municipality</themekey>
+				<themekey>citylim_2007</themekey>
+				<themekey>fips</themekey>
+			</theme>
+			<place>
+				<placekt>None</placekt>
+				<placekey>OR</placekey>
+				<placekey>Oregon</placekey>
+				<placekey>Pacific Northwest</placekey>
+				<placekey>United States</placekey>
+				<placekey>US</placekey>
+				<placekey>USA</placekey>
+			</place>
+			<temporal>
+				<tempkt>2007</tempkt>
+				<tempkey>2007</tempkey>
+			</temporal>
+		</keywords>
+		<accconst>None</accconst>
+		<useconst>
+For assessment and taxation purposes, the boundary change process has two key dates.  One is the effective date of the boundary change.  The other is the filing deadline with the Department of Revenue.  While both of these dates relate to boundary changes, they operate independently.  The two key dates are March 31 and July 1.  These dates help determine the property affected by a boundary change.  The district must file its boundary change documents in final approved form to the Department of Revenue Cadastral Information Systems Unit by March 31 and obtain a notice of approval.   In order for a district to extend its tax rate to an annexed territory, the districts annexation must be effective on or before July 1.
+
+ORS 308.225 instructs the assessor to disregard any changes or proposed changes to the boundary lines of taxing districts for assessment and taxation purposes in the ensuing fiscal year if the change is not filed in final approved form by March 31.  The March 31 date and the approval by the Department of Revenue only relates to the boundary change for assessment and taxation purposes.  It does not effect or relate to filings for any other purpose.  ORS 308.225 also details the level of description for the boundary change.
+</useconst>
+		<ptcontac>
+			<cntinfo>
+				<cntorgp>
+					<cntorg>Geographic Information Services Unit, Oregon Department of Transportation (ODOT)</cntorg>
+				</cntorgp>
+				<cntaddr>
+					<addrtype>mailing and physical address</addrtype>
+					<address>555 13th St. NE, Suite #2</address>
+					<city>Salem</city>
+					<state>OR</state>
+					<postal>97301-4178</postal>
+					<country>USA</country>
+				</cntaddr>
+				<cntvoice>503.986.3154</cntvoice>
+				<cntfax>503.986.4249</cntfax>
+				<cntemail>odot.maps@odot.state.or.us</cntemail>
+				<hours>Monday through Friday, 8:00 AM to 5:00 PM.</hours>
+				<cntinst>Call, email, or write.</cntinst>
+			</cntinfo>
+		</ptcontac>
+		<browse>
+			<browsen>\\sn-salemmill-1\gis\data\shp\bndry\citylim_2007.shp</browsen>
+			<browsed>shapefile of 2007 citylimits</browsed>
+			<browset>shapefile</browset>
+		</browse>
+		<datacred>Geographic Information Services Unit, Oregon Department of Transportation (ODOT)</datacred>
+		<secinfo>
+			<secsys>None</secsys>
+			<secclass>None</secclass>
+			<sechandl>None</sechandl>
+		</secinfo>
+		<native>Windows XP Professional v2002 Service Pack 1, GeoMedia Professional v6.0</native>
+		<natvform Sync="TRUE">Personal GeoDatabase Feature Class</natvform></idinfo>
+	<dataqual>
+		<attracc>
+			<attraccr>Attributes that have derived values have not been tested to determine the accuracy.  Attributes with software assigned values are assumed to be accurate.  Attributes with keyed in values are filtered by database design to accept only certain formats of information.  This does not preclude errors, it does, however, minimize them.  Additional, in-house, review is conducted to identify errors.</attraccr>
+			<qattracc>
+				<attraccv>Digitizing Accuracy</attraccv>
+				<attracce>
+One of the main considerations we have when placing new line-work is the probable inclusion of the line-work into a GIS base layer.  For this reason we need to take extra measures to assure that newly placed lines are snapped to end-points, and that every intersection is broken and no overlaps or open intersections exist. Duplicate line-work is also a problem.
+
+What do we do to resolve anomalous line-work?  Perhaps we find an overlap or a gap exists between existing line-work and the new parcel, or maybe a given legal description shows that one leg of a parcel adjoins a highway right-of-way for which a readily available description does not exist.  One method for resolving this is to obtain a copy of the county property assessment map from the Oregon Department of Revenue (DOR).  If existing records dont resolve the anomaly, an estimated resolution is employed.  This method is not ideal, but experience and an informed idea of what the city intends, helps to minimize error (Educated guesswork).
+
+If an obvious overlap occurs with a new annexation and the existing city limits,  we assume (guess) that the overlapped area is intended to be included in the revised boundary.  It doesn't matter that it overlaps, the intent of the city is to include it.  If a sliver or gap between parcels becomes apparent to us, we call the city planning dept. and ask for a clarification.  Many of these anomalies occur by mistake, and aren't supposed to exist.  We ask for what the city intends.  We have found that these types of problems occur more often in communities that have limited resources.  The number of occurances varies from year to year, but a figure of 5% is probably close to the average.
+
+For clarity, unless the boundary follows the centerline of a street or highway, an offset is employed to an estimated right of way.  This offset averages 10 feet, and merely indicates that the line follows a right of way.  Rights of way are seldom an even number of feet.   Exceptions to the 10 offset placement will occur when the placed line is between two converging or parallel highways or roads. and it seems reasonable to split the difference which may be less than or more than 10.  Another exception may occur when the line parallels a feature that has many vertices and its reasonable to use fewer to place the boundary.
+
+As annexations are entered, we print out scale plots of newly annexed areas and transfer that information onto our counter maps.  Printed records of the annexations are placed in Current City Map Corrections file drawers.
+</attracce>
+			</qattracc>
+			<qattracc>
+				<attraccv>Software Derived Data Accuracy</attraccv>
+				<attracce>Several attribute values are derived from software needs.  These attributes are defined in the Entity and Attribute section and are identified by "Maintained by GeoMedia Pro v6.0 software" or "Calculated by GeoMedia Pro v6.0 software" descriptions.  These attributes may be dependent on digitizing accuracy, precision input or the source data accuracy.  There has been no attempt to verify items like measured areas within polygons to determine attribute accuracy.</attracce>
+			</qattracc>
+			<qattracc>
+				<attraccv>Source Data Accuracy</attraccv>
+				<attracce>
+Beginning in 1990, Oregon surveyors initiated the Partition Plat Law to allow for simplified legal descriptions. New land partitions of three or fewer parcels are now described by partition plat and parcel numbers, similar to the lot and block descriptions of subdivisions. This process makes parcel descriptions increasingly difficult to track and plot unless the original plat is available to verify the dimensions of that parcel, or copies of the county map showing bearings and distances can be used for verification.
+
+The Oregon Department of Revenue (DOR) is responsible for reviewing and approving annexations for assessment purposes as per O.R.S. 308.225. Occasionally annexations do not contain a correct description or accompanying maps. DOR works with the annexing body to resolve the issues. Annexations are also recorded in the Secretary of States Office as per O.R.S.198.780.  The Secretary of States Office catalogs, but does not review the annexations for accuracy. Prior to a cooperative effort between ODOT and the Oregon Department of Revenue, the information in the Secretary of States Office was used by ODOT to determine new city limits.
+
+Unfortunately, not all cities have consistently complied with O.R.S.198.780. Traditionally, the only annexations available to ODOT were those that had been received by the Secretary of States Office.  Currently, information from the DOR can be cross-referenced with information from the Secretary of States Office to solve discrepancies.
+
+Our maps are a graphic representation of the sum of information available to us. Our maps are not an exact replica of the real world due to the amount of information collected, the number of places it was collected from, and due to the fact that no map (digital or hand drawn) paints a perfect picture.  As a matter of record, maps are not legal documents.  Text (survey) descriptions of a property is the legal definition of a property.
+</attracce>
+			</qattracc>
+		</attracc>
+		<logic>All polygons close, with no overlaps or gaps and form clean bounding polygons for the city limits and city annexations.  All linework is feature tagged and all centroids are feature tagged and attributed.  Every centroid is bounded by the feature tagged linestring.  If a bounding linestring does not contain a centroid then the linestring belongs to a larger bounding linestring of an original city limits attributed centroid.</logic>
+		<complete>This file is complete at the time of posting and is dependent upon receipt of current city annexations at time of posting.</complete>
+		<posacc>
+			<horizpa>
+				<horizpar>Horizontal accuracy is 1:24,000 or better.</horizpar>
+				<qhorizpa>
+					<horizpav>6.096</horizpav>
+					<horizpae>(+/-) Digitizing from county plat maps.</horizpae>
+				</qhorizpa>
+				<qhorizpa>
+					<horizpav>6.096</horizpav>
+					<horizpae>(+/-) Precision imput from meets and bounds description.</horizpae>
+				</qhorizpa>
+			</horizpa>
+			<vertacc>
+				<vertaccr>No vertical  positional accuracy has been determined.</vertaccr>
+			</vertacc>
+		</posacc>
+		<lineage>
+			<srcinfo>
+				<srccite>
+					<citeinfo>
+						<origin>United States Geologic Survey Denver, Colorado 80225 or Reston, Virginia 22092</origin>
+						<pubdate>1995</pubdate>
+						<title>1:24,000 7.5 minute United States Geologic Survey Quadrangles</title>
+						<geoform>map</geoform>
+					</citeinfo>
+				</srccite>
+				<srctime>
+					<timeinfo>
+						<sngdate>
+							<time>Unknown</time>
+						</sngdate>
+					</timeinfo>
+				</srctime>
+				<srccitea>city_annex_work_6_0.gws</srccitea>
+			</srcinfo>
+			<srcinfo>
+				<srccite>
+					<citeinfo>
+						<origin>Oregon Department of Revenue (DOR)</origin>
+						<title>DOR Annexaton Approval Packet</title>
+						<geoform>map</geoform>
+						<othercit>Map and legal description need to be submitted, and both must match for approval.</othercit>
+					</citeinfo>
+				</srccite>
+				<srctime>
+					<timeinfo>
+						<sngdate>
+							<time>Unknown</time>
+						</sngdate>
+					</timeinfo>
+				</srctime>
+				<srccitea>DOR Annexation Packet</srccitea>
+			</srcinfo>
+			<procstep>
+				<procdesc>
+Calculations for Area (Ac) were done in Geomedia.  Calculations are rounded to nearest 1/100th.  Contact individual cities or county offices in which cities reside for more accurate dimensions.
+
+Annexations are entered into our city limit base layer.  A hard copy of the annexation is filed in house and a scanned .tif image is placed on our ftp site.  The ftp address is ftp://ftp.odot.state.or.us/tdb/trandata/maps/cl_tiffs.
+</procdesc>
+			</procstep>
+			<procstep>
+				<procdesc>Dataset copied.</procdesc>
+			</procstep>
+			<procstep><procdesc Sync="TRUE">Metadata imported.</procdesc><srcused Sync="TRUE">C:\DOCUME~1\laniera\LOCALS~1\Temp\xml18.tmp</srcused><date Sync="TRUE">20080729</date><time Sync="TRUE">08534900</time></procstep><procstep><procdesc Sync="TRUE">Dataset copied.</procdesc><srcused Sync="TRUE">\\TERRA\D\MARINE\OregonMarineMap\OCA_Marine_pgdb_March_2010.mdb</srcused><procdate Sync="TRUE">20100831</procdate><proctime Sync="TRUE">16291700</proctime></procstep><procstep><procdesc Sync="TRUE">Dataset copied.</procdesc><srcused Sync="TRUE"></srcused><procdate Sync="TRUE">20100831</procdate><proctime Sync="TRUE">16382800</proctime></procstep><procstep><procdesc Sync="TRUE">Dataset copied.</procdesc><srcused Sync="TRUE"></srcused><procdate Sync="TRUE">20100831</procdate><proctime Sync="TRUE">16391200</proctime></procstep></lineage>
+		<cloud>0</cloud>
+	</dataqual>
+	<spdoinfo>
+		<indspref>Oregon</indspref>
+		<direct>Vector</direct>
+		<ptvctinf>
+			<sdtsterm Name="CUL_City_Limits_ODOT_2007">
+				<sdtstype>G-polygon</sdtstype>
+				<ptvctcnt Sync="TRUE">30</ptvctcnt></sdtsterm>
+			<esriterm Name="CUL_City_Limits_ODOT_2007"><efeatyp Sync="TRUE">Simple</efeatyp><efeageom Sync="TRUE">Polygon</efeageom><esritopo Sync="TRUE">FALSE</esritopo><efeacnt Sync="TRUE">30</efeacnt><spindex Sync="TRUE">TRUE</spindex><linrefer Sync="TRUE">FALSE</linrefer></esriterm></ptvctinf>
+	</spdoinfo>
+	<spref>
+		<horizsys>
+			<geodetic>
+				<semiaxis>0</semiaxis>
+				<denflat>0</denflat>
+				<horizdn Sync="TRUE">North American Datum of 1983</horizdn><ellips Sync="TRUE">Geodetic Reference System 80</ellips></geodetic>
+			<cordsysn><geogcsn Sync="TRUE">GCS_North_American_1983</geogcsn><projcsn Sync="TRUE">NAD_1983_Albers</projcsn></cordsysn><planar><planci><plance Sync="TRUE">coordinate pair</plance><plandu Sync="TRUE">meters</plandu><coordrep><absres Sync="TRUE">0.000100</absres><ordres Sync="TRUE">0.000100</ordres></coordrep></planci><mapproj><mapprojn Sync="TRUE">Albers Conical Equal Area</mapprojn><albers><stdparll Sync="TRUE">43.000000</stdparll><stdparll Sync="TRUE">48.000000</stdparll><longcm Sync="TRUE">-117.000000</longcm><latprjo Sync="TRUE">41.000000</latprjo><feast Sync="TRUE">700000.000000</feast><fnorth Sync="TRUE">0.000000</fnorth></albers></mapproj></planar></horizsys>
+	</spref>
+	<eainfo>
+		<detailed Name="CUL_City_Limits_ODOT_2007">
+			<enttyp>
+				<enttypl>citylim_2007</enttypl>
+				<enttypd>An unbroken area within the statutory boundary of an incorporated city, which was annexed at a known time, or which represents the extent of the city before annexations were recorded in this database.  It is represented as spatial data (polygon and label point).  An area may be annexed into a city from unincorporated area or from another incorporated city.  Note:  this is a logical entity that represents the spatial City Annexation Polygon information contained within Geomedia Pro v6.0.</enttypd>
+				<enttypds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</enttypds>
+				<enttypt Sync="TRUE">Feature Class</enttypt><enttypc Sync="TRUE">30</enttypc></enttyp>
+			<attr><attrlabl Sync="TRUE">OBJECTID</attrlabl><attalias Sync="TRUE">OBJECTID</attalias><attrtype Sync="TRUE">OID</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale><attrdef Sync="TRUE">Internal feature number.</attrdef><attrdefs Sync="TRUE">ESRI</attrdefs><attrdomv><udom Sync="TRUE">Sequential unique whole numbers that are automatically generated.</udom></attrdomv></attr><attr>
+				<attrlabl>ACRES</attrlabl>
+				<attrdef>GeoMedia generated acres.</attrdef>
+				<attrdefs>Geographic Information Services Unit, Oregon Department of Transportation (ODOT)</attrdefs>
+				<attrmfrq>As needed</attrmfrq>
+				<attalias Sync="TRUE">ACRES</attalias><attrtype Sync="TRUE">Double</attrtype><attwidth Sync="TRUE">8</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>CITY_NAME</attrlabl>
+				<attrdef>Name of City.</attrdef>
+				<attrdefs>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</attrdefs>
+				<attrdomv>
+					<edom>
+						<edomv>Adair Village</edomv>
+					</edom>
+					<edom>
+						<edomv>Adams</edomv>
+					</edom>
+					<edom>
+						<edomv>Adrian</edomv>
+					</edom>
+					<edom>
+						<edomv>Albany</edomv>
+					</edom>
+					<edom>
+						<edomv>Amity</edomv>
+					</edom>
+					<edom>
+						<edomv>Antelope</edomv>
+					</edom>
+					<edom>
+						<edomv>Arlington</edomv>
+					</edom>
+					<edom>
+						<edomv>Ashland</edomv>
+					</edom>
+					<edom>
+						<edomv>Astoria</edomv>
+					</edom>
+					<edom>
+						<edomv>Athena</edomv>
+					</edom>
+					<edom>
+						<edomv>Aumsville</edomv>
+					</edom>
+					<edom>
+						<edomv>Aurora</edomv>
+					</edom>
+					<edom>
+						<edomv>Baker City</edomv>
+					</edom>
+					<edom>
+						<edomv>Bandon</edomv>
+					</edom>
+					<edom>
+						<edomv>Banks</edomv>
+					</edom>
+					<edom>
+						<edomv>Barlow</edomv>
+					</edom>
+					<edom>
+						<edomv>Bay City</edomv>
+					</edom>
+					<edom>
+						<edomv>Beaverton</edomv>
+					</edom>
+					<edom>
+						<edomv>Bend</edomv>
+					</edom>
+					<edom>
+						<edomv>Boardman</edomv>
+					</edom>
+					<edom>
+						<edomv>Bonanza</edomv>
+					</edom>
+					<edom>
+						<edomv>Brookings</edomv>
+					</edom>
+					<edom>
+						<edomv>Brownsville</edomv>
+					</edom>
+					<edom>
+						<edomv>Burns</edomv>
+					</edom>
+					<edom>
+						<edomv>Butte Falls</edomv>
+					</edom>
+					<edom>
+						<edomv>Canby</edomv>
+					</edom>
+					<edom>
+						<edomv>Cannon Beach</edomv>
+					</edom>
+					<edom>
+						<edomv>Canyon City</edomv>
+					</edom>
+					<edom>
+						<edomv>Canyonville</edomv>
+					</edom>
+					<edom>
+						<edomv>Carlton</edomv>
+					</edom>
+					<edom>
+						<edomv>Cascade Locks</edomv>
+					</edom>
+					<edom>
+						<edomv>Cave Junction</edomv>
+					</edom>
+					<edom>
+						<edomv>Central Point</edomv>
+					</edom>
+					<edom>
+						<edomv>Chiloquin</edomv>
+					</edom>
+					<edom>
+						<edomv>Clatskanie</edomv>
+					</edom>
+					<edom>
+						<edomv>Coburg</edomv>
+					</edom>
+					<edom>
+						<edomv>Columbia City</edomv>
+					</edom>
+					<edom>
+						<edomv>Condon</edomv>
+					</edom>
+					<edom>
+						<edomv>Coos Bay</edomv>
+					</edom>
+					<edom>
+						<edomv>Coquille</edomv>
+					</edom>
+					<edom>
+						<edomv>Cornelius</edomv>
+					</edom>
+					<edom>
+						<edomv>Corvallis</edomv>
+					</edom>
+					<edom>
+						<edomv>Cottage Grove</edomv>
+					</edom>
+					<edom>
+						<edomv>Cove</edomv>
+					</edom>
+					<edom>
+						<edomv>Creswell</edomv>
+					</edom>
+					<edom>
+						<edomv>Culver</edomv>
+					</edom>
+					<edom>
+						<edomv>Dallas</edomv>
+					</edom>
+					<edom>
+						<edomv>Dayton</edomv>
+					</edom>
+					<edom>
+						<edomv>Dayville</edomv>
+					</edom>
+					<edom>
+						<edomv>Depoe Bay</edomv>
+					</edom>
+					<edom>
+						<edomv>Detroit</edomv>
+					</edom>
+					<edom>
+						<edomv>Donald</edomv>
+					</edom>
+					<edom>
+						<edomv>Drain</edomv>
+					</edom>
+					<edom>
+						<edomv>Dufur</edomv>
+					</edom>
+					<edom>
+						<edomv>Dundee</edomv>
+					</edom>
+					<edom>
+						<edomv>Dunes City</edomv>
+					</edom>
+					<edom>
+						<edomv>Durham</edomv>
+					</edom>
+					<edom>
+						<edomv>Eagle Point</edomv>
+					</edom>
+					<edom>
+						<edomv>Echo</edomv>
+					</edom>
+					<edom>
+						<edomv>Elgin</edomv>
+					</edom>
+					<edom>
+						<edomv>Elkton</edomv>
+					</edom>
+					<edom>
+						<edomv>Enterprise</edomv>
+					</edom>
+					<edom>
+						<edomv>Estacada</edomv>
+					</edom>
+					<edom>
+						<edomv>Eugene</edomv>
+					</edom>
+					<edom>
+						<edomv>Fairview</edomv>
+					</edom>
+					<edom>
+						<edomv>Falls City</edomv>
+					</edom>
+					<edom>
+						<edomv>Florence</edomv>
+					</edom>
+					<edom>
+						<edomv>Forest Grove</edomv>
+					</edom>
+					<edom>
+						<edomv>Fossil</edomv>
+					</edom>
+					<edom>
+						<edomv>Garibaldi</edomv>
+					</edom>
+					<edom>
+						<edomv>Gaston</edomv>
+					</edom>
+					<edom>
+						<edomv>Gates</edomv>
+					</edom>
+					<edom>
+						<edomv>Gearhart</edomv>
+					</edom>
+					<edom>
+						<edomv>Gervais</edomv>
+					</edom>
+					<edom>
+						<edomv>Gladstone</edomv>
+					</edom>
+					<edom>
+						<edomv>Glendale</edomv>
+					</edom>
+					<edom>
+						<edomv>Gold Beach</edomv>
+					</edom>
+					<edom>
+						<edomv>Gold Hill</edomv>
+					</edom>
+					<edom>
+						<edomv>Granite</edomv>
+					</edom>
+					<edom>
+						<edomv>Grants Pass</edomv>
+					</edom>
+					<edom>
+						<edomv>Grass Valley</edomv>
+					</edom>
+					<edom>
+						<edomv>Greenhorn</edomv>
+					</edom>
+					<edom>
+						<edomv>Gresham</edomv>
+					</edom>
+					<edom>
+						<edomv>Haines</edomv>
+					</edom>
+					<edom>
+						<edomv>Halfway</edomv>
+					</edom>
+					<edom>
+						<edomv>Halsey</edomv>
+					</edom>
+					<edom>
+						<edomv>Happy Valley</edomv>
+					</edom>
+					<edom>
+						<edomv>Harrisburg</edomv>
+					</edom>
+					<edom>
+						<edomv>Helix</edomv>
+					</edom>
+					<edom>
+						<edomv>Heppner</edomv>
+					</edom>
+					<edom>
+						<edomv>Hermiston</edomv>
+					</edom>
+					<edom>
+						<edomv>Hillsboro</edomv>
+					</edom>
+					<edom>
+						<edomv>Hines</edomv>
+					</edom>
+					<edom>
+						<edomv>Hood River</edomv>
+					</edom>
+					<edom>
+						<edomv>Hubbard</edomv>
+					</edom>
+					<edom>
+						<edomv>Huntington</edomv>
+					</edom>
+					<edom>
+						<edomv>Idanha</edomv>
+					</edom>
+					<edom>
+						<edomv>Imbler</edomv>
+					</edom>
+					<edom>
+						<edomv>Indepedence</edomv>
+					</edom>
+					<edom>
+						<edomv>Ione</edomv>
+					</edom>
+					<edom>
+						<edomv>Irrigon</edomv>
+					</edom>
+					<edom>
+						<edomv>Island City</edomv>
+					</edom>
+					<edom>
+						<edomv>Jacksonville</edomv>
+					</edom>
+					<edom>
+						<edomv>Jefferson</edomv>
+					</edom>
+					<edom>
+						<edomv>John Day</edomv>
+					</edom>
+					<edom>
+						<edomv>Johnson City</edomv>
+					</edom>
+					<edom>
+						<edomv>Jordon Valley</edomv>
+					</edom>
+					<edom>
+						<edomv>Joseph</edomv>
+					</edom>
+					<edom>
+						<edomv>Junction City</edomv>
+					</edom>
+					<edom>
+						<edomv>Keizer</edomv>
+					</edom>
+					<edom>
+						<edomv>King City</edomv>
+					</edom>
+					<edom>
+						<edomv>Klamath Falls</edomv>
+					</edom>
+					<edom>
+						<edomv>Lafayette</edomv>
+					</edom>
+					<edom>
+						<edomv>La Grande</edomv>
+					</edom>
+					<edom>
+						<edomv>Lake Oswego</edomv>
+					</edom>
+					<edom>
+						<edomv>Lakeside</edomv>
+					</edom>
+					<edom>
+						<edomv>Lakeview</edomv>
+					</edom>
+					<edom>
+						<edomv>Lebanon</edomv>
+					</edom>
+					<edom>
+						<edomv>Lexington</edomv>
+					</edom>
+					<edom>
+						<edomv>Lincoln City</edomv>
+					</edom>
+					<edom>
+						<edomv>Lonerock</edomv>
+					</edom>
+					<edom>
+						<edomv>Long Creek</edomv>
+					</edom>
+					<edom>
+						<edomv>Lostine</edomv>
+					</edom>
+					<edom>
+						<edomv>Lowell</edomv>
+					</edom>
+					<edom>
+						<edomv>Lyons</edomv>
+					</edom>
+					<edom>
+						<edomv>McMinnville</edomv>
+					</edom>
+					<edom>
+						<edomv>Madras</edomv>
+					</edom>
+					<edom>
+						<edomv>Malin</edomv>
+					</edom>
+					<edom>
+						<edomv>Manzanita</edomv>
+					</edom>
+					<edom>
+						<edomv>Maupin</edomv>
+					</edom>
+					<edom>
+						<edomv>Maywood Park</edomv>
+					</edom>
+					<edom>
+						<edomv>Medford</edomv>
+					</edom>
+					<edom>
+						<edomv>Merrill</edomv>
+					</edom>
+					<edom>
+						<edomv>Metolius</edomv>
+					</edom>
+					<edom>
+						<edomv>Mill City</edomv>
+					</edom>
+					<edom>
+						<edomv>Millersburg</edomv>
+					</edom>
+					<edom>
+						<edomv>Milton-Freewater</edomv>
+					</edom>
+					<edom>
+						<edomv>Milwaukie</edomv>
+					</edom>
+					<edom>
+						<edomv>Mitchell</edomv>
+					</edom>
+					<edom>
+						<edomv>Molalla</edomv>
+					</edom>
+					<edom>
+						<edomv>Monmouth</edomv>
+					</edom>
+					<edom>
+						<edomv>Monroe</edomv>
+					</edom>
+					<edom>
+						<edomv>Monument</edomv>
+					</edom>
+					<edom>
+						<edomv>Moro</edomv>
+					</edom>
+					<edom>
+						<edomv>Mosier</edomv>
+					</edom>
+					<edom>
+						<edomv>Mt. Angel</edomv>
+					</edom>
+					<edom>
+						<edomv>Mt. Vernon</edomv>
+					</edom>
+					<edom>
+						<edomv>Myrtle Creek</edomv>
+					</edom>
+					<edom>
+						<edomv>Myrtle Point</edomv>
+					</edom>
+					<edom>
+						<edomv>Nehalem</edomv>
+					</edom>
+					<edom>
+						<edomv>Newburg</edomv>
+					</edom>
+					<edom>
+						<edomv>Newport</edomv>
+					</edom>
+					<edom>
+						<edomv>North Bend</edomv>
+					</edom>
+					<edom>
+						<edomv>North Plains</edomv>
+					</edom>
+					<edom>
+						<edomv>North Powder</edomv>
+					</edom>
+					<edom>
+						<edomv>Nyssa</edomv>
+					</edom>
+					<edom>
+						<edomv>Oakland</edomv>
+					</edom>
+					<edom>
+						<edomv>Oakridge</edomv>
+					</edom>
+					<edom>
+						<edomv>Ontario</edomv>
+					</edom>
+					<edom>
+						<edomv>Oregon City</edomv>
+					</edom>
+					<edom>
+						<edomv>Paisley</edomv>
+					</edom>
+					<edom>
+						<edomv>Pendleton</edomv>
+					</edom>
+					<edom>
+						<edomv>Philomath</edomv>
+					</edom>
+					<edom>
+						<edomv>Phoenix</edomv>
+					</edom>
+					<edom>
+						<edomv>Pilot Rock</edomv>
+					</edom>
+					<edom>
+						<edomv>Portland</edomv>
+					</edom>
+					<edom>
+						<edomv>Port Orford</edomv>
+					</edom>
+					<edom>
+						<edomv>Powers</edomv>
+					</edom>
+					<edom>
+						<edomv>Prairie City</edomv>
+					</edom>
+					<edom>
+						<edomv>Prescott</edomv>
+					</edom>
+					<edom>
+						<edomv>Prineville</edomv>
+					</edom>
+					<edom>
+						<edomv>Rainier</edomv>
+					</edom>
+					<edom>
+						<edomv>Redmond</edomv>
+					</edom>
+					<edom>
+						<edomv>Reedsport</edomv>
+					</edom>
+					<edom>
+						<edomv>Richland</edomv>
+					</edom>
+					<edom>
+						<edomv>Riddle</edomv>
+					</edom>
+					<edom>
+						<edomv>Rivergrove</edomv>
+					</edom>
+					<edom>
+						<edomv>Rockaway Beach</edomv>
+					</edom>
+					<edom>
+						<edomv>Rogue River</edomv>
+					</edom>
+					<edom>
+						<edomv>Roseburg</edomv>
+					</edom>
+					<edom>
+						<edomv>Rufus</edomv>
+					</edom>
+					<edom>
+						<edomv>St. Helens</edomv>
+					</edom>
+					<edom>
+						<edomv>St. Paul</edomv>
+					</edom>
+					<edom>
+						<edomv>Salem</edomv>
+					</edom>
+					<edom>
+						<edomv>Sandy</edomv>
+					</edom>
+					<edom>
+						<edomv>Scappoose</edomv>
+					</edom>
+					<edom>
+						<edomv>Scio</edomv>
+					</edom>
+					<edom>
+						<edomv>Scott Mills</edomv>
+					</edom>
+					<edom>
+						<edomv>Seaside</edomv>
+					</edom>
+					<edom>
+						<edomv>Seneca</edomv>
+					</edom>
+					<edom>
+						<edomv>Shady Cove</edomv>
+					</edom>
+					<edom>
+						<edomv>Shaniko</edomv>
+					</edom>
+					<edom>
+						<edomv>Sheridan</edomv>
+					</edom>
+					<edom>
+						<edomv>Sherwood</edomv>
+					</edom>
+					<edom>
+						<edomv>Siletz</edomv>
+					</edom>
+					<edom>
+						<edomv>Silverton</edomv>
+					</edom>
+					<edom>
+						<edomv>Sisters</edomv>
+					</edom>
+					<edom>
+						<edomv>Sodaville</edomv>
+					</edom>
+					<edom>
+						<edomv>Spray</edomv>
+					</edom>
+					<edom>
+						<edomv>Springfield</edomv>
+					</edom>
+					<edom>
+						<edomv>Stanfield</edomv>
+					</edom>
+					<edom>
+						<edomv>Stayton</edomv>
+					</edom>
+					<edom>
+						<edomv>Sublimity</edomv>
+					</edom>
+					<edom>
+						<edomv>Summerville</edomv>
+					</edom>
+					<edom>
+						<edomv>Sumpter</edomv>
+					</edom>
+					<edom>
+						<edomv>Sutherlin</edomv>
+					</edom>
+					<edom>
+						<edomv>Sweet Home</edomv>
+					</edom>
+					<edom>
+						<edomv>Talent</edomv>
+					</edom>
+					<edom>
+						<edomv>Tangent</edomv>
+					</edom>
+					<edom>
+						<edomv>The Dalles</edomv>
+					</edom>
+					<edom>
+						<edomv>Tigard</edomv>
+					</edom>
+					<edom>
+						<edomv>Tillamook</edomv>
+					</edom>
+					<edom>
+						<edomv>Toledo</edomv>
+					</edom>
+					<edom>
+						<edomv>Troutdale</edomv>
+					</edom>
+					<edom>
+						<edomv>Tualatin</edomv>
+					</edom>
+					<edom>
+						<edomv>Turner</edomv>
+					</edom>
+					<edom>
+						<edomv>Ukiah</edomv>
+					</edom>
+					<edom>
+						<edomv>Umatilla</edomv>
+					</edom>
+					<edom>
+						<edomv>Union</edomv>
+					</edom>
+					<edom>
+						<edomv>Unity</edomv>
+					</edom>
+					<edom>
+						<edomv>Vale</edomv>
+					</edom>
+					<edom>
+						<edomv>Veneta</edomv>
+					</edom>
+					<edom>
+						<edomv>Vernonia</edomv>
+					</edom>
+					<edom>
+						<edomv>Waldport</edomv>
+					</edom>
+					<edom>
+						<edomv>Wallowa</edomv>
+					</edom>
+					<edom>
+						<edomv>Warrenton</edomv>
+					</edom>
+					<edom>
+						<edomv>Wasco</edomv>
+					</edom>
+					<edom>
+						<edomv>Waterloo</edomv>
+					</edom>
+					<edom>
+						<edomv>Westfir</edomv>
+					</edom>
+					<edom>
+						<edomv>West Linn</edomv>
+					</edom>
+					<edom>
+						<edomv>Weston</edomv>
+					</edom>
+					<edom>
+						<edomv>Wheeler</edomv>
+					</edom>
+					<edom>
+						<edomv>Willamina</edomv>
+					</edom>
+					<edom>
+						<edomv>Wilsonville</edomv>
+					</edom>
+					<edom>
+						<edomv>Winston</edomv>
+					</edom>
+					<edom>
+						<edomv>Woodburn</edomv>
+					</edom>
+					<edom>
+						<edomv>Wood Village</edomv>
+					</edom>
+					<edom>
+						<edomv>Yachats</edomv>
+					</edom>
+					<edom>
+						<edomv>Yamhill</edomv>
+					</edom>
+					<edom>
+						<edomv>Yoncalla</edomv>
+					</edom>
+					<edom>
+						<edomv>Damascus</edomv>
+					</edom>
+					<edom>
+						<edomv>La Pine</edomv>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretary of State.</edomvd>
+						<edomvd>The official city name as recorded with the Secretay of State.</edomvd>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+						<edomvds>Geographic Information Services Unit, Oregon Department of Transportation (ODOT), Oregon Transportation Management</edomvds>
+					</edom>
+				</attrdomv>
+				<attalias Sync="TRUE">CITY_NAME</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">50</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>EFFECTV_DT</attrlabl>
+				<attrdef>This date or time period in which the data extract is relevant or current.</attrdef>
+				<attrdefs>Geographic Information Services Unit, Oregon Department of Transportation (ODOT)</attrdefs>
+				<attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">15</attwidth><attalias Sync="TRUE">EFFECTV_DT</attalias><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>FIPS_CODE</attrlabl>
+				<attrdef>Federal information processing standards (fips) code for city.</attrdef>
+				<attrdefs>U.S. Census Bureau, Federal Information Processing Standards</attrdefs>
+				<attrdomv>
+					<edom>
+						<edomv>00275</edomv>
+					</edom>
+					<edom>
+						<edomv>00350</edomv>
+					</edom>
+					<edom>
+						<edomv>00500</edomv>
+					</edom>
+					<edom>
+						<edomv>01000</edomv>
+					</edom>
+					<edom>
+						<edomv>02000</edomv>
+					</edom>
+					<edom>
+						<edomv>02250</edomv>
+					</edom>
+					<edom>
+						<edomv>02800</edomv>
+					</edom>
+					<edom>
+						<edomv>03050</edomv>
+					</edom>
+					<edom>
+						<edomv>03150</edomv>
+					</edom>
+					<edom>
+						<edomv>03200</edomv>
+					</edom>
+					<edom>
+						<edomv>03250</edomv>
+					</edom>
+					<edom>
+						<edomv>03300</edomv>
+					</edom>
+					<edom>
+						<edomv>03650</edomv>
+					</edom>
+					<edom>
+						<edomv>03800</edomv>
+					</edom>
+					<edom>
+						<edomv>03850</edomv>
+					</edom>
+					<edom>
+						<edomv>04000</edomv>
+					</edom>
+					<edom>
+						<edomv>04800</edomv>
+					</edom>
+					<edom>
+						<edomv>05350</edomv>
+					</edom>
+					<edom>
+						<edomv>05800</edomv>
+					</edom>
+					<edom>
+						<edomv>07200</edomv>
+					</edom>
+					<edom>
+						<edomv>07300</edomv>
+					</edom>
+					<edom>
+						<edomv>08650</edomv>
+					</edom>
+					<edom>
+						<edomv>09050</edomv>
+					</edom>
+					<edom>
+						<edomv>09800</edomv>
+					</edom>
+					<edom>
+						<edomv>10050</edomv>
+					</edom>
+					<edom>
+						<edomv>10750</edomv>
+					</edom>
+					<edom>
+						<edomv>10850</edomv>
+					</edom>
+					<edom>
+						<edomv>10950</edomv>
+					</edom>
+					<edom>
+						<edomv>11000</edomv>
+					</edom>
+					<edom>
+						<edomv>11150</edomv>
+					</edom>
+					<edom>
+						<edomv>11600</edomv>
+					</edom>
+					<edom>
+						<edomv>11850</edomv>
+					</edom>
+					<edom>
+						<edomv>12400</edomv>
+					</edom>
+					<edom>
+						<edomv>13050</edomv>
+					</edom>
+					<edom>
+						<edomv>13750</edomv>
+					</edom>
+					<edom>
+						<edomv>14400</edomv>
+					</edom>
+					<edom>
+						<edomv>14750</edomv>
+					</edom>
+					<edom>
+						<edomv>15000</edomv>
+					</edom>
+					<edom>
+						<edomv>15250</edomv>
+					</edom>
+					<edom>
+						<edomv>15350</edomv>
+					</edom>
+					<edom>
+						<edomv>15550</edomv>
+					</edom>
+					<edom>
+						<edomv>15800</edomv>
+					</edom>
+					<edom>
+						<edomv>15950</edomv>
+					</edom>
+					<edom>
+						<edomv>16250</edomv>
+					</edom>
+					<edom>
+						<edomv>16950</edomv>
+					</edom>
+					<edom>
+						<edomv>17300</edomv>
+					</edom>
+					<edom>
+						<edomv>17700</edomv>
+					</edom>
+					<edom>
+						<edomv>18250</edomv>
+					</edom>
+					<edom>
+						<edomv>18300</edomv>
+					</edom>
+					<edom>
+						<edomv>18850</edomv>
+					</edom>
+					<edom>
+						<edomv>19100</edomv>
+					</edom>
+					<edom>
+						<edomv>20100</edomv>
+					</edom>
+					<edom>
+						<edomv>20500</edomv>
+					</edom>
+					<edom>
+						<edomv>20900</edomv>
+					</edom>
+					<edom>
+						<edomv>21050</edomv>
+					</edom>
+					<edom>
+						<edomv>21150</edomv>
+					</edom>
+					<edom>
+						<edomv>21250</edomv>
+					</edom>
+					<edom>
+						<edomv>21550</edomv>
+					</edom>
+					<edom>
+						<edomv>22200</edomv>
+					</edom>
+					<edom>
+						<edomv>22550</edomv>
+					</edom>
+					<edom>
+						<edomv>22800</edomv>
+					</edom>
+					<edom>
+						<edomv>23500</edomv>
+					</edom>
+					<edom>
+						<edomv>23800</edomv>
+					</edom>
+					<edom>
+						<edomv>23850</edomv>
+					</edom>
+					<edom>
+						<edomv>24250</edomv>
+					</edom>
+					<edom>
+						<edomv>24550</edomv>
+					</edom>
+					<edom>
+						<edomv>26050</edomv>
+					</edom>
+					<edom>
+						<edomv>26200</edomv>
+					</edom>
+					<edom>
+						<edomv>26650</edomv>
+					</edom>
+					<edom>
+						<edomv>28000</edomv>
+					</edom>
+					<edom>
+						<edomv>28100</edomv>
+					</edom>
+					<edom>
+						<edomv>28200</edomv>
+					</edom>
+					<edom>
+						<edomv>28450</edomv>
+					</edom>
+					<edom>
+						<edomv>28650</edomv>
+					</edom>
+					<edom>
+						<edomv>29000</edomv>
+					</edom>
+					<edom>
+						<edomv>29350</edomv>
+					</edom>
+					<edom>
+						<edomv>29900</edomv>
+					</edom>
+					<edom>
+						<edomv>29950</edomv>
+					</edom>
+					<edom>
+						<edomv>30500</edomv>
+					</edom>
+					<edom>
+						<edomv>30550</edomv>
+					</edom>
+					<edom>
+						<edomv>30650</edomv>
+					</edom>
+					<edom>
+						<edomv>31050</edomv>
+					</edom>
+					<edom>
+						<edomv>31250</edomv>
+					</edom>
+					<edom>
+						<edomv>31600</edomv>
+					</edom>
+					<edom>
+						<edomv>31650</edomv>
+					</edom>
+					<edom>
+						<edomv>31750</edomv>
+					</edom>
+					<edom>
+						<edomv>32050</edomv>
+					</edom>
+					<edom>
+						<edomv>32550</edomv>
+					</edom>
+					<edom>
+						<edomv>33250</edomv>
+					</edom>
+					<edom>
+						<edomv>33550</edomv>
+					</edom>
+					<edom>
+						<edomv>33700</edomv>
+					</edom>
+					<edom>
+						<edomv>34100</edomv>
+					</edom>
+					<edom>
+						<edomv>34250</edomv>
+					</edom>
+					<edom>
+						<edomv>34900</edomv>
+					</edom>
+					<edom>
+						<edomv>35450</edomv>
+					</edom>
+					<edom>
+						<edomv>35700</edomv>
+					</edom>
+					<edom>
+						<edomv>35800</edomv>
+					</edom>
+					<edom>
+						<edomv>36050</edomv>
+					</edom>
+					<edom>
+						<edomv>36150</edomv>
+					</edom>
+					<edom>
+						<edomv>36400</edomv>
+					</edom>
+					<edom>
+						<edomv>36500</edomv>
+					</edom>
+					<edom>
+						<edomv>36750</edomv>
+					</edom>
+					<edom>
+						<edomv>37000</edomv>
+					</edom>
+					<edom>
+						<edomv>37250</edomv>
+					</edom>
+					<edom>
+						<edomv>37550</edomv>
+					</edom>
+					<edom>
+						<edomv>37650</edomv>
+					</edom>
+					<edom>
+						<edomv>37850</edomv>
+					</edom>
+					<edom>
+						<edomv>37900</edomv>
+					</edom>
+					<edom>
+						<edomv>38000</edomv>
+					</edom>
+					<edom>
+						<edomv>38500</edomv>
+					</edom>
+					<edom>
+						<edomv>39150</edomv>
+					</edom>
+					<edom>
+						<edomv>39700</edomv>
+					</edom>
+					<edom>
+						<edomv>40300</edomv>
+					</edom>
+					<edom>
+						<edomv>40350</edomv>
+					</edom>
+					<edom>
+						<edomv>40550</edomv>
+					</edom>
+					<edom>
+						<edomv>40650</edomv>
+					</edom>
+					<edom>
+						<edomv>40700</edomv>
+					</edom>
+					<edom>
+						<edomv>41650</edomv>
+					</edom>
+					<edom>
+						<edomv>42200</edomv>
+					</edom>
+					<edom>
+						<edomv>42600</edomv>
+					</edom>
+					<edom>
+						<edomv>43400</edomv>
+					</edom>
+					<edom>
+						<edomv>43550</edomv>
+					</edom>
+					<edom>
+						<edomv>43900</edomv>
+					</edom>
+					<edom>
+						<edomv>44050</edomv>
+					</edom>
+					<edom>
+						<edomv>44300</edomv>
+					</edom>
+					<edom>
+						<edomv>45000</edomv>
+					</edom>
+					<edom>
+						<edomv>45250</edomv>
+					</edom>
+					<edom>
+						<edomv>45400</edomv>
+					</edom>
+					<edom>
+						<edomv>45700</edomv>
+					</edom>
+					<edom>
+						<edomv>46500</edomv>
+					</edom>
+					<edom>
+						<edomv>46700</edomv>
+					</edom>
+					<edom>
+						<edomv>47000</edomv>
+					</edom>
+					<edom>
+						<edomv>47700</edomv>
+					</edom>
+					<edom>
+						<edomv>47750</edomv>
+					</edom>
+					<edom>
+						<edomv>48150</edomv>
+					</edom>
+					<edom>
+						<edomv>48300</edomv>
+					</edom>
+					<edom>
+						<edomv>48600</edomv>
+					</edom>
+					<edom>
+						<edomv>48650</edomv>
+					</edom>
+					<edom>
+						<edomv>49150</edomv>
+					</edom>
+					<edom>
+						<edomv>49450</edomv>
+					</edom>
+					<edom>
+						<edomv>49550</edomv>
+					</edom>
+					<edom>
+						<edomv>49600</edomv>
+					</edom>
+					<edom>
+						<edomv>49750</edomv>
+					</edom>
+					<edom>
+						<edomv>50000</edomv>
+					</edom>
+					<edom>
+						<edomv>50050</edomv>
+					</edom>
+					<edom>
+						<edomv>50150</edomv>
+					</edom>
+					<edom>
+						<edomv>50250</edomv>
+					</edom>
+					<edom>
+						<edomv>50950</edomv>
+					</edom>
+					<edom>
+						<edomv>51050</edomv>
+					</edom>
+					<edom>
+						<edomv>51700</edomv>
+					</edom>
+					<edom>
+						<edomv>52100</edomv>
+					</edom>
+					<edom>
+						<edomv>52450</edomv>
+					</edom>
+					<edom>
+						<edomv>53000</edomv>
+					</edom>
+					<edom>
+						<edomv>53150</edomv>
+					</edom>
+					<edom>
+						<edomv>53300</edomv>
+					</edom>
+					<edom>
+						<edomv>53750</edomv>
+					</edom>
+					<edom>
+						<edomv>54000</edomv>
+					</edom>
+					<edom>
+						<edomv>54100</edomv>
+					</edom>
+					<edom>
+						<edomv>54900</edomv>
+					</edom>
+					<edom>
+						<edomv>55200</edomv>
+					</edom>
+					<edom>
+						<edomv>56250</edomv>
+					</edom>
+					<edom>
+						<edomv>57150</edomv>
+					</edom>
+					<edom>
+						<edomv>57450</edomv>
+					</edom>
+					<edom>
+						<edomv>57500</edomv>
+					</edom>
+					<edom>
+						<edomv>57650</edomv>
+					</edom>
+					<edom>
+						<edomv>59000</edomv>
+					</edom>
+					<edom>
+						<edomv>59250</edomv>
+					</edom>
+					<edom>
+						<edomv>59600</edomv>
+					</edom>
+					<edom>
+						<edomv>59650</edomv>
+					</edom>
+					<edom>
+						<edomv>59750</edomv>
+					</edom>
+					<edom>
+						<edomv>59850</edomv>
+					</edom>
+					<edom>
+						<edomv>60850</edomv>
+					</edom>
+					<edom>
+						<edomv>61200</edomv>
+					</edom>
+					<edom>
+						<edomv>61300</edomv>
+					</edom>
+					<edom>
+						<edomv>61700</edomv>
+					</edom>
+					<edom>
+						<edomv>61850</edomv>
+					</edom>
+					<edom>
+						<edomv>62250</edomv>
+					</edom>
+					<edom>
+						<edomv>62900</edomv>
+					</edom>
+					<edom>
+						<edomv>63450</edomv>
+					</edom>
+					<edom>
+						<edomv>63650</edomv>
+					</edom>
+					<edom>
+						<edomv>64200</edomv>
+					</edom>
+					<edom>
+						<edomv>64600</edomv>
+					</edom>
+					<edom>
+						<edomv>64850</edomv>
+					</edom>
+					<edom>
+						<edomv>64900</edomv>
+					</edom>
+					<edom>
+						<edomv>65250</edomv>
+					</edom>
+					<edom>
+						<edomv>65500</edomv>
+					</edom>
+					<edom>
+						<edomv>65650</edomv>
+					</edom>
+					<edom>
+						<edomv>65800</edomv>
+					</edom>
+					<edom>
+						<edomv>65950</edomv>
+					</edom>
+					<edom>
+						<edomv>66200</edomv>
+					</edom>
+					<edom>
+						<edomv>66550</edomv>
+					</edom>
+					<edom>
+						<edomv>66700</edomv>
+					</edom>
+					<edom>
+						<edomv>67050</edomv>
+					</edom>
+					<edom>
+						<edomv>67100</edomv>
+					</edom>
+					<edom>
+						<edomv>67500</edomv>
+					</edom>
+					<edom>
+						<edomv>67650</edomv>
+					</edom>
+					<edom>
+						<edomv>67950</edomv>
+					</edom>
+					<edom>
+						<edomv>68550</edomv>
+					</edom>
+					<edom>
+						<edomv>69450</edomv>
+					</edom>
+					<edom>
+						<edomv>69600</edomv>
+					</edom>
+					<edom>
+						<edomv>69900</edomv>
+					</edom>
+					<edom>
+						<edomv>70200</edomv>
+					</edom>
+					<edom>
+						<edomv>70700</edomv>
+					</edom>
+					<edom>
+						<edomv>70850</edomv>
+					</edom>
+					<edom>
+						<edomv>71000</edomv>
+					</edom>
+					<edom>
+						<edomv>71650</edomv>
+					</edom>
+					<edom>
+						<edomv>71950</edomv>
+					</edom>
+					<edom>
+						<edomv>72500</edomv>
+					</edom>
+					<edom>
+						<edomv>72600</edomv>
+					</edom>
+					<edom>
+						<edomv>72950</edomv>
+					</edom>
+					<edom>
+						<edomv>73650</edomv>
+					</edom>
+					<edom>
+						<edomv>73700</edomv>
+					</edom>
+					<edom>
+						<edomv>74000</edomv>
+					</edom>
+					<edom>
+						<edomv>74850</edomv>
+					</edom>
+					<edom>
+						<edomv>74950</edomv>
+					</edom>
+					<edom>
+						<edomv>75150</edomv>
+					</edom>
+					<edom>
+						<edomv>75550</edomv>
+					</edom>
+					<edom>
+						<edomv>75650</edomv>
+					</edom>
+					<edom>
+						<edomv>75850</edomv>
+					</edom>
+					<edom>
+						<edomv>76250</edomv>
+					</edom>
+					<edom>
+						<edomv>76600</edomv>
+					</edom>
+					<edom>
+						<edomv>77050</edomv>
+					</edom>
+					<edom>
+						<edomv>77250</edomv>
+					</edom>
+					<edom>
+						<edomv>78000</edomv>
+					</edom>
+					<edom>
+						<edomv>78150</edomv>
+					</edom>
+					<edom>
+						<edomv>78900</edomv>
+					</edom>
+					<edom>
+						<edomv>78950</edomv>
+					</edom>
+					<edom>
+						<edomv>79050</edomv>
+					</edom>
+					<edom>
+						<edomv>79950</edomv>
+					</edom>
+					<edom>
+						<edomv>80150</edomv>
+					</edom>
+					<edom>
+						<edomv>80350</edomv>
+					</edom>
+					<edom>
+						<edomv>81300</edomv>
+					</edom>
+					<edom>
+						<edomv>82350</edomv>
+					</edom>
+					<edom>
+						<edomv>82800</edomv>
+					</edom>
+					<edom>
+						<edomv>83400</edomv>
+					</edom>
+					<edom>
+						<edomv>83750</edomv>
+					</edom>
+					<edom>
+						<edomv>83950</edomv>
+					</edom>
+					<edom>
+						<edomv>84200</edomv>
+					</edom>
+					<edom>
+						<edomv>84250</edomv>
+					</edom>
+					<edom>
+						<edomv>84600</edomv>
+					</edom>
+					<edom>
+						<edomv>17800</edomv>
+					</edom>
+					<edom>
+						<edomv>41050</edomv>
+						<edomvd>Adair Village</edomvd>
+						<edomvd>Adams</edomvd>
+						<edomvd>Adrian</edomvd>
+						<edomvd>Albany</edomvd>
+						<edomvd>Amity</edomvd>
+						<edomvd>Antelope</edomvd>
+						<edomvd>Arlington</edomvd>
+						<edomvd>Ashland</edomvd>
+						<edomvd>Astoria</edomvd>
+						<edomvd>Athena</edomvd>
+						<edomvd>Aumsville</edomvd>
+						<edomvd>Aurora</edomvd>
+						<edomvd>Baker City</edomvd>
+						<edomvd>Bandon</edomvd>
+						<edomvd>Banks</edomvd>
+						<edomvd>Barlow</edomvd>
+						<edomvd>Bay City</edomvd>
+						<edomvd>Beaverton</edomvd>
+						<edomvd>Bend</edomvd>
+						<edomvd>Boardman</edomvd>
+						<edomvd>Bonanza</edomvd>
+						<edomvd>Brookings</edomvd>
+						<edomvd>Brownsville</edomvd>
+						<edomvd>Burns</edomvd>
+						<edomvd>Butte Falls</edomvd>
+						<edomvd>Canby</edomvd>
+						<edomvd>Cannon Beach</edomvd>
+						<edomvd>Canyon City</edomvd>
+						<edomvd>Canyonville</edomvd>
+						<edomvd>Carlton</edomvd>
+						<edomvd>Cascade Locks</edomvd>
+						<edomvd>Cave Junction</edomvd>
+						<edomvd>Central Point</edomvd>
+						<edomvd>Chiloquin</edomvd>
+						<edomvd>Clatskanie</edomvd>
+						<edomvd>Coburg</edomvd>
+						<edomvd>Columbia City</edomvd>
+						<edomvd>Condon</edomvd>
+						<edomvd>Coos Bay</edomvd>
+						<edomvd>Coquille</edomvd>
+						<edomvd>Cornelius</edomvd>
+						<edomvd>Corvallis</edomvd>
+						<edomvd>Cottage Grove</edomvd>
+						<edomvd>Cove</edomvd>
+						<edomvd>Creswell</edomvd>
+						<edomvd>Culver</edomvd>
+						<edomvd>Dallas</edomvd>
+						<edomvd>Dayton</edomvd>
+						<edomvd>Dayville</edomvd>
+						<edomvd>Depoe Bay</edomvd>
+						<edomvd>Detroit</edomvd>
+						<edomvd>Donald</edomvd>
+						<edomvd>Drain</edomvd>
+						<edomvd>Dufur</edomvd>
+						<edomvd>Dundee</edomvd>
+						<edomvd>Dunes City</edomvd>
+						<edomvd>Durham</edomvd>
+						<edomvd>Eagle Point</edomvd>
+						<edomvd>Echo</edomvd>
+						<edomvd>Elgin</edomvd>
+						<edomvd>Elkton</edomvd>
+						<edomvd>Enterprise</edomvd>
+						<edomvd>Estacada</edomvd>
+						<edomvd>Eugene</edomvd>
+						<edomvd>Fairview</edomvd>
+						<edomvd>Falls City</edomvd>
+						<edomvd>Florence</edomvd>
+						<edomvd>Forest Grove</edomvd>
+						<edomvd>Fossil</edomvd>
+						<edomvd>Garibaldi</edomvd>
+						<edomvd>Gaston</edomvd>
+						<edomvd>Gates</edomvd>
+						<edomvd>Gearhart</edomvd>
+						<edomvd>Gervais</edomvd>
+						<edomvd>Gladstone</edomvd>
+						<edomvd>Glendale</edomvd>
+						<edomvd>Gold Beach</edomvd>
+						<edomvd>Gold Hill</edomvd>
+						<edomvd>Granite</edomvd>
+						<edomvd>Grants Pass</edomvd>
+						<edomvd>Grass Valley</edomvd>
+						<edomvd>Greenhorn</edomvd>
+						<edomvd>Gresham</edomvd>
+						<edomvd>Haines</edomvd>
+						<edomvd>Halfway</edomvd>
+						<edomvd>Halsey</edomvd>
+						<edomvd>Happy Valley</edomvd>
+						<edomvd>Harrisburg</edomvd>
+						<edomvd>Helix</edomvd>
+						<edomvd>Heppner</edomvd>
+						<edomvd>Hermiston</edomvd>
+						<edomvd>Hillsboro</edomvd>
+						<edomvd>Hines</edomvd>
+						<edomvd>Hood River</edomvd>
+						<edomvd>Hubbard</edomvd>
+						<edomvd>Huntington</edomvd>
+						<edomvd>Idanha</edomvd>
+						<edomvd>Imbler</edomvd>
+						<edomvd>Independence</edomvd>
+						<edomvd>Ione</edomvd>
+						<edomvd>Irrigon</edomvd>
+						<edomvd>Island City</edomvd>
+						<edomvd>Jacksonville</edomvd>
+						<edomvd>Jefferson</edomvd>
+						<edomvd>John Day</edomvd>
+						<edomvd>Johnson City</edomvd>
+						<edomvd>Jordan Valley</edomvd>
+						<edomvd>Joseph</edomvd>
+						<edomvd>Junction City</edomvd>
+						<edomvd>Keizer</edomvd>
+						<edomvd>King City</edomvd>
+						<edomvd>Klamath Falls</edomvd>
+						<edomvd>Lafayette</edomvd>
+						<edomvd>La Grande</edomvd>
+						<edomvd>Lake Oswego</edomvd>
+						<edomvd>Lakeside</edomvd>
+						<edomvd>Lakeview</edomvd>
+						<edomvd>Lebanon</edomvd>
+						<edomvd>Lexington</edomvd>
+						<edomvd>Lincoln City</edomvd>
+						<edomvd>Lonerock</edomvd>
+						<edomvd>Long Creek</edomvd>
+						<edomvd>Lostine</edomvd>
+						<edomvd>Lowell</edomvd>
+						<edomvd>Lyons</edomvd>
+						<edomvd>McMinnville</edomvd>
+						<edomvd>Madras</edomvd>
+						<edomvd>Malin</edomvd>
+						<edomvd>Manzanita</edomvd>
+						<edomvd>Maupin</edomvd>
+						<edomvd>Maywood Park</edomvd>
+						<edomvd>Medford</edomvd>
+						<edomvd>Merrill</edomvd>
+						<edomvd>Metolius</edomvd>
+						<edomvd>Mill City</edomvd>
+						<edomvd>Millersburg</edomvd>
+						<edomvd>Milton-Freewater</edomvd>
+						<edomvd>Milwaukie</edomvd>
+						<edomvd>Mitchell</edomvd>
+						<edomvd>Molalla</edomvd>
+						<edomvd>Monmouth</edomvd>
+						<edomvd>Monroe</edomvd>
+						<edomvd>Monument</edomvd>
+						<edomvd>Moro</edomvd>
+						<edomvd>Mosier</edomvd>
+						<edomvd>Mt. Angel</edomvd>
+						<edomvd>Mt. Vernon</edomvd>
+						<edomvd>Myrtle Creek</edomvd>
+						<edomvd>Myrtle Point</edomvd>
+						<edomvd>Nehalem</edomvd>
+						<edomvd>Newberg</edomvd>
+						<edomvd>Newport</edomvd>
+						<edomvd>North Bend</edomvd>
+						<edomvd>North Plains</edomvd>
+						<edomvd>North Powder</edomvd>
+						<edomvd>Nyssa</edomvd>
+						<edomvd>Oakland</edomvd>
+						<edomvd>Oakridge</edomvd>
+						<edomvd>Ontario</edomvd>
+						<edomvd>Oregon City</edomvd>
+						<edomvd>Paisley</edomvd>
+						<edomvd>Pendleton</edomvd>
+						<edomvd>Philomath</edomvd>
+						<edomvd>Phoenix</edomvd>
+						<edomvd>Pilot Rock</edomvd>
+						<edomvd>Portland</edomvd>
+						<edomvd>Port Orford</edomvd>
+						<edomvd>Powers</edomvd>
+						<edomvd>Prairie City</edomvd>
+						<edomvd>Prescott</edomvd>
+						<edomvd>Prineville</edomvd>
+						<edomvd>Rainier</edomvd>
+						<edomvd>Redmond</edomvd>
+						<edomvd>Reedsport</edomvd>
+						<edomvd>Richland</edomvd>
+						<edomvd>Riddle</edomvd>
+						<edomvd>Rivergrove</edomvd>
+						<edomvd>Rockaway Beach</edomvd>
+						<edomvd>Rogue River</edomvd>
+						<edomvd>Roseburg</edomvd>
+						<edomvd>Rufus</edomvd>
+						<edomvd>St. Helens</edomvd>
+						<edomvd>St. Paul</edomvd>
+						<edomvd>Salem</edomvd>
+						<edomvd>Sandy</edomvd>
+						<edomvd>Scappoose</edomvd>
+						<edomvd>Scio</edomvd>
+						<edomvd>Scotts Mills</edomvd>
+						<edomvd>Seaside</edomvd>
+						<edomvd>Seneca</edomvd>
+						<edomvd>Shady Cove</edomvd>
+						<edomvd>Shaniko</edomvd>
+						<edomvd>Sheridan</edomvd>
+						<edomvd>Sherwood</edomvd>
+						<edomvd>Siletz</edomvd>
+						<edomvd>Silverton</edomvd>
+						<edomvd>Sisters</edomvd>
+						<edomvd>Sodaville</edomvd>
+						<edomvd>Spray</edomvd>
+						<edomvd>Springfield</edomvd>
+						<edomvd>Stanfield</edomvd>
+						<edomvd>Stayton</edomvd>
+						<edomvd>Sublimity</edomvd>
+						<edomvd>Summerville</edomvd>
+						<edomvd>Sumpter</edomvd>
+						<edomvd>Sutherlin</edomvd>
+						<edomvd>Sweet Home</edomvd>
+						<edomvd>Talent</edomvd>
+						<edomvd>Tangent</edomvd>
+						<edomvd>The Dalles</edomvd>
+						<edomvd>Tigard</edomvd>
+						<edomvd>Tillamook</edomvd>
+						<edomvd>Toledo</edomvd>
+						<edomvd>Troutdale</edomvd>
+						<edomvd>Tualatin</edomvd>
+						<edomvd>Turner</edomvd>
+						<edomvd>Ukiah</edomvd>
+						<edomvd>Umatilla</edomvd>
+						<edomvd>Union</edomvd>
+						<edomvd>Unity</edomvd>
+						<edomvd>Vale</edomvd>
+						<edomvd>Veneta</edomvd>
+						<edomvd>Vernonia</edomvd>
+						<edomvd>Waldport</edomvd>
+						<edomvd>Wallowa</edomvd>
+						<edomvd>Warrenton</edomvd>
+						<edomvd>Wasco</edomvd>
+						<edomvd>Waterloo</edomvd>
+						<edomvd>Westfir</edomvd>
+						<edomvd>West Linn</edomvd>
+						<edomvd>Weston</edomvd>
+						<edomvd>Wheeler</edomvd>
+						<edomvd>Willamina</edomvd>
+						<edomvd>Wilsonville</edomvd>
+						<edomvd>Winston</edomvd>
+						<edomvd>Woodburn</edomvd>
+						<edomvd>Wood Village</edomvd>
+						<edomvd>Yachats</edomvd>
+						<edomvd>Yamhill</edomvd>
+						<edomvd>Yoncalla</edomvd>
+						<edomvd>Damascus</edomvd>
+						<edomvd>La Pine</edomvd>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>
+FIPS PUB 6-4
+
+Supersedes FIPS PUB 6-3
+</edomvds>
+						<edomvds>FIPS PUB 6-4 Supersedes FIPS PUB 6-3</edomvds>
+					</edom>
+				</attrdomv>
+				<attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">5</attwidth><attalias Sync="TRUE">FIPS_CODE</attalias><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>GIS_PRC_DT</attrlabl>
+				<attrdef>The date that the data was processed.</attrdef>
+				<attrdefs>Geographic Information Services Unit, Oregon Department of Transportation (ODOT)</attrdefs>
+				<attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">10</attwidth><attalias Sync="TRUE">GIS_PRC_DT</attalias><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>Shape</attrlabl>
+				<attrdef>Feature Geometry</attrdef>
+				<attrdefs>Environmental Systems Research Institute (ESRI)</attrdefs>
+				<attrdomv>
+					<edom>
+						<edomv>Polygon</edomv>
+						<edomvd>Polygons are sets of coordinate pairs defining boundaries that enclose areas.</edomvd>
+						<edomvds>Environmental Systems Research Institute (ESRI)</edomvds>
+					</edom>
+					<udom Sync="TRUE">Coordinates defining the features.</udom></attrdomv>
+				<attrtype Sync="TRUE">Geometry</attrtype><attwidth Sync="TRUE">0</attwidth><attalias Sync="TRUE">Shape</attalias><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr><attrlabl Sync="TRUE">Shape_Length</attrlabl><attalias Sync="TRUE">Shape_Length</attalias><attrtype Sync="TRUE">Double</attrtype><attwidth Sync="TRUE">8</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale><attrdef Sync="TRUE">Length of feature in internal units.</attrdef><attrdefs Sync="TRUE">ESRI</attrdefs><attrdomv><udom Sync="TRUE">Positive real numbers that are automatically generated.</udom></attrdomv></attr><attr><attrlabl Sync="TRUE">Shape_Area</attrlabl><attalias Sync="TRUE">Shape_Area</attalias><attrtype Sync="TRUE">Double</attrtype><attwidth Sync="TRUE">8</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale><attrdef Sync="TRUE">Area of feature in internal units squared.</attrdef><attrdefs Sync="TRUE">ESRI</attrdefs><attrdomv><udom Sync="TRUE">Positive real numbers that are automatically generated.</udom></attrdomv></attr></detailed>
+		<overview>
+			<eaover>citylim_2007 contains acres, fips_code, city_name, shape, effectv_dt, gis_prc_dt</eaover>
+			<eadetcit>\\Scdata\otms\System Documentation (100-920)\_1Program-Level Documentation\02 Conceptual Data Model\3 Approved\180S GIS01 Conceptual Data Model v01.doc</eadetcit>
+		</overview>
+	</eainfo>
+	<distinfo>
+		<distrib>
+			<cntinfo>
+				<cntorgp>
+					<cntorg>Geographic Information Services Unit, Oregon Department of Transportation (ODOT).</cntorg>
+				</cntorgp>
+				<cntaddr>
+					<addrtype>mailing and physical address</addrtype>
+					<address>555 13th St. NE, Suite #2</address>
+					<city>Salem</city>
+					<state>OR</state>
+					<postal>97301-4178</postal>
+					<country>USA</country>
+				</cntaddr>
+				<cntvoice>503.986.3154</cntvoice>
+				<cntfax>503.986.4249</cntfax>
+				<cntemail>odot.maps@odot.state.or.us</cntemail>
+				<hours>Monday through Friday, 8:00 AM to 5:00 PM.</hours>
+				<cntinst>Call, email, or write.</cntinst>
+			</cntinfo>
+		</distrib>
+		<distliab>This product is for informational purposes and may not have been prepared for legal, engineering or surveying purposes. Users of this information should review or consult the primary data and information sources to ascertain the usability of the information.</distliab>
+		<stdorder>
+			<digform>
+				<digtinfo>
+					<formname>SHP</formname>
+					<formvern>9.1</formvern>
+					<formspec>ESRI shapefile format</formspec>
+					<transize Sync="TRUE">2.001</transize><dssize Sync="TRUE">2.001</dssize></digtinfo>
+				<digtopt>
+					<offoptn>
+						<offmedia>CD-ROM, DVD</offmedia>
+					</offoptn>
+				</digtopt>
+				<digtopt>
+					<onlinopt>
+						<accinstr>email at odot.maps@odot.state.or.us; call 503.986.3154</accinstr>
+					</onlinopt>
+				</digtopt>
+			</digform>
+			<digform>
+				<digtinfo>
+					<formname>SHP</formname>
+					<formvern>3.1</formvern>
+					<formspec>ESRI shapefile format</formspec>
+					<transize Sync="TRUE">2.001</transize><dssize Sync="TRUE">2.001</dssize></digtinfo>
+				<digtopt>
+					<offoptn>
+						<offmedia>CD-ROM, DVD</offmedia>
+					</offoptn>
+				</digtopt>
+				<digtopt>
+					<onlinopt>
+						<accinstr>email at odot.maps@odot.state.or.us; call 503.986.3154</accinstr>
+					</onlinopt>
+				</digtopt>
+			</digform>
+			<ordering>Call or email.</ordering>
+			<turnarnd>Usually within one week.</turnarnd>
+		</stdorder>
+		<availabl>
+			<timeinfo>
+				<sngdate>
+					<caldate>1983</caldate>
+					<time>Unknown</time>
+				</sngdate>
+			</timeinfo>
+		</availabl>
+		<resdesc Sync="TRUE">Downloadable Data</resdesc></distinfo>
+	<metainfo>
+		<metd>20070305</metd>
+		<metrd>20070305</metrd>
+		<metfrd>20080305</metfrd>
+		<metc>
+			<cntinfo>
+				<cntorgp>
+					<cntorg>Geographic Information Services Unit, Oregon Department of Transportation (ODOT)</cntorg>
+				</cntorgp>
+				<cntaddr>
+					<addrtype>mailing and physical address</addrtype>
+					<address>555 13th St. NE, Suite #2</address>
+					<city>Salem</city>
+					<state>OR</state>
+					<postal>97301-4178</postal>
+					<country>USA</country>
+				</cntaddr>
+				<cntvoice>503.986.3154</cntvoice>
+				<cntfax>503.986.4249</cntfax>
+				<cntemail>odot.maps@odot.state.or.us</cntemail>
+				<hours>Monday through Friday, 8:00 AM to 5:00 PM.</hours>
+				<cntinst>Call, email, or write.</cntinst>
+			</cntinfo>
+		</metc>
+		<metstdn>FGDC Content Standards for Digital Geospatial Metadata</metstdn>
+		<metstdv>FGDC-STD-001-1998</metstdv>
+		<mettc>local time</mettc>
+		<metac>none</metac>
+		<metuc>none</metuc>
+		<metsi>
+			<metsc>Unclassified</metsc>
+		</metsi>
+		<langmeta Sync="TRUE">en</langmeta><metextns><onlink Sync="TRUE">http://www.esri.com/metadata/esriprof80.html</onlink><metprof Sync="TRUE">ESRI Metadata Profile</metprof></metextns></metainfo>
+	<Esri><CreaDate>20100831</CreaDate><CreaTime>16391200</CreaTime><SyncOnce>FALSE</SyncOnce><SyncDate>20100317</SyncDate><SyncTime>12053900</SyncTime><ModDate>20100317</ModDate><ModTime>12053900</ModTime><DataProperties><lineage><Process Name="FeatureClassToFeatureClass_3" ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Conversion Tools.tbx\FeatureClassToFeatureClass" Date="20080729" Time="091905">FeatureClassToFeatureClass C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\citylim_2007.shp C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OCA_Marine.gdb CUL_City_Limits_ODOT_2007 # "FIPS_CODE FIPS_CODE true false false 5 Text 0 0 ,First,#,C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\citylim_2007.shp,FIPS_CODE,-1,-1;CITY_NAME CITY_NAME true false false 50 Text 0 0 ,First,#,C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\citylim_2007.shp,CITY_NAME,-1,-1;ACRES ACRES true false false 19 Double 2 18 ,First,#,C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\citylim_2007.shp,ACRES,-1,-1;GIS_PRC_DT GIS_PRC_DT true false false 10 Text 0 0 ,First,#,C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\citylim_2007.shp,GIS_PRC_DT,-1,-1;EFFECTV_DT EFFECTV_DT true false false 15 Text 0 0 ,First,#,C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\citylim_2007.shp,EFFECTV_DT,-1,-1" # C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OCA_Marine.gdb\CUL_City_Limits_ODOT_2007</Process><Process ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Data Management Tools.tbx\CopyFeatures" Date="20080729" Time="164716">CopyFeatures C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OCA_Marine.gdb\CUL_City_Limits_ODOT_2007 C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OCA_Marine_pgdb.mdb\CUL_City_Limits_ODOT_2007 # 0 0 0</Process><Process ToolSource="C:\ArcGISdesktop\ArcGIS\ArcToolbox\Toolboxes\Data Management Tools.tbx\Project" Date="20100831" Time="163828">Project city_bounds U:\data\omm\staticmap\west_coast\city_bounds_Project.shp GEOGCS['GCS_North_American_1983',DATUM['D_North_American_1983',SPHEROID['GRS_1980',6378137.0,298.257222101]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]] # PROJCS['NAD_1983_Albers',GEOGCS['GCS_North_American_1983',DATUM['D_North_American_1983',SPHEROID['GRS_1980',6378137.0,298.257222101]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]],PROJECTION['Albers'],PARAMETER['False_Easting',700000.0],PARAMETER['False_Northing',0.0],PARAMETER['Central_Meridian',-117.0],PARAMETER['Standard_Parallel_1',43.0],PARAMETER['Standard_Parallel_2',48.0],PARAMETER['Latitude_Of_Origin',41.0],UNIT['Meter',1.0]]</Process></lineage></DataProperties><MetaID>{ABFDAC51-7FC6-467D-83E3-158472E35031}</MetaID></Esri><dataIdInfo><envirDesc Sync="TRUE">Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 3; ESRI ArcCatalog 9.3.1.3000</envirDesc><dataLang><languageCode Sync="TRUE" value="en"></languageCode></dataLang><idCitation><resTitle Sync="TRUE">CUL_City_Limits_ODOT_2007</resTitle><presForm><PresFormCd Sync="TRUE" value="005"></PresFormCd></presForm></idCitation><spatRpType><SpatRepTypCd Sync="TRUE" value="001"></SpatRepTypCd></spatRpType><dataExt><geoEle><GeoBndBox esriExtentType="native"><westBL Sync="TRUE">85552.496</westBL><eastBL Sync="TRUE">705173.369</eastBL><northBL Sync="TRUE">601904.3195</northBL><southBL Sync="TRUE">121858.5112</southBL><exTypeCode Sync="TRUE">1</exTypeCode></GeoBndBox></geoEle></dataExt><geoBox esriExtentType="decdegrees"><westBL Sync="TRUE">-124.972772</westBL><eastBL Sync="TRUE">-116.932652</eastBL><northBL Sync="TRUE">46.416765</northBL><southBL Sync="TRUE">41.843654</southBL><exTypeCode Sync="TRUE">1</exTypeCode></geoBox></dataIdInfo><mdLang><languageCode Sync="TRUE" value="en"></languageCode></mdLang><mdStanName Sync="TRUE">ISO 19115 Geographic Information - Metadata</mdStanName><mdStanVer Sync="TRUE">DIS_ESRI1.0</mdStanVer><mdChar><CharSetCd Sync="TRUE" value="004"></CharSetCd></mdChar><mdHrLv><ScopeCd Sync="TRUE" value="005"></ScopeCd></mdHrLv><mdHrLvName Sync="TRUE">dataset</mdHrLvName><distInfo><distributor><distorTran><onLineSrc><orDesc Sync="TRUE">002</orDesc><linkage Sync="TRUE">file://</linkage><protocol Sync="TRUE">Local Area Network</protocol></onLineSrc><transSize Sync="TRUE">2.001</transSize></distorTran><distorFormat><formatName Sync="TRUE">Personal GeoDatabase Feature Class</formatName></distorFormat></distributor></distInfo><refSysInfo><RefSystem><refSysID><identCode Sync="TRUE">NAD_1983_Albers</identCode></refSysID></RefSystem></refSysInfo><spatRepInfo><VectSpatRep><topLvl><TopoLevCd Sync="TRUE" value="001"></TopoLevCd></topLvl><geometObjs Name="CUL_City_Limits_ODOT_2007"><geoObjTyp><GeoObjTypCd Sync="TRUE" value="001"></GeoObjTypCd></geoObjTyp><geoObjCnt Sync="TRUE">30</geoObjCnt></geometObjs></VectSpatRep></spatRepInfo><mdDateSt Sync="TRUE">20100317</mdDateSt></metadata>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE metadata SYSTEM "http://www.fgdc.gov/metadata/fgdc-std-001-1998.dtd">
+<metadata>
+	<idinfo>
+		<citation>
+			<citeinfo>
+				<origin>Oregon Parks and Recreation Department</origin>
+				<pubdate>7/28/2008</pubdate>
+				<title Sync="TRUE">OregonStateParks</title>
+				<geoform Sync="TRUE">vector digital data</geoform>
+				<ftname Sync="TRUE">OregonStateParks</ftname><pubtime>Unknown</pubtime><onlink Sync="TRUE"></onlink></citeinfo>
+		</citation>
+		<descript>
+			<abstract>Approximate real property boundaries for lands owned or managed by OPRD</abstract>
+			<purpose>Serve as base spatial layer for department GIS</purpose>
+			<langdata Sync="TRUE">en</langdata></descript>
+		<timeperd>
+			<timeinfo>
+				<sngdate>
+					<caldate>7/28/2008</caldate>
+					<time>unknown</time></sngdate>
+			</timeinfo>
+			<current>publication date</current>
+		</timeperd>
+		<status>
+			<progress>In work</progress>
+			<update>Continually</update>
+		</status>
+		<spdom>
+			<bounding>
+				<westbc Sync="TRUE">-124.803907</westbc>
+				<eastbc Sync="TRUE">-116.820969</eastbc>
+				<northbc Sync="TRUE">46.290091</northbc>
+				<southbc Sync="TRUE">41.920370</southbc>
+			</bounding>
+			<lboundng><leftbc Sync="TRUE">222818.390000</leftbc><rightbc Sync="TRUE">2243438.670000</rightbc><bottombc Sync="TRUE">88685.140000</bottombc><topbc Sync="TRUE">1655108.960000</topbc></lboundng></spdom>
+		<keywords>
+			<theme><themekey>Park</themekey><themekey>Oregon</themekey><themekey>State</themekey><themekey>Boundary</themekey></theme><place><placekey>Oregon</placekey></place></keywords>
+		<accconst>NONE</accconst>
+		<useconst>NONE. Oregon Parks and Recreation Department makes no warranty as to the accuracy of this data. Questions regarding the legal ownership and boundaries of real property should be directed to individual counties and to the OPRD Property Management Division
+
+This product is for informational purposes and may not have been prepared for, or be suitable for legal, engineering, or surveying purposes. Users of this information should review or consult the primary data and information sources to ascertain the usability of the information.</useconst>
+		<ptcontac>
+			<cntinfo>
+				<cntorgp>
+					<cntorg>Oregon State Parks and Recreation Department</cntorg>
+					<cntper>Brady Callahan</cntper>
+				</cntorgp>
+				<cntpos>GIS Coordinator</cntpos>
+				<cntvoice>503-986-0783</cntvoice>
+				<cntfax>503-986-0792</cntfax>
+				<cntemail>brady.callahan@state.or.us</cntemail>
+				<hours>M-Th 6:30-4:30</hours>
+				<cntaddr><addrtype>mailing and physical address</addrtype><address>725 Summer St NE, Suite C</address><city>Salem</city><state>OR</state><postal>97301</postal></cntaddr></cntinfo>
+		</ptcontac>
+		<datacred>Oregon Parks and Recreation Department</datacred>
+		<native Sync="TRUE">Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 2; ESRI ArcCatalog 9.2.5.1450</native>
+		<natvform Sync="TRUE">Shapefile</natvform></idinfo>
+	<dataqual>
+		<attracc>
+			<attraccr>Property name may not be official or include official OPRD naming designation (Scenic Recreation Area, State Heritage Site, State Natural Area, State Scenic Corridor, etc.) Not all data fields may be populated.</attraccr>
+		</attracc>
+		<logic>No topology at this time</logic>
+		<complete>Boundaries were derived from various sources and scales and reflect management as well as ownership. Data is considered current as of publication date and may not contain all lands owned or managed by OPRD. Geometry and attributes may change at any time. </complete>
+		<posacc>
+			<horizpa>
+				<horizpar>Accuracy varies depending on source data and process steps.</horizpar>
+			</horizpa>
+			<vertacc>
+				<vertaccr>NA</vertaccr>
+			</vertacc>
+		</posacc>
+		<lineage>
+			<procstep>
+				<procdesc>The data in this file were developed through the integration of various spatial data both digital and hard copy and may have been modified to better reflect on the ground conditions. Data sources may include, USGS maps, county taxlot maps or GIS data, surveys, scaled maps or drawings, and deed records. Process varies by data source for each polygon. See feature attribute for polygon data source.</procdesc>
+				<procdate>Not complete</procdate>
+				<proccont>
+					<cntinfo>
+						<cntperp>
+							<cntper>Brady Callahan</cntper>
+							<cntorg>Oregon State Parks and Recreation Department</cntorg>
+						</cntperp>
+						<cntpos>GIS Coordinator</cntpos>
+						<cntvoice>503-986-0783</cntvoice>
+						<cntfax>503-986-0792</cntfax>
+						<cntemail>brady.callahan@state.or.us</cntemail>
+						<hours>M-F 7:30-4:00</hours>
+						<cntaddr><addrtype>mailing and physical address</addrtype><address>725 Summer St NE, Suite C</address><city>Salem</city><state>OR</state><postal>97301</postal></cntaddr></cntinfo>
+				</proccont>
+			</procstep>
+			<procstep><procdesc Sync="TRUE">Metadata imported.</procdesc><srcused Sync="TRUE">C:\Temp\1_export\GISvector.GIS.xml</srcused><date Sync="TRUE">20080717</date><time Sync="TRUE">11461600</time></procstep><procstep><procdesc Sync="TRUE">Dataset copied.</procdesc><srcused Sync="TRUE"></srcused><date Sync="TRUE">20080725</date><time Sync="TRUE">14443000</time></procstep><procstep><procdesc Sync="TRUE">Dataset copied.</procdesc><srcused Sync="TRUE">\\TERRA\D\MARINE\OregonMarineMap\OCA_Marine_pgdb_March_2010.mdb</srcused><procdate Sync="TRUE">20100831</procdate><proctime Sync="TRUE">17315800</proctime></procstep></lineage>
+	</dataqual>
+	<spdoinfo>
+		<direct Sync="TRUE">Vector</direct>
+		<ptvctinf>
+			<sdtsterm Name="OregonStateParks">
+				<sdtstype Sync="TRUE">G-polygon</sdtstype>
+				<ptvctcnt Sync="TRUE">429</ptvctcnt>
+			</sdtsterm>
+			<esriterm Name="OregonStateParks"><efeatyp Sync="TRUE">Simple</efeatyp><efeageom Sync="TRUE">Polygon</efeageom><esritopo Sync="TRUE">FALSE</esritopo><efeacnt Sync="TRUE">429</efeacnt><spindex Sync="TRUE">FALSE</spindex><linrefer Sync="TRUE">FALSE</linrefer></esriterm></ptvctinf>
+	</spdoinfo>
+	<spref>
+		<horizsys>
+			<planar>
+				<planci>
+					<plance Sync="TRUE">coordinate pair</plance>
+					<coordrep>
+						<absres Sync="TRUE">0.000000</absres>
+						<ordres Sync="TRUE">0.000000</ordres>
+					</coordrep>
+					<plandu Sync="TRUE">international feet</plandu>
+				</planci>
+				<mapproj><mapprojn Sync="TRUE">Lambert Conformal Conic</mapprojn><lambertc><stdparll Sync="TRUE">43.000000</stdparll><stdparll Sync="TRUE">45.500000</stdparll><longcm Sync="TRUE">-120.500000</longcm><latprjo Sync="TRUE">41.750000</latprjo><feast Sync="TRUE">1312335.958005</feast><fnorth Sync="TRUE">0.000000</fnorth></lambertc></mapproj></planar>
+			<geodetic>
+				<horizdn Sync="TRUE">North American Datum of 1983</horizdn>
+				<ellips Sync="TRUE">Geodetic Reference System 80</ellips>
+				<semiaxis Sync="TRUE">6378137.000000</semiaxis>
+				<denflat Sync="TRUE">298.257222</denflat>
+			</geodetic>
+			<cordsysn><geogcsn Sync="TRUE">GCS_North_American_1983</geogcsn><projcsn Sync="TRUE">NAD_1983_Oregon_Statewide_Lambert_Feet_Intl</projcsn></cordsysn></horizsys>
+		<vertdef>
+			<altsys>
+				<altres Sync="TRUE">1.000000</altres>
+				<altenc Sync="TRUE">Explicit elevation coordinate included with horizontal coordinates</altenc>
+			</altsys>
+		</vertdef>
+	</spref>
+	<eainfo>
+		<detailed Name="OregonStateParks">
+			<attr>
+				<attrlabl>NAME</attrlabl>
+				<attrdef>Park Name</attrdef>
+			</attr>
+			<attr><attrlabl Sync="TRUE">DATASOURCE</attrlabl><attalias Sync="TRUE">DataSource</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">50</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale><attrdomv><edom><edomv>0</edomv><edomvd>Unknown</edomvd></edom><edom><edomv>1</edomv><edomvd>Digital Orthophoto</edomvd></edom><edom><edomv>2</edomv><edomvd>Georeferenced CAD Drawing</edomvd></edom><edom><edomv>3</edomv><edomvd>Survey data</edomvd></edom><edom><edomv>4</edomv><edomvd>Submeter GPS</edomvd></edom><edom><edomv>5</edomv><edomvd>Scanned engineering drawing or scaled map</edomvd></edom><edom><edomv>6</edomv><edomvd>Coordinate Geometry</edomvd></edom><edom><edomv>7</edomv><edomvd>Assessors Taxlot Map</edomvd></edom><edom><edomv>8</edomv><edomvd>GIS data</edomvd></edom><edom><edomv>9</edomv><edomvd>Digital Graphic</edomvd></edom><edom><edomv>10</edomv><edomvd>USGS Digital Raster Graphic</edomvd></edom><edom><edomv>11</edomv><edomvd>Assessors GIS Data</edomvd></edom><edom><edomv>12</edomv><edomvd>Lidar</edomvd></edom></attrdomv><attrdef>Coded value domain of source for feature geometry</attrdef></attr><attr><attrlabl Sync="TRUE">CREATEDATE</attrlabl><attalias Sync="TRUE">CREATEDATE</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">50</attwidth><attrdef>Date feature was created</attrdef></attr><attr><attrlabl Sync="TRUE">RETIREDATE</attrlabl><attalias Sync="TRUE">RETIREDATE</attalias><attrtype Sync="TRUE">Date</attrtype><attwidth Sync="TRUE">8</attwidth><attrdef>Date feature was retired from GIS</attrdef></attr><attr><attrlabl Sync="TRUE">GIS_ID</attrlabl><attalias Sync="TRUE">GIS_ID</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">25</attwidth><attrdef>Internal feature ID</attrdef></attr><attr><attrlabl Sync="TRUE">EDITDATE</attrlabl><attalias Sync="TRUE">EDITDATE</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">5</attwidth><attrdef>Most recent date that geometry or attributes were modified</attrdef></attr><attr><attrlabl Sync="TRUE">HUB_ID</attrlabl><attalias Sync="TRUE">HUB_ID</attalias><attrtype Sync="TRUE">Date</attrtype><attwidth Sync="TRUE">8</attwidth><attrdef>Internal System ID for linking to OPRD HUB system</attrdef></attr><attr><attrlabl Sync="TRUE">CREATOR</attrlabl><attalias Sync="TRUE">CREATOR</attalias><attrtype Sync="TRUE">Date</attrtype><attwidth Sync="TRUE">8</attwidth><attrdef>Coded value domain identifying person who created feature</attrdef><attrdomv><edom><edomv>BCallahan</edomv><edomvd>BCallahan</edomvd></edom><edom><edomv>DQuillin</edomv><edomvd>DQuillin</edomvd></edom><edom><edomv>Intern</edomv><edomvd>Intern</edomvd></edom><edom><edomv>SChapman</edomv><edomvd>SChapman</edomvd></edom><edom><edomv>TConley</edomv><edomvd>TConley</edomvd></edom><edom><edomv>SCharles</edomv><edomvd>SCharles</edomvd></edom><edom><edomv>ESU</edomv><edomvd>ESU</edomvd></edom></attrdomv></attr><attr><attrlabl Sync="TRUE">EDITPERSON</attrlabl><attalias Sync="TRUE">EDITPERSON</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">5</attwidth><attrdef>Coded value domain identifying person who last edited feature geometry or attributes</attrdef><attrdomv><edom><edomv>BCallahan</edomv><edomvd>BCallahan</edomvd></edom><edom><edomv>DQuillin</edomv><edomvd>DQuillin</edomvd></edom><edom><edomv>Intern</edomv><edomvd>Intern</edomvd></edom><edom><edomv>SChapman</edomv><edomvd>SChapman</edomvd></edom><edom><edomv>TConley</edomv><edomvd>TConley</edomvd></edom><edom><edomv>SCharles</edomv><edomvd>SCharles</edomvd></edom><edom><edomv>ESU</edomv><edomvd>ESU</edomvd></edom></attrdomv></attr><attr><attrlabl Sync="TRUE">FID</attrlabl><attalias Sync="TRUE">FID</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">5</attwidth><attrdef Sync="TRUE">Internal feature number.</attrdef><attrdefs Sync="TRUE">ESRI</attrdefs><attrdomv><udom Sync="TRUE">Sequential unique whole numbers that are automatically generated.</udom></attrdomv></attr><enttyp>
+				<enttypl Sync="TRUE">OregonStateParks</enttypl>
+				<enttypt Sync="TRUE">Feature Class</enttypt><enttypc Sync="TRUE">429</enttypc></enttyp>
+			<attr><attrlabl Sync="TRUE">Shape</attrlabl><attalias Sync="TRUE">Shape</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">50</attwidth><attrdef Sync="TRUE">Feature geometry.</attrdef><attrdefs Sync="TRUE">ESRI</attrdefs><attrdomv><udom Sync="TRUE">Coordinates defining the features.</udom></attrdomv></attr><attr><attrlabl Sync="TRUE">DESIGNATIO</attrlabl><attalias Sync="TRUE">DESIGNATIO</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">50</attwidth><attrdef>Property Designation</attrdef></attr><attr><attrlabl Sync="TRUE">USE_TYPE</attrlabl><attalias Sync="TRUE">USE_TYPE</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">50</attwidth><attrdef>Dominant Use of Property</attrdef></attr><attr><attrlabl Sync="TRUE">FULL_NAME</attrlabl><attalias Sync="TRUE">FULL_NAME</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">100</attwidth><attrdef>Full Name of Property</attrdef></attr></detailed>
+	</eainfo>
+	<distinfo>
+		<resdesc>This dataset available on request</resdesc>
+		<stdorder>
+			<digform>
+				<digtinfo>
+					<transize>0.142</transize>
+					<dssize Sync="TRUE">3.332</dssize></digtinfo>
+			</digform>
+			<fees>None</fees><ordering>Contact Distributor</ordering><turnarnd>Varies</turnarnd></stdorder>
+		<distrib><cntinfo><cntpos>GIS Coordinator</cntpos><cntorgp><cntorg>Oregon Parks and Recreation Department</cntorg><cntper>Brady Callahan</cntper></cntorgp><cntaddr><addrtype>mailing and physical address</addrtype><address>725 Summer St NE, Suite C</address><city>Salem</city><state>OR</state><postal>97301</postal></cntaddr><cntvoice>503-986-0783</cntvoice><cntfax>503-986-0792</cntfax><cntemail>brady.callahan@state.or.us</cntemail></cntinfo></distrib></distinfo>
+	<metainfo>
+		<metd Sync="TRUE">20080723</metd>
+		<metc>
+			<cntinfo>
+				<cntorgp>
+					<cntorg>Oregon Parks and Recreation Department</cntorg>
+					<cntper>Brady Callahan</cntper>
+				</cntorgp>
+				<cntpos>GIS Coordinator</cntpos>
+				<cntaddr>
+					<addrtype>mailing and physical address</addrtype>
+					<city>Salem</city>
+					<state>OR</state>
+					<postal>97301</postal>
+					<address>725 Summer St NE, Suite C</address></cntaddr>
+				<cntvoice>503-986-0783</cntvoice>
+				<cntfax>503-986-0792</cntfax>
+				<cntemail>brady.callahan@state.or.us</cntemail>
+			</cntinfo>
+		</metc>
+		<metstdn Sync="TRUE">FGDC Content Standards for Digital Geospatial Metadata</metstdn>
+		<metstdv Sync="TRUE">FGDC-STD-001-1998</metstdv>
+		<mettc Sync="TRUE">local time</mettc>
+		<metextns>
+			<onlink>http://www.esri.com/metadata/esriprof80.html</onlink>
+			<metprof>ESRI Metadata Profile</metprof>
+		</metextns>
+		<langmeta Sync="TRUE">en</langmeta><metextns><onlink Sync="TRUE">http://www.esri.com/metadata/esriprof80.html</onlink><metprof Sync="TRUE">ESRI Metadata Profile</metprof></metextns></metainfo>
+	<Esri><CreaDate>20100831</CreaDate><CreaTime>17315800</CreaTime><SyncOnce>FALSE</SyncOnce><SyncDate>20080729</SyncDate><SyncTime>16452400</SyncTime><ModDate>20080729</ModDate><ModTime>16452400</ModTime><DataProperties><lineage><Process Name="AddField_1" ToolSource="C:\arcgis\ArcToolbox\Toolboxes\Data Management Tools.tbx\AddField" Date="20060125" Time="065813">AddField "Database Connections\gis@GISvector.sde\GISvector.GIS.Parks" DATA_SOURCE_T SHORT # # # # NULLABLE NON_REQUIRED # "Database Connections\gis@GISvector.sde\GISvector.GIS.Parks"</Process><Process Name="DeleteField_2" ToolSource="C:\arcgis\ArcToolbox\Toolboxes\Data Management Tools.tbx\DeleteField" Date="20060125" Time="070317">DeleteField "Database Connections\gis@GISvector.sde\GISvector.GIS.Parks" DATASOURCE "Database Connections\gis@GISvector.sde\GISvector.GIS.Parks"</Process><Process Name="AddField_3" ToolSource="C:\arcgis\ArcToolbox\Toolboxes\Data Management Tools.tbx\AddField" Date="20060125" Time="070427">AddField "Database Connections\gis@GISvector.sde\GISvector.GIS.Parks" DATASOURCE SHORT # # # # NULLABLE NON_REQUIRED Data_Source "Database Connections\gis@GISvector.sde\GISvector.GIS.Parks"</Process><Process Name="Project_2" ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Data Management Tools.tbx\Project" Date="20080725" Time="144431">Project C:\GisData\vector\gov\state\or\oprd\ORStateParks\OregonStateParks.shp C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OregonStateParks.shp PROJCS['NAD_1983_Albers',GEOGCS['GCS_North_American_1983',DATUM['D_North_American_1983',SPHEROID['GRS_1980',6378137.0,298.257222101]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]],PROJECTION['Albers'],PARAMETER['False_Easting',700000.0],PARAMETER['False_Northing',0.0],PARAMETER['Central_Meridian',-117.0],PARAMETER['Standard_Parallel_1',43.0],PARAMETER['Standard_Parallel_2',48.0],PARAMETER['Latitude_Of_Origin',41.0],UNIT['Meter',1.0]] # PROJCS['NAD_1983_Oregon_Statewide_Lambert_Feet_Intl',GEOGCS['GCS_North_American_1983',DATUM['D_North_American_1983',SPHEROID['GRS_1980',6378137.0,298.257222101]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]],PROJECTION['Lambert_Conformal_Conic'],PARAMETER['False_Easting',1312335.958005249],PARAMETER['False_Northing',0.0],PARAMETER['Central_Meridian',-120.5],PARAMETER['Standard_Parallel_1',43.0],PARAMETER['Standard_Parallel_2',45.5],PARAMETER['Latitude_Of_Origin',41.75],UNIT['Foot',0.3048]]</Process><Process Name="FeatureClassToFeatureClass_3" ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Conversion Tools.tbx\FeatureClassToFeatureClass" Date="20080725" Time="144543">FeatureClassToFeatureClass C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OregonStateParks.shp C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OCA_Marine.gdb HUM_REC_OregonStateParks # "NAME NAME true false false 50 Text 0 0 ,First,#,C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OregonStateParks.shp,NAME,-1,-1;EDITDATE EDITDATE true true false 8 Date 0 0 ,First,#,C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OregonStateParks.shp,EDITDATE,-1,-1;EDITPERSON EDITPERSON true false false 25 Text 0 0 ,First,#,C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OregonStateParks.shp,EDITPERSON,-1,-1;DATASOURCE DATASOURCE true false false 5 Long 0 5 ,First,#,C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OregonStateParks.shp,DATASOURCE,-1,-1;CREATEDATE CREATEDATE true true false 8 Date 0 0 ,First,#,C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OregonStateParks.shp,CREATEDATE,-1,-1;RETIREDATE RETIREDATE true true false 8 Date 0 0 ,First,#,C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OregonStateParks.shp,RETIREDATE,-1,-1;GIS_ID GIS_ID true false false 5 Long 0 5 ,First,#,C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OregonStateParks.shp,GIS_ID,-1,-1;HUB_ID HUB_ID true false false 5 Long 0 5 ,First,#,C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OregonStateParks.shp,HUB_ID,-1,-1;CREATOR CREATOR true false false 50 Text 0 0 ,First,#,C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OregonStateParks.shp,CREATOR,-1,-1;DESIGNATIO DESIGNATIO true false false 50 Text 0 0 ,First,#,C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OregonStateParks.shp,DESIGNATIO,-1,-1;USE_TYPE USE_TYPE true false false 50 Text 0 0 ,First,#,C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OregonStateParks.shp,USE_TYPE,-1,-1;FULL_NAME FULL_NAME true false false 100 Text 0 0 ,First,#,C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OregonStateParks.shp,FULL_NAME,-1,-1" # C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OCA_Marine.gdb\HUM_REC_OregonStateParks</Process><Process ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Data Management Tools.tbx\CopyFeatures" Date="20080729" Time="164525">CopyFeatures C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OCA_Marine.gdb\HUM_REC_OregonStateParks_OPRD_2008 C:\GisData\Working\GISData_MarineReservesProcess\BioMaps\OCA_Marine_pgdb.mdb\HUM_REC_OregonStateParks_OPRD_2008 # 0 0 0</Process></lineage></DataProperties><MetaID>{5C4E1BBC-8639-4223-8406-9635227B0866}</MetaID></Esri><dataIdInfo><envirDesc Sync="TRUE">Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 2; ESRI ArcCatalog 9.2.5.1450</envirDesc><dataLang><languageCode Sync="TRUE" value="en"></languageCode></dataLang><idCitation><resTitle Sync="TRUE">OregonStateParks</resTitle><presForm><PresFormCd Sync="TRUE" value="005"></PresFormCd></presForm></idCitation><spatRpType><SpatRepTypCd Sync="TRUE" value="001"></SpatRepTypCd></spatRpType><dataExt><geoEle><GeoBndBox esriExtentType="native"><westBL Sync="TRUE">222818.39</westBL><eastBL Sync="TRUE">2243438.67</eastBL><northBL Sync="TRUE">1655108.96</northBL><southBL Sync="TRUE">88685.14</southBL><exTypeCode Sync="TRUE">1</exTypeCode></GeoBndBox></geoEle></dataExt><geoBox esriExtentType="decdegrees"><westBL Sync="TRUE">-124.803907</westBL><eastBL Sync="TRUE">-116.820969</eastBL><northBL Sync="TRUE">46.290091</northBL><southBL Sync="TRUE">41.92037</southBL><exTypeCode Sync="TRUE">1</exTypeCode></geoBox></dataIdInfo><mdLang><languageCode Sync="TRUE" value="en"></languageCode></mdLang><mdStanName Sync="TRUE">ISO 19115 Geographic Information - Metadata</mdStanName><mdStanVer Sync="TRUE">DIS_ESRI1.0</mdStanVer><mdChar><CharSetCd Sync="TRUE" value="004"></CharSetCd></mdChar><mdHrLv><ScopeCd Sync="TRUE" value="005"></ScopeCd></mdHrLv><mdHrLvName Sync="TRUE">dataset</mdHrLvName><distInfo><distributor><distorTran><onLineSrc><orDesc Sync="TRUE">002</orDesc><linkage Sync="TRUE">file://</linkage><protocol Sync="TRUE">Local Area Network</protocol></onLineSrc><transSize Sync="TRUE">3.156</transSize></distorTran><distorFormat><formatName Sync="TRUE">Shapefile</formatName></distorFormat></distributor></distInfo><refSysInfo><RefSystem><refSysID><identCode Sync="TRUE">NAD_1983_Oregon_Statewide_Lambert_Feet_Intl</identCode></refSysID></RefSystem></refSysInfo><spatRepInfo><VectSpatRep><topLvl><TopoLevCd Sync="TRUE" value="001"></TopoLevCd></topLvl><geometObjs Name="OregonStateParks"><geoObjTyp><GeoObjTypCd Sync="TRUE" value="001"></GeoObjTypCd></geoObjTyp><geoObjCnt Sync="TRUE">429</geoObjCnt></geometObjs></VectSpatRep></spatRepInfo><mdDateSt Sync="TRUE">20080723</mdDateSt></metadata>
