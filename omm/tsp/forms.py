@@ -15,4 +15,5 @@ class AOIForm(BaseMpaForm):
     name = forms.CharField(label='Area Name')
     class Meta:
         model = AOI
+        fields = ('user', 'name', 'description', 'geometry_orig', 'geometry_final', 'manipulators')
         exclude = ('sharing_groups','content_type','object_id','designation')
