@@ -28,6 +28,7 @@ urlpatterns = patterns('',
     (r'^tsp/', include('tsp.urls')),
     (r'^analysis/', include('analysis.urls')),
     (r'^fishing/', include('fishing_layers.urls')),
+    (r'^loadshp/', include('lingcod.loadshp.urls')),
 
 )
 
