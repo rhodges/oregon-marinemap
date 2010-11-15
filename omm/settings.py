@@ -24,7 +24,8 @@ TEMPLATE_DIRS = ( os.path.realpath(os.path.join(os.path.dirname(__file__), 'temp
 INSTALLED_APPS += ( 'tsp', 
                     'analysis',
                     'fishing_layers',
-                    'omm_manipulators')
+                    'omm_manipulators',
+                    'non_consumptive')
 
 MPA_CLASS = 'tsp.models.AOI'
 ARRAY_CLASS = 'tsp.models.AOIArray'
