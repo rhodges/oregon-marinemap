@@ -1,110 +1,22 @@
-from lingcod.manipulators.manipulators import BaseManipulator, ClipToStudyRegionManipulator, ClipToShapeManipulator, manipulatorsDict
+from lingcod.manipulators.manipulators import BaseManipulator, ClipToStudyRegionManipulator, ClipToShapeManipulator, DifferenceFromShapeManipulator, manipulatorsDict
 from omm.omm_manipulators.models import *
-from lingcod.studyregion.models import StudyRegion
-#the following might be temporary for limited use in MyClipToShapeManipulator
 from django.contrib.gis.geos import GEOSGeometry
 from django.conf import settings
 from lingcod.common.utils import LargestPolyFromMulti
 
-#should be moved to settings? or just copied into lingcod.manipulators?
-really_small_area = .0000000000001
-
-#using the following to override incomplete ClipToShapeManipulator.manipulate method in lingcod
-#we can remove this class, method and reference thereof when Lingcod is next updated
-class MyClipToShapeManipulator(ClipToShapeManipulator):
-
-    def manipulate(self):
-        #extract target_shape geometry
-        target_shape = self.target_to_valid_geom(self.target_shape)
-        
-        #extract clip_against geometry
-        try:
-            clip_against = GEOSGeometry(self.clip_against)
-            clip_against.set_srid(settings.GEOMETRY_CLIENT_SRID)
-        except Exception, e:
-            raise self.InternalException("Exception raised in ClipToShapeManipulator while initializing geometry on self.clip_against: " + e.message)
-        
-        if not clip_against.valid:
-            raise self.InternalException("ClipToShapeManipulator: 'clip_against' is not a valid geometry")
-        
-        #intersect the two geometries
-        try:
-            clipped_shape = target_shape.intersection( clip_against )
-        except Exception, e:
-            raise self.InternalException("Exception raised in ClipToShapeManipulator while intersecting geometries: " + e.message)  
-        
-        #if there was no overlap (intersection was empty)
-        if clipped_shape.area < really_small_area:
-            status_html = self.do_template("2")
-            message = "intersection resulted in empty geometry"  #ALTERATION #1
-            #return self.result(clipped_shape, target_shape, status_html, message)
-            raise self.HaltManipulations(message, status_html)   #ALTERATION #2
-         
-        #if there was overlap
-        largest_poly = LargestPolyFromMulti(clipped_shape)
-        status_html = self.do_template("0")
-        #message = "'target_shape' was clipped successfully to 'clip_against'"
-        #return self.result(largest_poly, target_shape, status_html, message)
-        return self.result(largest_poly, status_html)
-
-
-class DifferenceFromShapeManipulator(BaseManipulator):
- 
-    def __init__(self, target_shape, clip_against=None, **kwargs):
-        self.target_shape = target_shape
-        self.diff_geom = clip_against
-    
-    def manipulate(self):
-        #extract target_shape geometry
-        target_shape = self.target_to_valid_geom(self.target_shape)
-
-        #extract diff_geom geometry
-        try:
-            diff_geom = GEOSGeometry(self.diff_geom)
-            diff_geom.set_srid(settings.GEOMETRY_CLIENT_SRID)
-        except Exception, e:
-            raise self.InternalException("Exception raised in DifferenceFromShapeManipulator while initializing geometry on self.diff_geom: " + e.message)
-        
-        if not diff_geom.valid:
-            raise self.InternalException("DifferenceFromShapeManipulator: 'diff_geom' is not a valid geometry")
-        
-        #determine the difference in the two geometries
-        try:
-            clipped_shape = target_shape.difference( diff_geom )
-        except Exception, e:
-            raise self.InternalException("Exception raised in DifferenceFromShapeManipulator while intersecting geometries: " + e.message)  
-        
-        #if there is no geometry left (difference was empty)
-        if clipped_shape.area < really_small_area:
-            status_html = self.do_template("2")
-            message = "difference resulted in empty geometry"
-            raise self.HaltManipulations(message, status_html)
-         
-        #if there was overlap
-        largest_poly = LargestPolyFromMulti(clipped_shape)
-        status_html = self.do_template("0")
-        return self.result(largest_poly, status_html)
-        
-    class Options:
-        name = 'DifferenceFromShape'
-        html_templates = {
-            '0':'manipulators/shape_clip.html', 
-            '2':'manipulators/outside_shape.html', 
-        }
-
-manipulatorsDict[DifferenceFromShapeManipulator.Options.name] = DifferenceFromShapeManipulator
-        
-        
-class ExcludeFederalWatersManipulator(MyClipToShapeManipulator):
+very_small_area = .0000000000001
+   
+class ExcludeFederalWatersManipulator(ClipToShapeManipulator):
 
     def __init__(self, target_shape, **kwargs):
+        self.zero = very_small_area
         self.target_shape = target_shape
         try:
             self.clip_against = EastOfTerritorialSeaLine.objects.current().geometry
             self.clip_against.transform(settings.GEOMETRY_CLIENT_SRID)
         except Exception, e:
             raise self.InternalException("Exception raised in ExcludeFederalWatersManipulator while obtaining exclude-from-federal-waters-manipulator geometry from database: " + e.message)    
-
+            
     class Options:    
         name = 'ExcludeFederalWatersManipulator'
         display_name = 'Exclude Federal Waters'
@@ -120,6 +32,7 @@ manipulatorsDict[ExcludeFederalWatersManipulator.Options.name] = ExcludeFederalW
 class ExcludeStateWatersManipulator(BaseManipulator):
 
     def __init__(self, target_shape, **kwargs):
+        self.zero = very_small_area
         self.target_shape = target_shape
         try:
             self.inter_geom = TerrestrialAndEstuaries.objects.current().geometry
@@ -160,7 +73,7 @@ class ExcludeStateWatersManipulator(BaseManipulator):
             raise self.InternalException("Exception raised in ExcludeStateWatersManipulator while intersecting geometries: " + e.message)  
         
         #if there is no geometry left (intersection was empty)
-        if clipped_shape.area < really_small_area:
+        if clipped_shape.area <= self.zero:
             largest_land_poly = None
         else: #there was overlap
             largest_land_poly = LargestPolyFromMulti(clipped_shape)
@@ -172,7 +85,7 @@ class ExcludeStateWatersManipulator(BaseManipulator):
             raise self.InternalException("Exception raised in ExcludeStateWatersManipulator while intersecting geometries: " + e.message)  
         
         #if there is no geometry left (difference was empty)
-        if clipped_shape.area < really_small_area:
+        if clipped_shape.area <= self.zero:
             largest_federal_waters_poly = None
         else: #there was overlap
             largest_federal_waters_poly = LargestPolyFromMulti(clipped_shape)
@@ -211,6 +124,7 @@ manipulatorsDict[ExcludeStateWatersManipulator.Options.name] = ExcludeStateWater
 class ExcludeTerrestrialManipulator(DifferenceFromShapeManipulator):
 
     def __init__(self, target_shape, **kwargs):
+        self.zero = very_small_area
         self.target_shape = target_shape
         try:
             self.diff_geom = TerrestrialAndEstuaries.objects.current().geometry
@@ -233,6 +147,7 @@ manipulatorsDict[ExcludeTerrestrialManipulator.Options.name] = ExcludeTerrestria
 class ExcludeEstuariesManipulator(DifferenceFromShapeManipulator):
 
     def __init__(self, target_shape, **kwargs):
+        self.zero = very_small_area
         self.target_shape = target_shape
         try:
             self.diff_geom = Estuaries.objects.current().geometry
