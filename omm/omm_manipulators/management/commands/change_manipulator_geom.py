@@ -8,7 +8,7 @@ from django.contrib.gis.gdal import DataSource
 from lingcod.common.utils import get_class
 import time
 
-manipulator_list = {'ExcludeFederalWatersManipulator': 'EastOfTerritorialSeaLine'}
+#manipulator_list = ['EastOfTerritorialSeaLine', 'TerrestrialAndEstuaries', 'Terrestrial', 'Estuaries']
 
 class Command(BaseCommand):
     help = """Switches from one manipulator geometry to another, (eventually this command will re-process the AOIs and expiring report caches).
@@ -16,15 +16,12 @@ class Command(BaseCommand):
     args = '[pk, manipulator]'
 
     def handle(self, pk, manipulator, **options):
-        manip_param = manipulator
-        if manipulator in manipulator_list.keys():
-            manipulator = manipulator_list[manipulator]
-        if manipulator not in manipulator_list.values():
-            raise Exception("%s is not one of the available manipulators." %manipulator)
-        manip_model = get_class("omm_manipulators.models.%s" %manipulator)
-        #manip_model = __import__("omm_manipulators.models")
-        #manip_model = getattr(manip_model, "models")
-        #manip_model = getattr(manip_model, manipulator)
+        #if manipulator not in manipulator_list:
+        #    raise Exception("%s is not one of the manipulator models defined for omm." %manipulator)
+        try:
+            manip_model = get_class("omm_manipulators.models.%s" %manipulator)
+        except:
+            raise Exception("%s is not one of the manipulator models defined for omm." %manipulator)
         
         # Turn them all off
         regions = manip_model.objects.all()
