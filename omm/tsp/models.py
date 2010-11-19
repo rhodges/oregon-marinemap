@@ -4,7 +4,7 @@ from django.contrib.gis.db import models
 from lingcod.mpa.models import Mpa as BaseMpa
 from lingcod.array.models import MpaArray as BaseMpaArray
 from lingcod.manipulators.manipulators import ClipToStudyRegionManipulator
-from omm_manipulators.manipulators import ClipToTerritorialSeaManipulator, ExcludeFederalWatersManipulator
+from omm_manipulators.manipulators import *
 
 #if the names of the following two classes are changed, the related settings should also be changed (MPA_CLASS, ARRAY_CLASS)
 
@@ -13,7 +13,7 @@ class AOI(BaseMpa):
     
     class Options:
         manipulators = []
-        optional_manipulators = [ ExcludeFederalWatersManipulator, ]
+        optional_manipulators = [ ExcludeTerrestrialManipulator, ExcludeFederalWatersManipulator, ExcludeStateWatersManipulator]
         #optional_manipulators = [ ClipToTerritorialSeaManipulator, ]
 
 class AOIArray(BaseMpaArray):

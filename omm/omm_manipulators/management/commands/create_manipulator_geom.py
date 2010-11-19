@@ -3,23 +3,22 @@ from optparse import make_option
 from django.contrib.gis.utils import LayerMapping
 from django.contrib.gis.gdal import DataSource
 #from lingcod.studyregion.models import StudyRegion
-#from omm_manipulators.models import EastOfTerritorialSeaLine
 from lingcod.common.utils import get_class
 
-manipulator_list = {'ExcludeFederalWatersManipulator': 'EastOfTerritorialSeaLine'}
+#manipulator_list = ['EastOfTerritorialSeaLine', 'TerrestrialAndEstuaries', 'Terrestrial', 'Estuaries']
 
 class Command(BaseCommand):
     help = """Creates a new study region from a shapefile containing a single multigeometry.
-            \n\tmanage.py create_manipulator_geom <path to shape> <manipulator or model>"""
+            \n\tmanage.py create_manipulator_geom <path to shape> <manipulator model>"""
     args = '[shapefile, manipulator]'
     
     def handle(self, shapefile, manipulator, *args, **options):
-        manip_param = manipulator
-        if manipulator in manipulator_list.keys():
-            manipulator = manipulator_list[manipulator]
-        if manipulator not in manipulator_list.values():
-            raise Exception("%s is not one of the manipulators defined for OMM." %manipulator)
-        manip_model = get_class("omm_manipulators.models.%s" %manipulator)
+        #if manipulator not in manipulator_list:
+        #    raise Exception("%s is not one of the manipulator models defined for omm." %manipulator)
+        try:
+            manip_model = get_class("omm_manipulators.models.%s" %manipulator)
+        except:
+            raise Exception("%s is not one of the manipulator models defined for omm." %manipulator)
             
         ds = DataSource(shapefile)
         if len(ds) != 1:
@@ -45,5 +44,5 @@ class Command(BaseCommand):
         print ""
         print "The manipulaotr geometry, %s, has been added to the %s model with primary key = %s" % (manip_geom.name, manipulator, manip_geom.pk)
         
-        print "To switch to this geometry, you will need to run 'manage.py change_manipulator_geom %s %s'" % (manip_geom.pk, manip_param)
+        print "To switch to this geometry, you will need to run 'manage.py change_manipulator_geom %s %s'" % (manip_geom.pk, manipulator)
         print ""
