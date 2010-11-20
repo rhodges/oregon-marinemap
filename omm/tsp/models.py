@@ -13,7 +13,7 @@ class AOI(BaseMpa):
     
     class Options:
         manipulators = []
-        optional_manipulators = [ ExcludeTerrestrialManipulator, ExcludeFederalWatersManipulator, ExcludeStateWatersManipulator]
+        optional_manipulators = [ ExcludeTerrestrialManipulator, ExcludeEstuariesManipulator, ExcludeFederalWatersManipulator, ExcludeStateWatersManipulator]
         #optional_manipulators = [ ClipToTerritorialSeaManipulator, ]
 
 class AOIArray(BaseMpaArray):

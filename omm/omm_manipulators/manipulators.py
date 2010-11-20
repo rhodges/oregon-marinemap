@@ -127,7 +127,7 @@ class ExcludeTerrestrialManipulator(DifferenceFromShapeManipulator):
         self.zero = very_small_area
         self.target_shape = target_shape
         try:
-            self.diff_geom = TerrestrialAndEstuaries.objects.current().geometry
+            self.diff_geom = Terrestrial.objects.current().geometry
             self.diff_geom.transform(settings.GEOMETRY_CLIENT_SRID)
         except Exception, e:
             raise self.InternalException("Exception raised in ExcludeTerrestrialManipulator while obtaining exclude-from-federal-waters-manipulator geometry from database: " + e.message)    
