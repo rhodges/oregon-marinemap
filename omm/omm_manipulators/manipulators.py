@@ -112,7 +112,7 @@ class ExcludeStateWatersManipulator(BaseManipulator):
     class Options:    
         name = 'ExcludeStateWatersManipulator'
         display_name = 'Exclude State Waters'
-        description = 'Removes any part of your shape that is not within state waters.'
+        description = 'Removes any part of your shape that is within state waters.'
 
         html_templates = {
             '0':'omm_manipulators/exclude_state_waters.html',
