@@ -38,7 +38,7 @@ class AOI(BaseMpa):
             #units based on the settings variable DISPLAY_AREA_UNITS (currently sq miles)
             msf.area_sq_mi = area_in_display_units(self.geometry_final)
             msf.author = self.user.username
-            msf.date_modified = self.date_modified
+            msf.aoi_modification_date = self.date_modified
             msf.save()
         return msf
     
@@ -68,6 +68,7 @@ class AOIShapefile(models.Model):
     area_sq_mi = models.FloatField(blank=True,null=True)
     author = models.CharField(blank=True, max_length=255,null=True)
     aoi = models.OneToOneField(AOI, related_name="aoi")
+    aoi_modification_date = models.DateTimeField(blank=True, null=True)
     date_modified = models.DateTimeField(blank=True, null=True, auto_now_add=True)
     objects = models.GeoManager()
 
