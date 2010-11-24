@@ -31,7 +31,7 @@
      <atom:link rel="alt" href="{% url array_shapefile a.array.id %}" title="as shapefile" type="application/shapefile" />
      {% endif %}
 
-     <atom:link rel="alt" href="{% url staticmap-show "default" %}?array={{a.array.id}}&amp;attachment=true" title="as image (PNG)" type="application/shapefile" />
+     <!-- <atom:link rel="alt" href="{% url staticmap-show "default" %}?array={{a.array.id}}&amp;attachment=true" title="as image (PNG)" type="application/shapefile" /> -->
      <Link>
       <href>{% absurl kmlapp-array-kmz input_array_id=a.array.id,session_key=session_key %}</href>
      </Link>
