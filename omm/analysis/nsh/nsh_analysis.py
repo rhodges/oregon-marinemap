@@ -56,6 +56,8 @@ def pdf_report(request, nsh, type, template='pdf_nsh_comprehensive_report.html')
     context = get_or_create_cache(nsh, type)
     html = render_to_string(template, context)
     result = StringIO.StringIO()
+    #NOTE:  the following results in an error unless an error in PIL/Image.py file (PIL 1.7) is modified
+    #       see omm_requirements.txt for further details
     pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), dest=result, link_callback=fetch_resources)
     if not pdf.err:
         return HttpResponse(result.getvalue(), mimetype='application/pdf')
