@@ -11,4 +11,5 @@ urlpatterns = patterns('lingcod.rest.views',
     url(r'^form/aoi/$', 'form_resources', {'form_class': AOIForm, 'create_title': 'Create a New Area of Inquiry'}, name='aoi_create_form'),
     url(r'^form/array/$', 'form_resources', {'form_class': ArrayForm, 'create_title': 'Create a New AOI Group'}, name='array_create_form'),
     url(r'shapefile/mpa/(?P<mpa_id_list_str>(\d+,?)+)/$', aoi_shapefile, name='mpa_shapefile'),
+    url(r'shapefile/array/(?P<array_id_list_str>(\d+,?)+)/$', array_shapefile,name='array_shapefile'),
 )
