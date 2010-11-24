@@ -16,15 +16,6 @@ class AOI(BaseMpa):
     def export_version(self):
         '''
         Port the AOIs attributes over to the AOIShapefile model so we can export the shapefile.
-        geometry = models.PolygonField(srid=settings.GEOMETRY_DB_SRID,blank=True,null=True)
-        name = models.CharField(max_length=255)
-        aoi_id_num = models.IntegerField(blank=True, null=True)
-        group = models.ForeignKey(MpaArray, null=True, blank=True)
-        group_name = models.CharField(blank=True, max_length=255, null=True)
-        area_sq_mi = models.FloatField(blank=True,null=True)
-        author = models.CharField(blank=True, max_length=255,null=True)
-        aoi = models.OneToOneField(MlpaMpa, related_name="aoi")
-        date_modified = models.DateTimeField(blank=True, null=True, auto_now_add=True)
         '''
         msf, created = AOIShapefile.objects.get_or_create(aoi=self)
         if created or msf.date_modified < self.date_modified:

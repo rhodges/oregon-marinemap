@@ -16,6 +16,9 @@ class NSHCache(models.Model):
             NSHCache.delete(entry)
         #save the new entry
         super(NSHCache, self).save(*args, **kwargs)
+        
+    class Meta:
+        app_label = 'analysis'
 
 
 #Used for Geographic Reports
@@ -31,6 +34,9 @@ class Cities(models.Model):
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="City Boundaries")
     objects = models.GeoManager()
+    
+    class Meta:
+        app_label = 'analysis'
     
 class Islands(models.Model):
     objectid = models.IntegerField()
@@ -49,7 +55,10 @@ class Islands(models.Model):
     shape_leng = models.FloatField()
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Islands")
-    objects = models.GeoManager()    
+    objects = models.GeoManager()  
+    
+    class Meta:
+        app_label = 'analysis'  
     
 class Ports(models.Model):
     objectid = models.IntegerField()
@@ -58,6 +67,9 @@ class Ports(models.Model):
     harbor = models.CharField(max_length=5)
     geometry = models.PointField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Oregon Ports")
     objects = models.GeoManager()
+    
+    class Meta:
+        app_label = 'analysis'
 
 class Counties(models.Model):
     objectid_1 = models.IntegerField()
@@ -67,7 +79,10 @@ class Counties(models.Model):
     shape_leng = models.FloatField()
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="County Boundaries")
-    objects = models.GeoManager()    
+    objects = models.GeoManager()  
+    
+    class Meta:
+        app_label = 'analysis'  
     
 class Shoreline(models.Model):
     objectid = models.IntegerField()
@@ -89,7 +104,10 @@ class Shoreline(models.Model):
     source_id = models.FloatField()
     shape_leng = models.FloatField()
     geometry = models.MultiLineStringField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Shoreline")
-    objects = models.GeoManager()    
+    objects = models.GeoManager() 
+    
+    class Meta:
+        app_label = 'analysis'   
     
 class RockyShores(models.Model):
     objectid = models.IntegerField()
@@ -111,7 +129,10 @@ class RockyShores(models.Model):
     shape_leng = models.FloatField()
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Rocky Shores")
-    objects = models.GeoManager()    
+    objects = models.GeoManager() 
+    
+    class Meta:
+        app_label = 'analysis'   
 
 #Used for Physical Reports    
     
@@ -126,7 +147,10 @@ class ClosedShoreline(models.Model):
     esi_ln_id = models.IntegerField()
     shape_leng = models.FloatField()
     geometry = models.MultiLineStringField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Closed Shoreline")
-    objects = models.GeoManager()    
+    objects = models.GeoManager() 
+    
+    class Meta:
+        app_label = 'analysis'   
     
 class Lithology(models.Model):
     objectid = models.IntegerField()
@@ -137,10 +161,16 @@ class Lithology(models.Model):
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Territorial Sea Lithology")
     objects = models.GeoManager()
     
+    class Meta:
+        app_label = 'analysis'
+    
 class Bathymetry(models.Model):
     depth = models.IntegerField() #formerly known as grid_code
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Bathymetry Polygon")
-    objects = models.GeoManager()    
+    objects = models.GeoManager()  
+    
+    class Meta:
+        app_label = 'analysis'  
     
 #Used for Biology Reports    
     
@@ -161,7 +191,10 @@ class PinnipedHaulouts(models.Model):
     ma_count = models.FloatField()
     ej_rookery = models.IntegerField()
     geometry = models.PointField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Pinniped Haulouts")
-    objects = models.GeoManager()    
+    objects = models.GeoManager() 
+    
+    class Meta:
+        app_label = 'analysis'   
     
 class SeabirdColonies(models.Model):
     objectid_1 = models.IntegerField()
@@ -217,6 +250,9 @@ class SeabirdColonies(models.Model):
     geometry = models.PointField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Seabird Colonies")
     objects = models.GeoManager()
     
+    class Meta:
+        app_label = 'analysis'
+    
 class Habitats(models.Model):
     objectid_1 = models.IntegerField()
     objectid_2 = models.FloatField()
@@ -240,7 +276,10 @@ class Habitats(models.Model):
     shape_leng = models.FloatField()
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Seafloor Habitats")
-    objects = models.GeoManager()    
+    objects = models.GeoManager()   
+    
+    class Meta:
+        app_label = 'analysis' 
     
 class KelpSurveys(models.Model):
     objectid = models.IntegerField()
@@ -256,7 +295,10 @@ class KelpSurveys(models.Model):
     shape_leng = models.FloatField()
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Kelp Surveys")
-    objects = models.GeoManager()    
+    objects = models.GeoManager()   
+    
+    class Meta:
+        app_label = 'analysis' 
     
 class GeologicalHabitat(models.Model):
     objectid_1 = models.IntegerField()
@@ -292,7 +334,10 @@ class GeologicalHabitat(models.Model):
     shape_le_2 = models.FloatField()
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Surficial Geological Habitats")
-    objects = models.GeoManager()    
+    objects = models.GeoManager()   
+    
+    class Meta:
+        app_label = 'analysis' 
     
 # Used for Human Considerations Reports
 
@@ -313,7 +358,10 @@ class StateParks(models.Model):
     shape_leng = models.FloatField()
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Sate Parks")
-    objects = models.GeoManager()    
+    objects = models.GeoManager() 
+    
+    class Meta:
+        app_label = 'analysis'   
     
 class PublicAccess(models.Model):
     objectid = models.IntegerField()
@@ -388,7 +436,10 @@ class PublicAccess(models.Model):
     mgmt = models.CharField(max_length=55)
     city = models.CharField(max_length=55)
     geometry = models.PointField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Public Access Points")
-    objects = models.GeoManager()    
+    objects = models.GeoManager()   
+    
+    class Meta:
+        app_label = 'analysis' 
     
 class DMDSites(models.Model):
     objectid = models.IntegerField()
@@ -399,7 +450,10 @@ class DMDSites(models.Model):
     shape_leng = models.FloatField()
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Dredge Material Disposal Sites")
-    objects = models.GeoManager()    
+    objects = models.GeoManager()  
+    
+    class Meta:
+        app_label = 'analysis'  
     
 class Outfalls(models.Model):
     objectid = models.IntegerField()
@@ -421,13 +475,19 @@ class Outfalls(models.Model):
     perm_descr = models.CharField(max_length=254)
     geometry = models.PointField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="NPDES Outfalls")
     objects = models.GeoManager() 
+    
+    class Meta:
+        app_label = 'analysis'
 
 class UnderseaCables(models.Model):
     objectid = models.IntegerField()
     name = models.CharField(max_length=30)
     shape_leng = models.FloatField()
     geometry = models.MultiLineStringField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Undersea Cables")
-    objects = models.GeoManager()    
+    objects = models.GeoManager()   
+    
+    class Meta:
+        app_label = 'analysis' 
     
 class Towlanes(models.Model):
     objectid = models.IntegerField()
@@ -442,7 +502,10 @@ class Towlanes(models.Model):
     dateapplic = models.CharField(max_length=20, null=True, blank=True)
     shape_leng = models.FloatField()
     geometry = models.MultiLineStringField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Towlanes")
-    objects = models.GeoManager()    
+    objects = models.GeoManager() 
+    
+    class Meta:
+        app_label = 'analysis'   
     
 class WaveEnergyPermits(models.Model):
     objectid = models.IntegerField()
@@ -465,6 +528,9 @@ class WaveEnergyPermits(models.Model):
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Wave Energy Preliminary Permits")
     objects = models.GeoManager() 
     
+    class Meta:
+        app_label = 'analysis'
+    
 class MarineManagedAreas(models.Model):
     objectid = models.IntegerField()
     shape_leng = models.FloatField()
@@ -473,6 +539,9 @@ class MarineManagedAreas(models.Model):
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="State Marine Managed Areas")
     objects = models.GeoManager()   
+    
+    class Meta:
+        app_label = 'analysis'
 
 class FisheryClosures(models.Model):
     objectid = models.IntegerField()
@@ -480,7 +549,10 @@ class FisheryClosures(models.Model):
     shape_leng = models.FloatField()
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Fishery Closures")
-    objects = models.GeoManager()    
+    objects = models.GeoManager()   
+    
+    class Meta:
+        app_label = 'analysis' 
     
 class ConservationAreas(models.Model):
     objectid = models.IntegerField()
@@ -490,4 +562,7 @@ class ConservationAreas(models.Model):
     shape_leng = models.FloatField()
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Conservation Areas")
-    objects = models.GeoManager()    
+    objects = models.GeoManager()   
+    
+    class Meta:
+        app_label = 'analysis' 

@@ -1,5 +1,5 @@
 from analysis.models import NSHCache
-from utils import ensure_type
+from analysis.utils import ensure_type
 
 '''
 Checks to see if cache for a given nsh and type exists in NSHCache table
