@@ -5,7 +5,7 @@ from nsh_geography import display_geo_analysis, run_geo_analysis
 from nsh_physical import display_phy_analysis, run_phy_analysis
 from nsh_biology import display_bio_analysis, run_bio_analysis
 from nsh_human import display_hum_analysis, run_hum_analysis
-from utils import type_is_geo, type_is_phy, type_is_bio, type_is_hum
+from analysis.utils import type_is_geo, type_is_phy, type_is_bio, type_is_hum
 from nsh_cache import has_cache, get_cache
 
 '''
