@@ -31,7 +31,7 @@ class AOI(BaseMpa):
             msf.name = self.name
             msf.aoi_id_num = self.pk
             msf.geometry = self.geometry_final
-            short_name = self.name
+            #short_name = self.name
             if self.array:
                 msf.group = self.array
                 msf.group_name = self.array.name
@@ -53,7 +53,13 @@ class AOI(BaseMpa):
         #optional_manipulators = [ ClipToTerritorialSeaManipulator, ]
 
 class AOIArray(BaseMpaArray):
-    pass
+        
+    @property
+    def export_query_set(self):
+        for aoi in self.mpa_set.all():
+            aoi.export_version # update these records
+        qs = AOIShapefile.objects.filter(group=self)
+        return qs
     
 
 class AOIShapefile(models.Model):
