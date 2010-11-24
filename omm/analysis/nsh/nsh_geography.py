@@ -130,9 +130,11 @@ Determines the Ratio for the given nearshore habitat area and the territorial se
 Called by display_geo_analysis
 '''    
 def get_ratio(nsh):
-    nsh_area = nsh.geometry_final.area
+    #nsh_area = nsh.geometry_final.area
     from lingcod.studyregion.models import StudyRegion
-    tsea_area = StudyRegion.objects.current().geometry.area
+    sr_geom = StudyRegion.objects.current().geometry
+    tsea_area = sr_geom.area
+    nsh_area = nsh.geometry_final.intersection(sr_geom).area
     ratio = nsh_area / tsea_area * 100
     return ratio     
   
