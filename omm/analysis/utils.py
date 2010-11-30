@@ -2,6 +2,10 @@ from django.contrib.contenttypes.models import ContentType
 from lingcod.unit_converter.models import length_in_display_units
     
 '''
+'''    
+default_value = '---'
+
+'''
 ensures the given type is either of the form that is to be used in the db, or is None
 '''
 def ensure_type(type):
@@ -83,8 +87,6 @@ Returns a list of shape names or a list containing a single default value ('---'
 Requires the given model to have a field called 'name'
 '''    
 def get_intersecting_geometries(aoi, model_name):
-    #import pdb
-    #pdb.set_trace()
     model_class = ContentType.objects.get(model=model_name).model_class()
     shapes = model_class.objects.all()
     intersecting_shapes = [shape.name for shape in shapes if shape.geometry.intersects(aoi.geometry_final)]

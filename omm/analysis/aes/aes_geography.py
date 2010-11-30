@@ -4,8 +4,9 @@ from django.template import RequestContext
 from analysis.models import *
 from settings import *
 from lingcod.unit_converter.models import area_in_display_units, length_in_display_units
-from analysis.utils import ensure_type, get_nearest_geometries_with_distances#, get_intersecting_geometries
+from analysis.utils import ensure_type, get_nearest_geometries_with_distances, get_intersecting_geometries, default_value
 from aes_cache import has_cache, get_cache, create_cache
+
 
 '''
 Runs analysis for Geographic report
@@ -50,16 +51,7 @@ def run_geo_analysis(aes, type):
     #cache these results
     create_cache(aes, type, context)   
     return context
-    
-def get_intersecting_geometries(aoi, model_name):
-    #import pdb
-    #pdb.set_trace()
-    from django.contrib.contenttypes.models import ContentType
-    model_class = ContentType.objects.get(model=model_name).model_class()
-    shapes = model_class.objects.all()
-    intersecting_shapes = [shape.name for shape in shapes if shape.geometry.intersects(aoi.geometry_final)]
-    return intersecting_shapes    
-    
+       
 '''
 Determines the Adjacent Counties for the given nearshore habitat shape
 Called by display_geo_analysis

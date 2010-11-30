@@ -153,26 +153,26 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="bioheader" colspan="4">Intertidal Biological Characteristics</th>
+            <th class="bioheader" colspan="6">Intertidal Biological Characteristics</th>
         </tr>
         <tr>
-            <th>Pinniped Haulouts</th>
-            <th>Stellar Sea Lion Rookeries</th>
+            <th colspan="2">Pinniped Haulouts</th>
+            <th colspan="2">Steller Sea Lion Rookeries</th>
             <th colspan="2">Bird Colonies</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             {% if bio.num_haulouts == 0 %}
-            <td>No ({{bio.num_haulouts}} haulouts)</td>
+            <td colspan="2">No ({{bio.num_haulouts}} haulouts)</td>
             {% else %}
-            <td>Yes ({{bio.num_haulouts}} haulouts)</td>
+            <td colspan="2">Yes ({{bio.num_haulouts}} haulouts)</td>
             {% endif %}
             
             {% if bio.num_rookeries == 0 %}
-            <td>No ({{bio.num_rookeries}} rookeries)</td>
+            <td colspan="2">No ({{bio.num_rookeries}} rookeries)</td>
             {% else %}
-            <td>Yes ({{bio.num_rookeries}} rookeries)</td>
+            <td colspan="2">Yes ({{bio.num_rookeries}} rookeries)</td>
             {% endif %}
             
             {% if bio.bird_colonies == 0 %}
@@ -185,6 +185,7 @@
     <thead>
         <tr>
             <th colspan="2">Pinniped Haulout Details</th>
+            <th colspan="2">Steller Sea Lion Critical Habitats</th>
             <th colspan="2">Bird Colony Details</th>
         </tr>
     </thead>
@@ -199,6 +200,14 @@
             </br>
         {% endfor %}
         </td>
+        
+        <td class="top" colspan="2">
+        {% if bio.num_sealion_habs != 0 %}
+        {% for hab in bio.sealion_habs %}
+            {{hab.0}} , ({{hab.1}})</br>
+        {% endfor %}
+        {% endif %}
+        </td>        
         
         <td colspan="2">
         {% for details in bio.bird_details %}

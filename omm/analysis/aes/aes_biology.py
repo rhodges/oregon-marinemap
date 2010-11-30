@@ -4,10 +4,9 @@ from django.template import RequestContext
 from analysis.models import *
 from settings import *
 from lingcod.unit_converter.models import length_in_display_units, area_in_display_units
-from analysis.utils import ensure_type
+from analysis.utils import ensure_type, default_value
 from aes_cache import has_cache, get_cache, create_cache
 
-default_value = '---'
 
 '''
 Runs analysis for Biological report
@@ -34,6 +33,8 @@ def run_bio_analysis(aes, type):
     num_haulouts, haulout_details = get_haulout_details(aes)
     #get stellar sea lion rookery details
     num_rookeries = get_num_rookeries(aes)
+    #get stellar sea lion critical habitat details
+    num_sealion_habs, sealion_habs = get_sealion_habitats(aes)
     #get bird colony details
     num_colonies, bird_details = get_bird_colony_details(aes)
     #get habitat types and proportions
@@ -45,10 +46,20 @@ def run_bio_analysis(aes, type):
     #get seagrass area
     seagrass_area = get_seagrass_area(aes)
     #compile context
-    context = {'aes': aes, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'fish_list': fish_list, 'kelp_data': kelp_data, 'seagrass_area': seagrass_area}
+    context = {'aes': aes, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'num_sealion_habs': num_sealion_habs, 'sealion_habs': sealion_habs, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'fish_list': fish_list, 'kelp_data': kelp_data, 'seagrass_area': seagrass_area}
     #cache these results
     create_cache(aes, type, context)   
     return context
+    
+ 
+def get_sealion_habitats(aes):
+    sealion_habitats = StellerHabitats.objects.all()
+    inter_habs = [hab for hab in sealion_habitats if hab.geometry.intersects(aes.geometry_final)==True]
+    hab_tuples = [(hab.name, hab.type) for hab in inter_habs if hab.geometry.intersects(aes.geometry_final)==True]
+    hab_tuples.sort()
+    num_habs = len(hab_tuples)
+    return num_habs, hab_tuples
+        
     
 def get_seagrass_area(aes):
     seagrass = Seagrass.objects.all()

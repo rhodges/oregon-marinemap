@@ -4,10 +4,9 @@ from django.template import RequestContext
 from analysis.models import *
 from settings import *
 from lingcod.unit_converter.models import length_in_display_units, area_in_display_units
-from analysis.utils import ensure_type
+from analysis.utils import ensure_type, default_value
 from nsh_cache import has_cache, get_cache, create_cache
 
-default_value = '---'
 
 '''
 Runs analysis for Physical report
