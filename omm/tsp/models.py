@@ -42,6 +42,7 @@ class AOI(BaseMpa):
         manipulators = []
         optional_manipulators = [ ExcludeTerrestrialManipulator, ExcludeEstuariesManipulator, ExcludeFederalWatersManipulator, ExcludeStateWatersManipulator]
         #optional_manipulators = [ ClipToTerritorialSeaManipulator, ]
+        geometry_input_methods = ['load_shp']
 
 class AOIArray(BaseMpaArray):
         
