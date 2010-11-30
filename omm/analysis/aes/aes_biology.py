@@ -42,11 +42,22 @@ def run_bio_analysis(aes, type):
     fish_list = get_fish_list(aes)
     #get kelp survey data
     kelp_data = get_kelp_data(aes)
+    #get seagrass area
+    seagrass_area = get_seagrass_area(aes)
     #compile context
-    context = {'aes': aes, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'fish_list': fish_list, 'kelp_data': kelp_data}
+    context = {'aes': aes, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'fish_list': fish_list, 'kelp_data': kelp_data, 'seagrass_area': seagrass_area}
     #cache these results
     create_cache(aes, type, context)   
     return context
+    
+def get_seagrass_area(aes):
+    seagrass = Seagrass.objects.all()
+    inter_grass = [grass for grass in seagrass if grass.geometry.intersects(aes.geometry_final)==True]
+    area_of_intersect = 0.0
+    for grass in inter_grass:
+        area_of_intersect += grass.geometry.intersection(aes.geometry_final).area
+    area_of_intersect_converted_units = area_in_display_units(area_of_intersect)
+    return area_of_intersect_converted_units
     
 '''
 Determines the Pinniped Haulout Details for the given nearshore habitat shape

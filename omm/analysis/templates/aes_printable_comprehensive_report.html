@@ -1,0 +1,539 @@
+<h1 align="center">{{ geo.nsh.name }} Comprehensive Analysis Report</h1>
+
+<div class="img" align="middle" >
+    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ geo.nsh.id }}&amp;autozoom=true&amp;width=308&amp;height=400">
+    &nbsp; &nbsp;
+    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ geo.nsh.id }}&amp;width=154&amp;height=200">
+</div>
+
+<div class="freetext">
+<h4>Report Summary</h4>
+<table class='allowed_uses'>
+<tr><td width=150>Type:</td><td>Comprehensive</td></tr>
+<tr><td width=150>Nearshore Habitat:</td><td>{{ geo.nsh.name }}</td></tr>
+<tr><td width=150>ID #:</td><td>{{ geo.nsh.id }}</td></tr>
+</table>
+</div>
+
+<div class='freetext'>
+
+<!-- Geographic Report -->
+
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="geoheader" colspan="4">Geographic Setting</th>
+        </tr>
+        <tr>
+            <th>Adjacent County</th>
+            <th>Nearest Ports</th>
+            <th>Nearest Incorporated Cities</th>
+            <th>Nearest Rocky Shore Areas</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{geo.county.0}}</td>
+            <td>{{geo.ports.0.0}}  ({{geo.ports.0.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.cities.0.0}}  ({{geo.cities.0.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.rockyshores.0.0}}  ({{geo.rockyshores.0.1|floatformat:'1'}} {{geo.length_units}})</td>
+        </tr>
+        <tr>
+            <td>{{geo.county.1}}</td>
+            <td>{{geo.ports.1.0}}  ({{geo.ports.1.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.cities.1.0}}  ({{geo.cities.1.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.rockyshores.1.0}}  ({{geo.rockyshores.1.1|floatformat:'1'}} {{geo.length_units}})</td>
+        </tr>
+        <tr>
+            <td>{{geo.county.2}}</td>
+            <td>{{geo.ports.2.0}}  ({{geo.ports.2.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.cities.2.0}}  ({{geo.cities.2.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.rockyshores.2.0}}  ({{geo.rockyshores.2.1|floatformat:'1'}} {{geo.length_units}})</td>
+        </tr>
+    </tbody>
+</table>
+
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="geoheader" colspan="5">General Site Characteristics</th>
+        </tr>
+        <tr>
+            <th>Area</th>
+            <th>Perimeter</th>
+            <th>Intertidal</th>
+            <th>Islands</th>
+            <th>Percent of Territorial Sea</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{geo.area|floatformat:'2'}} ({{geo.area_units}})</td>
+            <td>{{geo.perimeter|floatformat:'2'}} ({{geo.length_units}})</td>
+            <td>{{geo.intertidal}}</td>
+            <td>{{geo.islands}}</td>
+            <td>{{geo.ratio|floatformat:'2'}} %</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Physical Report -->
+
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="phyheader" colspan="7">Intertidal Physical Characteristics</th>
+        </tr>
+        <tr>
+            <th>Length of Intertidal Shoreline</th>
+            <th>Percent of Oregon Coast Shoreline</th>
+            <th colspan="3">Shoreline Types & Proportions</th>
+            <th>Number of Islands</th>
+            <th>Total Island Area</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{phy.length|floatformat:'2'}} ({{phy.length_units}})</td>
+            {% if phy.percent_shoreline == phy.default_value %}
+            <td>{{phy.default_value}}</td>
+            {% else %}
+            <td>{{phy.percent_shoreline|floatformat:'2'}} %</td>
+            {% endif %}
+            <td colspan="3">
+                {% for proportion in phy.shoreline_proportions %}
+                    {{proportion.0|floatformat:'0'}}% &nbsp; &nbsp; {{proportion.1}} &nbsp; &nbsp; ({{proportion.2|floatformat:'2'}} {{phy.length_units}}) </br>
+                {% endfor %}
+            </td>
+            <td>{{phy.islands}} islands</td>
+            {% if phy.island_area == phy.default_value %}
+            <td>{{phy.default_value}}</td>
+            {% else %}
+            <td>{{phy.island_area|floatformat:'3'}} ({{phy.area_units}})</td>
+            {% endif %}
+        </tr>
+    </tbody>
+</table>
+
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="phyheader" colspan="6">Subtidal Physical Characteristics</th>
+        </tr>
+        <tr>
+            <th>Subtidal Area</th>
+            <th>Percent Shallow <br/>Percent Deep</th>
+            <th colspan="2">Seafloor Lithology</th>
+            <th>Average Depth</th>
+            <th>Proximity to Shore</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{phy.subtidal_area|floatformat:'1'}} ({{phy.area_units}})</td>
+            <td>{{phy.perc_shallow|floatformat:'1'}} % &nbsp; shallow<br/> {{phy.perc_deep|floatformat:'1'}} % &nbsp; deep</td>
+            <td colspan="2">
+                {% for proportion in phy.lithology_proportions %}
+                    {{proportion.0|floatformat:'1'}}% &nbsp; {{proportion.1}} &nbsp; ({{proportion.2|floatformat:'2'}} {{phy.length_units}}) </br>
+                {% endfor %}
+            </td>
+            <td>{{phy.average_depth|floatformat:'2'}} (meters)</td>
+            <td>{{phy.distance_to_shore|floatformat:'1'}} ({{phy.length_units}})</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Biology Report -->
+
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="bioheader" colspan="4">Intertidal Biological Characteristics</th>
+        </tr>
+        <tr>
+            <th>Pinniped Haulouts</th>
+            <th>Stellar Sea Lion Rookeries</th>
+            <th colspan="2">Bird Colonies</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% if bio.num_haulouts == 0 %}
+            <td>No ({{bio.num_haulouts}} haulouts)</td>
+            {% else %}
+            <td>Yes ({{bio.num_haulouts}} haulouts)</td>
+            {% endif %}
+            
+            {% if bio.num_rookeries == 0 %}
+            <td>No ({{bio.num_rookeries}} rookeries)</td>
+            {% else %}
+            <td>Yes ({{bio.num_rookeries}} rookeries)</td>
+            {% endif %}
+            
+            {% if bio.bird_colonies == 0 %}
+            <td colspan="2">No ({{bio.bird_colonies}} colonies) &nbsp;</td>
+            {% else %}
+            <td colspan="2">Yes ({{bio.bird_colonies}} colonies) &nbsp;</td>
+            {% endif %}
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th colspan="2">Pinniped Haulout Details</th>
+            <th colspan="2">Bird Colony Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td class="top" colspan="2">
+        {% for site in bio.haulout_sites %}
+            {{site.0.0}} , ({{site.0.1}})</br>
+            {% for species in site.1 %}
+                &nbsp; &nbsp; &nbsp; {{species}} </br>
+            {% endfor %}
+            </br>
+        {% endfor %}
+        </td>
+        
+        <td colspan="2">
+        {% for details in bio.bird_details %}
+            {{details.0.0}} , (Colony #{{details.0.1}})</br>
+            {% for bird in details.1 %}
+                &nbsp; &nbsp; &nbsp; {{bird}}</br>
+            {% endfor %}
+            </br>
+        {% endfor %}
+        </td>
+            
+        </tr>
+    </tbody>
+</table>
+
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="bioheader" colspan="5">Subtidal Biological Characteristics</th>
+        </tr>
+        <tr>
+            <th>Habitat Types & Proportions</th>
+            <th>Predicted Fish Species <br></br>(Provided by <a target="_blank" href="http://www.nwfsc.noaa.gov/">NOAA's Northwest Fisheries Science Center)</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="top">
+            {% for details in bio.habitat_proportions %}
+                {{details.0|floatformat:'2'}} % &nbsp; {{details.1}} &nbsp; ({{details.2|floatformat:'2'}} {{bio.area_units}})</br>
+            {% endfor %}
+            </td>
+            <td>
+            {% for fish in bio.fish_list %}
+                {{fish}}</br>
+            {% endfor %}
+            </td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th>Kelp Survey Year</th>
+            <th>Kelp Proportions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if bio.kelp_data.0.2 == bio.default_value %}
+            <tr>
+                <td>{{bio.kelp_data.0.0}}</td>
+                <td></td>
+            </tr>
+        {% else %}
+            {% for data in bio.kelp_data %}
+            <tr class="{% cycle '' 'grey' %}">
+                <td>{{data.0}}</td>
+                <td>{{data.1|floatformat:'2'}} {{bio.area_units}} &nbsp; ({{data.2|floatformat:'2'}} % of Proposed Site)</td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+    </tbody>
+    <thead>
+        <tr>
+            <th>Seagrass Area</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="{% cycle '' 'grey' %}">
+            <td>{{seagrass_area|floatformat:'2'}} {{area_units}}</td>
+        </tr>
+        <tr class="{% cycle '' 'grey' %}">
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Human Uses Report -->
+
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="humheader" colspan="2">Community & Recreational Considerations</th>
+        </tr>
+        <tr>
+            <th>Nearest State Parks</th>
+            <th>Nearest Public Access</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+            {% for park in hum.parks %}
+                {{park.0}} State Park &nbsp; ({{park.1|floatformat:'2'}} {{hum.length_units}})</br>
+            {% endfor %}
+            </td>
+            <td>
+            {% for site in hum.access_sites %}
+                {{site.0}} &nbsp; ({{site.1|floatformat:'1'}} {{hum.length_units}})</br>
+            {% endfor %}
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="humheader" colspan="5">Existing or Proposed Transportation & Infrasructure Considerations</th>
+        </tr>
+        <tr>
+            <th>Dredge Materials Disposal</th>
+            <th>NPDES Outfall</th>
+            <th>Undersea Cables</th>
+            <th>Towlanes</th>
+            <th>Wave Energy</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{hum.dmd_data.0}}</td>
+            <td>{{hum.outfall_data.0}}</td>
+            <td>{{hum.cable_data.0}}</td>
+            <td>{{hum.towlanes}}</td>
+            <td>{{hum.wave_energy_data.0}}</td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            {% if hum.dmd_data.0 == 'Yes' %}
+                <th>Intersecting DMD Sites</th>
+            {% else %}
+                <th>Closest DMD Sites</th>
+            {% endif %}
+            
+            {% if hum.outfall_data.0 == 'Yes' %}
+                <th>Intersecting Outfall Sites</th>
+            {% else %}
+                <th>Closest Outfall</th>
+            {% endif %}
+            
+            {% if hum.cable_data.0 == 'Yes' %}
+                <th>Intersecting Cables</th>
+            {% else %}
+                <th>Closest Cable</th>
+            {% endif %}
+            
+            <th></th>
+            
+            {% if hum.wave_energy_data.0 == 'Yes' %}
+                <th>Intersecting Wave Energy</th>
+            {% else %}
+                <th>Closest Wave Energy</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                {% if hum.dmd_data.0 == 'Yes' %}
+                    {% for data in hum.dmd_data.1 %}
+                        {{data}}</br>
+                    {% endfor %}
+                {% else %}
+                    {{hum.dmd_data.1.0}} ({{hum.dmd_data.1.1|floatformat:'2'}} {{hum.length_units}})
+                {% endif %}
+            </td>
+            <td>
+                {% if hum.outfall_data.0 == 'Yes' %}
+                    {% for data in hum.outfall_data.1 %}
+                        {{data}}</br>
+                    {% endfor %}
+                {% else %}
+                    {{hum.outfall_data.1.0}} ({{hum.outfall_data.1.1|floatformat:'2'}} {{hum.length_units}})
+                {% endif %}
+            </td>
+            <td>
+                {% if hum.cable_data.0 == 'Yes' %}
+                    {% for data in hum.cable_data.1 %}
+                        {{data}}</br>
+                    {% endfor %}
+                {% else %}
+                    {{hum.cable_data.1.0}} ({{hum.cable_data.1.1|floatformat:'2'}} {{hum.length_units}})
+                {% endif %}
+            </td>
+            <td></td>
+            <td>
+                {% if hum.wave_energy_data.0 == 'Yes' %}
+                    {% for data in hum.wave_energy_data.1 %}
+                        {{data}}</br>
+                    {% endfor %}
+                {% else %}
+                    {{hum.wave_energy_data.1.0.0}} ({{hum.wave_energy_data.1.0.1|floatformat:'2'}} {{hum.length_units}})
+                {% endif %}
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="humheader" colspan="4">Fishery Considerations</th>
+        </tr>
+        <tr>
+            <th>Proximity to Ports</th>
+            <th>Proximity to Existing State MMAs</th>
+            <th>Proximity to ODFW Closures</th>
+            <th>Proximity to EFH Conservation Areas</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                {% for port in hum.nearest_ports %}
+                    {{port.0}} ({{port.1|floatformat:'1'}} {{hum.length_units}})</br>
+                {% endfor %}
+            </td>
+            <td>
+                {% for mma in hum.nearest_mmas %}
+                    {{mma.0}} ({{mma.1|floatformat:'1'}} {{hum.length_units}})</br>
+                {% endfor %}
+            </td>
+            <td>
+                {% for closure in hum.nearest_closures %}
+                    {{closure.0}} ({{closure.1|floatformat:'1'}} {{hum.length_units}})</br>
+                {% endfor %}
+            </td>
+            <td>
+                {% for area in hum.nearest_conservation_areas %}
+                    {{area.0}} ({{area.1|floatformat:'1'}} {{hum.length_units}})</br>
+                {% endfor %}
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<br></br>
+<br></br>
+
+</div>
+
+<style type="text/css">
+div.img {
+    margin-left: auto;
+    margin-right: auto;
+    zoom: 80%;
+}
+
+table.marinemap-table {
+    font-size:12px;
+    width:100%;
+    border:solid 1px #fff;
+    margin:3px;
+    padding-top:4px;
+}
+
+table.marinemap-table th.geoheader {
+    background-color:#518E58;
+    color:#B0B0B0;
+    font-family:helvetica;
+    font-weight:bold;
+}
+
+table.marinemap-table th.phyheader {
+    background-color:#4D50DF;
+    color:#B0B0B0;
+    font-family:helvetica;
+    font-weight:bold;
+}
+
+table.marinemap-table th.bioheader {
+    background-color:#95291A;
+    color:#B0B0B0;
+    font-family:helvetica;
+    font-weight:bold;
+}
+
+table.marinemap-table th.humheader {
+    background-color:#FEAB30;
+    color:#F0F0F0;
+    font-family:helvetica;
+    font-weight:bold;
+}
+
+table.marinemap-table th {
+    background-color:#D0D0D0;
+    color:#344E63;
+    font-weight:bold;
+}
+
+table.marinemap-table th.left {
+    background-color:#D0D0D0;
+    color:#344E63;
+    font-weight:bold;
+    text-align:left;
+}
+
+table.marinemap-table td {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    text-align:center;
+}
+
+table.marinemap-table td.left {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    text-align:left;
+    vertical-align: text-top;
+}
+
+table.marinemap-table td.top {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    vertical-align: text-top;
+}
+
+table.marinemap-table thead tr {
+    background:#FAFAFA url(../images/toolbar-bg.png) repeat-x scroll left bottom;
+    text-align:center;
+}
+
+table.marinemap-table tbody {
+    background-color:white;
+}
+
+table.marinemap-table tr.zebra {
+    background-color:#eee;
+}
+</style>
+
+
