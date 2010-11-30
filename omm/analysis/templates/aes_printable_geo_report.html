@@ -1,0 +1,145 @@
+<h1 align="center">{{ aes.name }} Geography Analysis Report</h1>
+
+<div class="img" align="middle">
+    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ aes.id }}&amp;autozoom=true&amp;width=308&amp;height=400">
+    &nbsp; &nbsp;
+    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ aes.id }}&amp;width=154&amp;height=200">
+</div>
+
+<div class="freetext">
+<h4>Report Summary</h4>
+<table class='allowed_uses'>
+<tr><td width=150>Type:</td><td>Geography</td></tr>
+<tr><td width=150>Nearshore Habitat:</td><td>{{ aes.name }}</td></tr>
+<tr><td width=150>ID #:</td><td>{{ aes.id }}</td></tr>
+</table>
+</div>
+
+<div class='freetext'>
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="geoheader" colspan="4">Geographic Setting</font></th>
+        </tr>
+        <tr>
+            <th class="left">Adjacent County</th>
+            <th class="left">Nearest Ports</th>
+            <th class="left">Nearest Incorporated Cities</th>
+            <th class="left">Nearest Rocky Shore Areas</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="left">{{county.0}}</td>
+            <td class="left">{{ports.0.0}}  ({{ports.0.1|floatformat:'1'}} {{length_units}})</td>
+            <td class="left">{{cities.0.0}}  ({{cities.0.1|floatformat:'1'}} {{length_units}})</td>
+            <td class="left">{{rockyshores.0.0}}  ({{rockyshores.0.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <tr>
+            <td class="left">{{county.1}}</td>
+            <td class="left">{{ports.1.0}}  ({{ports.1.1|floatformat:'1'}} {{length_units}})</td>
+            <td class="left">{{cities.1.0}}  ({{cities.1.1|floatformat:'1'}} {{length_units}})</td>
+            <td class="left">{{rockyshores.1.0}}  ({{rockyshores.1.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <tr>
+            <td class="left">{{county.2}}</td>
+            <td class="left">{{ports.2.0}}  ({{ports.2.1|floatformat:'1'}} {{length_units}})</td>
+            <td class="left">{{cities.2.0}}  ({{cities.2.1|floatformat:'1'}} {{length_units}})</td>
+            <td class="left">{{rockyshores.2.0}}  ({{rockyshores.2.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+    </tbody>
+</table>
+
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="geoheader" colspan="5">General Site Characteristics</font></th>
+        </tr>
+        <tr>
+            <th>Area</th>
+            <th>Perimeter</th>
+            <th>Intertidal</th>
+            <th>Islands</th>
+            <th>Percent of Territorial Sea</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{area|floatformat:'2'}} ({{area_units}})</td>
+            <td>{{perimeter|floatformat:'2'}} ({{length_units}})</td>
+            <td>{{intertidal}}</td>
+            <td>{{islands}}</td>
+            <td>{{ratio|floatformat:'2'}} %</td>
+        </tr>
+    </tbody>
+</table>
+<br></br>
+
+</div>
+
+<style type="text/css">
+div.img {
+    margin-left: auto;
+    margin-right: auto;
+    zoom: 80%;
+}
+
+table.marinemap-table {
+    font-size:12px;
+    width:100%;
+    border:solid 1px #ccc;
+    margin:5px;
+    padding-top:4px;
+}
+
+table.marinemap-table th.geoheader {
+    background-color:#518E58;
+    color:#B0B0B0;
+    font-family:helvetica;
+    font-weight:bold;
+}
+
+table.marinemap-table th {
+    background-color:#D0D0D0;
+    color:#344E63;
+    font-weight:bold;
+}
+
+table.marinemap-table th.left {
+    background-color:#D0D0D0;
+    color:#344E63;
+    font-weight:bold;
+    text-align:left;
+}
+
+table.marinemap-table td {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    text-align:center;
+}
+
+table.marinemap-table td.left {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    text-align:left;
+}
+
+table.marinemap-table thead tr {
+    background:#FAFAFA url(../images/toolbar-bg.png) repeat-x scroll left bottom;
+    text-align:center;
+}
+
+table.marinemap-table tbody {
+    background-color:white;
+}
+
+table.marinemap-table tr.zebra {
+    background-color:#eee;
+}
+</style>
+
+

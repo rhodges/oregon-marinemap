@@ -1,6 +1,8 @@
 from django.contrib.gis.db import models
 from django.conf import settings
 
+#NSH RELATED IMPORTS
+
 #import NSH_Geographic models
 from nsh.nsh_models import Cities, Islands, Ports, Counties, Shoreline, RockyShores
 #import NSH_Physical models
@@ -12,5 +14,19 @@ from nsh.nsh_models import StateParks, PublicAccess, DMDSites, Outfalls, Underse
                         
 #import NSH_Caching models
 from nsh.nsh_models import NSHCache
+
+
+#AES RELATED IMPORTS
                         
-#from AES_models import *                        
+#import AES_Geographic models
+
+#import AES_Physical models
+
+#import AES_Biological models
+from aes.aes_models import Seagrass
+
+#import AES_Human Use models
+
+#import AES_Caching models
+from aes.aes_models import AESCache
+                     
