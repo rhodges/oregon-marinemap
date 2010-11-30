@@ -8,25 +8,25 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Adding model 'StellarSeaLions'
-        db.create_table('analysis_stellarsealions', (
+        # Adding model 'StellerHabitats'
+        db.create_table('analysis_stellerhabitats', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('objectid', self.gf('django.db.models.fields.IntegerField')()),
             ('region', self.gf('django.db.models.fields.CharField')(max_length=35)),
-            ('site_name', self.gf('django.db.models.fields.CharField')(max_length=50)),
-            ('or_county', self.gf('django.db.models.fields.CharField')(max_length=15)),
-            ('areatype', self.gf('django.db.models.fields.CharField')(max_length=50)),
-            ('shape_leng', self.gf('django.db.models.fields.FloatField')()),
-            ('shape_area', self.gf('django.db.models.fields.FloatField')()),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=50)),
+            ('county', self.gf('django.db.models.fields.CharField')(max_length=15)),
+            ('type', self.gf('django.db.models.fields.CharField')(max_length=50)),
+            ('length', self.gf('django.db.models.fields.FloatField')()),
+            ('area', self.gf('django.db.models.fields.FloatField')()),
             ('geometry', self.gf('django.contrib.gis.db.models.fields.MultiPolygonField')(srid=99999, null=True, blank=True)),
         ))
-        db.send_create_signal('analysis', ['StellarSeaLions'])
+        db.send_create_signal('analysis', ['StellerHabitats'])
 
 
     def backwards(self, orm):
         
-        # Deleting model 'StellarSeaLions'
-        db.delete_table('analysis_stellarsealions')
+        # Deleting model 'StellerHabitats'
+        db.delete_table('analysis_stellerhabitats')
 
 
     models = {
@@ -505,17 +505,17 @@ class Migration(SchemaMigration):
             'shape_leng': ('django.db.models.fields.FloatField', [], {}),
             'use_type': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'})
         },
-        'analysis.stellarsealions': {
-            'Meta': {'object_name': 'StellarSeaLions'},
-            'areatype': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+        'analysis.stellerhabitats': {
+            'Meta': {'object_name': 'StellerHabitats'},
+            'area': ('django.db.models.fields.FloatField', [], {}),
+            'county': ('django.db.models.fields.CharField', [], {'max_length': '15'}),
             'geometry': ('django.contrib.gis.db.models.fields.MultiPolygonField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'length': ('django.db.models.fields.FloatField', [], {}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'objectid': ('django.db.models.fields.IntegerField', [], {}),
-            'or_county': ('django.db.models.fields.CharField', [], {'max_length': '15'}),
             'region': ('django.db.models.fields.CharField', [], {'max_length': '35'}),
-            'shape_area': ('django.db.models.fields.FloatField', [], {}),
-            'shape_leng': ('django.db.models.fields.FloatField', [], {}),
-            'site_name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
+            'type': ('django.db.models.fields.CharField', [], {'max_length': '50'})
         },
         'analysis.towlanes': {
             'Meta': {'object_name': 'Towlanes'},

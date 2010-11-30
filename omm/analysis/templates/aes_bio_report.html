@@ -9,7 +9,7 @@
         <tr class="grey">
             <td><b>Pinniped Haulouts</b></td>
             <td></td>
-            <td><b>Stellar Sea Lion Rookeries</b></td>
+            <td><b>Steller Sea Lion Rookeries</b></td>
         </tr>
         <tr>
             {% if num_haulouts == 0 %}
@@ -44,6 +44,28 @@
         <tr><td></td><td></td><td></td><td></td></tr>
     </tbody>
 </table>
+
+<br></br>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <tr class="grey">
+            <td colspan="2"><b>Critical Steller Sea Lion Habitats &nbsp; </b></td>
+        </tr>
+        {% if num_sealion_habs == 0 %}
+        <tr>
+            <td colspan="2">None &nbsp;</td>
+        </tr>
+        {% else %}
+        {% for hab in sealion_habs %}
+        <tr class="{% cycle '' 'grey' %}">
+            <td>{{hab.0}}</td>
+            <td>{{hab.1}}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+
 <br></br>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
