@@ -5,33 +5,33 @@ from analysis.models import *
 from settings import *
 from lingcod.unit_converter.models import length_in_display_units, area_in_display_units
 from analysis.utils import ensure_type
-from nsh_cache import has_cache, get_cache, create_cache
+from aes_cache import has_cache, get_cache, create_cache
 
 default_value = '---'
 
 '''
 Runs analysis for Physical report
 Renders the Physical Report template
-Called by NSH_Analysis.display_nsh_analysis
+Called by aes_Analysis.display_aes_analysis
 '''
-def display_phy_analysis(request, nsh, type='Physical', template='nsh_phy_report.html'):
+def display_phy_analysis(request, aes, type='Physical', template='aes_phy_report.html'):
     type = ensure_type(type)
     #get context from cache or from running analysis
-    if has_cache(nsh, type):
+    if has_cache(aes, type):
         #retrieve context from cache
-        context = get_cache(nsh, type)
+        context = get_cache(aes, type)
     else:
         #get context by running analysis
-        context = run_phy_analysis(nsh, type) 
+        context = run_phy_analysis(aes, type) 
     
     return render_to_response(template, RequestContext(request, context)) 
      
 '''
 Run the analysis, create the cache, and return the results as a context dictionary so they may be rendered with template
 '''    
-def run_phy_analysis(nsh, type):     
+def run_phy_analysis(aes, type):     
      #Intertidal Shoreline Length
-    length = get_shoreline_length(nsh) 
+    length = get_shoreline_length(aes) 
     if length is None:
         length = 0.0
         percent_shoreline = default_value
@@ -42,32 +42,32 @@ def run_phy_analysis(nsh, type):
         #percent of Oregon Coast Shoreline
         percent_shoreline = get_shoreline_percentage(length) 
         #number of islands
-        islands = get_num_islands(nsh) 
+        islands = get_num_islands(aes) 
         #total island area
-        island_area = get_island_area(nsh) 
+        island_area = get_island_area(aes) 
         #shoreline types and proportions
-        shoreline_proportions = get_shoreline_proportions(nsh) 
+        shoreline_proportions = get_shoreline_proportions(aes) 
     #subtidal area
-    subtidal_area = get_subtidal_area(nsh, island_area) 
+    subtidal_area = get_subtidal_area(aes, island_area) 
     #percent percent shallow, percent deep, and average depth
-    perc_shallow, perc_deep, average_depth = get_depth_stats(nsh)
+    perc_shallow, perc_deep, average_depth = get_depth_stats(aes)
     #seafloor lithology
-    lithology_proportions = get_lithology_proportions(nsh)
+    lithology_proportions = get_lithology_proportions(aes)
     #proximity to shore
-    distance_to_shore = get_distance_to_shore(nsh) 
+    distance_to_shore = get_distance_to_shore(aes) 
     #compile context
-    context = {'nsh': nsh, 'default_value': default_value, 'length': length, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'percent_shoreline': percent_shoreline, 'islands': islands, 'island_area': island_area, 'shoreline_proportions': shoreline_proportions, 'subtidal_area': subtidal_area, 'perc_shallow': perc_shallow, 'perc_deep': perc_deep, 'average_depth': average_depth, 'distance_to_shore': distance_to_shore, 'lithology_proportions': lithology_proportions}
+    context = {'aes': aes, 'default_value': default_value, 'length': length, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'percent_shoreline': percent_shoreline, 'islands': islands, 'island_area': island_area, 'shoreline_proportions': shoreline_proportions, 'subtidal_area': subtidal_area, 'perc_shallow': perc_shallow, 'perc_deep': perc_deep, 'average_depth': average_depth, 'distance_to_shore': distance_to_shore, 'lithology_proportions': lithology_proportions}
     #cache these results
-    create_cache(nsh, type, context)   
+    create_cache(aes, type, context)   
     return context
     
-def get_depth_stats(nsh):
+def get_depth_stats(aes):
     bath_polys = Bathymetry.objects.all()
-    inter_polys = [poly for poly in bath_polys if poly.geometry.intersects(nsh.geometry_final)]
+    inter_polys = [poly for poly in bath_polys if poly.geometry.intersects(aes.geometry_final)]
     bath_dict = {}
     total_area = 0.0
     #generate depth dictionary {depth: total_area_at_that_depth}, and total area
-    #currently assuming there are enough polygons in each nsh that we don't need to take the area of intersection from each polygon
+    #currently assuming there are enough polygons in each aes that we don't need to take the area of intersection from each polygon
     for poly in inter_polys:
         area = poly.geometry.area
         if poly.depth not in bath_dict.keys():
@@ -99,15 +99,15 @@ def get_depth_stats(nsh):
 Determines the Intertidal Shoreline Length for the given nearshore habitat shape
 Called by display_phy_analysis
 '''
-def get_shoreline_length(nsh):
+def get_shoreline_length(aes):
     shorelines = ClosedShoreline.objects.all()
     islands = Islands.objects.all()
-    mainland_shorelines = [shoreline for shoreline in shorelines if shoreline.geometry.intersects(nsh.geometry_final)]
-    island_shorelines = [island for island in islands if island.geometry.intersects(nsh.geometry_final)]
+    mainland_shorelines = [shoreline for shoreline in shorelines if shoreline.geometry.intersects(aes.geometry_final)]
+    island_shorelines = [island for island in islands if island.geometry.intersects(aes.geometry_final)]
     if len(mainland_shorelines) == len(island_shorelines) == 0:
         return None
-    mainland_shoreline_lengths = [shoreline.geometry.intersection(nsh.geometry_final).length for shoreline in mainland_shorelines]
-    island_shoreline_lengths = [shoreline.geometry.intersection(nsh.geometry_final).length for shoreline in island_shorelines]
+    mainland_shoreline_lengths = [shoreline.geometry.intersection(aes.geometry_final).length for shoreline in mainland_shorelines]
+    island_shoreline_lengths = [shoreline.geometry.intersection(aes.geometry_final).length for shoreline in island_shorelines]
     total_length = sum(mainland_shoreline_lengths) + sum(island_shoreline_lengths)
     total_length_converted_units = length_in_display_units(total_length)
     return total_length_converted_units
@@ -130,10 +130,10 @@ def get_shoreline_percentage(length):
 Determines the proportions for the various types of shoreline
 Called by display_phy_analysis
 '''    
-def get_shoreline_proportions(nsh):
+def get_shoreline_proportions(aes):
     shorelines = Shoreline.objects.all()
-    inter_shorelines = [shoreline for shoreline in shorelines if shoreline.geometry.intersects(nsh.geometry_final)]
-    esi_length_tuples = [(esi_to_text(shoreline.esi[0]), length_in_display_units(shoreline.geometry.intersection(nsh.geometry_final).length)) for shoreline in inter_shorelines]
+    inter_shorelines = [shoreline for shoreline in shorelines if shoreline.geometry.intersects(aes.geometry_final)]
+    esi_length_tuples = [(esi_to_text(shoreline.esi[0]), length_in_display_units(shoreline.geometry.intersection(aes.geometry_final).length)) for shoreline in inter_shorelines]
     esi_length_dict = {}
     total_length = 0.0
     for tuple in esi_length_tuples:
@@ -173,21 +173,21 @@ def esi_to_text(esi):
 Determines the number of overlapping Islands for the given nearshore habitat shape
 Called by display_phy_analysis
 '''    
-def get_num_islands(nsh):
+def get_num_islands(aes):
     islands = Islands.objects.all()
-    inter_islands = [island for island in islands if island.geometry.intersects(nsh.geometry_final)==True]
+    inter_islands = [island for island in islands if island.geometry.intersects(aes.geometry_final)==True]
     return len(inter_islands)
     
 '''
 Determines the area of overlapping Islands for the given nearshore habitat shape
 Called by display_phy_analysis
 '''    
-def get_island_area(nsh):
+def get_island_area(aes):
     islands = Islands.objects.all()
-    inter_islands = [island for island in islands if island.geometry.intersects(nsh.geometry_final)==True]
+    inter_islands = [island for island in islands if island.geometry.intersects(aes.geometry_final)==True]
     area_of_intersect = 0.0
     for island in inter_islands:
-        area_of_intersect += island.geometry.intersection(nsh.geometry_final).area
+        area_of_intersect += island.geometry.intersection(aes.geometry_final).area
     area_of_intersect_converted_units = area_in_display_units(area_of_intersect)
     return area_of_intersect_converted_units
    
@@ -195,8 +195,8 @@ def get_island_area(nsh):
 Determines the subtidal area for the given nearshore habitat shape
 Called by display_phy_analysis
 '''   
-def get_subtidal_area(nsh, island_area):
-    total_area = area_in_display_units(nsh.geometry_final.area)
+def get_subtidal_area(aes, island_area):
+    total_area = area_in_display_units(aes.geometry_final.area)
     if island_area != default_value:
         return total_area - island_area
     return total_area
@@ -205,24 +205,24 @@ def get_subtidal_area(nsh, island_area):
 Determines the distance to shore for the given nearshore habitat shape
 Called by display_phy_analysis
 '''   
-def get_distance_to_shore(nsh):
-    if nsh_touches_shoreline(nsh):
+def get_distance_to_shore(aes):
+    if aes_touches_shoreline(aes):
         return 0.0
     shorelines = ClosedShoreline.objects.all()
     from django.contrib.gis.geos import Polygon
-    bbox = Polygon.from_bbox(nsh.geometry_final.extent)
+    bbox = Polygon.from_bbox(aes.geometry_final.extent)
     buffered_bbox = bbox.buffer(8000) #buffer by 5 miles (8000 meters)
     inter_shorelines = [shoreline for shoreline in shorelines if shoreline.geometry.intersects(buffered_bbox)]
-    distances = [shoreline.geometry.distance(nsh.geometry_final) for shoreline in inter_shorelines]
+    distances = [shoreline.geometry.distance(aes.geometry_final) for shoreline in inter_shorelines]
     distances.sort()
     return length_in_display_units(distances[0])
     
 '''
 Called from get_distance_to_shore
 '''    
-def nsh_touches_shoreline(nsh):
+def aes_touches_shoreline(aes):
     shorelines = ClosedShoreline.objects.all()
-    intersections = [shoreline.geometry.intersects(nsh.geometry_final) for shoreline in shorelines]
+    intersections = [shoreline.geometry.intersects(aes.geometry_final) for shoreline in shorelines]
     if True in intersections:
         return True
     else:
@@ -232,10 +232,10 @@ def nsh_touches_shoreline(nsh):
 Determines the areas and ratios for each represented lithology within the given nearshore habitat shape
 Called by display_phy_analysis
 '''   
-def get_lithology_proportions(nsh):
+def get_lithology_proportions(aes):
     lithologies = Lithology.objects.all()
-    inter_lithologies = [lithology for lithology in lithologies if lithology.geometry.intersects(nsh.geometry_final)]
-    inter_lithology_tuples = [(lithology.lithology, lithology.geometry.intersection(nsh.geometry_final).area) for lithology in inter_lithologies]
+    inter_lithologies = [lithology for lithology in lithologies if lithology.geometry.intersects(aes.geometry_final)]
+    inter_lithology_tuples = [(lithology.lithology, lithology.geometry.intersection(aes.geometry_final).area) for lithology in inter_lithologies]
     total_area = 0.0
     lithology_dict = {}
     for tuple in inter_lithology_tuples:

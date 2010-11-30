@@ -5,56 +5,56 @@ from analysis.models import *
 from settings import *
 from lingcod.unit_converter.models import length_in_display_units, area_in_display_units
 from analysis.utils import ensure_type
-from nsh_cache import has_cache, get_cache, create_cache
+from aes_cache import has_cache, get_cache, create_cache
 
 default_value = '---'
 
 '''
 Runs analysis for Biological report
 Renders the Biological Report template
-Called by NSH_Analysis.display_nsh_analysis
+Called by aes_Analysis.display_aes_analysis
 '''
-def display_bio_analysis(request, nsh, type='Biology', template='nsh_bio_report.html'):
+def display_bio_analysis(request, aes, type='Biology', template='aes_bio_report.html'):
     type = ensure_type(type)
     #get context from cache or from running analysis
-    if has_cache(nsh, type):
+    if has_cache(aes, type):
         #retrieve context from cache
-        context = get_cache(nsh, type)
+        context = get_cache(aes, type)
     else:
         #get context by running analysis
-        context = run_bio_analysis(nsh, type) 
+        context = run_bio_analysis(aes, type) 
 
     return render_to_response(template, RequestContext(request, context)) 
      
 '''
 Run the analysis, create the cache, and return the results as a context dictionary so they may be rendered with template
 '''    
-def run_bio_analysis(nsh, type):     
+def run_bio_analysis(aes, type):     
     #get pinniped haulout details
-    num_haulouts, haulout_details = get_haulout_details(nsh)
+    num_haulouts, haulout_details = get_haulout_details(aes)
     #get stellar sea lion rookery details
-    num_rookeries = get_num_rookeries(nsh)
+    num_rookeries = get_num_rookeries(aes)
     #get bird colony details
-    num_colonies, bird_details = get_bird_colony_details(nsh)
+    num_colonies, bird_details = get_bird_colony_details(aes)
     #get habitat types and proportions
-    habitat_proportions = get_habitat_proportions(nsh)
+    habitat_proportions = get_habitat_proportions(aes)
     #get fish list
-    fish_list = get_fish_list(nsh)
+    fish_list = get_fish_list(aes)
     #get kelp survey data
-    kelp_data = get_kelp_data(nsh)
+    kelp_data = get_kelp_data(aes)
     #compile context
-    context = {'nsh': nsh, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'fish_list': fish_list, 'kelp_data': kelp_data}
+    context = {'aes': aes, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'fish_list': fish_list, 'kelp_data': kelp_data}
     #cache these results
-    create_cache(nsh, type, context)   
+    create_cache(aes, type, context)   
     return context
     
 '''
 Determines the Pinniped Haulout Details for the given nearshore habitat shape
 Called by display_phy_analysis
 '''
-def get_haulout_details(nsh):
+def get_haulout_details(aes):
     pinniped_haulouts = PinnipedHaulouts.objects.all()
-    inter_haulouts = [haulout for haulout in pinniped_haulouts if haulout.geometry.intersects(nsh.geometry_final)]
+    inter_haulouts = [haulout for haulout in pinniped_haulouts if haulout.geometry.intersects(aes.geometry_final)]
     
     haulout_dict = {}
     for haulout in inter_haulouts:
@@ -76,9 +76,9 @@ def get_haulout_details(nsh):
 Determines the Pinniped Haulout Details for the given nearshore habitat shape
 Called by display_phy_analysis
 '''
-def get_num_rookeries(nsh):
+def get_num_rookeries(aes):
     pinniped_haulouts = PinnipedHaulouts.objects.all()
-    inter_haulouts = [haulout for haulout in pinniped_haulouts if haulout.geometry.intersects(nsh.geometry_final)]
+    inter_haulouts = [haulout for haulout in pinniped_haulouts if haulout.geometry.intersects(aes.geometry_final)]
     rookeries = [haulout for haulout in inter_haulouts if haulout.ej_rookery > 0]
     num_rookeries = len(rookeries)
     return num_rookeries
@@ -87,9 +87,9 @@ def get_num_rookeries(nsh):
 Determines the Seabird Colony Details for the given nearshore habitat shape
 Called by display_phy_analysis
 '''
-def get_bird_colony_details(nsh):
+def get_bird_colony_details(aes):
     bird_colonies = SeabirdColonies.objects.all()
-    inter_colonies = [colony for colony in bird_colonies if colony.geometry.intersects(nsh.geometry_final)]
+    inter_colonies = [colony for colony in bird_colonies if colony.geometry.intersects(aes.geometry_final)]
     
     colony_dict = {}
     for colony in inter_colonies:
@@ -108,10 +108,10 @@ def get_bird_colony_details(nsh):
 Determines the areas and ratios for each represented lithology within the given nearshore habitat shape
 Called by display_phy_analysis
 '''   
-def get_habitat_proportions(nsh):
+def get_habitat_proportions(aes):
     habitats = Habitats.objects.all()
-    inter_habitats = [habitat for habitat in habitats if habitat.geometry.intersects(nsh.geometry_final)]
-    inter_habitat_tuples = [(habitat.hab_type, habitat.geometry.intersection(nsh.geometry_final).area) for habitat in inter_habitats]
+    inter_habitats = [habitat for habitat in habitats if habitat.geometry.intersects(aes.geometry_final)]
+    inter_habitat_tuples = [(habitat.hab_type, habitat.geometry.intersection(aes.geometry_final).area) for habitat in inter_habitats]
     total_area = 0.0
     habitat_dict = {}
     for tuple in inter_habitat_tuples:
@@ -134,9 +134,9 @@ def get_habitat_proportions(nsh):
 Determines the areas and ratios for each kelp survey year represented within the given nearshore habitat shape
 Called by display_phy_analysis
 '''   
-def get_kelp_data(nsh):
+def get_kelp_data(aes):
     kelp_surveys = KelpSurveys.objects.all()
-    inter_surveys = [survey for survey in kelp_surveys if survey.geometry.intersects(nsh.geometry_final)]
+    inter_surveys = [survey for survey in kelp_surveys if survey.geometry.intersects(aes.geometry_final)]
     if len(inter_surveys) == 0:
         return [('None Recorded', default_value, default_value)]
     survey_dict = {}
@@ -144,45 +144,45 @@ def get_kelp_data(nsh):
         if survey.kelp90 != 0:
             key = 'Coastwide Survey ' + str(survey.kelp90)
             if key not in survey_dict.keys():
-                survey_dict[key] = survey.geometry.intersection(nsh.geometry_final).area
+                survey_dict[key] = survey.geometry.intersection(aes.geometry_final).area
             else:
-                survey_dict[key] += survey.geometry.intersection(nsh.geometry_final).area
+                survey_dict[key] += survey.geometry.intersection(aes.geometry_final).area
         if survey.kelp96 != 0:
             key = 'Southern Oregon ' + str(survey.kelp96)
             if key not in survey_dict.keys():
-                survey_dict[key] = survey.geometry.intersection(nsh.geometry_final).area
+                survey_dict[key] = survey.geometry.intersection(aes.geometry_final).area
             else:
-                survey_dict[key] += survey.geometry.intersection(nsh.geometry_final).area
+                survey_dict[key] += survey.geometry.intersection(aes.geometry_final).area
         if survey.kelp97 != 0:
             key = 'Southern Oregon ' + str(survey.kelp97)
             if key not in survey_dict.keys():
-                survey_dict[key] = survey.geometry.intersection(nsh.geometry_final).area
+                survey_dict[key] = survey.geometry.intersection(aes.geometry_final).area
             else:
-                survey_dict[key] += survey.geometry.intersection(nsh.geometry_final).area
+                survey_dict[key] += survey.geometry.intersection(aes.geometry_final).area
         if survey.kelp98 != 0: 
             key = 'Southern Oregon ' + str(survey.kelp98)
             if key not in survey_dict.keys():
-                survey_dict[key] = survey.geometry.intersection(nsh.geometry_final).area
+                survey_dict[key] = survey.geometry.intersection(aes.geometry_final).area
             else:
-                survey_dict[key] += survey.geometry.intersection(nsh.geometry_final).area
+                survey_dict[key] += survey.geometry.intersection(aes.geometry_final).area
         if survey.kelp99 != 0:
             key = 'Southern Oregon ' + str(survey.kelp99)
             if key not in survey_dict.keys():
-                survey_dict[key] = survey.geometry.intersection(nsh.geometry_final).area
+                survey_dict[key] = survey.geometry.intersection(aes.geometry_final).area
             else:
-                survey_dict[key] += survey.geometry.intersection(nsh.geometry_final).area
+                survey_dict[key] += survey.geometry.intersection(aes.geometry_final).area
     survey_proportion_list = []
     for key in survey_dict.keys():
         area = survey_dict[key]
-        proportion = survey_dict[key] / nsh.geometry_final.area * 100
+        proportion = survey_dict[key] / aes.geometry_final.area * 100
         survey_proportion_list.append((key, area_in_display_units(area), proportion))
     survey_proportion_list.sort()
     return survey_proportion_list    
     
-def get_fish_list(nsh):
+def get_fish_list(aes):
     #get habitat types
     habs = GeologicalHabitat.objects.all()
-    inter_habs = [hab for hab in habs if hab.geometry.intersects(nsh.geometry_final)]
+    inter_habs = [hab for hab in habs if hab.geometry.intersects(aes.geometry_final)]
     hab_set = []
     for hab in inter_habs:
         sgh = hab.sgh_prefix + "/" + hab.sgh_lith1.lower()
@@ -197,22 +197,22 @@ def get_fish_list(nsh):
     #get latitude range
     import settings
     from django.contrib.gis.geos import Polygon
-    nsh_geom = nsh.geometry_final
-    poly = Polygon.from_bbox(nsh_geom.extent)
+    aes_geom = aes.geometry_final
+    poly = Polygon.from_bbox(aes_geom.extent)
     poly.srid = settings.GEOMETRY_DB_SRID
     poly.transform(4326)
     latmin = poly.extent[1]
     latmax = poly.extent[3]
     #turns out the following messes with the wkt hash of the geometry used in caching
     #the cache is basically not found for Biology with the following code present:  
-    #nsh_geom.transform(4326) #transform into lat/lon
-    #latmin = nsh_geom.extent[1]
-    #latmax = nsh_geom.extent[3]
-    #nsh_geom.transform(settings.GEOMETRY_DB_SRID)
+    #aes_geom.transform(4326) #transform into lat/lon
+    #latmin = aes_geom.extent[1]
+    #latmax = aes_geom.extent[3]
+    #aes_geom.transform(settings.GEOMETRY_DB_SRID)
     
     #get depth range
     baths = Bathymetry.objects.all()
-    inter_baths = [bath for bath in baths if bath.geometry.intersects(nsh.geometry_final)]
+    inter_baths = [bath for bath in baths if bath.geometry.intersects(aes.geometry_final)]
     depths = [bath.depth for bath in inter_baths]
     depths.sort()
     deepmax = -depths[0] #smallest value will be the deepest
