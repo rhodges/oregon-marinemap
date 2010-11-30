@@ -24,9 +24,11 @@
             <td>Yes ({{num_rookeries}} rookeries)</td>
             {% endif %}
         </tr>
+        {% if num_haulouts != 0 %}
         <tr class="grey">
             <td colspan="3"><b>Pinniped Haulout Details &nbsp; </b></td>
         </tr>
+        {% endif %}
     </tbody>
 </table>
 <table  style='width:450px' class='aoi_analysis_container'>
@@ -79,9 +81,11 @@
             <td colspan="3">Yes ({{bird_colonies}} colonies) &nbsp;</td>
             {% endif %}
         </tr>
+        {% if bird_colonies != 0 %}
         <tr class="grey">
             <td colspan="3"><b>Bird Colony Details &nbsp; </b></td>
         </tr>
+        {% endif %}
     </tbody>
 </table>
 <table  style='width:450px' class='aoi_analysis_container'>
