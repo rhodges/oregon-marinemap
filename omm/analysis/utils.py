@@ -44,10 +44,10 @@ def type_is_hum(type):
 General method for obtaining the nearest geometries from a given model
 Returns a list of nearest objects
 '''    
-def get_nearest_geometries(nsh, model_name, length=3):    
+def get_nearest_geometries(aoi, model_name, length=3):    
     model_class = ContentType.objects.get(model=model_name).model_class()
     shapes = model_class.objects.all()
-    tuples = [(shape.geometry.centroid.distance(nsh.geometry_final), shape) for shape in shapes]
+    tuples = [(shape.geometry.centroid.distance(aoi.geometry_final), shape) for shape in shapes]
     tuples.sort()
     tuples = tuples[:length]
     nearest_shapes = []
@@ -60,19 +60,19 @@ General method for obtaining the nearest geometries from a given model along wit
 Returns a list of tuples [(name, distance)] 
 Requires the given model to have a field called 'name'
 '''    
-def get_nearest_geometries_with_distances(nsh, model_name, line=False, length=3):    
+def get_nearest_geometries_with_distances(aoi, model_name, line=False, length=3):    
     model_class = ContentType.objects.get(model=model_name).model_class()
     shapes = model_class.objects.all()
     if not line:
-        tuples = [(shape.geometry.centroid.distance(nsh.geometry_final), shape) for shape in shapes]
+        tuples = [(shape.geometry.centroid.distance(aoi.geometry_final), shape) for shape in shapes]
     else:
-        tuples = [(shape.geometry.distance(nsh.geometry_final), shape) for shape in shapes]
+        tuples = [(shape.geometry.distance(aoi.geometry_final), shape) for shape in shapes]
     tuples.sort()
     tuples = tuples[:length]
     nearest_shapes = []
     for tuple in tuples:
         name = tuple[1].name
-        distance = length_in_display_units(tuple[1].geometry.distance(nsh.geometry_final))
+        distance = length_in_display_units(tuple[1].geometry.distance(aoi.geometry_final))
         nearest_shapes.append( (name, distance) )
     nearest_shapes = sorted(nearest_shapes, key=lambda shapes: shapes[1])
     return nearest_shapes
@@ -82,10 +82,12 @@ General method for obtaining the intersecting geometries from a given model
 Returns a list of shape names or a list containing a single default value ('---') if no intersecting shapes were found
 Requires the given model to have a field called 'name'
 '''    
-def get_intersecting_geometries(nsh, model_name):
+def get_intersecting_geometries(aoi, model_name):
+    #import pdb
+    #pdb.set_trace()
     model_class = ContentType.objects.get(model=model_name).model_class()
     shapes = model_class.objects.all()
-    intersecting_shapes = [shape.name for shape in shapes if shape.geometry.intersects(nsh.geometry_final)]
+    intersecting_shapes = [shape.name for shape in shapes if shape.geometry.intersects(aoi.geometry_final)]
     return intersecting_shapes    
     
     

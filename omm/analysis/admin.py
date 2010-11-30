@@ -5,3 +5,8 @@ class NSHCacheAdmin (admin.ModelAdmin):
     list_display = ()
 
 admin.site.register(NSHCache, NSHCacheAdmin)
+
+class AESCacheAdmin (admin.ModelAdmin):
+    list_display = ()
+
+admin.site.register(AESCache, AESCacheAdmin)
