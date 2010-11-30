@@ -127,6 +127,20 @@
             {% endfor %}
         {% endif %}
     </tbody>
+    <thead>
+        <tr>
+            <th>Seagrass Area</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="{% cycle '' 'grey' %}">
+            <td>{{seagrass_area|floatformat:'2'}} {{area_units}}</td>
+        </tr>
+        <tr class="{% cycle '' 'grey' %}">
+            <td></td>
+        </tr>
+    </tbody>
 </table>
 <br></br>
 
