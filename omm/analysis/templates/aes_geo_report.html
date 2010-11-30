@@ -1,0 +1,113 @@
+{% extends 'common/panel.html' %}
+{% block title %}{{aes.name}} Geographic Analysis{% endblock title %}
+{% block panel %}
+<h3>Geographic Setting Report</h3>
+<div class='freetext'>
+<br>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <tr class="grey">
+            {% if county.1 %}
+            <td><b>Adjacent Counties</b></td>
+            {% else %}
+            <td><b>Adjacent County</b></td>
+            {% endif %}
+            <td></td>
+            <td><b>Nearest Ports</b></td>
+        </tr>
+        <tr>
+            <td>{{county.0}}</td>
+            <td></td>
+            <td>{{ports.0.0}}  ({{ports.0.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <tr class="grey">
+            <td>{{county.1}}</td>
+            <td></td>
+            <td>{{ports.1.0}}  ({{ports.1.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <tr>
+            <td>{{county.2}}</td>
+            <td></td>
+            <td>{{ports.2.0}}  ({{ports.2.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <br></br>
+        <tr class="grey">
+            <td><b>Nearest Incorporated Cities</b></td>
+            <td></td>
+            <td><b>Nearest Rocky Shore Areas</b></td>
+        </tr>
+        <tr>
+            <td>{{cities.0.0}}  ({{cities.0.1|floatformat:'1'}} {{length_units}})</td>
+            <td></td>
+            <td>{{rockyshores.0.0}}  ({{rockyshores.0.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <tr class="grey">
+            <td>{{cities.1.0}}  ({{cities.1.1|floatformat:'1'}} {{length_units}})</td>
+            <td></td>
+            <td>{{rockyshores.1.0}}  ({{rockyshores.1.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <tr>
+            <td>{{cities.2.0}}  ({{cities.2.1|floatformat:'1'}} {{length_units}})</td>
+            <td></td>
+            <td>{{rockyshores.2.0}}  ({{rockyshores.2.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<h3>General Site Characteristics Report</h3>
+<div class='freetext'>
+<br>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <tr class="grey">
+            <td><b>Area</b></td>
+            <td></td>
+            <td><b>Perimeter</b></td>
+        </tr>
+        <tr>
+            <td>{{area|floatformat:'2'}} {{area_units}}</td>
+            <td></td>
+            <td>{{perimeter|floatformat:'2'}} {{length_units}}</td>
+        </tr>
+        <br></br>
+        <tr class="grey">
+            <td><b>Intertidal</b></td>
+            <td></td>
+            <td><b>Islands</b></td>
+        </tr>
+        <tr>
+            <td>{{intertidal}}</td>
+            <td></td>
+            <td>{{islands}}</td>
+        </tr>
+        <br></br>
+        <tr class="grey">
+            <td></td>
+            <td></td>
+            <td><b>Percent of Territorial Sea</b></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>{{ratio|floatformat:'2'}} %</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<br></br>
+<div style='font-size: small'>
+    <a target='_blank' href='{% url printable_aes_report aes.id "geo" %}'>View Printable Geography Report</a>
+    &nbsp; 
+    <!--<a target='_blank' href='{% url pdf_aes_report aes.id "geo" %}'> (View PDF) </a>    -->
+</div>
+<br></br>
+<div style='font-size: small'>
+    <a target='_blank' href='{% url printable_aes_report aes.id "all" %}'>View Printable Comprehensive Report</a>
+    &nbsp; 
+    <a target='_blank' href='{% url pdf_aes_report aes.id "all" %}'> (View PDF) </a>     
+</div>
+<br></br>
+
+{% endblock panel %}
+
