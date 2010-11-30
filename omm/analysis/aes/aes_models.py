@@ -29,16 +29,16 @@ class AESCache(models.Model):
 #Used for Biology Reports
 
 class Seagrass(models.Model):
-    seagrass1 = models.CharField(max_length=10)
-    seagrass2 = models.CharField(max_length=10)
-    seagrass3 = models.CharField(max_length=10)
+    seagrass1 = models.CharField(max_length=10, null=True, blank=True)
+    seagrass2 = models.CharField(max_length=10, null=True, blank=True)
+    seagrass3 = models.CharField(max_length=10, null=True, blank=True)
     year1 = models.IntegerField()
     year2 = models.IntegerField()
     year3 = models.IntegerField()
-    source1 = models.CharField(max_length=10)
-    source2 = models.CharField(max_length=10)
-    source3 = models.CharField(max_length=10)
-    sg_flag = models.CharField(max_length=10)
+    source1 = models.CharField(max_length=10, null=True, blank=True)
+    source2 = models.CharField(max_length=10, null=True, blank=True)
+    source3 = models.CharField(max_length=10, null=True, blank=True)
+    sg_flag = models.CharField(max_length=10, null=True, blank=True)
     shape_leng = models.FloatField()
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Seagrass")
