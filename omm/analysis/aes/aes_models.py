@@ -47,4 +47,18 @@ class Seagrass(models.Model):
     class Meta:
         app_label = 'analysis'
 
+class StellarSeaLions(models.Model):
+    objectid = models.IntegerField()
+    region = models.CharField(max_length=35)
+    site_name = models.CharField(max_length=50)
+    or_county = models.CharField(max_length=15)
+    areatype = models.CharField(max_length=50)
+    shape_leng = models.FloatField()
+    shape_area = models.FloatField()
+    geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Stellar Sealions Critical Habitats")
+    objects = models.GeoManager()   
+    
+    class Meta:
+        app_label = 'analysis'
+
         

@@ -23,7 +23,7 @@ from nsh.nsh_models import NSHCache
 #import AES_Physical models
 
 #import AES_Biological models
-from aes.aes_models import Seagrass
+from aes.aes_models import Seagrass, StellarSeaLions
 
 #import AES_Human Use models
 
