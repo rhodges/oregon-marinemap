@@ -51,9 +51,9 @@
     </tbody>
     <thead>
         <tr>
-            <th colspan="2">Pinniped Haulout Details</th>
+            <th colspan="2">{% if num_haulouts == 0 %}&nbsp;{% else %}Pinniped Haulout Details{% endif %}</th>
             <th colspan="2">Steller Sea Lion Critical Habitats</th>
-            <th colspan="2">Bird Colony Details</th>
+            <th colspan="2">{% if bird_colonies == 0 %}&nbsp;{% else %}Bird Colony Details{% endif %}</th>
         </tr>
     </thead>
     <tbody>
@@ -69,7 +69,9 @@
         </td>
         
         <td class="top" colspan="2">
-        {% if num_sealion_habs != 0 %}
+        {% if num_sealion_habs == 0 %}
+            None
+        {% else %}
         {% for hab in sealion_habs %}
             {{hab.0}} , ({{hab.1}})</br>
         {% endfor %}
