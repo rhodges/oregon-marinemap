@@ -36,6 +36,8 @@ def run_geo_analysis(aes, type):
     cities = get_nearest_cities(aes)
     #get nearest 3 rocky shores
     rockyshores = get_nearest_rockyshores(aes)
+    #get nearest 3 substations
+    substations = get_nearest_substations(aes)
     #get the area
     area = get_area(aes)
     #get the perimeter
@@ -47,13 +49,13 @@ def run_geo_analysis(aes, type):
     #get ratio to territorial sea
     ratio = get_ratio(aes)
     #compile context
-    context = {'aes': aes, 'county': counties, 'ports': ports, 'cities': cities, 'rockyshores': rockyshores, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'ratio': ratio}
+    context = {'aes': aes, 'county': counties, 'ports': ports, 'cities': cities, 'rockyshores': rockyshores, 'substations': substations, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'ratio': ratio}
     #cache these results
     create_cache(aes, type, context)   
     return context
        
 '''
-Determines the Adjacent Counties for the given nearshore habitat shape
+Determines the Adjacent Counties for the given energy site shape
 Called by display_geo_analysis
 '''
 def get_adjacent_counties(aes):
@@ -63,28 +65,35 @@ def get_adjacent_counties(aes):
     return intersecting_geometries
     
 '''
-Determines the Nearest 3 Ports (in order of proximity) for the given nearshore habitat shape
+Determines the Nearest 3 Ports (in order of proximity) for the given energy site shape
 Called by display_geo_analysis
 '''    
 def get_nearest_ports(aes):
     return get_nearest_geometries_with_distances(aes, 'ports')
     
 '''
-Determines the Nearest 3 Cities (in order of proximity) for the given nearshore habitat shape
+Determines the Nearest 3 Cities (in order of proximity) for the given energy site shape
 Called by display_geo_analysis
 '''    
 def get_nearest_cities(aes):
     return get_nearest_geometries_with_distances(aes, 'cities')
     
 '''
-Determines the Nearest 3 Rocky Shores (in order of proximity) for the given nearshore habitat shape
+Determines the Nearest 3 Rocky Shores (in order of proximity) for the given energy site shape
 Called by display_geo_analysis
 '''    
 def get_nearest_rockyshores(aes):
     return get_nearest_geometries_with_distances(aes, 'rockyshores')
     
 '''
-Determines the Area for the given nearshore habitat shape
+Determines the Nearest 3 Electrical Substations (in order of proximity) for the given energy site shape
+Called by display_geo_analysis
+'''    
+def get_nearest_substations(aes):
+    return get_nearest_geometries_with_distances(aes, 'substations', point=True)
+      
+'''
+Determines the Area for the given energy site shape
 Called by display_geo_analysis
 '''    
 def get_area(aes):
@@ -92,7 +101,7 @@ def get_area(aes):
     return area        
     
 '''
-Determines the Perimeter for the given nearshore habitat shape
+Determines the Perimeter for the given energy site shape
 Called by display_geo_analysis
 '''    
 def get_perimeter(aes):
@@ -115,7 +124,7 @@ def is_intertidal(aes):
     return 'No'        
     
 '''
-Determines the number of overlapping Islands for the given nearshore habitat shape
+Determines the number of overlapping Islands for the given energy site shape
 Called by display_geo_analysis
 '''    
 def has_islands(aes):
@@ -127,7 +136,7 @@ def has_islands(aes):
         return 'No'
     
 '''
-Determines the Ratio for the given nearshore habitat area and the territorial sea area
+Determines the Ratio for the given energy site area and the territorial sea area
 Called by display_geo_analysis
 '''    
 def get_ratio(aes):

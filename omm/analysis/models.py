@@ -19,11 +19,12 @@ from nsh.nsh_models import NSHCache
 #AES RELATED IMPORTS
                         
 #import AES_Geographic models
+from aes.aes_models import Substations
 
 #import AES_Physical models
 
 #import AES_Biological models
-from aes.aes_models import Seagrass, StellarSeaLions
+from aes.aes_models import Seagrass, StellerHabitats
 
 #import AES_Human Use models
 
