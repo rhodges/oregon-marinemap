@@ -64,10 +64,10 @@ General method for obtaining the nearest geometries from a given model along wit
 Returns a list of tuples [(name, distance)] 
 Requires the given model to have a field called 'name'
 '''    
-def get_nearest_geometries_with_distances(aoi, model_name, line=False, length=3):    
+def get_nearest_geometries_with_distances(aoi, model_name, line=False, point=False, length=3):    
     model_class = ContentType.objects.get(model=model_name).model_class()
     shapes = model_class.objects.all()
-    if not line:
+    if not line and not point:
         tuples = [(shape.geometry.centroid.distance(aoi.geometry_final), shape) for shape in shapes]
     else:
         tuples = [(shape.geometry.distance(aoi.geometry_final), shape) for shape in shapes]
