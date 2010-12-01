@@ -60,5 +60,19 @@ class StellerHabitats(models.Model):
     
     class Meta:
         app_label = 'analysis'
+        
+class Substations(models.Model):
+    objectid = models.IntegerField()
+    sta_code = models.CharField(max_length=4)
+    name = models.CharField(max_length=50)
+    type = models.CharField(max_length=50)
+    owner = models.CharField(max_length=60)
+    geometry = models.PointField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Electrical Substations")
+    objects = models.GeoManager()   
+    
+    class Meta:
+        app_label = 'analysis'
+
+        
 
         
