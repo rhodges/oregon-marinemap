@@ -43,6 +43,17 @@ class TransmissionLines1993(models.Model):
     class Meta:
         app_label = 'analysis'
         
+class TransmissionLines2010(models.Model):
+    name = models.CharField(max_length=254)
+    kv = models.FloatField()
+    code = models.CharField(max_length=254)
+    owner = models.CharField(max_length=60)
+    shape_leng = models.FloatField()
+    geometry = models.MultiLineStringField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Electrical Transmission Lines BPA 2010")
+    objects = models.GeoManager()  
+    
+    class Meta:
+        app_label = 'analysis'      
     
 #Used for Biology Reports
 
