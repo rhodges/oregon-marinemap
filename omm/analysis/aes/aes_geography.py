@@ -38,6 +38,8 @@ def run_geo_analysis(aes, type):
     rockyshores = get_nearest_rockyshores(aes)
     #get nearest 3 substations
     substations = get_nearest_substations(aes)
+    #get distance to nearest transmission line (1993 lines)
+    transmissionline93 = get_distance_to_nearest_transmissionline1993(aes)
     #get the area
     area = get_area(aes)
     #get the perimeter
@@ -49,7 +51,7 @@ def run_geo_analysis(aes, type):
     #get ratio to territorial sea
     ratio = get_ratio(aes)
     #compile context
-    context = {'aes': aes, 'county': counties, 'ports': ports, 'cities': cities, 'rockyshores': rockyshores, 'substations': substations, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'ratio': ratio}
+    context = {'aes': aes, 'county': counties, 'ports': ports, 'cities': cities, 'rockyshores': rockyshores, 'substations': substations, 'transmissionline93': transmissionline93, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'ratio': ratio}
     #cache these results
     create_cache(aes, type, context)   
     return context
@@ -91,6 +93,15 @@ Called by display_geo_analysis
 '''    
 def get_nearest_substations(aes):
     return get_nearest_geometries_with_distances(aes, 'substations', point=True)
+      
+'''
+'''
+def get_distance_to_nearest_transmissionline1993(aes):
+    lines = TransmissionLines1993.objects.all()
+    distances = [line.geometry.distance(aes.geometry_final) for line in lines if line.geometry is not None]
+    distances.sort()
+    distance = length_in_display_units(distances[0])
+    return distance
       
 '''
 Determines the Area for the given energy site shape
