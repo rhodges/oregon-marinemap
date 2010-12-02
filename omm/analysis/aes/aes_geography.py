@@ -39,7 +39,9 @@ def run_geo_analysis(aes, type):
     #get nearest 3 substations
     substations = get_nearest_substations(aes)
     #get distance to nearest transmission line (1993 lines)
-    transmissionline93 = get_distance_to_nearest_transmissionline1993(aes)
+    transmissionline1993 = get_distance_to_nearest_transmissionline1993(aes)
+    #get distance to nearest transmission line (2010 lines)
+    transmissionline2010 = get_distance_to_nearest_transmissionline2010(aes)
     #get the area
     area = get_area(aes)
     #get the perimeter
@@ -51,7 +53,7 @@ def run_geo_analysis(aes, type):
     #get ratio to territorial sea
     ratio = get_ratio(aes)
     #compile context
-    context = {'aes': aes, 'county': counties, 'ports': ports, 'cities': cities, 'rockyshores': rockyshores, 'substations': substations, 'transmissionline93': transmissionline93, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'ratio': ratio}
+    context = {'aes': aes, 'county': counties, 'ports': ports, 'cities': cities, 'rockyshores': rockyshores, 'substations': substations, 'transmissionline1993': transmissionline1993, 'transmissionline2010': transmissionline2010, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'ratio': ratio}
     #cache these results
     create_cache(aes, type, context)   
     return context
@@ -101,7 +103,13 @@ def get_distance_to_nearest_transmissionline1993(aes):
     distances = [line.geometry.distance(aes.geometry_final) for line in lines if line.geometry is not None]
     distances.sort()
     distance = length_in_display_units(distances[0])
-    return distance
+    return distance 
+    
+'''
+'''
+def get_distance_to_nearest_transmissionline2010(aes):
+    nearest_line = get_nearest_geometries_with_distances(aes, 'transmissionlines2010', length=1)
+    return nearest_line
       
 '''
 Determines the Area for the given energy site shape
