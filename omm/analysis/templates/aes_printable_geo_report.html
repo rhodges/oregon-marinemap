@@ -20,7 +20,7 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="geoheader" colspan="6">Geographic Setting</font></th>
+            <th class="geoheader" colspan="7">Geographic Setting</font></th>
         </tr>
         <tr>
             <th>Adjacent County</th>
@@ -28,7 +28,8 @@
             <th>Nearest Incorporated Cities</th>
             <th>Nearest Rocky Shore Areas</th>
             <th>Nearest Electical Substations</th>
-            <th>Distance to Nearest Transmission Line (1993)</th>
+            <th>Nearest Transmission Line (1993)</th>
+            <th>Nearest Transmission Line (2010)</th>
         </tr>
     </thead>
     <tbody>
@@ -38,7 +39,8 @@
             <td>{{cities.0.0}}  ({{cities.0.1|floatformat:'1'}} {{length_units}})</td>
             <td>{{rockyshores.0.0}}  ({{rockyshores.0.1|floatformat:'1'}} {{length_units}})</td>
             <td>{{substations.0.0}}  ({{substations.0.1|floatformat:'1'}} {{length_units}})</td>
-            <td>{{transmissionline93|floatformat:'1'}} {{length_units}}</td>
+            <td>{{transmissionline1993|floatformat:'1'}} {{length_units}}</td>
+            <td>{{transmissionline2010.0.0}}  ({{transmissionline2010.0.1|floatformat:'2'}} {{length_units}})</td>
         </tr>
         <tr>
             <td>{{county.1}}</td>
@@ -47,6 +49,7 @@
             <td>{{rockyshores.1.0}}  ({{rockyshores.1.1|floatformat:'1'}} {{length_units}})</td>
             <td>{{substations.1.0}}  ({{substations.1.1|floatformat:'1'}} {{length_units}})</td>
             <td></td>
+            <td></td>
         </tr>
         <tr>
             <td>{{county.2}}</td>
@@ -54,6 +57,7 @@
             <td>{{cities.2.0}}  ({{cities.2.1|floatformat:'1'}} {{length_units}})</td>
             <td>{{rockyshores.2.0}}  ({{rockyshores.2.1|floatformat:'1'}} {{length_units}})</td>
             <td>{{substations.2.0}}  ({{substations.2.1|floatformat:'1'}} {{length_units}})</td>
+            <td></td>
             <td></td>
         </tr>
     </tbody>
