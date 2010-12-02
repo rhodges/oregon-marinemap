@@ -23,7 +23,7 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="geoheader" colspan="5">Geographic Setting</th>
+            <th class="geoheader" colspan="6">Geographic Setting</th>
         </tr>
         <tr>
             <th>Adjacent County</th>
@@ -31,6 +31,7 @@
             <th>Nearest Incorporated Cities</th>
             <th>Nearest Rocky Shore Areas</th>
             <th>Nearest Electical Substations</th>
+            <th>Distance to Nearest Transmission Line (1993)</th>
         </tr>
     </thead>
     <tbody>
@@ -40,6 +41,7 @@
             <td>{{geo.cities.0.0}}  ({{geo.cities.0.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.rockyshores.0.0}}  ({{geo.rockyshores.0.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.substations.0.0}}  ({{geo.substations.0.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.transmissionline93|floatformat:'1'}} {{geo.length_units}}</td>
         </tr>
         <tr>
             <td>{{geo.county.1}}</td>
@@ -47,6 +49,7 @@
             <td>{{geo.cities.1.0}}  ({{geo.cities.1.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.rockyshores.1.0}}  ({{geo.rockyshores.1.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.substations.1.0}}  ({{geo.substations.1.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td></td>
         </tr>
         <tr>
             <td>{{geo.county.2}}</td>
@@ -54,6 +57,7 @@
             <td>{{geo.cities.2.0}}  ({{geo.cities.2.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.rockyshores.2.0}}  ({{geo.rockyshores.2.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.substations.2.0}}  ({{geo.substations.2.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td></td>
         </tr>
     </tbody>
 </table>

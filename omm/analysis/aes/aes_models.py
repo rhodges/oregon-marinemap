@@ -23,8 +23,26 @@ class AESCache(models.Model):
 
 #Used for Geographic Reports
 
-#we already have the following from nsh_models:
-#   Cities, Ports, Islands, StateParks
+class TransmissionLines1993(models.Model):
+    fnode = models.FloatField()
+    tnode = models.FloatField()
+    lpoly = models.FloatField()
+    rpoly = models.FloatField()
+    length = models.FloatField()
+    orpower = models.FloatField()
+    orpower_id = models.FloatField()
+    fename = models.CharField(max_length=30, null=True, blank=True)
+    miles = models.FloatField()
+    source = models.CharField(max_length=50, null=True, blank=True)
+    edit_date = models.DateField(null=True, blank=True)
+    shape_leng = models.FloatField()
+    shape_le_1 = models.FloatField()
+    geometry = models.MultiLineStringField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Electrical Transmission Lines USGS DOQ 1993")
+    objects = models.GeoManager()
+    
+    class Meta:
+        app_label = 'analysis'
+        
     
 #Used for Biology Reports
 
