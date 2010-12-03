@@ -50,10 +50,12 @@ def run_geo_analysis(aes, type):
     intertidal = is_intertidal(aes)
     #get number of islands that reside within aes boundaries
     islands = has_islands(aes)
+    #visible from shore
+    visible = is_visible_from_shore(aes)
     #get ratio to territorial sea
     ratio = get_ratio(aes)
     #compile context
-    context = {'aes': aes, 'county': counties, 'ports': ports, 'cities': cities, 'rockyshores': rockyshores, 'substations': substations, 'transmissionline1993': transmissionline1993, 'transmissionline2010': transmissionline2010, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'ratio': ratio}
+    context = {'aes': aes, 'county': counties, 'ports': ports, 'cities': cities, 'rockyshores': rockyshores, 'substations': substations, 'transmissionline1993': transmissionline1993, 'transmissionline2010': transmissionline2010, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'visible': visible, 'ratio': ratio}
     #cache these results
     create_cache(aes, type, context)   
     return context
@@ -153,6 +155,17 @@ def has_islands(aes):
         return 'Yes'
     else:
         return 'No'
+    
+'''
+'''
+def is_visible_from_shore(aes):
+    viewsheds = Viewsheds.objects.all()
+    intersections = [viewshed for viewshed in viewsheds if viewshed.geometry.intersects(aes.geometry_final)==True]
+    if len(intersections) > 0:
+        return 'Yes'
+    else:
+        return 'No'
+    
     
 '''
 Determines the Ratio for the given energy site area and the territorial sea area

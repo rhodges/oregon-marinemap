@@ -70,13 +70,14 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="geoheader" colspan="5">General Site Characteristics</th>
+            <th class="geoheader" colspan="6">General Site Characteristics</th>
         </tr>
         <tr>
             <th>Area</th>
             <th>Perimeter</th>
             <th>Intertidal</th>
             <th>Islands</th>
+            <th>Visible From Shore</th>
             <th>Percent of Territorial Sea</th>
         </tr>
     </thead>
@@ -86,6 +87,7 @@
             <td>{{geo.perimeter|floatformat:'2'}} ({{geo.length_units}})</td>
             <td>{{geo.intertidal}}</td>
             <td>{{geo.islands}}</td>
+            <td>{{geo.visible}}</td>
             <td>{{geo.ratio|floatformat:'2'}} %</td>
         </tr>
     </tbody>

@@ -55,6 +55,23 @@ class TransmissionLines2010(models.Model):
     class Meta:
         app_label = 'analysis'      
     
+class Viewsheds(models.Model):
+    area = models.FloatField()
+    perimeter = models.FloatField()
+    viewshed = models.FloatField()
+    viewshed_i = models.FloatField()
+    inside = models.FloatField()
+    major1 = models.IntegerField()
+    minor1 = models.IntegerField()
+    shape_leng = models.FloatField()
+    shape_area = models.FloatField()
+    geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Viewsheds Oregon Coast OCMP 2002")
+    objects = models.GeoManager()    
+    
+    class Meta:
+        app_label = 'analysis'      
+    
+    
 #Used for Biology Reports
 
 class Seagrass(models.Model):
