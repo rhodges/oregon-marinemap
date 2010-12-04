@@ -51,7 +51,7 @@ def printable_report(request, aes, type):
 renders printable template as pdf
 called by views.pdf_aes_report
 '''    
-def pdf_report(request, aes, type, template='pdf_aes_comprehensive_report.html'):
+def pdf_report(request, aes, type, template='aes_pdf_comprehensive_report.html'):
     from django.template.loader import render_to_string
     import ho.pisa as pisa 
     import cStringIO as StringIO

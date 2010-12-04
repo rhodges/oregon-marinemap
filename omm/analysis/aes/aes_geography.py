@@ -30,6 +30,8 @@ Run the analysis, create the cache, and return the results as a context dictiona
 def run_geo_analysis(aes, type):
     #get adjacent county
     counties = get_adjacent_counties(aes)
+    #get distance to nearest railroad
+    railroad = get_distance_to_nearest_railroad(aes)
     #get nearest 3 ports
     ports = get_nearest_ports(aes)
     #get nearest 3 marinas
@@ -57,7 +59,7 @@ def run_geo_analysis(aes, type):
     #get ratio to territorial sea
     ratio = get_ratio(aes)
     #compile context
-    context = {'aes': aes, 'county': counties, 'ports': ports, 'marinas': marinas, 'cities': cities, 'rockyshores': rockyshores, 'substations': substations, 'transmissionline1993': transmissionline1993, 'transmissionline2010': transmissionline2010, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'visible': visible, 'ratio': ratio}
+    context = {'aes': aes, 'county': counties, 'railroad': railroad, 'ports': ports, 'marinas': marinas, 'cities': cities, 'rockyshores': rockyshores, 'substations': substations, 'transmissionline1993': transmissionline1993, 'transmissionline2010': transmissionline2010, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'visible': visible, 'ratio': ratio}
     #cache these results
     create_cache(aes, type, context)   
     return context
@@ -71,7 +73,17 @@ def get_adjacent_counties(aes):
     if len(intersecting_geometries) == 0:
         intersecting_geometries.append(default_value)
     return intersecting_geometries
+   
+'''
+'''
+def get_distance_to_nearest_railroad(aes):
+    railroads = Railroads.objects.all()
+    distances = [rail.geometry.distance(aes.geometry_final) for rail in railroads]
+    distances.sort()
+    distance = length_in_display_units(distances[0])
+    return distance 
     
+   
 '''
 Determines the Nearest 3 Ports (in order of proximity) for the given energy site shape
 Called by display_geo_analysis

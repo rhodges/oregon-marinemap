@@ -9,17 +9,20 @@
     
         <tr class="grey">
             {% if county.1 %}
-            <td colspan="2"><b>Adjacent Counties</b></td>
+            <td><b>Adjacent Counties</b></td>
             {% else %}
-            <td colspan="2"><b>Adjacent County</b></td>
+            <td><b>Adjacent County</b></td>
             {% endif %}
+            <td><b>Distance to Nearest Railroad</b></td>
         </tr>
         <tr>
-            <td colspan="2">{{county.0}}</td>
+            <td>{{county.0}}</td>
+            <td>{{railroad|floatformat:'2'}} {{length_units}}</td>
         </tr>
         {% if county.1 %}
         <tr class="grey">
-            <td colspan="2">{{county.1}}</td>
+            <td>{{county.1}}</td>
+            <td></td>
         </tr>
         {% endif %}
         <br></br>

@@ -27,56 +27,60 @@
         </tr>
         <tr>
             <th>Adjacent County</th>
+            <th>Distance to Nearest Railroad</th>
             <th>Nearest Ports</th>
             <th>Nearest Marinas</th>
             <th>Nearest Incorporated Cities</th>
-            <th>Nearest Rocky Shore Areas</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{geo.county.0}}</td>
+            <td>{{geo.railroad|floatformat:'1'}} {{geo.length_units}}</td>
             <td>{{geo.ports.0.0}}  ({{geo.ports.0.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.marinas.0.0}}  ({{geo.marinas.0.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.cities.0.0}}  ({{geo.cities.0.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.rockyshores.0.0}}  ({{geo.rockyshores.0.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
         <tr>
             <td>{{geo.county.1}}</td>
+            <td></td>
             <td>{{geo.ports.1.0}}  ({{geo.ports.1.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.marinas.1.0}}  ({{geo.marinas.1.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.cities.1.0}}  ({{geo.cities.1.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.rockyshores.1.0}}  ({{geo.rockyshores.1.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
         <tr>
             <td>{{geo.county.2}}</td>
+            <td></td>
             <td>{{geo.ports.2.0}}  ({{geo.ports.2.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.marinas.2.0}}  ({{geo.marinas.2.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.cities.2.0}}  ({{geo.cities.2.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.rockyshores.2.0}}  ({{geo.rockyshores.2.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
     </tbody>
     <thead>
         <tr>
-            <th colspan="1">Nearest Electical Substations</th>
-            <th colspan="2">Nearest Transmission Line (1993)</th>
+            <th>Nearest Rocky Shore Areas</th>
+            <th>Nearest Electical Substations</th>
+            <th>Nearest Transmission Line (1993)</th>
             <th colspan="2">Nearest Transmission Line (2010)</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td colspan="1">{{geo.substations.0.0}}  ({{geo.substations.0.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td colspan="2">{{geo.transmissionline1993|floatformat:'1'}} {{geo.length_units}}</td>
+            <td>{{geo.rockyshores.0.0}}  ({{geo.rockyshores.0.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.substations.0.0}}  ({{geo.substations.0.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.transmissionline1993|floatformat:'1'}} {{geo.length_units}}</td>
             <td colspan="2">{{geo.transmissionline2010.0.0}}  ({{geo.transmissionline2010.0.1|floatformat:'2'}} {{geo.length_units}})</td>
         </tr>
         <tr>
-            <td colspan="1">{{geo.substations.1.0}}  ({{geo.substations.1.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td colspan="2"></td>
+            <td>{{geo.rockyshores.1.0}}  ({{geo.rockyshores.1.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.substations.1.0}}  ({{geo.substations.1.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td></td>
             <td colspan="2"></td>
         </tr>
         <tr>
-            <td colspan="1">{{geo.substations.2.0}}  ({{geo.substations.2.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td colspan="2"></td>
+            <td>{{geo.rockyshores.2.0}}  ({{geo.rockyshores.2.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.substations.2.0}}  ({{geo.substations.2.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td></td>
             <td colspan="2"></td>
         </tr>
     </tbody>
