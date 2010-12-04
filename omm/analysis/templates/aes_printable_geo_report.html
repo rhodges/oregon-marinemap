@@ -24,56 +24,60 @@
         </tr>
         <tr>
             <th>Adjacent County</th>
+            <th>Distance to Nearest Railroad</th>
             <th>Nearest Ports</th>
             <th>Nearest Marinas</th>
             <th>Nearest Incorporated Cities</th>
-            <th>Nearest Rocky Shore Areas</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{county.0}}</td>
+            <td>{{railroad|floatformat:'1'}} {{length_units}}</td>
             <td>{{ports.0.0}}  ({{ports.0.1|floatformat:'1'}} {{length_units}})</td>
             <td>{{marinas.0.0}}  ({{marinas.0.1|floatformat:'1'}} {{length_units}})</td>
             <td>{{cities.0.0}}  ({{cities.0.1|floatformat:'1'}} {{length_units}})</td>
-            <td>{{rockyshores.0.0}}  ({{rockyshores.0.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         <tr>
             <td>{{county.1}}</td>
+            <td></td>
             <td>{{ports.1.0}}  ({{ports.1.1|floatformat:'1'}} {{length_units}})</td>
             <td>{{marinas.1.0}}  ({{marinas.1.1|floatformat:'1'}} {{length_units}})</td>
             <td>{{cities.1.0}}  ({{cities.1.1|floatformat:'1'}} {{length_units}})</td>
-            <td>{{rockyshores.1.0}}  ({{rockyshores.1.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         <tr>
             <td>{{county.2}}</td>
+            <td></td>
             <td>{{ports.2.0}}  ({{ports.2.1|floatformat:'1'}} {{length_units}})</td>
             <td>{{marinas.2.0}}  ({{marinas.2.1|floatformat:'1'}} {{length_units}})</td>
             <td>{{cities.2.0}}  ({{cities.2.1|floatformat:'1'}} {{length_units}})</td>
-            <td>{{rockyshores.2.0}}  ({{rockyshores.2.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
     </tbody>
     <thead>
         <tr>
-            <th colspan="1">Nearest Electical Substations</th>
-            <th colspan="2">Nearest Transmission Line (1993)</th>
+            <th>Nearest Rocky Shore Areas</th>
+            <th>Nearest Electical Substations</th>
+            <th>Nearest Transmission Line (1993)</th>
             <th colspan="2">Nearest Transmission Line (2010)</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td colspan="1">{{substations.0.0}}  ({{substations.0.1|floatformat:'1'}} {{length_units}})</td>
-            <td colspan="2">{{transmissionline1993|floatformat:'1'}} {{length_units}}</td>
+            <td>{{rockyshores.0.0}}  ({{rockyshores.0.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{substations.0.0}}  ({{substations.0.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{transmissionline1993|floatformat:'1'}} {{length_units}}</td>
             <td colspan="2">{{transmissionline2010.0.0}}  ({{transmissionline2010.0.1|floatformat:'2'}} {{length_units}})</td>
         </tr>
         <tr>
-            <td colspan="1">{{substations.1.0}}  ({{substations.1.1|floatformat:'1'}} {{length_units}})</td>
-            <td colspan="2"></td>
+            <td>{{rockyshores.1.0}}  ({{rockyshores.1.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{substations.1.0}}  ({{substations.1.1|floatformat:'1'}} {{length_units}})</td>
+            <td></td>
             <td colspan="2"></td>
         </tr>
         <tr>
-            <td colspan="1">{{substations.2.0}}  ({{substations.2.1|floatformat:'1'}} {{length_units}})</td>
-            <td colspan="2"></td>
+            <td>{{rockyshores.2.0}}  ({{rockyshores.2.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{substations.2.0}}  ({{substations.2.1|floatformat:'1'}} {{length_units}})</td>
+            <td></td>
             <td colspan="2"></td>
         </tr>
     </tbody>

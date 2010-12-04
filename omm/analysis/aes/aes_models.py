@@ -126,6 +126,44 @@ class Marinas(models.Model):
     class Meta:
         app_label = 'analysis'        
     
+class Railroads(models.Model):
+    fraarcid = models.IntegerField()
+    miles = models.FloatField()
+    stateab = models.CharField(max_length=2)
+    statefips = models.CharField(max_length=2)
+    cntyfips = models.CharField(max_length=3)
+    stcntyfips = models.CharField(max_length=5)
+    fraregion = models.IntegerField()
+    rrowner1 = models.CharField(max_length=4, null=True, blank=True)
+    rrowner2 = models.CharField(max_length=4, null=True, blank=True)
+    rrowner3 = models.CharField(max_length=4, null=True, blank=True)
+    trkrghts1 = models.CharField(max_length=4, null=True, blank=True)
+    trkrghts2 = models.CharField(max_length=4, null=True, blank=True)
+    trkrghts3 = models.CharField(max_length=4, null=True, blank=True)
+    trkrghts4 = models.CharField(max_length=4, null=True, blank=True)
+    trkrghts5 = models.CharField(max_length=4, null=True, blank=True)
+    trkrghts6 = models.CharField(max_length=4, null=True, blank=True)
+    trkrghts7 = models.CharField(max_length=4, null=True, blank=True)
+    trkrghts8 = models.CharField(max_length=4, null=True, blank=True)
+    trkrghts9 = models.CharField(max_length=4, null=True, blank=True)
+    stracnet = models.CharField(max_length=1, null=True, blank=True)
+    sigsys = models.CharField(max_length=3, null=True, blank=True)
+    tracks = models.IntegerField()
+    frfranode = models.IntegerField()
+    tofranode = models.IntegerField()
+    net = models.CharField(max_length=1)
+    passngr = models.CharField(max_length=4, null=True, blank=True)
+    den07code = models.IntegerField()
+    yards = models.CharField(max_length=20, null=True, blank=True)
+    subdiv = models.CharField(max_length=50, null=True, blank=True)
+    version = models.CharField(max_length=2)
+    shape_leng = models.FloatField()
+    geometry = models.MultiLineStringField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Railroad lines RITA NTA 2009")
+    objects = models.GeoManager()     
+    
+    class Meta:
+        app_label = 'analysis'       
+    
 #Used for Biology Reports
 
 class Seagrass(models.Model):
