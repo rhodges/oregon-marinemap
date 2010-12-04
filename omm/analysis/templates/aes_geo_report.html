@@ -6,71 +6,74 @@
 <br>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
+    
         <tr class="grey">
             {% if county.1 %}
-            <td><b>Adjacent Counties</b></td>
+            <td colspan="2"><b>Adjacent Counties</b></td>
             {% else %}
-            <td><b>Adjacent County</b></td>
+            <td colspan="2"><b>Adjacent County</b></td>
             {% endif %}
-            <td></td>
-            <td><b>Nearest Ports</b></td>
         </tr>
         <tr>
-            <td>{{county.0}}</td>
-            <td></td>
+            <td colspan="2">{{county.0}}</td>
+        </tr>
+        {% if county.1 %}
+        <tr class="grey">
+            <td colspan="2">{{county.1}}</td>
+        </tr>
+        {% endif %}
+        <br></br>
+    
+        <tr class="grey">
+            <td><b>Nearest Ports</b></td>
+            <td><b>Nearest Marinas</b></td>
+        </tr>
+        <tr>
             <td>{{ports.0.0}}  ({{ports.0.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{marinas.0.0}}  ({{marinas.0.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         <tr class="grey">
-            <td>{{county.1}}</td>
-            <td></td>
             <td>{{ports.1.0}}  ({{ports.1.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{marinas.1.0}}  ({{marinas.1.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         <tr>
-            <td>{{county.2}}</td>
-            <td></td>
             <td>{{ports.2.0}}  ({{ports.2.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{marinas.2.0}}  ({{marinas.2.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         <br></br>
+        
         <tr class="grey">
             <td><b>Nearest Incorporated Cities</b></td>
-            <td></td>
             <td><b>Nearest Rocky Shore Areas</b></td>
         </tr>
         <tr>
             <td>{{cities.0.0}}  ({{cities.0.1|floatformat:'1'}} {{length_units}})</td>
-            <td></td>
             <td>{{rockyshores.0.0}}  ({{rockyshores.0.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         <tr class="grey">
             <td>{{cities.1.0}}  ({{cities.1.1|floatformat:'1'}} {{length_units}})</td>
-            <td></td>
             <td>{{rockyshores.1.0}}  ({{rockyshores.1.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         <tr>
             <td>{{cities.2.0}}  ({{cities.2.1|floatformat:'1'}} {{length_units}})</td>
-            <td></td>
             <td>{{rockyshores.2.0}}  ({{rockyshores.2.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         
         <br></br>
         <tr class="grey">
             <td><b>Nearest Electrical Substations</b></td>
-            <td></td>
             <td><b>Nearest Transmission Line (1993)</b></td>
         </tr>
         <tr>
             <td>{{substations.0.0}}  ({{substations.0.1|floatformat:'1'}} {{length_units}})</td>
-            <td></td>
             <td>{{transmissionline1993|floatformat:'2'}} {{length_units}}</td>
         </tr>
         <tr class="grey">
             <td>{{substations.1.0}}  ({{substations.1.1|floatformat:'1'}} {{length_units}})</td>
-            <td></td>
             <td><b>Nearest Transmission Line (2010)</b></td>
         </tr>
         <tr>
             <td>{{substations.2.0}}  ({{substations.2.1|floatformat:'1'}} {{length_units}})</td>
-            <td></td>
             <td>{{transmissionline2010.0.0}}  ({{transmissionline2010.0.1|floatformat:'2'}} {{length_units}})</td>
         </tr>
 
