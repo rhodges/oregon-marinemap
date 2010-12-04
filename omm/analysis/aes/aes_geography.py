@@ -32,6 +32,8 @@ def run_geo_analysis(aes, type):
     counties = get_adjacent_counties(aes)
     #get nearest 3 ports
     ports = get_nearest_ports(aes)
+    #get nearest 3 marinas
+    marinas = get_nearest_marinas(aes)
     #get nearest 3 cities
     cities = get_nearest_cities(aes)
     #get nearest 3 rocky shores
@@ -55,7 +57,7 @@ def run_geo_analysis(aes, type):
     #get ratio to territorial sea
     ratio = get_ratio(aes)
     #compile context
-    context = {'aes': aes, 'county': counties, 'ports': ports, 'cities': cities, 'rockyshores': rockyshores, 'substations': substations, 'transmissionline1993': transmissionline1993, 'transmissionline2010': transmissionline2010, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'visible': visible, 'ratio': ratio}
+    context = {'aes': aes, 'county': counties, 'ports': ports, 'marinas': marinas, 'cities': cities, 'rockyshores': rockyshores, 'substations': substations, 'transmissionline1993': transmissionline1993, 'transmissionline2010': transmissionline2010, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'visible': visible, 'ratio': ratio}
     #cache these results
     create_cache(aes, type, context)   
     return context
@@ -76,6 +78,13 @@ Called by display_geo_analysis
 '''    
 def get_nearest_ports(aes):
     return get_nearest_geometries_with_distances(aes, 'ports')
+    
+'''
+Determines the Nearest 3 Ports (in order of proximity) for the given energy site shape
+Called by display_geo_analysis
+'''    
+def get_nearest_marinas(aes):
+    return get_nearest_geometries_with_distances(aes, 'marinas')
     
 '''
 Determines the Nearest 3 Cities (in order of proximity) for the given energy site shape
