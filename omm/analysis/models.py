@@ -19,7 +19,7 @@ from nsh.nsh_models import NSHCache
 #AES RELATED IMPORTS
                         
 #import AES_Geographic models
-from aes.aes_models import Substations, TransmissionLines1993, TransmissionLines2010, Viewsheds, Marinas
+from aes.aes_models import Substations, TransmissionLines1993, TransmissionLines2010, Viewsheds, Marinas, Railroads
 
 #import AES_Physical models
 
