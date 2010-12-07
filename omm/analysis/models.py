@@ -24,10 +24,10 @@ from aes.aes_models import Substations, TransmissionLines1993, TransmissionLines
 #import AES_Physical models
 
 #import AES_Biological models
-from aes.aes_models import Seagrass, StellerHabitats
+from aes.aes_models import Seagrass, StellerHabitats, Substations
 
 #import AES_Human Use models
-from aes.aes_models import UrbanGrowthBoundaries, SignalEquipment
+from aes.aes_models import UrbanGrowthBoundaries, Buoys, SignalEquipment, Beacons
 
 #import AES_Caching models
 from aes.aes_models import AESCache
