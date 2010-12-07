@@ -360,10 +360,11 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="humheader" colspan="7">Existing or Proposed Transportation & Infrasructure Considerations</th>
+            <th class="humheader" colspan="8">Existing or Proposed Transportation & Infrasructure Considerations</th>
         </tr>
         <tr>
             <th>Buoys</th>
+            <th>Beacons</th>
             <th>Signal Equipment</th>
             <th>Dredge Materials Disposal</th>
             <th>NPDES Outfall</th>
@@ -375,6 +376,7 @@
     <tbody>
         <tr>
             <td>{{hum.buoy_data.0}}</td>
+            <td>{{hum.beacon_data.0}}</td>
             <td>{{hum.signal_data.0}}</td>
             <td>{{hum.dmd_data.0}}</td>
             <td>{{hum.outfall_data.0}}</td>
@@ -389,6 +391,12 @@
                 <th>Intersecting Buoys</th>
             {% else %}
                 <th>Closest Buoy</th>
+            {% endif %}
+            
+            {% if hum.beacon_data.0 == 'Yes' %}
+                <th>Intersecting Beacons</th>
+            {% else %}
+                <th>Closest Beacon</th>
             {% endif %}
             
             {% if hum.signal_data.0 == 'Yes' %}
@@ -433,6 +441,15 @@
                     {% endfor %}
                 {% else %}
                     {{hum.buoy_data.1.0}} ({{hum.buoy_data.1.1|floatformat:'2'}} {{hum.length_units}})
+                {% endif %}
+            </td>
+            <td>
+                {% if hum.beacon_data.0 == 'Yes' %}
+                    {% for data in hum.beacon_data.1 %}
+                        {{data}}</br>
+                    {% endfor %}
+                {% else %}
+                    {{hum.beacon_data.1.0}} ({{hum.beacon_data.1.1|floatformat:'2'}} {{hum.length_units}})
                 {% endif %}
             </td>
             <td>
