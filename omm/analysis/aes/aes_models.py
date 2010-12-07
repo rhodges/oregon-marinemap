@@ -328,5 +328,52 @@ class SignalEquipment(models.Model):
     objects = models.GeoManager()      
     
     class Meta:
-        app_label = 'analysis'           
+        app_label = 'analysis'   
+
+class Beacons(models.Model):
+    inform = models.CharField(max_length=254, null=True, blank=True)
+    name = models.CharField(max_length=254, null=True, blank=True)
+    recdat = models.CharField(max_length=254, null=True, blank=True)
+    recind = models.CharField(max_length=254, null=True, blank=True)
+    sordat = models.CharField(max_length=254)
+    sorind = models.CharField(max_length=254)
+    scamax = models.IntegerField()
+    scamin = models.IntegerField()
+    txtdsc = models.CharField(max_length=254, null=True, blank=True)
+    ninfom = models.CharField(max_length=254, null=True, blank=True)
+    nobjnm = models.CharField(max_length=254, null=True, blank=True)
+    ntxtds = models.CharField(max_length=254, null=True, blank=True)
+    lnam = models.CharField(max_length=20)
+    id_name = models.CharField(max_length=20)
+    rver = models.IntegerField()
+    ruin = models.CharField(max_length=254)
+    grup = models.CharField(max_length=254)
+    catcam = models.IntegerField()
+    catlam = models.IntegerField()
+    catspm = models.CharField(max_length=254, null=True, blank=True)
+    colour = models.CharField(max_length=254, null=True, blank=True)
+    colpat = models.CharField(max_length=254, null=True, blank=True)
+    conrad = models.IntegerField()
+    datend = models.CharField(max_length=254, null=True, blank=True)
+    datsta = models.CharField(max_length=254, null=True, blank=True)
+    marsys = models.IntegerField()
+    natcon = models.CharField(max_length=254, null=True, blank=True)
+    perend = models.CharField(max_length=254, null=True, blank=True)
+    persta = models.CharField(max_length=254, null=True, blank=True)
+    picrep = models.CharField(max_length=254, null=True, blank=True)
+    status = models.CharField(max_length=254)
+    veracc = models.FloatField()
+    verlen = models.FloatField()
+    bcnshp = models.IntegerField()
+    condtn = models.IntegerField()
+    convis = models.IntegerField()
+    elevat = models.FloatField()
+    height = models.FloatField()
+    verdat = models.IntegerField()
+    beacon_typ = models.IntegerField()
+    geometry = models.PointField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Beacons")
+    objects = models.GeoManager()      
+    
+    class Meta:
+        app_label = 'analysis'         
         

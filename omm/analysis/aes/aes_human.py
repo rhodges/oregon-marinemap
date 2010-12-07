@@ -37,6 +37,8 @@ def run_hum_analysis(aes, type):
     nearest_access_sites = get_nearest_access_sites(aes)
     #get intersecting or nearest buoys
     buoy_data = get_buoy_data(aes)
+    #get intersecting or nearest beacons
+    beacon_data = get_beacon_data(aes)
     #get intersecting or nearest signal equipment
     signal_data = get_signal_data(aes)
     #get intersecting or nearest dredge material disposal sites
@@ -58,7 +60,7 @@ def run_hum_analysis(aes, type):
     #get nearest conservation areas
     nearest_conservation_areas = get_nearest_conservation_areas(aes)
     #compile context
-    context = {'aes': aes, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'urbangrowthboundaries': nearest_ugbs, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'buoy_data': buoy_data, 'signal_data': signal_data, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
+    context = {'aes': aes, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'urbangrowthboundaries': nearest_ugbs, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'buoy_data': buoy_data, 'beacon_data': beacon_data, 'signal_data': signal_data, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
     #cache these results
     create_cache(aes, type, context)   
     return context
@@ -86,18 +88,7 @@ def get_nearest_access_sites(aes):
         output = site.name + ' , ' + site.city + ' ' + site.county + ' County'
         site_tuples.append( (output, length_in_display_units(site.geometry.distance(aes.geometry_final))) )
     return site_tuples
-    
-'''    
-'''
-def get_signal_data(aes):
-    intersecting_signals = get_intersecting_geometries(aes, 'signalequipment')
-    nearest_signal = get_nearest_geometries_with_distances(aes, 'signalequipment', length=1)
-    if len(intersecting_signals) > 0:
-        signal_data = ('Yes', intersecting_signals)
-    else:
-        signal_data = ('No', nearest_signal[0])
-    return signal_data    
-    
+        
 '''    
 '''
 def get_buoy_data(aes):
@@ -107,7 +98,29 @@ def get_buoy_data(aes):
         buoy_data = ('Yes', intersecting_buoys)
     else:
         buoy_data = ('No', nearest_buoy[0])
-    return buoy_data    
+    return buoy_data 
+    
+'''    
+'''
+def get_beacon_data(aes):
+    intersecting_beacons = get_intersecting_geometries(aes, 'beacons')
+    nearest_beacon = get_nearest_geometries_with_distances(aes, 'beacons', length=1)
+    if len(intersecting_beacons) > 0:
+        beacon_data = ('Yes', intersecting_beacons)
+    else:
+        beacon_data = ('No', nearest_beacon[0])
+    return beacon_data 
+   
+'''    
+'''
+def get_signal_data(aes):
+    intersecting_signals = get_intersecting_geometries(aes, 'signalequipment')
+    nearest_signal = get_nearest_geometries_with_distances(aes, 'signalequipment', length=1)
+    if len(intersecting_signals) > 0:
+        signal_data = ('Yes', intersecting_signals)
+    else:
+        signal_data = ('No', nearest_signal[0])
+    return signal_data       
     
 '''    
 Get any intersecting dmds or the three nearest dmds along with their distances
@@ -120,7 +133,7 @@ def get_dmd_data(aes):
     else:
         dmd_data = ('No', nearest_dmd[0])
     return dmd_data
-   
+    
 '''    
 Get any intersecting outfalls or the three nearest outfalls along with their distances
 '''
