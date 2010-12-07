@@ -22,11 +22,26 @@ class NSHCache(models.Model):
 
 
 #Used for Geographic Reports
-
+'''
+###Outdatated###
 class Cities(models.Model):
     objectid = models.IntegerField()
     fips_code = models.CharField(max_length=5)
     name = models.CharField(max_length=50)
+    acres = models.FloatField()
+    gis_prc_dt = models.CharField(max_length=10)
+    effectv_dt = models.CharField(max_length=15)
+    shape_leng = models.FloatField()
+    shape_area = models.FloatField()
+    geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="City Boundaries")
+    objects = models.GeoManager()
+    
+    class Meta:
+        app_label = 'analysis'
+'''      
+class Cities(models.Model):
+    fips_code = models.CharField(max_length=5)
+    name = models.CharField(max_length=30)
     acres = models.FloatField()
     gis_prc_dt = models.CharField(max_length=10)
     effectv_dt = models.CharField(max_length=15)
@@ -340,7 +355,8 @@ class GeologicalHabitat(models.Model):
         app_label = 'analysis' 
     
 # Used for Human Considerations Reports
-
+'''
+###Outdated (updating from 2008 data to 2010 data)###
 class StateParks(models.Model):
     objectid = models.IntegerField()
     name = models.CharField(max_length=50)
@@ -359,6 +375,28 @@ class StateParks(models.Model):
     shape_area = models.FloatField()
     geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Sate Parks")
     objects = models.GeoManager() 
+    
+    class Meta:
+        app_label = 'analysis'   
+'''
+class StateParks(models.Model):
+    name = models.CharField(max_length=50)
+    gisacres = models.FloatField(null=True, blank=True)
+    editdate = models.DateField(null=True, blank=True)
+    editperson = models.CharField(max_length=25, null=True, blank=True)
+    datasource = models.IntegerField()
+    createdate = models.DateField(null=True, blank=True)
+    retiredate = models.DateField(null=True, blank=True)
+    gis_id = models.IntegerField()
+    hub_id = models.IntegerField()
+    creator = models.CharField(max_length=50, null=True, blank=True)
+    designatio = models.CharField(max_length=50, null=True, blank=True)
+    use_type = models.CharField(max_length=50, null=True, blank=True)
+    full_name = models.CharField(max_length=100, null=True, blank=True)
+    shape_leng = models.FloatField()
+    shape_area = models.FloatField()
+    geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Sate Parks 2010")
+    objects = models.GeoManager()
     
     class Meta:
         app_label = 'analysis'   

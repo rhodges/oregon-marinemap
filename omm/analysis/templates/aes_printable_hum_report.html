@@ -20,15 +20,21 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="humheader" colspan="2">Community & Recreational Considerations</font></th>
+            <th class="humheader" colspan="3">Community & Recreational Considerations</font></th>
         </tr>
         <tr>
+            <th>Nearest Urban Growth Boundaries</th>
             <th>Nearest State Parks</th>
             <th>Nearest Public Access</th>
         </tr>
     </thead>
     <tbody>
         <tr>
+            <td>
+            {% for ugb in urbangrowthboundaries %}
+                {{ugb.0}} &nbsp; ({{ugb.1|floatformat:'1'}} {{length_units}})</br>
+            {% endfor %}
+            </td>
             <td>
             {% for park in parks %}
                 {{park.0}} State Park &nbsp; ({{park.1|floatformat:'2'}} {{length_units}})</br>

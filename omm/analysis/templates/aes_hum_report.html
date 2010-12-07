@@ -7,6 +7,15 @@
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <tr class="grey">
+            <td colspan="3"><b>Nearest Urban Growth Boundaries</b></td>
+        </tr>
+        {% for ugb in urbangrowthboundaries %}
+        <tr class="{% cycle '' 'grey' %}">
+            <td colspan="3">{{ ugb.0}} &nbsp; ({{ ugb.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        {% endfor %}
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr class="grey">
             <td colspan="3"><b>Nearest State Parks</b></td>
         </tr>
         {% for park in parks %}
