@@ -1,0 +1,199 @@
+<h1 align="center">{{ nsh.name }} Biology Analysis Report</h1>
+
+<div align="middle" >
+    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ nsh.id }}&amp;autozoom=true&amp;width=308&amp;height=400">
+    &nbsp; &nbsp;
+    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ nsh.id }}&amp;width=154&amp;height=200">
+</div>
+
+<div class="freetext">
+<h4>Report Summary</h4>
+<table class='allowed_uses'>
+<tr><td width=150>Type:</td><td>Biology</td></tr>
+<tr><td width=150>Nearshore Habitat:</td><td>{{ nsh.name }}</td></tr>
+<tr><td width=150>ID #:</td><td>{{ nsh.id }}</td></tr>
+</table>
+</div>
+
+<div class='freetext'>
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="bioheader" colspan="4">Intertidal Biological Characteristics</font></th>
+        </tr>
+        <tr>
+            <th>Pinniped Haulouts</th>
+            <th>Stellar Sea Lion Rookeries</th>
+            <th colspan="2">Bird Colonies</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% if num_haulouts == 0 %}
+            <td>No ({{num_haulouts}} haulouts)</td>
+            {% else %}
+            <td>Yes ({{num_haulouts}} haulouts)</td>
+            {% endif %}
+            
+            {% if num_rookeries == 0 %}
+            <td>No ({{num_rookeries}} rookeries)</td>
+            {% else %}
+            <td>Yes ({{num_rookeries}} rookeries)</td>
+            {% endif %}
+            
+            {% if bird_colonies == 0 %}
+            <td colspan="2">No ({{bird_colonies}} colonies) &nbsp;</td>
+            {% else %}
+            <td colspan="2">Yes ({{bird_colonies}} colonies) &nbsp;</td>
+            {% endif %}
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th colspan="2">Pinniped Haulout Details</th>
+            <th colspan="2">Bird Colony Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td class="top" colspan="2">
+        {% for site in haulout_sites %}
+            {{site.0.0}} , ({{site.0.1}})</br>
+            {% for species in site.1 %}
+                &nbsp; &nbsp; &nbsp; {{species}} </br>
+            {% endfor %}
+            </br>
+        {% endfor %}
+        </td>
+        
+        <td colspan="2">
+        {% for details in bird_details %}
+            {{details.0.0}} , (Colony #{{details.0.1}})</br>
+            {% for bird in details.1 %}
+                &nbsp; &nbsp; &nbsp; {{bird}}</br>
+            {% endfor %}
+            </br>
+        {% endfor %}
+        </td>
+            
+        </tr>
+    </tbody>
+</table>
+
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="bioheader" colspan="5">Subtidal Biological Characteristics</font></th>
+        </tr>
+        <tr>
+            <th>Habitat Types & Proportions</th>
+            <th>Predicted Fish Species <br></br>(Provided by <a target="_blank" href="http://www.nwfsc.noaa.gov/">NOAA's Northwest Fisheries Science Center)</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="top">
+            {% for details in habitat_proportions %}
+                {{details.0|floatformat:'2'}} % &nbsp; {{details.1}} &nbsp; ({{details.2|floatformat:'2'}} {{area_units}})</br>
+            {% endfor %}
+            </td>
+            <td>
+            {% for fish in fish_list %}
+                {{fish}}</br>
+            {% endfor %}
+            </td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th>Kelp Survey Year</th>
+            <th>Kelp Proportions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if kelp_data.0.2 == default_value %}
+            <tr>
+                <td>{{kelp_data.0.0}}</td>
+                <td></td>
+            </tr>
+        {% else %}
+            {% for data in kelp_data %}
+            <tr class="{% cycle '' 'grey' %}">
+                <td>{{data.0}}</td>
+                <td>{{data.1|floatformat:'2'}} {{area_units}} &nbsp; ({{data.2|floatformat:'2'}} % of Proposed Site)</td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+<br></br>
+
+</div>
+
+<style type="text/css">
+table.marinemap-table {
+    font-size:12px;
+    width:100%;
+    border:solid 1px #fff;
+    margin:3px;
+}
+
+table.marinemap-table th.bioheader {
+    background-color:#95291A;
+    color:#B0B0B0;
+    font-family:helvetica;
+    font-weight:bold;
+}
+
+table.marinemap-table th {
+    background-color:#D0D0D0;
+    color:#344E63;
+    font-weight:bold;
+}
+
+table.marinemap-table th.left {
+    background-color:#D0D0D0;
+    color:#344E63;
+    font-weight:bold;
+    text-align:left;
+}
+
+table.marinemap-table td {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    text-align:center;
+}
+
+table.marinemap-table td.left {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    text-align:left;
+    vertical-align: text-top;
+}
+
+table.marinemap-table td.top {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    vertical-align: text-top;
+}
+
+table.marinemap-table thead tr {
+    background:#FAFAFA url(../images/toolbar-bg.png) repeat-x scroll left bottom;
+    text-align:center;
+}
+
+table.marinemap-table tbody {
+    background-color:white;
+}
+
+table.marinemap-table tr.zebra {
+    background-color:#eee;
+}
+</style>
+
+

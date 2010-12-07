@@ -1,0 +1,47 @@
+{% extends 'common/map.html' %}
+
+{% block layersConfig %}
+    // setup which kml files are shown in the data layers panel
+    lingcod.addLayer('{% url studyregion-kml %}', {setExtent: true});
+    lingcod.addLayer('{% url public-data-layers %}');   
+    lingcod.addLayer("{% url public-fishing-data-layers %}");        
+    {% if user.is_authenticated %}
+        lingcod.addLayer('{% url private-data-layers session_key=session_key %}');            
+    {% endif %}
+{% endblock layersConfig %}
+
+{% block tabs %}
+    {% if user.is_authenticated %}
+    <li><a href="#MyShapes"><span>My Shapes</span></a></li>                
+    {% endif %}
+    <li><a href="#SharedShapes"><span>{% if user.is_authenticated %}Shared With Me{% else %}Areas of Interest{% endif %}</span></a></li>
+{% endblock tabs %}
+
+{% block metanavigation %}
+    {% if user.is_authenticated %}
+    <li>{{user.username}} | </li>
+    {% endif %}
+    <li><a href="#" id="news">news</a> | </li>
+    <li><a href="#" id="about">about marinemap</a> | </li>
+    {% block meta_navigation_list_insert %}{% endblock %}
+    <li><a href="{% url help-main %}" target="_blank" id="help">help</a> | </li>
+    {% if user.is_authenticated %}
+    <li><a href="{% url user_profile-form user.username %}">my profile</a> | </li>
+    <li><a href="{% url auth_logout %}">sign out</a></li>
+    {% else %}
+    <li><a href="{% url registration_register %}">register</a> | </li>
+    <li><a href="{% url auth_login %}">sign in</a></li>
+    {% endif %}                
+{% endblock metanavigation %}
+
+
+{% block shapeDefinitionPanelManipulators %}
+<div class="manipulators" style="display:none;">
+    <h3>Optionally exclude any of the following regions from your Area of Inquiry</h3>
+    {#  These divs get populated in media/manipulators/js/manipulators.js #}
+    <div class="requiredManipulators"> </div>
+    <div class="optionalManipulators"> </div>
+    <hr />
+</div>
+{% endblock shapeDefinitionPanelManipulators %}
+

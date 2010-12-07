@@ -1,0 +1,228 @@
+<!DOCTYPE Map>
+<Map bgcolor="steelblue" srs="+proj=latlong +datum=WGS84">
+
+<Style name="land_style">
+    <Rule>
+        <PolygonSymbolizer>
+            <CssParameter name="fill">rgb(244,238,203)</CssParameter>
+        </PolygonSymbolizer>
+        <LineSymbolizer>
+            <CssParameter name="stroke">rgb(50%,50%,50%)</CssParameter>
+            <CssParameter name="stroke-width">0.6</CssParameter>
+        </LineSymbolizer>
+    </Rule>
+</Style>
+
+<Style name="boundary_style">
+    <Rule>
+        <LineSymbolizer>
+            <CssParameter name="stroke">rgb(120,120,120)</CssParameter>
+            <CssParameter name="stroke-width">1</CssParameter>
+        </LineSymbolizer>
+    </Rule>
+</Style>
+
+<Style name="road_style">
+    <Rule>
+        <LineSymbolizer>
+            <CssParameter name="stroke">rgb(0,0,0)</CssParameter>
+            <CssParameter name="stroke-width">.4</CssParameter>
+        </LineSymbolizer>
+        <MaxScaleDenominator>1000000</MaxScaleDenominator>
+    </Rule>
+</Style>
+
+<Style name="city_style">
+    <Rule>
+        <PolygonSymbolizer>
+            <CssParameter name="fill">rgb(44,38,203)</CssParameter>
+            <CssParameter name="fill-opacity">0.1</CssParameter>
+        </PolygonSymbolizer>
+        <LineSymbolizer>
+            <CssParameter name="stroke">rgb(50,50,50)</CssParameter>
+            <CssParameter name="stroke-width">.2</CssParameter>
+        </LineSymbolizer>
+    </Rule>
+    <Rule>
+        <TextSymbolizer name="CITY_NAME" face_name="DejaVu Sans Bold" size="10" 
+            fill="black" halo_fill= "#DFDBE3" halo_radius="1" vertical_alignment="top"
+            wrap_width="12" spacing="4" allow_overlap="false" avoid_edges="false" 
+            min_distance="6"/>
+        <MaxScaleDenominator>1000000</MaxScaleDenominator>
+    </Rule>
+</Style>
+
+<Style name="park_style">
+    <Rule>
+        <PolygonSymbolizer>
+            <CssParameter name="fill">rgb(44,125,38)</CssParameter>
+            <CssParameter name="fill-opacity">0.7</CssParameter>
+        </PolygonSymbolizer>
+        <LineSymbolizer>
+            <CssParameter name="stroke">rgb(50,50,50)</CssParameter>
+            <CssParameter name="stroke-width">.2</CssParameter>
+        </LineSymbolizer>
+    </Rule>
+    <!--
+    <Rule>
+        <TextSymbolizer name="NAME" face_name="DejaVu Sans Bold" size="10" 
+            fill="black" halo_fill= "#DFDBE3" halo_radius="1" vertical_alignment="top"
+            wrap_width="12" spacing="4" allow_overlap="false" avoid_edges="false" 
+            min_distance="6"/>
+        <MaxScaleDenominator>1000000</MaxScaleDenominator>
+    </Rule>
+    -->
+</Style>
+
+<Style name="bathymetry_style">
+    <Rule>
+        <LineSymbolizer>
+            <CssParameter name="stroke">rgb(180,180,180)</CssParameter>
+            <CssParameter name="stroke-width">1</CssParameter>
+        </LineSymbolizer>
+        <MaxScaleDenominator>1000000</MaxScaleDenominator>
+    </Rule>
+</Style>
+
+<!-- NOTE that aoi_style is overridden in staticmap if designations are provided -->
+<Style name="aoi_style">
+    <Rule>
+        <PolygonSymbolizer>
+            <CssParameter name="fill">rgb(220,100,12)</CssParameter>
+            <CssParameter name="fill-opacity">0.6</CssParameter>
+        </PolygonSymbolizer>
+        <LineSymbolizer>
+            <CssParameter name="stroke">rgb(255,0,0)</CssParameter>
+            <CssParameter name="stroke-width">0.2</CssParameter>
+        </LineSymbolizer>
+        <Filter> MPA_FILTER </Filter>
+    </Rule>
+</Style>
+
+<Style name="extent_style">
+    <Rule>
+        <LineSymbolizer>
+            <CssParameter name="stroke">rgb(255,0,0)</CssParameter>
+            <CssParameter name="stroke-width">2</CssParameter>
+        </LineSymbolizer>>
+        <MinScaleDenominator>2000000</MinScaleDenominator>
+        <Filter> MPA_FILTER </Filter>
+    </Rule>
+</Style>
+
+<Style name="region_style">
+    <Rule>
+        <PolygonSymbolizer>
+            <CssParameter name="fill">steelblue</CssParameter>
+            <CssParameter name="fill-opacity">0.0</CssParameter>
+        </PolygonSymbolizer>
+        <LineSymbolizer>
+            <CssParameter name="stroke">rgb(5%,5%,5%)</CssParameter>
+            <CssParameter name="stroke-width">1</CssParameter>
+        </LineSymbolizer>
+    </Rule>
+</Style>
+
+<Style name="port_style">
+    <Rule>
+        <TextSymbolizer name="MAIN_PORT_" face_name="DejaVu Sans Bold" size="10" 
+            fill="black" halo_fill= "#DFDBE3" halo_radius="1" 
+            wrap_width="12" spacing="4" allow_overlap="false" avoid_edges="false" 
+            min_distance="6"/>
+        <MaxScaleDenominator>1000000</MaxScaleDenominator>
+    </Rule>
+</Style>
+
+<!-- Data Layers -->
+
+<Layer name="bathymetry" srs="+proj=latlong +datum=WGS84" status="on">
+    <StyleName>bathymetry_style</StyleName>
+    <Datasource>
+        <Parameter name="type">shape</Parameter>
+        <Parameter name="file">MEDIA_ROOT/staticmap/data/bathymetry</Parameter>
+    </Datasource>
+</Layer>
+
+<Layer name="land" srs="+proj=latlong +datum=WGS84" status="on">
+    <StyleName>land_style</StyleName>
+    <Datasource>
+        <Parameter name="type">shape</Parameter>
+        <Parameter name="file">MEDIA_ROOT/staticmap/data/west_coast</Parameter>
+    </Datasource>
+</Layer>
+
+<Layer name="boundaries" srs="+proj=latlong +datum=WGS84" status="on">
+    <StyleName>boundary_style</StyleName>
+    <Datasource>
+        <Parameter name="type">shape</Parameter>
+        <Parameter name="file">MEDIA_ROOT/staticmap/data/state_bounds</Parameter>
+    </Datasource>
+</Layer>
+
+<Layer name="roads" srs="+proj=latlong +datum=WGS84" status="on">
+    <StyleName>road_style</StyleName>
+    <Datasource>
+        <Parameter name="type">shape</Parameter>
+        <Parameter name="file">MEDIA_ROOT/staticmap/data/roads</Parameter>
+    </Datasource>
+</Layer>
+
+<Layer name="parks" srs="+proj=latlong +datum=WGS84" status="on">
+    <StyleName>park_style</StyleName>
+    <Datasource>
+        <Parameter name="type">shape</Parameter>
+        <Parameter name="file">MEDIA_ROOT/staticmap/data/state_parks</Parameter>
+    </Datasource>
+</Layer>
+
+<Layer name="cities" srs="+proj=latlong +datum=WGS84" status="on">
+    <StyleName>city_style</StyleName>
+    <Datasource>
+        <Parameter name="type">shape</Parameter>
+        <Parameter name="file">MEDIA_ROOT/staticmap/data/city_boundaries</Parameter>
+    </Datasource>
+</Layer>
+
+<Layer name="aoi" status="on" srs="+init=epsg:GEOMETRY_DB_SRID">
+    <!-- NOTE that the 'aoi_style' is overridden by staticmap to provide styling accd to designation -->
+    <StyleName>aoi_style</StyleName>
+    <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="geometry_field">geometry_final</Parameter>
+      <!-- NOTE that the subselect for aoi MUST have all these fields for filtering purposes -->
+      <Parameter name="table">(select id, geometry_final, name, designation_id from MM_MPA) as aoi</Parameter>
+      DATABASE_CONNECTION
+    </Datasource>
+</Layer>
+
+<Layer name="studyregion" status="on" srs="+init=epsg:GEOMETRY_DB_SRID">
+    <StyleName>region_style</StyleName>
+    <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="table">(select geometry, name from mm_study_region) as region</Parameter>
+      DATABASE_CONNECTION
+    </Datasource>
+</Layer>
+
+<Layer name="extent" status="on" srs="+init=epsg:GEOMETRY_DB_SRID">
+    <StyleName>extent_style</StyleName>
+    <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="geometry_field">geometry_final</Parameter>
+      <!-- NOTE that the subselect for aoi MUST have all these fields for filtering purposes -->
+      <Parameter name="table">(select id, st_transform(st_setsrid(st_makebox2d(st_point(st_xmin(st_transform(geometry_final,GEOMETRY_CLIENT_SRID))-OUTLINE_X_OFFSET, st_ymin(st_transform(geometry_final,GEOMETRY_CLIENT_SRID))-OUTLINE_Y_OFFSET), st_point(st_xmax(st_transform(geometry_final,GEOMETRY_CLIENT_SRID))+OUTLINE_X_OFFSET, st_ymax(st_transform(geometry_final,GEOMETRY_CLIENT_SRID))+OUTLINE_Y_OFFSET)), GEOMETRY_CLIENT_SRID), GEOMETRY_DB_SRID) as geometry_final, name, designation_id from MM_MPA) as aoi</Parameter> 
+      <!-- tried the following, but it seems mapnik isn't limited to the bounding box when rendering the image, so the extent did not accurately reflect the extent of the zoomed in image -->
+      <!-- <Parameter name="table">(select id, st_transform(st_setsrid(st_makebox2d(st_point(X_MIN, Y_MIN), st_point(X_MAX, Y_MAX)), GEOMETRY_CLIENT_SRID), GEOMETRY_DB_SRID) as geometry_final, name, designation_id from MM_MPA) as aoi</Parameter> -->
+      DATABASE_CONNECTION
+    </Datasource>
+</Layer>
+
+<Layer name="ports" srs="+proj=latlong +datum=WGS84" status="on">
+    <StyleName>port_style</StyleName>
+    <Datasource>
+        <Parameter name="type">shape</Parameter>
+        <Parameter name="file">MEDIA_ROOT/staticmap/data/world_ports</Parameter>
+    </Datasource>
+</Layer>
+
+</Map>
