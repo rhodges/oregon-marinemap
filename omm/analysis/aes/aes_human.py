@@ -35,6 +35,8 @@ def run_hum_analysis(aes, type):
     nearest_parks = get_nearest_parks(aes)
     #get nearest public access points
     nearest_access_sites = get_nearest_access_sites(aes)
+    #get intersecting or nearest buoys
+    buoy_data = get_buoy_data(aes)
     #get intersecting or nearest dredge material disposal sites
     dmd_data = get_dmd_data(aes)
     #get intersecting or nearest npde outfall sites
@@ -54,7 +56,7 @@ def run_hum_analysis(aes, type):
     #get nearest conservation areas
     nearest_conservation_areas = get_nearest_conservation_areas(aes)
     #compile context
-    context = {'aes': aes, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'urbangrowthboundaries': nearest_ugbs, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
+    context = {'aes': aes, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'urbangrowthboundaries': nearest_ugbs, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'buoy_data': buoy_data, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
     #cache these results
     create_cache(aes, type, context)   
     return context
@@ -82,6 +84,17 @@ def get_nearest_access_sites(aes):
         output = site.name + ' , ' + site.city + ' ' + site.county + ' County'
         site_tuples.append( (output, length_in_display_units(site.geometry.distance(aes.geometry_final))) )
     return site_tuples
+    
+'''    
+'''
+def get_buoy_data(aes):
+    intersecting_buoys = get_intersecting_geometries(aes, 'buoys')
+    nearest_buoy = get_nearest_geometries_with_distances(aes, 'buoys', length=1)
+    if len(intersecting_buoys) > 0:
+        buoy_data = ('Yes', intersecting_buoys)
+    else:
+        buoy_data = ('No', nearest_buoy[0])
+    return buoy_data    
     
 '''    
 Get any intersecting dmds or the three nearest dmds along with their distances

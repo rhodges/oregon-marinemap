@@ -41,7 +41,33 @@
 <br>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
-    
+        
+        <!-- Buoy Data -->
+        <tr class="grey">
+            <td colspan="3"><b>Buoys</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{buoy_data.0}}</td>
+        </tr>
+        {% if buoy_data.0 == 'Yes' %}
+        <tr class="grey">
+            <td colspan="3"><b>Intersecting Buoys</b></td>
+        </tr>        
+        {% for data in buoy_data.1 %}
+        <tr>
+            <td colspan="3">{{data}}</td>
+        </tr>
+        {% endfor %}
+        <tr><td></td><td></td><td></td><td></td></tr>
+        {% else %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Buoy</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{buoy_data.1.0}} ({{buoy_data.1.1|floatformat:'2'}} {{length_units}})</td>
+        </tr>
+        {% endif %}
+
         <!-- Dredge Materials Data -->
         <tr class="grey">
             <td colspan="3"><b>Dredge Materials Disposal Sites</b></td>
@@ -61,7 +87,7 @@
         <tr><td></td><td></td><td></td><td></td></tr>
         {% else %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest DMD Sites</b></td>
+            <td colspan="3"><b>Nearest DMD Site</b></td>
         </tr>
         <tr>
             <td colspan="3">{{dmd_data.1.0}} ({{dmd_data.1.1|floatformat:'2'}} {{length_units}})</td>
@@ -87,7 +113,7 @@
         <tr><td></td><td></td><td></td><td></td></tr>
         {% else %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest NPDES Outfall Sites</b></td>
+            <td colspan="3"><b>Nearest NPDES Outfall Site</b></td>
         </tr>
         <tr>
             <td colspan="3">{{outfall_data.1.0}} ({{outfall_data.1.1|floatformat:'2'}} {{length_units}})</td>
@@ -113,7 +139,7 @@
         <tr><td></td><td></td><td></td><td></td></tr>
         {% else %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest Undersea Cable Sites</b></td>
+            <td colspan="3"><b>Nearest Undersea Cable Site</b></td>
         </tr>
         <tr>
             <td colspan="3">{{cable_data.1.0}} ({{cable_data.1.1|floatformat:'2'}} {{length_units}})</td>

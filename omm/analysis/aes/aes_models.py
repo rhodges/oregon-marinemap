@@ -224,6 +224,49 @@ class UrbanGrowthBoundaries(models.Model):
     
     class Meta:
         app_label = 'analysis'
-        
+
+class Buoys(models.Model):
+    inform = models.CharField(max_length=254, null=True, blank=True)
+    name = models.CharField(max_length=254)
+    recdat = models.CharField(max_length=254, null=True, blank=True)
+    recind = models.CharField(max_length=254, null=True, blank=True)
+    sordat = models.CharField(max_length=254)
+    sorind = models.CharField(max_length=254)
+    scamax = models.IntegerField()
+    scamin = models.IntegerField()
+    txtdsc = models.CharField(max_length=254, null=True, blank=True)
+    ninfom = models.CharField(max_length=254, null=True, blank=True)
+    nobjnm = models.CharField(max_length=254, null=True, blank=True)
+    ntxtds = models.CharField(max_length=254, null=True, blank=True)
+    lnam = models.CharField(max_length=20)
+    id_name = models.CharField(max_length=20)
+    rver = models.IntegerField()
+    ruin = models.CharField(max_length=254)
+    grup = models.CharField(max_length=254)
+    catcam = models.IntegerField()
+    catlam = models.IntegerField()
+    catspm = models.CharField(max_length=254, null=True, blank=True)
+    colour = models.CharField(max_length=254)
+    colpat = models.CharField(max_length=254, null=True, blank=True)
+    conrad = models.IntegerField()
+    datend = models.CharField(max_length=254, null=True, blank=True)
+    datsta = models.CharField(max_length=254, null=True, blank=True)
+    marsys = models.IntegerField()
+    natcon = models.CharField(max_length=254, null=True, blank=True)
+    perend = models.CharField(max_length=254, null=True, blank=True)
+    persta = models.CharField(max_length=254, null=True, blank=True)
+    picrep = models.CharField(max_length=254, null=True, blank=True)
+    status = models.CharField(max_length=254)
+    veracc = models.FloatField()
+    verlen = models.FloatField()
+    boyshp = models.IntegerField()
+    catinb = models.IntegerField()
+    prodct = models.CharField(max_length=254, null=True, blank=True)
+    buoy_type = models.IntegerField()
+    geometry = models.PointField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Buoys")
+    objects = models.GeoManager()      
+    
+    class Meta:
+        app_label = 'analysis'       
 
         
