@@ -211,6 +211,19 @@ class Substations(models.Model):
     class Meta:
         app_label = 'analysis'
 
+#For Human Use Reports
+
+class UrbanGrowthBoundaries(models.Model):
+    objectid = models.IntegerField()
+    name = models.CharField(max_length=254)
+    shape_leng = models.FloatField()
+    shape_le_1 = models.FloatField()
+    shape_area = models.FloatField()
+    geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Urban Growth Boundaries DLCD 2009")
+    objects = models.GeoManager()      
+    
+    class Meta:
+        app_label = 'analysis'
         
 
         
