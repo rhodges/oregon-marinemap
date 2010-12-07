@@ -373,10 +373,11 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="humheader" colspan="11">Existing or Proposed Transportation & Infrasructure Considerations</th>
+            <th class="humheader" colspan="15">Existing or Proposed Transportation & Infrasructure Considerations</th>
         </tr>
         <tr>
             <th colspan="2">Buoys</th>
+            <th colspan="2">Beacons</th>
             <th colspan="2">Signal Equipment</th>
             <th colspan="2">Dredge Materials Disposal</th>
             <th colspan="2">NPDES Outfall</th>
@@ -388,6 +389,7 @@
     <tbody>
         <tr>
             <td colspan="2">{{hum.buoy_data.0}}</td>
+            <td colspan="2">{{hum.beacon_data.0}}</td>
             <td colspan="2">{{hum.signal_data.0}}</td>
             <td colspan="2">{{hum.dmd_data.0}}</td>
             <td colspan="2">{{hum.outfall_data.0}}</td>
@@ -402,6 +404,12 @@
                 <th colspan="2">Intersecting Buoys</th>
             {% else %}
                 <th colspan="2">Closest Buoy</th>
+            {% endif %}
+            
+            {% if hum.beacon_data.0 == 'Yes' %}
+                <th colspan="2">Intersecting Beacons</th>
+            {% else %}
+                <th colspan="2">Closest Beacon</th>
             {% endif %}
             
             {% if hum.signal_data.0 == 'Yes' %}
@@ -446,6 +454,15 @@
                     {% endfor %}
                 {% else %}
                     {{hum.buoy_data.1.0}} ({{hum.buoy_data.1.1|floatformat:'2'}}{{hum.length_units}})
+                {% endif %}
+            </td>
+            <td valign="top" colspan="2">
+                {% if hum.beacon_data.0 == 'Yes' %}
+                    {% for data in hum.beacon_data.1 %}
+                        {{data}}</br>
+                    {% endfor %}
+                {% else %}
+                    {{hum.beacon_data.1.0}} ({{hum.beacon_data.1.1|floatformat:'2'}}{{hum.length_units}})
                 {% endif %}
             </td>
             <td valign="top" colspan="2">
