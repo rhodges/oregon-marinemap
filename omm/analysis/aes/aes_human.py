@@ -28,7 +28,9 @@ def display_hum_analysis(request, aes, type='Human', template='aes_hum_report.ht
 '''
 Run the analysis, create the cache, and return the results as a context dictionary so they may be rendered with template
 '''    
-def run_hum_analysis(aes, type):     
+def run_hum_analysis(aes, type): 
+    #get nearest urban growth boundaries
+    nearest_ugbs = get_nearest_ugbs(aes)
     #get nearest state parks
     nearest_parks = get_nearest_parks(aes)
     #get nearest public access points
@@ -52,10 +54,15 @@ def run_hum_analysis(aes, type):
     #get nearest conservation areas
     nearest_conservation_areas = get_nearest_conservation_areas(aes)
     #compile context
-    context = {'aes': aes, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
+    context = {'aes': aes, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'urbangrowthboundaries': nearest_ugbs, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
     #cache these results
     create_cache(aes, type, context)   
     return context
+    
+'''
+'''
+def get_nearest_ugbs(aes):
+    return get_nearest_geometries_with_distances(aes, 'urbangrowthboundaries')
     
 '''
 Determines the Nearest State Park for the given nearshore habitat shape
