@@ -27,7 +27,7 @@ from aes.aes_models import Substations, TransmissionLines1993, TransmissionLines
 from aes.aes_models import Seagrass, StellerHabitats
 
 #import AES_Human Use models
-from aes.aes_models import UrbanGrowthBoundaries
+from aes.aes_models import UrbanGrowthBoundaries, SignalEquipment
 
 #import AES_Caching models
 from aes.aes_models import AESCache
