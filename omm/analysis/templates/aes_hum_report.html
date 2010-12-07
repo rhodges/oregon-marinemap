@@ -68,6 +68,32 @@
         </tr>
         {% endif %}
         
+        <!-- Beacon Data -->
+        <tr class="grey">
+            <td colspan="3"><b>Beacons</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{beacon_data.0}}</td>
+        </tr>
+        {% if beacon_data.0 == 'Yes' %}
+        <tr class="grey">
+            <td colspan="3"><b>Intersecting Beacons</b></td>
+        </tr>        
+        {% for data in beacon_data.1 %}
+        <tr>
+            <td colspan="3">{{data}}</td>
+        </tr>
+        {% endfor %}
+        <tr><td></td><td></td><td></td><td></td></tr>
+        {% else %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Beacon</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{beacon_data.1.0}} ({{beacon_data.1.1|floatformat:'2'}} {{length_units}})</td>
+        </tr>
+        {% endif %}
+        
         <!-- Signal Equipment Data -->
         <tr class="grey">
             <td colspan="3"><b>Signal Equipment</b></td>
