@@ -360,9 +360,10 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="humheader" colspan="5">Existing or Proposed Transportation & Infrasructure Considerations</th>
+            <th class="humheader" colspan="6">Existing or Proposed Transportation & Infrasructure Considerations</th>
         </tr>
         <tr>
+            <th>Buoys</th>
             <th>Dredge Materials Disposal</th>
             <th>NPDES Outfall</th>
             <th>Undersea Cables</th>
@@ -372,6 +373,7 @@
     </thead>
     <tbody>
         <tr>
+            <td>{{hum.buoy_data.0}}</td>
             <td>{{hum.dmd_data.0}}</td>
             <td>{{hum.outfall_data.0}}</td>
             <td>{{hum.cable_data.0}}</td>
@@ -381,10 +383,16 @@
     </tbody>
     <thead>
         <tr>
+            {% if hum.buoy_data.0 == 'Yes' %}
+                <th>Intersecting Buoys</th>
+            {% else %}
+                <th>Closest Buoy</th>
+            {% endif %}
+            
             {% if hum.dmd_data.0 == 'Yes' %}
                 <th>Intersecting DMD Sites</th>
             {% else %}
-                <th>Closest DMD Sites</th>
+                <th>Closest DMD Site</th>
             {% endif %}
             
             {% if hum.outfall_data.0 == 'Yes' %}
@@ -410,6 +418,15 @@
     </thead>
     <tbody>
         <tr>
+            <td>
+                {% if hum.buoy_data.0 == 'Yes' %}
+                    {% for data in hum.buoy_data.1 %}
+                        {{data}}</br>
+                    {% endfor %}
+                {% else %}
+                    {{hum.buoy_data.1.0}} ({{hum.buoy_data.1.1|floatformat:'2'}} {{hum.length_units}})
+                {% endif %}
+            </td>
             <td>
                 {% if hum.dmd_data.0 == 'Yes' %}
                     {% for data in hum.dmd_data.1 %}

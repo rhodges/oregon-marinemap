@@ -53,18 +53,20 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="humheader" colspan="5">Existing or Proposed Transportation & Infrasructure Considerations</font></th>
+            <th class="humheader" colspan="6">Existing or Proposed Transportation & Infrasructure Considerations</font></th>
         </tr>
         <tr>
+            <th>Buoys</th>
             <th>Dredge Materials Disposal</th>
             <th>NPDES Outfall</th>
             <th>Undersea Cables</th>
             <th>Towlanes</th>
-            <th>Wave Energy</th>
+            <th>Wave Energy Sites</th>
         </tr>
     </thead>
     <tbody>
         <tr>
+            <td>{{buoy_data.0}}</td>
             <td>{{dmd_data.0}}</td>
             <td>{{outfall_data.0}}</td>
             <td>{{cable_data.0}}</td>
@@ -74,10 +76,16 @@
     </tbody>
     <thead>
         <tr>
+            {% if buoy_data.0 == 'Yes' %}
+                <th>Intersecting Buoys</th>
+            {% else %}
+                <th>Closest Buoy</th>
+            {% endif %}
+            
             {% if dmd_data.0 == 'Yes' %}
                 <th>Intersecting DMD Sites</th>
             {% else %}
-                <th>Closest DMD Sites</th>
+                <th>Closest DMD Site</th>
             {% endif %}
             
             {% if outfall_data.0 == 'Yes' %}
@@ -95,14 +103,23 @@
             <th></th>
             
             {% if wave_energy_data.0 == 'Yes' %}
-                <th>Intersecting Wave Energy</th>
+                <th>Intersecting Wave Energy Sites</th>
             {% else %}
-                <th>Closest Wave Energy</th>
+                <th>Closest Wave Energy Sites</th>
             {% endif %}
         </tr>
     </thead>
     <tbody>
         <tr>
+            <td>
+                {% if buoy_data.0 == 'Yes' %}
+                    {% for data in buoy_data.1 %}
+                        {{data}}</br>
+                    {% endfor %}
+                {% else %}
+                    {{buoy_data.1.0}} ({{buoy_data.1.1|floatformat:'2'}} {{length_units}})
+                {% endif %}
+            </td>
             <td>
                 {% if dmd_data.0 == 'Yes' %}
                     {% for data in dmd_data.1 %}
