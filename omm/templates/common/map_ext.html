@@ -45,3 +45,12 @@
 </div>
 {% endblock shapeDefinitionPanelManipulators %}
 
+
+{% block shapeDefinitionPanelBeforeManipulatorContent %}   
+The following clipping operations were performed on your shape:                 
+{% endblock shapeDefinitionPanelBeforeManipulatorContent %}
+
+{% block shapeDefinitionPanelAfterManipulatorContent %}     
+If you ever need to change your shape, we also keep a copy of the lines you draw, so you will always have the un-clipped version for editing.
+<br><br>
+{% endblock shapeDefinitionPanelAfterManipulatorContent %}
