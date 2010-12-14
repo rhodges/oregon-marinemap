@@ -19,12 +19,12 @@ from nsh.nsh_models import NSHCache
 #AES RELATED IMPORTS
                         
 #import AES_Geographic models
-from aes.aes_models import Substations, TransmissionLines1993, TransmissionLines2010, Viewsheds, Marinas, Railroads
+from aes.aes_models import Substations, TransmissionLines1993, TransmissionLines2010, Substations, Viewsheds, Marinas, Railroads
 
 #import AES_Physical models
 
 #import AES_Biological models
-from aes.aes_models import Seagrass, StellerHabitats, Substations
+from aes.aes_models import Seagrass, StellerHabitats, SnowyPlover, MarbledMurrelet, SturgeonCoastal, SturgeonEstuaries, Coho
 
 #import AES_Human Use models
 from aes.aes_models import UrbanGrowthBoundaries, Buoys, SignalEquipment, Beacons
