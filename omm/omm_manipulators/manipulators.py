@@ -134,7 +134,7 @@ class ExcludeTerrestrialManipulator(DifferenceFromShapeManipulator):
 
     class Options:    
         name = 'ExcludeTerrestrialManipulator'
-        display_name = 'Exclude Terrestrial'
+        display_name = 'Exclude Land Areas'
         description = 'Removes any part of your shape that is terrestrial.'
 
         html_templates = {
