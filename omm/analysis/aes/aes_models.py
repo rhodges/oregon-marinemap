@@ -53,7 +53,19 @@ class TransmissionLines2010(models.Model):
     objects = models.GeoManager()  
     
     class Meta:
-        app_label = 'analysis'      
+        app_label = 'analysis'  
+        
+class Substations(models.Model):
+    objectid = models.IntegerField()
+    sta_code = models.CharField(max_length=4)
+    name = models.CharField(max_length=50)
+    type = models.CharField(max_length=50)
+    owner = models.CharField(max_length=60)
+    geometry = models.PointField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Electrical Substations")
+    objects = models.GeoManager()   
+    
+    class Meta:
+        app_label = 'analysis'    
     
 class Viewsheds(models.Model):
     area = models.FloatField()
@@ -195,23 +207,104 @@ class StellerHabitats(models.Model):
     type = models.CharField(max_length=50)
     length = models.FloatField()
     area = models.FloatField()
-    geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Stellar Sealions Critical Habitats")
+    geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Stellar Sealions Critical Habitats 2008")
     objects = models.GeoManager()   
     
     class Meta:
         app_label = 'analysis'
         
-class Substations(models.Model):
-    objectid = models.IntegerField()
-    sta_code = models.CharField(max_length=4)
-    name = models.CharField(max_length=50)
-    type = models.CharField(max_length=50)
-    owner = models.CharField(max_length=60)
-    geometry = models.PointField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Electrical Substations")
+class SnowyPlover(models.Model):
+    state = models.CharField(max_length=5)
+    cname = models.CharField(max_length=50)
+    sname = models.CharField(max_length=50)
+    spp_code = models.CharField(max_length=10)
+    org_code = models.CharField(max_length=10)
+    unit_num = models.CharField(max_length=10)
+    subunit = models.CharField(max_length=10, null=True, blank=True)
+    unit_name = models.CharField(max_length=50)
+    status = models.CharField(max_length=30)
+    shape_leng = models.FloatField()
+    shape_area = models.FloatField()
+    geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Western Snowy Plover Critical Habitats USFWS 2005")
     objects = models.GeoManager()   
     
     class Meta:
-        app_label = 'analysis'
+        app_label = 'analysis'    
+
+class MarbledMurrelet(models.Model):
+    area = models.FloatField()
+    perimeter = models.FloatField()
+    mmch_final = models.IntegerField()
+    mmch_fin_1 = models.IntegerField()
+    chu = models.IntegerField()
+    owner_code = models.CharField(max_length=30, null=True, blank=True)
+    state = models.CharField(max_length=2, null=True, blank=True)
+    chu_name = models.CharField(max_length=10, null=True, blank=True)
+    acres = models.FloatField()
+    shape_leng = models.FloatField()
+    shape_area = models.FloatField()
+    geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Marbled Murrelet Critical Habitats USFWS 1996")
+    objects = models.GeoManager()  
+    
+    class Meta:
+        app_label = 'analysis'    
+        
+class SturgeonCoastal(models.Model):
+    name = models.CharField(max_length=50)
+    exclude = models.CharField(max_length=10)
+    sqmiles = models.FloatField()
+    conservati = models.CharField(max_length=28)
+    specificar = models.CharField(max_length=9)
+    sqkm = models.FloatField()
+    shape_leng = models.FloatField()
+    shape_le_1 = models.FloatField()
+    shape_area = models.FloatField()
+    geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Green Sturgeon Marine Coastal Zones NOAA 2009")
+    objects = models.GeoManager()    
+    
+    class Meta:
+        app_label = 'analysis'    
+
+class SturgeonEstuaries(models.Model):
+    name = models.CharField(max_length=40)
+    cv = models.CharField(max_length=10)
+    area = models.IntegerField()
+    exclude = models.CharField(max_length=5)
+    sqmiles = models.FloatField()
+    sqkm = models.FloatField()
+    shape_leng = models.FloatField()
+    shape_le_1 = models.FloatField()
+    shape_area = models.FloatField()
+    geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Green Sturgeon Estuaries NOAA 2009")
+    objects = models.GeoManager()     
+    
+    class Meta:
+        app_label = 'analysis'  
+
+class Coho(models.Model):
+    length = models.FloatField()
+    llid = models.CharField(max_length=13)
+    strm_name = models.CharField(max_length=50)
+    rev_date = models.CharField(max_length=10)
+    reference = models.CharField(max_length=6, null=True, blank=True)
+    sppcode = models.CharField(max_length=6)
+    subbasin = models.CharField(max_length=30)
+    watershed = models.CharField(max_length=80)
+    huc4 = models.CharField(max_length=8)
+    huc5 = models.CharField(max_length=10)
+    use = models.CharField(max_length=5)
+    dist = models.CharField(max_length=5)
+    p_rch_rate = models.CharField(max_length=10, null=True, blank=True)
+    f_rch_rate = models.CharField(max_length=10)
+    comments = models.CharField(max_length=80, null=True, blank=True)
+    p_exclude = models.CharField(max_length=5, null=True, blank=True)
+    f_exclude = models.CharField(max_length=5)
+    shape_leng = models.FloatField()
+    geometry = models.MultiLineStringField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Oregon Coastal Coho Critical Habitats 2008")
+    objects = models.GeoManager()    
+    
+    class Meta:
+        app_label = 'analysis'  
 
 #For Human Use Reports
 
