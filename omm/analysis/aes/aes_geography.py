@@ -4,7 +4,7 @@ from django.template import RequestContext
 from analysis.models import *
 from settings import *
 from lingcod.unit_converter.models import area_in_display_units, length_in_display_units
-from analysis.utils import ensure_type, get_nearest_geometries_with_distances, get_intersecting_geometries, default_value
+from analysis.utils import ensure_type, get_nearest_geometries_with_distances, get_intersecting_shape_names, default_value
 from aes_cache import has_cache, get_cache, create_cache
 
 
@@ -69,7 +69,7 @@ Determines the Adjacent Counties for the given energy site shape
 Called by display_geo_analysis
 '''
 def get_adjacent_counties(aes):
-    intersecting_geometries = get_intersecting_geometries(aes, 'counties')
+    intersecting_geometries = get_intersecting_shape_names(aes, 'counties')
     if len(intersecting_geometries) == 0:
         intersecting_geometries.append(default_value)
     return intersecting_geometries
