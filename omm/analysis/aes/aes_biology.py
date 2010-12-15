@@ -47,11 +47,19 @@ def run_bio_analysis(aes, type):
     seagrass_area = get_seagrass_area(aes)
     #get green sturgeon data (yes/no and percentage)
     green_sturgeon, green_sturgeon_perc = get_green_sturgeon_data(aes)
+    #get distance to nearest western snowy plover critical habitat
+    nearest_snowy_plover = distance_to_snowy_plover(aes)
     #compile context
-    context = {'aes': aes, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'num_sealion_habs': num_sealion_habs, 'sealion_habs': sealion_habs, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'fish_list': fish_list, 'kelp_data': kelp_data, 'seagrass_area': seagrass_area, 'green_sturgeon': green_sturgeon, 'green_sturgeon_perc': green_sturgeon_perc}
+    context = {'aes': aes, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'num_sealion_habs': num_sealion_habs, 'sealion_habs': sealion_habs, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'fish_list': fish_list, 'kelp_data': kelp_data, 'seagrass_area': seagrass_area, 'green_sturgeon': green_sturgeon, 'green_sturgeon_perc': green_sturgeon_perc, 'nearest_snowy_plover': nearest_snowy_plover}
     #cache these results
     create_cache(aes, type, context)   
     return context
+    
+def distance_to_snowy_plover(aes):
+    snowy_plovers = SnowyPlover.objects.all()
+    distances = [hab.geometry.centroid.distance(aes.geometry_final) for hab in snowy_plovers]
+    distances.sort()
+    return length_in_display_units(distances[0])
     
 def get_green_sturgeon_data(aes):
     coastal_overlaps = get_intersecting_geometries(aes, 'sturgeoncoastal')
