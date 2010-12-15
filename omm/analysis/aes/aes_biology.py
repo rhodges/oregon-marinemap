@@ -51,11 +51,22 @@ def run_bio_analysis(aes, type):
     nearest_snowy_plover = distance_to_snowy_plover(aes)
     #get distance to nearest marbled murrelet critical habitat
     nearest_marbled_murrelet = distance_to_marbled_murrelet(aes)
+    #get coho populated streams
+    coho_streams, coho_stream_names = intersecting_coho_streams(aes)
     #compile context
-    context = {'aes': aes, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'num_sealion_habs': num_sealion_habs, 'sealion_habs': sealion_habs, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'fish_list': fish_list, 'kelp_data': kelp_data, 'seagrass_area': seagrass_area, 'green_sturgeon': green_sturgeon, 'green_sturgeon_perc': green_sturgeon_perc, 'nearest_snowy_plover': nearest_snowy_plover, 'nearest_marbled_murrelet': nearest_marbled_murrelet}
+    context = {'aes': aes, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'num_sealion_habs': num_sealion_habs, 'sealion_habs': sealion_habs, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'fish_list': fish_list, 'kelp_data': kelp_data, 'seagrass_area': seagrass_area, 'green_sturgeon': green_sturgeon, 'green_sturgeon_perc': green_sturgeon_perc, 'nearest_snowy_plover': nearest_snowy_plover, 'nearest_marbled_murrelet': nearest_marbled_murrelet, 'coho_streams': coho_streams, 'coho_stream_names': coho_stream_names}
     #cache these results
     create_cache(aes, type, context)   
     return context
+        
+def intersecting_coho_streams(aes):
+    coho_streams = Coho.objects.all()
+    inter_streams = [stream.strm_name for stream in coho_streams if stream.geometry.intersects(aes.geometry_final)]
+    if len(inter_streams) > 0:
+        presence = 'Yes'
+    else:
+        presence = 'No'
+    return presence, inter_streams
         
 def distance_to_marbled_murrelet(aes):
     murrelets = MarbledMurrelet.objects.all()

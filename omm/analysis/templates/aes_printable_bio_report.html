@@ -180,11 +180,7 @@
         <tr class="{% cycle '' 'grey' %}">
             <td>{{nearest_snowy_plover|floatformat:'1'}} {{length_units}}</td>
             <td>{{nearest_marbled_murrelet|floatformat:'1'}} {{length_units}}</td>
-            <td class="top">
-            {% for stream in coho_streams %}
-                {{stream}}</br>
-            {% endfor %}
-            </td>
+            <td>{{coho_streams}}</td>
         </tr>
         <tr class="{% cycle '' 'grey' %}">
             <td></td>
