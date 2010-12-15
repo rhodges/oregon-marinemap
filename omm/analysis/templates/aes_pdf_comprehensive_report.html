@@ -358,6 +358,31 @@
     </tbody>
 </table>
 
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="bioheader" colspan="3">Terrestrial and Estuarine Biological Characteristics</font></th>
+        </tr>
+        <tr>
+            <th colspan="1">Nearest Western Snowy Plover Critical Habitat</th>
+            <th colspan="1">Nearest Marbled Murrelet Critical Habitat</th>
+            <th colspan="1">Coho Populated Streams</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="{% cycle '' 'grey' %}">
+            <td colspan="1">{{bio.nearest_snowy_plover|floatformat:'1'}} {{bio.length_units}}</td>
+            <td colspan="1">{{bio.nearest_marbled_murrelet|floatformat:'1'}} {{bio.length_units}}</td>
+            <td class="top" colspan="1">
+            {% for stream in bio.coho_streams %}
+                {{stream}}</br>
+            {% endfor %}
+            </td>
+        </tr>
+    </tbody>
+</table>
+
 <!-- Human Uses Report -->
 
 <br></br>
