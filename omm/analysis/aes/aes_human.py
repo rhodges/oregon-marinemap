@@ -4,7 +4,7 @@ from django.template import RequestContext
 from analysis.models import *
 from settings import *
 from lingcod.unit_converter.models import length_in_display_units, area_in_display_units
-from analysis.utils import ensure_type, get_nearest_geometries, get_nearest_geometries_with_distances, get_intersecting_geometries, default_value
+from analysis.utils import ensure_type, get_nearest_geometries, get_nearest_geometries_with_distances, get_intersecting_shape_names, default_value
 from aes_cache import has_cache, get_cache, create_cache
     
 
@@ -92,7 +92,7 @@ def get_nearest_access_sites(aes):
 '''    
 '''
 def get_buoy_data(aes):
-    intersecting_buoys = get_intersecting_geometries(aes, 'buoys')
+    intersecting_buoys = get_intersecting_shape_names(aes, 'buoys')
     nearest_buoy = get_nearest_geometries_with_distances(aes, 'buoys', length=1)
     if len(intersecting_buoys) > 0:
         buoy_data = ('Yes', intersecting_buoys)
@@ -103,7 +103,7 @@ def get_buoy_data(aes):
 '''    
 '''
 def get_beacon_data(aes):
-    intersecting_beacons = get_intersecting_geometries(aes, 'beacons')
+    intersecting_beacons = get_intersecting_shape_names(aes, 'beacons')
     nearest_beacon = get_nearest_geometries_with_distances(aes, 'beacons', length=1)
     if len(intersecting_beacons) > 0:
         beacon_data = ('Yes', intersecting_beacons)
@@ -114,7 +114,7 @@ def get_beacon_data(aes):
 '''    
 '''
 def get_signal_data(aes):
-    intersecting_signals = get_intersecting_geometries(aes, 'signalequipment')
+    intersecting_signals = get_intersecting_shape_names(aes, 'signalequipment')
     nearest_signal = get_nearest_geometries_with_distances(aes, 'signalequipment', length=1)
     if len(intersecting_signals) > 0:
         signal_data = ('Yes', intersecting_signals)
@@ -126,7 +126,7 @@ def get_signal_data(aes):
 Get any intersecting dmds or the three nearest dmds along with their distances
 '''
 def get_dmd_data(aes):
-    intersecting_dmds = get_intersecting_geometries(aes, 'dmdsites')
+    intersecting_dmds = get_intersecting_shape_names(aes, 'dmdsites')
     nearest_dmd = get_nearest_geometries_with_distances(aes, 'dmdsites', length=1)
     if len(intersecting_dmds) > 0:
         dmd_data = ('Yes', intersecting_dmds)
@@ -138,7 +138,7 @@ def get_dmd_data(aes):
 Get any intersecting outfalls or the three nearest outfalls along with their distances
 '''
 def get_outfall_data(aes):
-    intersecting_outfalls = get_intersecting_geometries(aes, 'outfalls')
+    intersecting_outfalls = get_intersecting_shape_names(aes, 'outfalls')
     nearest_outfall = get_nearest_geometries_with_distances(aes, 'outfalls', length=1)
     if len(intersecting_outfalls) > 0:
         outfall_data = ('Yes', intersecting_outfalls)
@@ -150,7 +150,7 @@ def get_outfall_data(aes):
 Get any intersecting cables or the three nearest cables along with their distances
 '''
 def get_cable_data(aes):
-    intersecting_cables = get_intersecting_geometries(aes, 'underseacables')
+    intersecting_cables = get_intersecting_shape_names(aes, 'underseacables')
     nearest_cable = get_nearest_geometries_with_distances(aes, 'underseacables', line=True, length=1)
     if len(intersecting_cables) > 0:
         cable_data = ('Yes', intersecting_cables)

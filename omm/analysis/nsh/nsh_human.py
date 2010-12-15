@@ -4,7 +4,7 @@ from django.template import RequestContext
 from analysis.models import *
 from settings import *
 from lingcod.unit_converter.models import length_in_display_units, area_in_display_units
-from analysis.utils import ensure_type, get_nearest_geometries, get_nearest_geometries_with_distances, get_intersecting_geometries, default_value
+from analysis.utils import ensure_type, get_nearest_geometries, get_nearest_geometries_with_distances, get_intersecting_shape_names, default_value
 from nsh_cache import has_cache, get_cache, create_cache
     
 
@@ -80,7 +80,7 @@ def get_nearest_access_sites(nsh):
 Get any intersecting dmds or the three nearest dmds along with their distances
 '''
 def get_dmd_data(nsh):
-    intersecting_dmds = get_intersecting_geometries(nsh, 'dmdsites')
+    intersecting_dmds = get_intersecting_shape_names(nsh, 'dmdsites')
     nearest_dmd = get_nearest_geometries_with_distances(nsh, 'dmdsites', length=1)
     if len(intersecting_dmds) > 0:
         dmd_data = ('Yes', intersecting_dmds)
@@ -92,7 +92,7 @@ def get_dmd_data(nsh):
 Get any intersecting outfalls or the three nearest outfalls along with their distances
 '''
 def get_outfall_data(nsh):
-    intersecting_outfalls = get_intersecting_geometries(nsh, 'outfalls')
+    intersecting_outfalls = get_intersecting_shape_names(nsh, 'outfalls')
     nearest_outfall = get_nearest_geometries_with_distances(nsh, 'outfalls', length=1)
     if len(intersecting_outfalls) > 0:
         outfall_data = ('Yes', intersecting_outfalls)
@@ -104,7 +104,7 @@ def get_outfall_data(nsh):
 Get any intersecting cables or the three nearest cables along with their distances
 '''
 def get_cable_data(nsh):
-    intersecting_cables = get_intersecting_geometries(nsh, 'underseacables')
+    intersecting_cables = get_intersecting_shape_names(nsh, 'underseacables')
     nearest_cable = get_nearest_geometries_with_distances(nsh, 'underseacables', line=True, length=1)
     if len(intersecting_cables) > 0:
         cable_data = ('Yes', intersecting_cables)

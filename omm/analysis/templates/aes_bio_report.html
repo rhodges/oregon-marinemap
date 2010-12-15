@@ -149,14 +149,46 @@
         {% endif %}
         <br></br>
         <tr class="grey">
-            <td colspan="3"><b>Seagrass Area</b></td>
+            <td><b>Seagrass Area</b></td>
+            <td><b>Green Sturgeon</b></td>
+            <td><b>Green Sturgeon Area Percentage</b></td>
         </tr>
         <tr>
-            <td colspan="3">{{seagrass_area|floatformat:'2'}} {{area_units}}</td>
+            <td>{{seagrass_area|floatformat:'2'}} {{area_units}}</td>
+            <td>{{green_sturgeon}}</td>
+            <td>{{green_sturgeon_perc|floatformat:'1'}} %</td>
         </tr>
     </tbody>
 </table>
 </div>
+
+<h3>Terrestrial / Estuarine Biological Characteristics</h3>
+<div class='freetext'>
+<br>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <tr class="grey">
+            <td><b>Nearest Western Snowy Plover Critical Habitat &nbsp; </b></td>
+            <td><b>Nearest Marbled Murrelet Critical Habitat &nbsp; </b></td>
+        </tr>
+        <tr>
+            <td>{{nearest_snowy_plover|floatformat:'1'}} {{length_units}} &nbsp; </td>
+            <td>{{nearest_marbled_murrelet|floatformat:'1'}} {{length_units}} &nbsp; </td>
+        </tr>
+        <tr class="grey">
+            <td><b>Coho Populated Streams &nbsp; </b></td>
+            <td><b></b></td>
+        </tr>
+        {% for coho in coho_streams %}
+        <tr>
+            <td>{{coho}} &nbsp; </td>
+            <td> &nbsp; </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
 <br></br>
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_aes_report aes.id "bio" %}'>View Printable Biology Report</a>

@@ -295,21 +295,21 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="bioheader" colspan="2">Subtidal Biological Characteristics</th>
+            <th class="bioheader" colspan="6">Subtidal Biological Characteristics</th>
         </tr>
         <tr>
-            <th>Habitat Types & Proportions</th>
-            <th>Predicted Fish Species <br>(Provided by <a target="_blank" href="http://www.nwfsc.noaa.gov/">NOAA's Northwest Fisheries Science Center)</p></a></th>
+            <th colspan="3">Habitat Types & Proportions</th>
+            <th colspan="3">Predicted Fish Species <br>(Provided by <a target="_blank" href="http://www.nwfsc.noaa.gov/">NOAA's Northwest Fisheries Science Center)</p></a></th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td valign="top" class="top">
+            <td colspan="3" valign="top" class="top">
             {% for details in bio.habitat_proportions %}
                 {{details.0|floatformat:'2'}}% &nbsp; {{details.1}} &nbsp; ({{details.2|floatformat:'2'}} {{bio.area_units}})</br>
             {% endfor %}
             </td>
-            <td>
+            <td colspan="3">
             {% for fish in bio.fish_list %}
                 {{fish}} &nbsp;
             {% endfor %}
@@ -318,24 +318,43 @@
     </tbody>
     <thead>
         <tr>
-            <th>Kelp Survey Year</th>
-            <th>Kelp Proportions</th>
+            <th colspan="3">Kelp Survey Year</th>
+            <th colspan="3">Kelp Proportions</th>
         </tr>
     </thead>
     <tbody>
         {% if bio.kelp_data.0.2 == bio.default_value %}
             <tr>
-                <td>{{bio.kelp_data.0.0}}</td>
-                <td></td>
+                <td colspan="3">{{bio.kelp_data.0.0}}</td>
+                <td colspan="3"></td>
             </tr>
         {% else %}
             {% for data in bio.kelp_data %}
             <tr class="{% cycle '' 'grey' %}">
-                <td>{{data.0}}</td>
-                <td>{{data.1|floatformat:'2'}} {{bio.area_units}} &nbsp; ({{data.2|floatformat:'2'}} % of Proposed Site)</td>
+                <td colspan="3">{{data.0}}</td>
+                <td colspan="3">{{data.1|floatformat:'2'}} {{bio.area_units}} &nbsp; ({{data.2|floatformat:'2'}} % of Proposed Site)</td>
             </tr>
             {% endfor %}
         {% endif %}
+    </tbody>
+    <thead>
+        <tr>
+            <th colspan="2">Seagrass Area</th>
+            <th colspan="2">Green Sturgeon</th>
+            <th colspan="2">Green Sturgeon Area Percentage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="{% cycle '' 'grey' %}">
+            <td colspan="2">{{bio.seagrass_area|floatformat:'2'}} {{bio.area_units}}</td>
+            <td colspan="2">{{bio.green_sturgeon}}</td>
+            <td colspan="2">{{bio.green_sturgeon_perc|floatformat:'1'}} %</td>
+        </tr>
+        <tr class="{% cycle '' 'grey' %}">
+            <td colspan="2"></td>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
+        </tr>
     </tbody>
 </table>
 
