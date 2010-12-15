@@ -4,7 +4,7 @@ from django.template import RequestContext
 from analysis.models import *
 from settings import *
 from lingcod.unit_converter.models import length_in_display_units, area_in_display_units
-from analysis.utils import ensure_type, default_value
+from analysis.utils import ensure_type, default_value, get_intersecting_geometries
 from aes_cache import has_cache, get_cache, create_cache
 
 
@@ -45,11 +45,27 @@ def run_bio_analysis(aes, type):
     kelp_data = get_kelp_data(aes)
     #get seagrass area
     seagrass_area = get_seagrass_area(aes)
+    #get green sturgeon data (yes/no and percentage)
+    green_sturgeon, green_sturgeon_perc = get_green_sturgeon_data(aes)
     #compile context
-    context = {'aes': aes, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'num_sealion_habs': num_sealion_habs, 'sealion_habs': sealion_habs, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'fish_list': fish_list, 'kelp_data': kelp_data, 'seagrass_area': seagrass_area}
+    context = {'aes': aes, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'num_sealion_habs': num_sealion_habs, 'sealion_habs': sealion_habs, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'fish_list': fish_list, 'kelp_data': kelp_data, 'seagrass_area': seagrass_area, 'green_sturgeon': green_sturgeon, 'green_sturgeon_perc': green_sturgeon_perc}
     #cache these results
     create_cache(aes, type, context)   
     return context
+    
+def get_green_sturgeon_data(aes):
+    coastal_overlaps = get_intersecting_geometries(aes, 'sturgeoncoastal')
+    estuary_overlaps = get_intersecting_geometries(aes, 'sturgeonestuaries')
+    if len(coastal_overlaps) > 0 or len(estuary_overlaps) > 0:
+        presence = 'Yes'
+    else:
+        presence = 'No'
+    aes_area = aes.geometry_final.area
+    coastal_overlap_area = sum([overlap.area for overlap in coastal_overlaps])
+    estuary_overlap_area = sum([overlap.area for overlap in estuary_overlaps])
+    overlap_area = coastal_overlap_area + estuary_overlap_area
+    overlap_area_percentage = overlap_area / aes_area * 100
+    return presence, overlap_area_percentage
     
  
 def get_sealion_habitats(aes):

@@ -263,10 +263,11 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="bioheader" colspan="5">Subtidal Biological Characteristics</th>
+            <th class="bioheader" colspan="3">Subtidal Biological Characteristics</th>
         </tr>
         <tr>
             <th>Habitat Types & Proportions</th>
+            <th></th>
             <th>Predicted Fish Species <br></br>(Provided by <a target="_blank" href="http://www.nwfsc.noaa.gov/">NOAA's Northwest Fisheries Science Center)</a></th>
         </tr>
     </thead>
@@ -277,6 +278,7 @@
                 {{details.0|floatformat:'2'}} % &nbsp; {{details.1}} &nbsp; ({{details.2|floatformat:'2'}} {{bio.area_units}})</br>
             {% endfor %}
             </td>
+            <td></td>
             <td>
             {% for fish in bio.fish_list %}
                 {{fish}}</br>
@@ -288,6 +290,7 @@
         <tr>
             <th>Kelp Survey Year</th>
             <th>Kelp Proportions</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -295,12 +298,14 @@
             <tr>
                 <td>{{bio.kelp_data.0.0}}</td>
                 <td></td>
+                <td></td>
             </tr>
         {% else %}
             {% for data in bio.kelp_data %}
             <tr class="{% cycle '' 'grey' %}">
                 <td>{{data.0}}</td>
                 <td>{{data.1|floatformat:'2'}} {{bio.area_units}} &nbsp; ({{data.2|floatformat:'2'}} % of Proposed Site)</td>
+                <td></td>
             </tr>
             {% endfor %}
         {% endif %}
@@ -308,14 +313,19 @@
     <thead>
         <tr>
             <th>Seagrass Area</th>
-            <th></th>
+            <th>Green Sturgeon</th>
+            <th>Green Sturgeon Area Percentage</th>
         </tr>
     </thead>
     <tbody>
         <tr class="{% cycle '' 'grey' %}">
             <td>{{bio.seagrass_area|floatformat:'2'}} {{bio.area_units}}</td>
+            <td>{{bio.green_sturgeon}}</td>
+            <td>{{bio.green_sturgeon_perc|floatformat:'1'}} %</td>
         </tr>
         <tr class="{% cycle '' 'grey' %}">
+            <td></td>
+            <td></td>
             <td></td>
         </tr>
     </tbody>

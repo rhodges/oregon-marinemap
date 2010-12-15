@@ -86,10 +86,16 @@ General method for obtaining the intersecting geometries from a given model
 Returns a list of shape names or a list containing a single default value ('---') if no intersecting shapes were found
 Requires the given model to have a field called 'name'
 '''    
-def get_intersecting_geometries(aoi, model_name):
+def get_intersecting_shape_names(aoi, model_name):
     model_class = ContentType.objects.get(model=model_name).model_class()
     shapes = model_class.objects.all()
     intersecting_shapes = [shape.name for shape in shapes if shape.geometry.intersects(aoi.geometry_final)]
     return intersecting_shapes    
+      
+def get_intersecting_geometries(aoi, model_name):
+    model_class = ContentType.objects.get(model=model_name).model_class()
+    shapes = model_class.objects.all()
+    intersecting_geometries = [shape.geometry.intersection(aoi.geometry_final) for shape in shapes if shape.geometry.intersects(aoi.geometry_final)]
+    return intersecting_geometries    
     
     
