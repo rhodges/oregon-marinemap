@@ -35,6 +35,8 @@ def run_hum_analysis(aes, type):
     nearest_ugbs = get_nearest_ugbs(aes)
     #get nearest state parks
     nearest_parks = get_nearest_parks(aes)
+    #get intersecting protected areas and 1 nearest protected area
+    intersecting_protected_areas, nearest_protected_area = get_protected_areas_data(aes)
     #get nearest public access points
     nearest_access_sites = get_nearest_access_sites(aes)
     #get intersecting or nearest buoys
@@ -62,7 +64,7 @@ def run_hum_analysis(aes, type):
     #get nearest conservation areas
     nearest_conservation_areas = get_nearest_conservation_areas(aes)
     #compile context
-    context = {'aes': aes, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'intersecting_airports': intersecting_airports, 'nearest_airport': nearest_airport, 'urbangrowthboundaries': nearest_ugbs, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'buoy_data': buoy_data, 'beacon_data': beacon_data, 'signal_data': signal_data, 'num_signals': len(signal_data[1]), 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
+    context = {'aes': aes, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'intersecting_airports': intersecting_airports, 'nearest_airport': nearest_airport, 'urbangrowthboundaries': nearest_ugbs, 'parks': nearest_parks, 'intersecting_protected_areas': intersecting_protected_areas, 'nearest_protected_area': nearest_protected_area, 'access_sites': nearest_access_sites, 'buoy_data': buoy_data, 'beacon_data': beacon_data, 'signal_data': signal_data, 'num_signals': len(signal_data[1]), 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
     #cache these results
     create_cache(aes, type, context)   
     return context
@@ -74,8 +76,10 @@ def get_airport_data(aes):
     inter_airports = [airport.fullname for airport in airports if airport.geometry.intersects(aes.geometry_final)]
     if len(inter_airports) == 0:
         inter_airports = ['None']
-    nearest_airports = [(airport.fullname, length_in_display_units(airport.geometry.distance(aes.geometry_final))) for airport in airports]
-    return inter_airports, nearest_airports[0]
+    nearest_airports = [(length_in_display_units(airport.geometry.distance(aes.geometry_final)), airport.fullname) for airport in airports if airport.fullname not in inter_airports]
+    nearest_airports.sort()
+    nearest_airport = (nearest_airports[0][1], nearest_airports[0][0])
+    return inter_airports, nearest_airport
     
 '''
 '''
@@ -88,6 +92,21 @@ Called by display_phy_analysis
 '''
 def get_nearest_parks(aes):
     return get_nearest_geometries_with_distances(aes, 'stateparks')
+    
+'''
+'''
+def get_protected_areas_data(aes):
+    protected_areas = ProtectedAreas.objects.all()
+    inter_areas = [area.site_name for area in protected_areas if area.geometry.intersects(aes.geometry_final)]
+    if len(inter_areas) == 0:
+        inter_areas = ['None']
+    else:
+        inter_areas = list(set(inter_areas))
+    nearest_areas = [(length_in_display_units(area.geometry.distance(aes.geometry_final)), area.site_name) for area in protected_areas if area.site_name not in inter_areas]
+    nearest_areas.sort()
+    nearest_area = (nearest_areas[0][1], nearest_areas[0][0])
+    return inter_areas, nearest_area
+    
     
 '''
 Determines the Nearest Public Access Sites for the given nearshore habitat shape
