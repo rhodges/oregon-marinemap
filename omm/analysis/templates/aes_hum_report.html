@@ -41,6 +41,22 @@
 <br>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
+        <!-- Airport Data -->
+        <tr class="grey">
+            <td colspan="3"><b>Intersecting Airports</b></td>
+        </tr>        
+        {% for airport in intersecting_airports %}
+        <tr>
+            <td colspan="3">{{airport}}</td>
+        </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Airport</b></td>
+        </tr> 
+        <tr>
+            <td colspan="3">{{nearest_airport.0}} ({{nearest_airport.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>       
+        <tr><td></td><td></td><td></td><td></td></tr>
         
         <!-- Buoy Data -->
         <tr class="grey">
