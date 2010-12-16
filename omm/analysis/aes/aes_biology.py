@@ -165,7 +165,8 @@ def get_bird_colony_details(aes):
         colony_dict[key_tuple].sort()
     colony_tuples = colony_dict.items()
     colony_tuples.sort()
-    num_colonies = len(inter_colonies)
+    #num_colonies = len(inter_colonies)
+    num_colonies = len(colony_tuples)
     return num_colonies, colony_tuples
     
 '''
