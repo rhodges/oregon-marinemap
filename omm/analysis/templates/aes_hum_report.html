@@ -25,6 +25,21 @@
         {% endfor %}
         <tr><td></td><td></td><td></td><td></td></tr>
         <tr class="grey">
+            <td colspan="3"><b>Protected Areas</b></td>
+        </tr>
+        {% for area in intersecting_protected_areas %}
+        <tr class="{% cycle '' 'grey' %}">
+            <td colspan="3">{{area}}</td>
+        </tr>
+        {% endfor %}
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) Protected Area</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_protected_area.0}} &nbsp; ({{nearest_protected_area.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <tr class="grey">
             <td colspan="3"><b>Nearest Public Access Sites</b></td>
         </tr>
         {% for site in access_sites %}
@@ -51,7 +66,7 @@
         </tr>
         {% endfor %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest Airport</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) Airport</b></td>
         </tr> 
         <tr>
             <td colspan="3">{{nearest_airport.0}} ({{nearest_airport.1|floatformat:'1'}} {{length_units}})</td>
