@@ -62,7 +62,7 @@ def run_hum_analysis(aes, type):
     #get nearest conservation areas
     nearest_conservation_areas = get_nearest_conservation_areas(aes)
     #compile context
-    context = {'aes': aes, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'intersecting_airports': intersecting_airports, 'nearest_airport': nearest_airport, 'urbangrowthboundaries': nearest_ugbs, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'buoy_data': buoy_data, 'beacon_data': beacon_data, 'signal_data': signal_data, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
+    context = {'aes': aes, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'intersecting_airports': intersecting_airports, 'nearest_airport': nearest_airport, 'urbangrowthboundaries': nearest_ugbs, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'buoy_data': buoy_data, 'beacon_data': beacon_data, 'signal_data': signal_data, 'num_signals': len(signal_data[1]), 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
     #cache these results
     create_cache(aes, type, context)   
     return context

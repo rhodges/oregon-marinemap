@@ -73,6 +73,7 @@
     <thead>
         <tr>
             <th colspan="3">Nearest Airport</th>
+            
             {% if buoy_data.0 == 'Yes' %}
                 <th colspan="3">Intersecting Buoys</th>
             {% else %}
@@ -85,17 +86,13 @@
                 <th colspan="3">Closest Beacon</th>
             {% endif %}
             
-            {% if signal_data.0 == 'Yes' %}
-                <th colspan="1">Intersecting Signal Equipment</th>
-            {% else %}
-                <th colspan="1">Closest Signal Equipment</th>
-            {% endif %}
+            <th colspan="1">Signal Equipment Count</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td colspan="3">{{nearest_airport.0}} ({{nearest_airport.1|floatformat:'1'}} {{length_units}})</td>
-            <td colspan="3">
+            <td class="top" colspan="3">{{nearest_airport.0}} ({{nearest_airport.1|floatformat:'1'}} {{length_units}})</td>
+            <td class="top" colspan="3">
                 {% if buoy_data.0 == 'Yes' %}
                     {% for data in buoy_data.1 %}
                         {{data}}</br>
@@ -104,7 +101,7 @@
                     {{buoy_data.1.0}} ({{buoy_data.1.1|floatformat:'2'}} {{length_units}})
                 {% endif %}
             </td>
-            <td colspan="3">
+            <td class="top" colspan="3">
                 {% if beacon_data.0 == 'Yes' %}
                     {% for data in beacon_data.1 %}
                         {{data}}</br>
@@ -113,15 +110,7 @@
                     {{beacon_data.1.0}} ({{beacon_data.1.1|floatformat:'2'}} {{length_units}})
                 {% endif %}
             </td>
-            <td colspan="1">
-                {% if signal_data.0 == 'Yes' %}
-                    {% for data in signal_data.1 %}
-                        {{data}}</br>
-                    {% endfor %}
-                {% else %}
-                    {{signal_data.1.0}} ({{signal_data.1.1|floatformat:'2'}} {{length_units}})
-                {% endif %}
-            </td>
+            <td class="top" colspan="1">{{num_signals}}</td>
         </tr>
         <tr><td></td><td></td><td></td></tr>
         <tr><td></td><td></td><td></td></tr>
@@ -178,7 +167,7 @@
     </thead>
     <tbody>
         <tr>
-            <td colspan="2">
+            <td class="top" colspan="2">
                 {% if dmd_data.0 == 'Yes' %}
                     {% for data in dmd_data.1 %}
                         {{data}}</br>
@@ -187,7 +176,7 @@
                     {{dmd_data.1.0}} ({{dmd_data.1.1|floatformat:'2'}} {{length_units}})
                 {% endif %}
             </td>
-            <td colspan="2">
+            <td class="top" colspan="2">
                 {% if outfall_data.0 == 'Yes' %}
                     {% for data in outfall_data.1 %}
                         {{data}}</br>
@@ -196,7 +185,7 @@
                     {{outfall_data.1.0}} ({{outfall_data.1.1|floatformat:'2'}} {{length_units}})
                 {% endif %}
             </td>
-            <td colspan="2">
+            <td class="top" colspan="2">
                 {% if cable_data.0 == 'Yes' %}
                     {% for data in cable_data.1 %}
                         {{data}}</br>
@@ -205,8 +194,8 @@
                     {{cable_data.1.0}} ({{cable_data.1.1|floatformat:'2'}} {{length_units}})
                 {% endif %}
             </td>
-            <td colspan="2"></td>
-            <td colspan="2">
+            <td class="top" colspan="2"></td>
+            <td class="top" colspan="2">
                 {% if wave_energy_data.0 == 'Yes' %}
                     {% for data in wave_energy_data.1 %}
                         {{data}}</br>
@@ -302,6 +291,13 @@ table.marinemap-table td.left {
     color:#344E63;
     font-weight:bold;
     text-align:left;
+    vertical-align: text-top;
+}
+
+table.marinemap-table td.top {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
     vertical-align: text-top;
 }
 
