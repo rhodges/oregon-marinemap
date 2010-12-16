@@ -27,7 +27,7 @@ from aes.aes_models import Substations, TransmissionLines1993, TransmissionLines
 from aes.aes_models import Seagrass, StellerHabitats, SnowyPlover, MarbledMurrelet, SturgeonCoastal, SturgeonEstuaries, Coho
 
 #import AES_Human Use models
-from aes.aes_models import UrbanGrowthBoundaries, Buoys, SignalEquipment, Beacons, Airports
+from aes.aes_models import UrbanGrowthBoundaries, Buoys, SignalEquipment, Beacons, Airports, ProtectedAreas
 
 #import AES_Caching models
 from aes.aes_models import AESCache
