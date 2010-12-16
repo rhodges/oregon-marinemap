@@ -523,4 +523,23 @@ class Airports(models.Model):
     objects = models.GeoManager()       
     
     class Meta:
-        app_label = 'analysis'          
+        app_label = 'analysis'  
+
+class ProtectedAreas(models.Model):
+    area = models.FloatField()
+    perimeter = models.FloatField()
+    hectares = models.FloatField()
+    ownclas = models.CharField(max_length=8)
+    lua = models.CharField(max_length=50)
+    agency = models.CharField(max_length=40)
+    site_name = models.CharField(max_length=100)
+    prot_area = models.CharField(max_length=100, null=True, blank=True)
+    section = models.CharField(max_length=60)
+    map_label = models.CharField(max_length=6, null=True, blank=True)
+    shape_leng = models.FloatField()
+    shape_area = models.FloatField()
+    geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Protected Areas TNC 2005")
+    objects = models.GeoManager()        
+    
+    class Meta:
+        app_label = 'analysis'        
