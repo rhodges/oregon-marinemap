@@ -421,78 +421,46 @@
             <th class="humheader" colspan="15">Existing or Proposed Transportation & Infrasructure Considerations</th>
         </tr>
         <tr>
-            <th colspan="2">Buoys</th>
-            <th colspan="2">Beacons</th>
-            <th colspan="2">Signal Equipment</th>
-            <th colspan="2">Dredge Materials Disposal</th>
-            <th colspan="2">NPDES Outfall</th>
-            <th colspan="2">Undersea Cables</th>
-            <th>Towlanes</th>
-            <th colspan="2">Wave Energy</th>
+            <th colspan="4">Intersecting Aiports</th>
+            <th colspan="4">Buoys</th>
+            <th colspan="4">Beacons</th>
+            <th colspan="3">Signal Equipment</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td colspan="2">{{hum.buoy_data.0}}</td>
-            <td colspan="2">{{hum.beacon_data.0}}</td>
-            <td colspan="2">{{hum.signal_data.0}}</td>
-            <td colspan="2">{{hum.dmd_data.0}}</td>
-            <td colspan="2">{{hum.outfall_data.0}}</td>
-            <td colspan="2">{{hum.cable_data.0}}</td>
-            <td>{{hum.towlanes}}</td>
-            <td colspan="2">{{hum.wave_energy_data.0}}</td>
+            <td colspan="4">{% for airport in hum.intersecting_airports %} {{airport}}<br>{% endfor %}</td>
+            <td colspan="4">{{hum.buoy_data.0}}</td>
+            <td colspan="4">{{hum.beacon_data.0}}</td>
+            <td colspan="3">{{hum.signal_data.0}}</td>
         </tr>
     </tbody>
     <thead>
         <tr>
+            <th colspan="4">Nearest Airport</th>
             {% if hum.buoy_data.0 == 'Yes' %}
-                <th colspan="2">Intersecting Buoys</th>
+                <th colspan="4">Intersecting Buoys</th>
             {% else %}
-                <th colspan="2">Closest Buoy</th>
+                <th colspan="4">Closest Buoy</th>
             {% endif %}
             
             {% if hum.beacon_data.0 == 'Yes' %}
-                <th colspan="2">Intersecting Beacons</th>
+                <th colspan="4">Intersecting Beacons</th>
             {% else %}
-                <th colspan="2">Closest Beacon</th>
+                <th colspan="4">Closest Beacon</th>
             {% endif %}
             
             {% if hum.signal_data.0 == 'Yes' %}
-                <th colspan="2">Intersecting Signal Equipment</th>
+                <th colspan="3">Intersecting Signal Equipment</th>
             {% else %}
-                <th colspan="2">Closest Signal Equipment</th>
-            {% endif %}
-            
-            {% if hum.dmd_data.0 == 'Yes' %}
-                <th colspan="2">Intersecting DMD Sites</th>
-            {% else %}
-                <th colspan="2">Closest DMD Sites</th>
-            {% endif %}
-            
-            {% if hum.outfall_data.0 == 'Yes' %}
-                <th colspan="2">Intersecting Outfall Sites</th>
-            {% else %}
-                <th colspan="2">Closest Outfall</th>
-            {% endif %}
-            
-            {% if hum.cable_data.0 == 'Yes' %}
-                <th colspan="2">Intersecting Cables</th>
-            {% else %}
-                <th colspan="2">Closest Cable</th>
-            {% endif %}
-            
-            <th></th>
-            
-            {% if hum.wave_energy_data.0 == 'Yes' %}
-                <th colspan="2">Intersecting Wave Energy</th>
-            {% else %}
-                <th colspan="2">Closest Wave Energy</th>
+                <th colspan="3">Closest Signal Equipment</th>
             {% endif %}
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td valign="top" colspan="2">
+            <td colspan="4">{{hum.nearest_airport.0}} ({{hum.nearest_airport.1|floatformat:'1'}} {{hum.length_units}})</td>
+            <td valign="top" colspan="4">
                 {% if hum.buoy_data.0 == 'Yes' %}
                     {% for data in hum.buoy_data.1 %}
                         {{data}}</br>
@@ -501,7 +469,7 @@
                     {{hum.buoy_data.1.0}} ({{hum.buoy_data.1.1|floatformat:'2'}}{{hum.length_units}})
                 {% endif %}
             </td>
-            <td valign="top" colspan="2">
+            <td valign="top" colspan="4">
                 {% if hum.beacon_data.0 == 'Yes' %}
                     {% for data in hum.beacon_data.1 %}
                         {{data}}</br>
@@ -510,7 +478,7 @@
                     {{hum.beacon_data.1.0}} ({{hum.beacon_data.1.1|floatformat:'2'}}{{hum.length_units}})
                 {% endif %}
             </td>
-            <td valign="top" colspan="2">
+            <td valign="top" colspan="3">
                 {% if hum.signal_data.0 == 'Yes' %}
                     {% for data in hum.signal_data.1 %}
                         {{data}}</br>
@@ -519,7 +487,61 @@
                     {{hum.signal_data.1.0}} ({{hum.signal_data.1.1|floatformat:'2'}}{{hum.length_units}})
                 {% endif %}
             </td>
-            <td valign="top" colspan="2">
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th class="humheader" colspan="15">Existing or Proposed Transportation & Infrasructure Considerations</th>
+        </tr>
+        <tr>
+            <th colspan="3">Dredge Materials Disposal</th>
+            <th colspan="3">NPDES Outfall</th>
+            <th colspan="3">Undersea Cables</th>
+            <th colspan="3">Towlanes</th>
+            <th colspan="3">Wave Energy</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="3">{{hum.dmd_data.0}}</td>
+            <td colspan="3">{{hum.outfall_data.0}}</td>
+            <td colspan="3">{{hum.cable_data.0}}</td>
+            <td colspan="3">{{hum.towlanes}}</td>
+            <td colspan="3">{{hum.wave_energy_data.0}}</td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            {% if hum.dmd_data.0 == 'Yes' %}
+                <th colspan="3">Intersecting DMD Sites</th>
+            {% else %}
+                <th colspan="3">Closest DMD Sites</th>
+            {% endif %}
+            
+            {% if hum.outfall_data.0 == 'Yes' %}
+                <th colspan="3">Intersecting Outfall Sites</th>
+            {% else %}
+                <th colspan="3">Closest Outfall</th>
+            {% endif %}
+            
+            {% if hum.cable_data.0 == 'Yes' %}
+                <th colspan="3">Intersecting Cables</th>
+            {% else %}
+                <th colspan="3">Closest Cable</th>
+            {% endif %}
+            
+            <th colspan="3"></th>
+            
+            {% if hum.wave_energy_data.0 == 'Yes' %}
+                <th colspan="3">Intersecting Wave Energy</th>
+            {% else %}
+                <th colspan="3">Closest Wave Energy</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td valign="top" colspan="3">
                 {% if hum.dmd_data.0 == 'Yes' %}
                     {% for data in hum.dmd_data.1 %}
                         {{data}}</br>
@@ -528,7 +550,7 @@
                     {{hum.dmd_data.1.0}} ({{hum.dmd_data.1.1|floatformat:'2'}}{{hum.length_units}})
                 {% endif %}
             </td>
-            <td valign="top" colspan="2">
+            <td valign="top" colspan="3">
                 {% if hum.outfall_data.0 == 'Yes' %}
                     {% for data in hum.outfall_data.1 %}
                         {{data}}</br>
@@ -537,7 +559,7 @@
                     {{hum.outfall_data.1.0}} ({{hum.outfall_data.1.1|floatformat:'2'}}{{hum.length_units}})
                 {% endif %}
             </td>
-            <td valign="top" colspan="2">
+            <td valign="top" colspan="3">
                 {% if hum.cable_data.0 == 'Yes' %}
                     {% for data in hum.cable_data.1 %}
                         {{data}}</br>
@@ -546,8 +568,8 @@
                     {{hum.cable_data.1.0}} ({{hum.cable_data.1.1|floatformat:'2'}}{{hum.length_units}})
                 {% endif %}
             </td>
-            <td></td>
-            <td valign="top" colspan="2">
+            <td colspan="3"></td>
+            <td valign="top" colspan="3">
                 {% if hum.wave_energy_data.0 == 'Yes' %}
                     {% for data in hum.wave_energy_data.1 %}
                         {{data}}</br>
