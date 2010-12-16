@@ -117,24 +117,13 @@
         <tr>
             <td colspan="3">{{signal_data.0}}</td>
         </tr>
-        {% if signal_data.0 == 'Yes' %}
+        
         <tr class="grey">
-            <td colspan="3"><b>Intersecting Signal Equipment</b></td>
+            <td colspan="3"><b>Signal Equipment Count</b></td>
         </tr>        
-        {% for data in signal_data.1 %}
         <tr>
-            <td colspan="3">{{data}}</td>
+            <td colspan="3">{{num_signals}}</td>
         </tr>
-        {% endfor %}
-        <tr><td></td><td></td><td></td><td></td></tr>
-        {% else %}
-        <tr class="grey">
-            <td colspan="3"><b>Nearest Signal Equipment</b></td>
-        </tr>
-        <tr>
-            <td colspan="3">{{signal_data.1.0}} ({{signal_data.1.1|floatformat:'2'}} {{length_units}})</td>
-        </tr>
-        {% endif %}
         
         <!-- Dredge Materials Data -->
         <tr class="grey">
