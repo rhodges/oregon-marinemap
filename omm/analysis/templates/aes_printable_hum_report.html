@@ -47,6 +47,26 @@
             </td>
         </tr>
     </tbody>
+    <thead>
+        <tr>
+            <th>Protected Areas</th>
+            <th>Nearest (non-intersecting) Protected Area</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="top">
+            {% for area in intersecting_protected_areas %}
+                {{area}}
+            {% endfor %}
+            </td>
+            <td class="top">
+                {{nearest_protected_area.0}} &nbsp; ({{nearest_protected_area.1|floatformat:'1'}} {{length_units}})
+            </td>
+            <td class="top"></td>
+        </tr>
+    </tbody>
 </table>
 
 <br></br>
