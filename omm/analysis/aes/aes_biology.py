@@ -4,7 +4,7 @@ from django.template import RequestContext
 from analysis.models import *
 from settings import *
 from lingcod.unit_converter.models import length_in_display_units, area_in_display_units
-from analysis.utils import ensure_type, default_value, get_intersecting_geometries
+from analysis.utils import ensure_type, default_value, get_intersecting_geometries, get_distance_to_nearest_geometry
 from aes_cache import has_cache, get_cache, create_cache
 
 
@@ -51,34 +51,33 @@ def run_bio_analysis(aes, type):
     nearest_snowy_plover = distance_to_snowy_plover(aes)
     #get distance to nearest marbled murrelet critical habitat
     nearest_marbled_murrelet = distance_to_marbled_murrelet(aes)
-    #get coho populated streams
-    coho_streams, coho_stream_names = intersecting_coho_streams(aes)
+    #get nearest coho populated stream
+    nearest_coho_stream = get_nearest_coho_stream(aes)
     #compile context
-    context = {'aes': aes, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'num_sealion_habs': num_sealion_habs, 'sealion_habs': sealion_habs, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'fish_list': fish_list, 'kelp_data': kelp_data, 'seagrass_area': seagrass_area, 'green_sturgeon': green_sturgeon, 'green_sturgeon_perc': green_sturgeon_perc, 'nearest_snowy_plover': nearest_snowy_plover, 'nearest_marbled_murrelet': nearest_marbled_murrelet, 'coho_streams': coho_streams, 'coho_stream_names': coho_stream_names}
+    context = {'aes': aes, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'num_sealion_habs': num_sealion_habs, 'sealion_habs': sealion_habs, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'fish_list': fish_list, 'kelp_data': kelp_data, 'seagrass_area': seagrass_area, 'green_sturgeon': green_sturgeon, 'green_sturgeon_perc': green_sturgeon_perc, 'nearest_snowy_plover': nearest_snowy_plover, 'nearest_marbled_murrelet': nearest_marbled_murrelet, 'nearest_coho_stream': nearest_coho_stream}
     #cache these results
     create_cache(aes, type, context)   
     return context
         
-def intersecting_coho_streams(aes):
+def get_nearest_coho_stream(aes):
     coho_streams = Coho.objects.all()
-    inter_streams = [stream.strm_name for stream in coho_streams if stream.geometry.intersects(aes.geometry_final)]
-    if len(inter_streams) > 0:
-        presence = 'Yes'
-    else:
-        presence = 'No'
-    return presence, inter_streams
+    distances = [stream.geometry.distance(aes.geometry_final) for stream in coho_streams if stream.geometry.buffer(60000).intersects(aes.geometry_final)]
+    distances.sort()
+    return length_in_display_units(distances[0])
         
 def distance_to_marbled_murrelet(aes):
-    murrelets = MarbledMurrelet.objects.all()
-    distances = [hab.geometry.centroid.distance(aes.geometry_final) for hab in murrelets]
-    distances.sort()
-    return length_in_display_units(distances[0])
+    #murrelets = MarbledMurrelet.objects.all()
+    #distances = [hab.geometry.centroid.distance(aes.geometry_final) for hab in murrelets]
+    #distances.sort()
+    distance = get_distance_to_nearest_geometry(aes, 'marbledmurrelet')
+    return length_in_display_units(distance)
 
 def distance_to_snowy_plover(aes):
-    snowy_plovers = SnowyPlover.objects.all()
-    distances = [hab.geometry.centroid.distance(aes.geometry_final) for hab in snowy_plovers]
-    distances.sort()
-    return length_in_display_units(distances[0])
+    #snowy_plovers = SnowyPlover.objects.all()
+    #distances = [hab.geometry.centroid.distance(aes.geometry_final) for hab in snowy_plovers]
+    #distances.sort()
+    distance = get_distance_to_nearest_geometry(aes, 'snowyplover')
+    return length_in_display_units(distance)
     
 def get_green_sturgeon_data(aes):
     coastal_overlaps = get_intersecting_geometries(aes, 'sturgeoncoastal')

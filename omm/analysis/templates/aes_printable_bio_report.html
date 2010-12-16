@@ -173,14 +173,14 @@
         <tr>
             <th>Nearest Western Snowy Plover Critical Habitat</th>
             <th>Nearest Marbled Murrelet Critical Habitat</th>
-            <th>Coho Populated Streams</th>
+            <th>Nearest Coho Populated Stream</th>
         </tr>
     </thead>
     <tbody>
         <tr class="{% cycle '' 'grey' %}">
             <td>{{nearest_snowy_plover|floatformat:'1'}} {{length_units}}</td>
             <td>{{nearest_marbled_murrelet|floatformat:'1'}} {{length_units}}</td>
-            <td>{{coho_streams}}</td>
+            <td>{{nearest_coho_stream|floatformat:'1'}} {{length_units}}</td>
         </tr>
         <tr class="{% cycle '' 'grey' %}">
             <td></td>
