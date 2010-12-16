@@ -29,6 +29,8 @@ def display_hum_analysis(request, aes, type='Human', template='aes_hum_report.ht
 Run the analysis, create the cache, and return the results as a context dictionary so they may be rendered with template
 '''    
 def run_hum_analysis(aes, type): 
+    #get all intersecting airports or nearest single airport
+    intersecting_airports, nearest_airport = get_airport_data(aes)
     #get nearest urban growth boundaries
     nearest_ugbs = get_nearest_ugbs(aes)
     #get nearest state parks
@@ -60,10 +62,20 @@ def run_hum_analysis(aes, type):
     #get nearest conservation areas
     nearest_conservation_areas = get_nearest_conservation_areas(aes)
     #compile context
-    context = {'aes': aes, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'urbangrowthboundaries': nearest_ugbs, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'buoy_data': buoy_data, 'beacon_data': beacon_data, 'signal_data': signal_data, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
+    context = {'aes': aes, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'intersecting_airports': intersecting_airports, 'nearest_airport': nearest_airport, 'urbangrowthboundaries': nearest_ugbs, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'buoy_data': buoy_data, 'beacon_data': beacon_data, 'signal_data': signal_data, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
     #cache these results
     create_cache(aes, type, context)   
     return context
+    
+'''
+'''
+def get_airport_data(aes):
+    airports = Airports.objects.all()
+    inter_airports = [airport.fullname for airport in airports if airport.geometry.intersects(aes.geometry_final)]
+    if len(inter_airports) == 0:
+        inter_airports = ['None']
+    nearest_airports = [(airport.fullname, length_in_display_units(airport.geometry.distance(aes.geometry_final))) for airport in airports]
+    return inter_airports, nearest_airports[0]
     
 '''
 '''

@@ -53,81 +53,49 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="humheader" colspan="8">Existing or Proposed Transportation & Infrasructure Considerations</font></th>
+            <th class="humheader" colspan="10">Existing or Proposed Transportation & Infrasructure Considerations</font></th>
         </tr>
         <tr>
-            <th>Buoys</th>
-            <th>Beacons</th>
-            <th>Signal Equipment</th>
-            <th>Dredge Materials Disposal</th>
-            <th>NPDES Outfall</th>
-            <th>Undersea Cables</th>
-            <th>Towlanes</th>
-            <th>Wave Energy Sites</th>
+            <th colspan="3">Intersecting Aiports</th>
+            <th colspan="3">Buoys</th>
+            <th colspan="3">Beacons</th>
+            <th colspan="1">Signal Equipment</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>{{buoy_data.0}}</td>
-            <td>{{beacon_data.0}}</td>
-            <td>{{signal_data.0}}</td>
-            <td>{{dmd_data.0}}</td>
-            <td>{{outfall_data.0}}</td>
-            <td>{{cable_data.0}}</td>
-            <td>{{towlanes}}</td>
-            <td>{{wave_energy_data.0}}</td>
+            <td colspan="3">{% for airport in intersecting_airports %} {{airport}}<br>{% endfor %}</td>
+            <td colspan="3">{{buoy_data.0}}</td>
+            <td colspan="3">{{beacon_data.0}}</td>
+            <td colspan="1">{{signal_data.0}}</td>
         </tr>
     </tbody>
     <thead>
         <tr>
+            <th colspan="3">Nearest Airport</th>
             {% if buoy_data.0 == 'Yes' %}
-                <th>Intersecting Buoys</th>
+                <th colspan="3">Intersecting Buoys</th>
             {% else %}
-                <th>Closest Buoy</th>
+                <th colspan="3">Closest Buoy</th>
             {% endif %}
             
             {% if beacon_data.0 == 'Yes' %}
-                <th>Intersecting Beacons</th>
+                <th colspan="3">Intersecting Beacons</th>
             {% else %}
-                <th>Closest Beacon</th>
+                <th colspan="3">Closest Beacon</th>
             {% endif %}
             
             {% if signal_data.0 == 'Yes' %}
-                <th>Intersecting Signal Equipment</th>
+                <th colspan="1">Intersecting Signal Equipment</th>
             {% else %}
-                <th>Closest Signal Equipment</th>
-            {% endif %}
-            
-            {% if dmd_data.0 == 'Yes' %}
-                <th>Intersecting DMD Sites</th>
-            {% else %}
-                <th>Closest DMD Site</th>
-            {% endif %}
-            
-            {% if outfall_data.0 == 'Yes' %}
-                <th>Intersecting Outfall Sites</th>
-            {% else %}
-                <th>Closest Outfall</th>
-            {% endif %}
-            
-            {% if cable_data.0 == 'Yes' %}
-                <th>Intersecting Cables</th>
-            {% else %}
-                <th>Closest Cable</th>
-            {% endif %}
-            
-            <th></th>
-            
-            {% if wave_energy_data.0 == 'Yes' %}
-                <th>Intersecting Wave Energy Sites</th>
-            {% else %}
-                <th>Closest Wave Energy Sites</th>
+                <th colspan="1">Closest Signal Equipment</th>
             {% endif %}
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>
+            <td colspan="3">{{nearest_airport.0}} ({{nearest_airport.1|floatformat:'1'}} {{length_units}})</td>
+            <td colspan="3">
                 {% if buoy_data.0 == 'Yes' %}
                     {% for data in buoy_data.1 %}
                         {{data}}</br>
@@ -136,7 +104,7 @@
                     {{buoy_data.1.0}} ({{buoy_data.1.1|floatformat:'2'}} {{length_units}})
                 {% endif %}
             </td>
-            <td>
+            <td colspan="3">
                 {% if beacon_data.0 == 'Yes' %}
                     {% for data in beacon_data.1 %}
                         {{data}}</br>
@@ -145,7 +113,7 @@
                     {{beacon_data.1.0}} ({{beacon_data.1.1|floatformat:'2'}} {{length_units}})
                 {% endif %}
             </td>
-            <td>
+            <td colspan="1">
                 {% if signal_data.0 == 'Yes' %}
                     {% for data in signal_data.1 %}
                         {{data}}</br>
@@ -154,7 +122,63 @@
                     {{signal_data.1.0}} ({{signal_data.1.1|floatformat:'2'}} {{length_units}})
                 {% endif %}
             </td>
-            <td>
+        </tr>
+        <tr><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
+    </tbody>
+    
+    <thead>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr>
+            <th colspan="2">Dredge Materials Disposal</th>
+            <th colspan="2">NPDES Outfall</th>
+            <th colspan="2">Undersea Cables</th>
+            <th colspan="2">Towlanes</th>
+            <th colspan="2">Wave Energy Sites</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="2">{{dmd_data.0}}</td>
+            <td colspan="2">{{outfall_data.0}}</td>
+            <td colspan="2">{{cable_data.0}}</td>
+            <td colspan="2">{{towlanes}}</td>
+            <td colspan="2">{{wave_energy_data.0}}</td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            {% if dmd_data.0 == 'Yes' %}
+                <th colspan="2">Intersecting DMD Sites</th>
+            {% else %}
+                <th colspan="2">Closest DMD Site</th>
+            {% endif %}
+            
+            {% if outfall_data.0 == 'Yes' %}
+                <th colspan="2">Intersecting Outfall Sites</th>
+            {% else %}
+                <th colspan="2">Closest Outfall</th>
+            {% endif %}
+            
+            {% if cable_data.0 == 'Yes' %}
+                <th colspan="2">Intersecting Cables</th>
+            {% else %}
+                <th colspan="2">Closest Cable</th>
+            {% endif %}
+            
+            <th colspan="2"></th>
+            
+            {% if wave_energy_data.0 == 'Yes' %}
+                <th colspan="2">Intersecting Wave Energy Sites</th>
+            {% else %}
+                <th colspan="2">Closest Wave Energy Sites</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="2">
                 {% if dmd_data.0 == 'Yes' %}
                     {% for data in dmd_data.1 %}
                         {{data}}</br>
@@ -163,7 +187,7 @@
                     {{dmd_data.1.0}} ({{dmd_data.1.1|floatformat:'2'}} {{length_units}})
                 {% endif %}
             </td>
-            <td>
+            <td colspan="2">
                 {% if outfall_data.0 == 'Yes' %}
                     {% for data in outfall_data.1 %}
                         {{data}}</br>
@@ -172,7 +196,7 @@
                     {{outfall_data.1.0}} ({{outfall_data.1.1|floatformat:'2'}} {{length_units}})
                 {% endif %}
             </td>
-            <td>
+            <td colspan="2">
                 {% if cable_data.0 == 'Yes' %}
                     {% for data in cable_data.1 %}
                         {{data}}</br>
@@ -181,8 +205,8 @@
                     {{cable_data.1.0}} ({{cable_data.1.1|floatformat:'2'}} {{length_units}})
                 {% endif %}
             </td>
-            <td></td>
-            <td>
+            <td colspan="2"></td>
+            <td colspan="2">
                 {% if wave_energy_data.0 == 'Yes' %}
                     {% for data in wave_energy_data.1 %}
                         {{data}}</br>
