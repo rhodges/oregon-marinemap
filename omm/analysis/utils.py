@@ -81,6 +81,16 @@ def get_nearest_geometries_with_distances(aoi, model_name, line=False, point=Fal
     nearest_shapes = sorted(nearest_shapes, key=lambda shapes: shapes[1])
     return nearest_shapes
     
+def get_distance_to_nearest_geometry(aoi, model_name, line=False, point=False):
+    model_class = ContentType.objects.get(model=model_name).model_class()
+    shapes = model_class.objects.all()
+    if not line and not point: #must be polygon
+        distances = [shape.geometry.centroid.distance(aoi.geometry_final) for shape in shapes]
+    else:
+        distances = [shape.geometry.distance(aoi.geometry_final) for shape in shapes]
+    distances.sort()
+    return distances[0]
+    
 '''
 General method for obtaining the intersecting geometries from a given model 
 Returns a list of shape names or a list containing a single default value ('---') if no intersecting shapes were found
