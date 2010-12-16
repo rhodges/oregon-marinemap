@@ -429,15 +429,16 @@
     </thead>
     <tbody>
         <tr>
-            <td colspan="4">{% for airport in hum.intersecting_airports %} {{airport}}<br>{% endfor %}</td>
-            <td colspan="4">{{hum.buoy_data.0}}</td>
-            <td colspan="4">{{hum.beacon_data.0}}</td>
-            <td colspan="3">{{hum.signal_data.0}}</td>
+            <td valign="top" colspan="4">{% for airport in hum.intersecting_airports %} {{airport}}<br>{% endfor %}</td>
+            <td valign="top" colspan="4">{{hum.buoy_data.0}}</td>
+            <td valign="top" colspan="4">{{hum.beacon_data.0}}</td>
+            <td valign="top" colspan="3">{{hum.signal_data.0}}</td>
         </tr>
     </tbody>
     <thead>
         <tr>
             <th colspan="4">Nearest Airport</th>
+            
             {% if hum.buoy_data.0 == 'Yes' %}
                 <th colspan="4">Intersecting Buoys</th>
             {% else %}
@@ -450,16 +451,12 @@
                 <th colspan="4">Closest Beacon</th>
             {% endif %}
             
-            {% if hum.signal_data.0 == 'Yes' %}
-                <th colspan="3">Intersecting Signal Equipment</th>
-            {% else %}
-                <th colspan="3">Closest Signal Equipment</th>
-            {% endif %}
+            <th colspan="3">Signal Equipment Count</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td colspan="4">{{hum.nearest_airport.0}} ({{hum.nearest_airport.1|floatformat:'1'}} {{hum.length_units}})</td>
+            <td valign="top" colspan="4">{{hum.nearest_airport.0}} ({{hum.nearest_airport.1|floatformat:'1'}} {{hum.length_units}})</td>
             <td valign="top" colspan="4">
                 {% if hum.buoy_data.0 == 'Yes' %}
                     {% for data in hum.buoy_data.1 %}
@@ -478,15 +475,7 @@
                     {{hum.beacon_data.1.0}} ({{hum.beacon_data.1.1|floatformat:'2'}}{{hum.length_units}})
                 {% endif %}
             </td>
-            <td valign="top" colspan="3">
-                {% if hum.signal_data.0 == 'Yes' %}
-                    {% for data in hum.signal_data.1 %}
-                        {{data}}</br>
-                    {% endfor %}
-                {% else %}
-                    {{hum.signal_data.1.0}} ({{hum.signal_data.1.1|floatformat:'2'}}{{hum.length_units}})
-                {% endif %}
-            </td>
+            <td valign="top" colspan="3">{{hum.num_signals}}</td>
         </tr>
     </tbody>
     <thead>

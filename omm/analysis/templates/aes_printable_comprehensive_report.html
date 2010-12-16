@@ -131,22 +131,22 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{phy.length|floatformat:'2'}} ({{phy.length_units}})</td>
+            <td class="top">{{phy.length|floatformat:'2'}} ({{phy.length_units}})</td>
             {% if phy.percent_shoreline == phy.default_value %}
-            <td>{{phy.default_value}}</td>
+            <td class="top">{{phy.default_value}}</td>
             {% else %}
-            <td>{{phy.percent_shoreline|floatformat:'2'}} %</td>
+            <td class="top">{{phy.percent_shoreline|floatformat:'2'}} %</td>
             {% endif %}
-            <td colspan="3">
+            <td class="top" colspan="3">
                 {% for proportion in phy.shoreline_proportions %}
                     {{proportion.0|floatformat:'0'}}% &nbsp; &nbsp; {{proportion.1}} &nbsp; &nbsp; ({{proportion.2|floatformat:'2'}} {{phy.length_units}}) </br>
                 {% endfor %}
             </td>
-            <td>{{phy.islands}} islands</td>
+            <td class="top">{{phy.islands}} islands</td>
             {% if phy.island_area == phy.default_value %}
-            <td>{{phy.default_value}}</td>
+            <td class="top">{{phy.default_value}}</td>
             {% else %}
-            <td>{{phy.island_area|floatformat:'3'}} ({{phy.area_units}})</td>
+            <td class="top">{{phy.island_area|floatformat:'3'}} ({{phy.area_units}})</td>
             {% endif %}
         </tr>
     </tbody>
@@ -168,15 +168,15 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{phy.subtidal_area|floatformat:'1'}} ({{phy.area_units}})</td>
-            <td>{{phy.perc_shallow|floatformat:'1'}} % &nbsp; shallow<br/> {{phy.perc_deep|floatformat:'1'}} % &nbsp; deep</td>
-            <td colspan="2">
+            <td class="top">{{phy.subtidal_area|floatformat:'1'}} ({{phy.area_units}})</td>
+            <td class="top">{{phy.perc_shallow|floatformat:'1'}} % &nbsp; shallow<br/> {{phy.perc_deep|floatformat:'1'}} % &nbsp; deep</td>
+            <td class="top" colspan="2">
                 {% for proportion in phy.lithology_proportions %}
                     {{proportion.0|floatformat:'1'}}% &nbsp; {{proportion.1}} &nbsp; ({{proportion.2|floatformat:'2'}} {{phy.length_units}}) </br>
                 {% endfor %}
             </td>
-            <td>{{phy.average_depth|floatformat:'2'}} (meters)</td>
-            <td>{{phy.distance_to_shore|floatformat:'1'}} ({{phy.length_units}})</td>
+            <td class="top">{{phy.average_depth|floatformat:'2'}} (meters)</td>
+            <td class="top">{{phy.distance_to_shore|floatformat:'1'}} ({{phy.length_units}})</td>
         </tr>
     </tbody>
 </table>
@@ -428,17 +428,13 @@
                 <th colspan="3">Closest Beacon</th>
             {% endif %}
             
-            {% if hum.signal_data.0 == 'Yes' %}
-                <th colspan="1">Intersecting Signal Equipment</th>
-            {% else %}
-                <th colspan="1">Closest Signal Equipment</th>
-            {% endif %}
+            <th colspan="1">Signal Equipment Count</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td colspan="3">{{hum.nearest_airport.0}} ({{hum.nearest_airport.1|floatformat:'1'}} {{hum.length_units}})</td>
-            <td colspan="3">
+            <td class="top" colspan="3">{{hum.nearest_airport.0}} ({{hum.nearest_airport.1|floatformat:'1'}} {{hum.length_units}})</td>
+            <td class="top" colspan="3">
                 {% if hum.buoy_data.0 == 'Yes' %}
                     {% for data in hum.buoy_data.1 %}
                         {{data}}</br>
@@ -447,7 +443,7 @@
                     {{hum.buoy_data.1.0}} ({{hum.buoy_data.1.1|floatformat:'2'}} {{hum.length_units}})
                 {% endif %}
             </td>
-            <td colspan="3">
+            <td class="top" colspan="3">
                 {% if hum.beacon_data.0 == 'Yes' %}
                     {% for data in hum.beacon_data.1 %}
                         {{data}}</br>
@@ -456,15 +452,7 @@
                     {{hum.beacon_data.1.0}} ({{hum.beacon_data.1.1|floatformat:'2'}} {{hum.length_units}})
                 {% endif %}
             </td>
-            <td colspan="1">
-                {% if hum.signal_data.0 == 'Yes' %}
-                    {% for data in hum.signal_data.1 %}
-                        {{data}}</br>
-                    {% endfor %}
-                {% else %}
-                    {{hum.signal_data.1.0}} ({{hum.signal_data.1.1|floatformat:'2'}} {{hum.length_units}})
-                {% endif %}
-            </td>
+            <td class="top" colspan="1">{{hum.num_signals}}</td>
         </tr>
     </tbody>
     <thead>
@@ -516,7 +504,7 @@
     </thead>
     <tbody>
         <tr>
-            <td colspan="2">
+            <td class="top" colspan="2">
                 {% if hum.dmd_data.0 == 'Yes' %}
                     {% for data in hum.dmd_data.1 %}
                         {{data}}</br>
@@ -525,7 +513,7 @@
                     {{hum.dmd_data.1.0}} ({{hum.dmd_data.1.1|floatformat:'2'}} {{hum.length_units}})
                 {% endif %}
             </td>
-            <td colspan="2">
+            <td class="top" colspan="2">
                 {% if hum.outfall_data.0 == 'Yes' %}
                     {% for data in hum.outfall_data.1 %}
                         {{data}}</br>
@@ -534,7 +522,7 @@
                     {{hum.outfall_data.1.0}} ({{hum.outfall_data.1.1|floatformat:'2'}} {{hum.length_units}})
                 {% endif %}
             </td>
-            <td colspan="2">
+            <td class="top" colspan="2">
                 {% if hum.cable_data.0 == 'Yes' %}
                     {% for data in hum.cable_data.1 %}
                         {{data}}</br>
@@ -543,8 +531,8 @@
                     {{hum.cable_data.1.0}} ({{hum.cable_data.1.1|floatformat:'2'}} {{hum.length_units}})
                 {% endif %}
             </td>
-            <td colspan="2"></td>
-            <td colspan="2">
+            <td class="top" colspan="2"></td>
+            <td class="top" colspan="2">
                 {% if hum.wave_energy_data.0 == 'Yes' %}
                     {% for data in hum.wave_energy_data.1 %}
                         {{data}}</br>
