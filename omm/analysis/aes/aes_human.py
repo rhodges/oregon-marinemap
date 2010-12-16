@@ -58,13 +58,13 @@ def run_hum_analysis(aes, type):
     #get nearest ports
     nearest_ports = get_nearest_ports(aes)
     #get nearest marine managed areas
-    nearest_mmas = get_nearest_mmas(aes)
+    intersecting_mmas, nearest_mmas = get_mma_data(aes)
     #get nearest fishery closures
     nearest_closures = get_nearest_fishery_closures(aes)
     #get nearest conservation areas
     nearest_conservation_areas = get_nearest_conservation_areas(aes)
     #compile context
-    context = {'aes': aes, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'intersecting_airports': intersecting_airports, 'nearest_airport': nearest_airport, 'urbangrowthboundaries': nearest_ugbs, 'parks': nearest_parks, 'intersecting_protected_areas': intersecting_protected_areas, 'nearest_protected_area': nearest_protected_area, 'access_sites': nearest_access_sites, 'buoy_data': buoy_data, 'beacon_data': beacon_data, 'signal_data': signal_data, 'num_signals': len(signal_data[1]), 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
+    context = {'aes': aes, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'intersecting_airports': intersecting_airports, 'nearest_airport': nearest_airport, 'urbangrowthboundaries': nearest_ugbs, 'parks': nearest_parks, 'intersecting_protected_areas': intersecting_protected_areas, 'nearest_protected_area': nearest_protected_area, 'access_sites': nearest_access_sites, 'buoy_data': buoy_data, 'beacon_data': beacon_data, 'signal_data': signal_data, 'num_signals': len(signal_data[1]), 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'intersecting_mmas': intersecting_mmas, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
     #cache these results
     create_cache(aes, type, context)   
     return context
@@ -87,7 +87,7 @@ def get_nearest_ugbs(aes):
     return get_nearest_geometries_with_distances(aes, 'urbangrowthboundaries')
     
 '''
-Determines the Nearest State Park for the given nearshore habitat shape
+Determines the Nearest State Park for the given alternative energy shape
 Called by display_phy_analysis
 '''
 def get_nearest_parks(aes):
@@ -109,7 +109,7 @@ def get_protected_areas_data(aes):
     
     
 '''
-Determines the Nearest Public Access Sites for the given nearshore habitat shape
+Determines the Nearest Public Access Sites for the given alternative energy shape
 Called by display_phy_analysis
 '''
 def get_nearest_access_sites(aes):
@@ -190,7 +190,7 @@ def get_cable_data(aes):
     return cable_data
     
 '''
-Determines if the given nearshore habitat shape intersects with a Tow Lane
+Determines if the given alternative energy shape intersects with a Tow Lane
 Called by display_phy_analysis
 '''
 def intersects_towlane(aes):
@@ -215,7 +215,7 @@ def get_wave_energy_data(aes):
     return wave_data
     
 '''
-Determines the Wave Energy Sites for the given nearshore habitat shape
+Determines the Wave Energy Sites for the given alternative energy shape
 Called by display_phy_analysis
 '''
 def get_intersecting_wave_energy_sites(aes):
@@ -225,28 +225,37 @@ def get_intersecting_wave_energy_sites(aes):
     return inter_tuples
     
 '''
-Determines the Nearest Ports for the given nearshore habitat shape
+Determines the Nearest Ports for the given alternative energy shape
 Called by display_phy_analysis
 '''
 def get_nearest_ports(aes):
     return get_nearest_geometries_with_distances(aes, 'ports')
     
 '''
-Determines the Nearest Marine Managed Areas for the given nearshore habitat shape
+Determines any Intersecting Marine Managed Areas as well as 2 nearest (non-intersecting) MMAs
 Called by display_phy_analysis
 '''
-def get_nearest_mmas(aes):
-    return get_nearest_geometries_with_distances(aes, 'marinemanagedareas')
+def get_mma_data(aes):
+    managed_areas = MarineManagedAreas.objects.all()
+    inter_areas = [area.name for area in managed_areas if area.geometry.intersects(aes.geometry_final)]
+    if len(inter_areas) == 0:
+        inter_areas = ['None']
+    else:
+        inter_areas = list(set(inter_areas))
+    nearest_areas = [(length_in_display_units(area.geometry.distance(aes.geometry_final)), area.name) for area in managed_areas if area.name not in inter_areas]
+    nearest_areas.sort()
+    nearest_areas = [(nearest_areas[0][1], nearest_areas[0][0]), (nearest_areas[1][1], nearest_areas[1][0])]
+    return inter_areas, nearest_areas
     
 '''
-Determines the Fishery Closures for the given nearshore habitat shape
+Determines the Fishery Closures for the given alternative energy shape
 Called by display_phy_analysis
 '''
 def get_nearest_fishery_closures(aes):
     return get_nearest_geometries_with_distances(aes, 'fisheryclosures')
     
 '''
-Determines the Nearest Conservation Areas for the given nearshore habitat shape
+Determines the Nearest Conservation Areas for the given alternative energy shape
 Called by display_phy_analysis
 '''
 def get_nearest_conservation_areas(aes):
