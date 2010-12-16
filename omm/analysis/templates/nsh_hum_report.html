@@ -164,7 +164,16 @@
         {% endfor %}
         <tr><td></td><td></td><td></td><td></td></tr>
         <tr class="grey">
-            <td colspan="3"><b>Proximity to Existing State MMAs</b></td>
+            <td colspan="3"><b>Marine Managed Areas</b></td>
+        </tr>
+        {% for mma in intersecting_mmas %}
+            <tr class="{% cycle '' 'grey' %}">
+                <td colspan="3">{{mma}}</td>
+            </tr>
+        {% endfor %}
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) Marine Managed Areas</b></td>
         </tr>
         {% for mma in nearest_mmas %}
             <tr class="{% cycle '' 'grey' %}">

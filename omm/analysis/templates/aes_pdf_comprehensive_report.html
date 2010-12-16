@@ -595,25 +595,19 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="humheader" colspan="7">Fishery Considerations</th>
+            <th class="humheader" colspan="6">Fishery Considerations</th>
         </tr>
         <tr>
-            <th>Proximity to Ports</th>
-            <th colspan="2">Proximity to Existing State MMAs</th>
+            <th colspan="2">Proximity to Ports</th>
             <th colspan="2">Proximity to ODFW Closures</th>
             <th colspan="2">Proximity to EFH Conservation Areas</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td valign="top">
+            <td valign="top" colspan="2">
                 {% for port in hum.nearest_ports %}
                     {{port.0}} ({{port.1|floatformat:'1'}}{{hum.length_units}})</br>
-                {% endfor %}
-            </td>
-            <td valign="top" colspan="2">
-                {% for mma in hum.nearest_mmas %}
-                    {{mma.0}} ({{mma.1|floatformat:'1'}}{{hum.length_units}})</br>
                 {% endfor %}
             </td>
             <td valign="top" colspan="2">
@@ -626,6 +620,28 @@
                     {{area.0}} ({{area.1|floatformat:'1'}}{{hum.length_units}})</br>
                 {% endfor %}
             </td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th colspan="2">Marine Managed Areas</th>
+            <th colspan="2">Nearest (non-intersecting) Marine Managed Areas</th>
+            <th colspan="2"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td valign="top" colspan="2">
+                {% for mma in hum.intersecting_mmas %}
+                    {{mma}}</br>
+                {% endfor %}
+            </td>
+            <td valign="top" colspan="2">
+                {% for mma in hum.nearest_mmas %}
+                    {{mma.0}} ({{mma.1|floatformat:'1'}} {{hum.length_units}})</br>
+                {% endfor %}
+            </td>
+            <td valign="top" colspan="2"></td>
         </tr>
     </tbody>
 </table>
