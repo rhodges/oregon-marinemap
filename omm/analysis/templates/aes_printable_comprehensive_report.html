@@ -389,6 +389,7 @@
             {% endfor %}
             </td>
         </tr>
+        <tr><td></td><td></td><td></td></tr>
     </tbody>
     <thead>
         <tr>
@@ -432,6 +433,7 @@
             <td colspan="3">{{hum.beacon_data.0}}</td>
             <td colspan="1">{{hum.signal_data.0}}</td>
         </tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
     </tbody>
     <thead>
         <tr>
@@ -474,6 +476,7 @@
             </td>
             <td class="top" colspan="1">{{hum.num_signals}}</td>
         </tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
     </tbody>
     <thead>
         <tr>
@@ -492,6 +495,7 @@
             <td colspan="2">{{hum.towlanes}}</td>
             <td colspan="2">{{hum.wave_energy_data.0}}</td>
         </tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
     </tbody>
     <thead>
         <tr>
@@ -574,7 +578,6 @@
         </tr>
         <tr>
             <th>Proximity to Ports</th>
-            <th>Proximity to Existing State MMAs</th>
             <th>Proximity to ODFW Closures</th>
             <th>Proximity to EFH Conservation Areas</th>
         </tr>
@@ -587,11 +590,6 @@
                 {% endfor %}
             </td>
             <td>
-                {% for mma in hum.nearest_mmas %}
-                    {{mma.0}} ({{mma.1|floatformat:'1'}} {{hum.length_units}})</br>
-                {% endfor %}
-            </td>
-            <td>
                 {% for closure in hum.nearest_closures %}
                     {{closure.0}} ({{closure.1|floatformat:'1'}} {{hum.length_units}})</br>
                 {% endfor %}
@@ -601,6 +599,29 @@
                     {{area.0}} ({{area.1|floatformat:'1'}} {{hum.length_units}})</br>
                 {% endfor %}
             </td>
+        </tr>
+        <tr><td></td><td></td><td></td></tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th>Marine Managed Areas</th>
+            <th>Nearest (non-intersecting) Marine Managed Areas</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="top">
+                {% for mma in hum.intersecting_mmas %}
+                    {{mma}}</br>
+                {% endfor %}
+            </td>
+            <td class="top">
+                {% for mma in hum.nearest_mmas %}
+                    {{mma.0}} ({{mma.1|floatformat:'1'}} {{hum.length_units}})</br>
+                {% endfor %}
+            </td>
+            <td class="top"></td>
         </tr>
     </tbody>
 </table>
