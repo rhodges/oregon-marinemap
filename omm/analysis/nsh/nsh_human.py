@@ -46,27 +46,27 @@ def run_hum_analysis(nsh, type):
     #get nearest ports
     nearest_ports = get_nearest_ports(nsh)
     #get nearest marine managed areas
-    nearest_mmas = get_nearest_mmas(nsh)
+    intersecting_mmas, nearest_mmas = get_mma_data(nsh)
     #get nearest fishery closures
     nearest_closures = get_nearest_fishery_closures(nsh)
     #get nearest conservation areas
     nearest_conservation_areas = get_nearest_conservation_areas(nsh)
     #compile context
-    context = {'nsh': nsh, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
+    context = {'nsh': nsh, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'intersecting_mmas': intersecting_mmas, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
     #cache these results
     create_cache(nsh, type, context)   
     return context
     
 '''
 Determines the Nearest State Park for the given nearshore habitat shape
-Called by display_phy_analysis
+Called by run_hum_analysis
 '''
 def get_nearest_parks(nsh):
     return get_nearest_geometries_with_distances(nsh, 'stateparks')
     
 '''
 Determines the Nearest Public Access Sites for the given nearshore habitat shape
-Called by display_phy_analysis
+Called by run_hum_analysis
 '''
 def get_nearest_access_sites(nsh):
     nearest_sites = get_nearest_geometries(nsh, 'publicaccess')
@@ -114,7 +114,7 @@ def get_cable_data(nsh):
     
 '''
 Determines if the given nearshore habitat shape intersects with a Tow Lane
-Called by display_phy_analysis
+Called by run_hum_analysis
 '''
 def intersects_towlane(nsh):
     towlanes = Towlanes.objects.all()
@@ -139,7 +139,7 @@ def get_wave_energy_data(nsh):
     
 '''
 Determines the Wave Energy Sites for the given nearshore habitat shape
-Called by display_phy_analysis
+Called by run_hum_analysis
 '''
 def get_intersecting_wave_energy_sites(nsh):
     wave_sites = WaveEnergyPermits.objects.all()
@@ -149,28 +149,37 @@ def get_intersecting_wave_energy_sites(nsh):
     
 '''
 Determines the Nearest Ports for the given nearshore habitat shape
-Called by display_phy_analysis
+Called by run_hum_analysis
 '''
 def get_nearest_ports(nsh):
     return get_nearest_geometries_with_distances(nsh, 'ports')
     
 '''
-Determines the Nearest Marine Managed Areas for the given nearshore habitat shape
-Called by display_phy_analysis
+Determines any Intersecting Marine Managed Areas as well as 2 nearest (non-intersecting) MMAs
+Called by run_hum_analysis
 '''
-def get_nearest_mmas(nsh):
-    return get_nearest_geometries_with_distances(nsh, 'marinemanagedareas')
+def get_mma_data(nsh):
+    managed_areas = MarineManagedAreas.objects.all()
+    inter_areas = [area.name for area in managed_areas if area.geometry.intersects(nsh.geometry_final)]
+    if len(inter_areas) == 0:
+        inter_areas = ['None']
+    else:
+        inter_areas = list(set(inter_areas))
+    nearest_areas = [(length_in_display_units(area.geometry.distance(nsh.geometry_final)), area.name) for area in managed_areas if area.name not in inter_areas]
+    nearest_areas.sort()
+    nearest_areas = [(nearest_areas[0][1], nearest_areas[0][0]), (nearest_areas[1][1], nearest_areas[1][0])]
+    return inter_areas, nearest_areas
     
 '''
 Determines the Fishery Closures for the given nearshore habitat shape
-Called by display_phy_analysis
+Called by run_hum_analysis
 '''
 def get_nearest_fishery_closures(nsh):
     return get_nearest_geometries_with_distances(nsh, 'fisheryclosures')
     
 '''
 Determines the Nearest Conservation Areas for the given nearshore habitat shape
-Called by display_phy_analysis
+Called by run_hum_analysis
 '''
 def get_nearest_conservation_areas(nsh):
     return get_nearest_geometries_with_distances(nsh, 'conservationareas')

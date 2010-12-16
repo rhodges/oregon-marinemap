@@ -10,7 +10,7 @@ from nsh.nsh_models import ClosedShoreline, Lithology, Bathymetry
 #import NSH_Biological models 
 from nsh.nsh_models import PinnipedHaulouts, SeabirdColonies, Habitats, KelpSurveys, GeologicalHabitat
 #import NSH_Human Use models
-from nsh.nsh_models import StateParks, PublicAccess, DMDSites, Outfalls, UnderseaCables, Towlanes, WaveEnergyPermits
+from nsh.nsh_models import StateParks, PublicAccess, DMDSites, Outfalls, UnderseaCables, Towlanes, WaveEnergyPermits, MarineManagedAreas, FisheryClosures, ConservationAreas
                         
 #import NSH_Caching models
 from nsh.nsh_models import NSHCache
