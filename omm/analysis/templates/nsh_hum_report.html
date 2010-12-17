@@ -182,13 +182,20 @@
         {% endfor %}
         <tr><td></td><td></td><td></td><td></td></tr>
         <tr class="grey">
-            <td colspan="3"><b>Proximity to ODFW Closures</b></td>
+            <td colspan="3"><b>ODFW Closures</b></td>
         </tr>
-        {% for closure in nearest_closures %}
+        {% for closure in intersecting_closures %}
             <tr class="{% cycle '' 'grey' %}">
-                <td colspan="3">{{closure.0}} ({{closure.1|floatformat:'1'}} {{length_units}})</td>
+                <td colspan="3">{{closure}}</td>
             </tr>
         {% endfor %}
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) ODFW Closure</b></td>
+        </tr>
+        <tr class="{% cycle '' 'grey' %}">
+            <td colspan="3">{{nearest_closure.0}} ({{nearest_closure.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
         <tr><td></td><td></td><td></td><td></td></tr>
         <tr class="grey">
             <td colspan="3"><b>Proximity to EFH Conservation Areas</b></td>
