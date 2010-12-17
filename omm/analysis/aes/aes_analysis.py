@@ -1,12 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from aes_geography import display_geo_analysis, run_geo_analysis
-from aes_physical import display_phy_analysis, run_phy_analysis
-from aes_biology import display_bio_analysis, run_bio_analysis
-from aes_human import display_hum_analysis, run_hum_analysis
+from aes_geography import display_aes_geo_analysis, get_aes_geo_context
+from aes_physical import display_phy_analysis, get_aes_phy_context
+from aes_biology import display_bio_analysis, get_aes_bio_context
+from aes_human import display_aes_hum_analysis, get_aes_hum_context
 from analysis.utils import type_is_geo, type_is_phy, type_is_bio, type_is_hum
-from aes_cache import has_cache, get_cache
+from aes_cache import aes_cache_exists, get_aes_cache
 
 '''
 calls display_<type>_analysis for a given type
@@ -14,13 +14,13 @@ called by views.aes_analysis
 '''
 def display_aes_analysis(request, aes, type):
     if type_is_geo(type):
-        return display_geo_analysis(request, aes)
+        return display_aes_geo_analysis(request, aes)
     elif type_is_phy(type):
         return display_phy_analysis(request, aes)
     elif type_is_bio(type):
         return display_bio_analysis(request, aes)
     elif type_is_hum(type):
-        return display_hum_analysis(request, aes)
+        return display_aes_hum_analysis(request, aes)
     else: 
         return HttpResponse('Energy Site Analysis for this selection is not available.')
     
@@ -28,15 +28,15 @@ def display_aes_analysis(request, aes, type):
 calls run_<type>_analysis for a given type
 called by get_or_create_cache
 '''    
-def run_aes_analysis(aes, type):   
+def get_aes_context(aes, type):   
     if type_is_geo(type):
-        return run_geo_analysis(aes, type)
+        return get_aes_geo_context(aes, type)
     elif type_is_phy(type):
-        return run_phy_analysis(aes, type)
+        return get_aes_phy_context(aes, type)
     elif type_is_bio(type): 
-        return run_bio_analysis(aes, type)
+        return get_aes_bio_context(aes, type)
     else: #must be Human Uses
-        return run_hum_analysis(aes, type)
+        return get_aes_hum_context(aes, type)
     
 '''
 renders template with type-specific context
@@ -104,16 +104,16 @@ def get_or_create_cache(aes, type):
     if type == 'all':
         all_context = {}
         for single_type in ['geo', 'phy', 'bio', 'hum']:
-            if has_cache(aes, single_type):
-                context = get_cache(aes, single_type)
+            if aes_cache_exists(aes, single_type):
+                context = get_aes_cache(aes, single_type)
             else:
-                context = run_aes_analysis(aes, single_type)
+                context = get_aes_context(aes, single_type)
             all_context[single_type] = context
         return all_context
-    elif has_cache(aes, type):
-        return get_cache(aes, type)
+    elif aes_cache_exists(aes, type):
+        return get_aes_cache(aes, type)
     else:
-        context = run_aes_analysis(aes, type)
+        context = get_aes_context(aes, type)
     return context
         
 '''
