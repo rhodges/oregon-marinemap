@@ -595,11 +595,12 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="humheader" colspan="6">Fishery Considerations</th>
+            <th class="humheader" colspan="8">Fishery Considerations</th>
         </tr>
         <tr>
             <th colspan="2">Proximity to Ports</th>
-            <th colspan="2">Proximity to ODFW Closures</th>
+            <th colspan="2">ODFW Closures</th>
+            <th colspan="2">Nearest (non-instersecting) ODFW Closure</th>
             <th colspan="2">Proximity to EFH Conservation Areas</th>
         </tr>
     </thead>
@@ -611,9 +612,12 @@
                 {% endfor %}
             </td>
             <td valign="top" colspan="2">
-                {% for closure in hum.nearest_closures %}
-                    {{closure.0}} ({{closure.1|floatformat:'1'}}{{hum.length_units}})</br>
+                {% for closure in hum.intersecting_closures %}
+                    {{closure}}</br>
                 {% endfor %}
+            </td>
+            <td valign="top" colspan="2">
+                {{hum.nearest_closure.0}} ({{hum.nearest_closure.1|floatformat:'1'}} {{hum.length_units}})
             </td>
             <td valign="top" colspan="2">
                 {% for area in hum.nearest_conservation_areas %}
@@ -625,8 +629,8 @@
     <thead>
         <tr>
             <th colspan="2">Marine Managed Areas</th>
-            <th colspan="2">Nearest (non-intersecting) Marine Managed Areas</th>
-            <th colspan="2"></th>
+            <th colspan="3">Nearest (non-intersecting) Marine Managed Areas</th>
+            <th colspan="3"></th>
         </tr>
     </thead>
     <tbody>
@@ -636,12 +640,12 @@
                     {{mma}}</br>
                 {% endfor %}
             </td>
-            <td valign="top" colspan="2">
+            <td valign="top" colspan="3">
                 {% for mma in hum.nearest_mmas %}
                     {{mma.0}} ({{mma.1|floatformat:'1'}} {{hum.length_units}})</br>
                 {% endfor %}
             </td>
-            <td valign="top" colspan="2"></td>
+            <td valign="top" colspan="3"></td>
         </tr>
     </tbody>
 </table>
