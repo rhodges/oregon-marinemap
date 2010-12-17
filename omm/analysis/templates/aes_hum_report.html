@@ -300,18 +300,25 @@
         <tr class="grey">
             <td colspan="3"><b>Nearest (non-intersecting) ODFW Closure</b></td>
         </tr>
-        <tr class="{% cycle '' 'grey' %}">
+        <tr>
             <td colspan="3">{{nearest_closure.0}} ({{nearest_closure.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         <tr><td></td><td></td><td></td><td></td></tr>
         <tr class="grey">
-            <td colspan="3"><b>Proximity to EFH Conservation Areas</b></td>
+            <td colspan="3"><b>EFH Conservation Areas</b></td>
         </tr>
-        {% for area in nearest_conservation_areas %}
+        {% for area in intersecting_conservation_areas %}
             <tr class="{% cycle '' 'grey' %}">
-                <td colspan="3">{{area.0}} ({{area.1|floatformat:'1'}} {{length_units}})</td>
+                <td colspan="3">{{area}}</td>
             </tr>
         {% endfor %}
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) EFH Conservation Areas</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_conservation_area.0}} ({{nearest_conservation_area.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
         <tr><td></td><td></td><td></td><td></td></tr>
     </tbody>
 </table>

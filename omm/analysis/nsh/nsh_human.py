@@ -45,14 +45,14 @@ def run_hum_analysis(nsh, type):
     wave_energy_data = get_wave_energy_data(nsh)
     #get nearest ports
     nearest_ports = get_nearest_ports(nsh)
-    #get nearest marine managed areas
+    #get intersecting and nearest marine managed areas
     intersecting_mmas, nearest_mmas = get_mma_data(nsh)
-    #get nearest fishery closures
+    #get intersecting and nearest fishery closures
     intersecting_closures, nearest_closure = get_fishery_closures_data(nsh)
-    #get nearest conservation areas
-    nearest_conservation_areas = get_nearest_conservation_areas(nsh)
+    #get intersecting and nearest conservation areas
+    intersecting_conservation_areas, nearest_conservation_area = get_conservation_areas_data(nsh)
     #compile context
-    context = {'nsh': nsh, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'intersecting_mmas': intersecting_mmas, 'nearest_mmas': nearest_mmas, 'intersecting_closures': intersecting_closures, 'nearest_closure': nearest_closure, 'nearest_conservation_areas': nearest_conservation_areas}
+    context = {'nsh': nsh, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'intersecting_mmas': intersecting_mmas, 'nearest_mmas': nearest_mmas, 'intersecting_closures': intersecting_closures, 'nearest_closure': nearest_closure, 'intersecting_conservation_areas': intersecting_conservation_areas, 'nearest_conservation_area': nearest_conservation_area}
     #cache these results
     create_cache(nsh, type, context)   
     return context
@@ -187,9 +187,18 @@ def get_fishery_closures_data(nsh):
     return inter_closures, nearest_closure
     
 '''
-Determines the Nearest Conservation Areas for the given nearshore habitat shape
+Determines any Intersecting Conservation Areas as well as nearest (non-intersecting) Conservation Area
 Called by run_hum_analysis
 '''
-def get_nearest_conservation_areas(nsh):
-    return get_nearest_geometries_with_distances(nsh, 'conservationareas')
+def get_conservation_areas_data(nsh):
+    conservation_areas = ConservationAreas.objects.all()
+    inter_areas = [area.name for area in conservation_areas if area.geometry.intersects(nsh.geometry_final)]
+    if len(inter_areas) == 0:
+        inter_areas = ['None']
+    else:
+        inter_areas = list(set(inter_areas))
+    nearest_areas = [(length_in_display_units(area.geometry.distance(nsh.geometry_final)), area.name) for area in conservation_areas if area.name not in inter_areas]
+    nearest_areas.sort()
+    nearest_area = (nearest_areas[0][1], nearest_areas[0][0])
+    return inter_areas, nearest_area
     
