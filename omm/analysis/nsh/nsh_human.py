@@ -48,11 +48,11 @@ def run_hum_analysis(nsh, type):
     #get nearest marine managed areas
     intersecting_mmas, nearest_mmas = get_mma_data(nsh)
     #get nearest fishery closures
-    nearest_closures = get_nearest_fishery_closures(nsh)
+    intersecting_closures, nearest_closure = get_fishery_closures_data(nsh)
     #get nearest conservation areas
     nearest_conservation_areas = get_nearest_conservation_areas(nsh)
     #compile context
-    context = {'nsh': nsh, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'intersecting_mmas': intersecting_mmas, 'nearest_mmas': nearest_mmas, 'nearest_closures': nearest_closures, 'nearest_conservation_areas': nearest_conservation_areas}
+    context = {'nsh': nsh, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'intersecting_mmas': intersecting_mmas, 'nearest_mmas': nearest_mmas, 'intersecting_closures': intersecting_closures, 'nearest_closure': nearest_closure, 'nearest_conservation_areas': nearest_conservation_areas}
     #cache these results
     create_cache(nsh, type, context)   
     return context
@@ -171,11 +171,20 @@ def get_mma_data(nsh):
     return inter_areas, nearest_areas
     
 '''
-Determines the Fishery Closures for the given nearshore habitat shape
+Determines any Intersecting Fishery Closures as well as nearest (non-intersecting) Closure
 Called by run_hum_analysis
 '''
-def get_nearest_fishery_closures(nsh):
-    return get_nearest_geometries_with_distances(nsh, 'fisheryclosures')
+def get_fishery_closures_data(nsh):
+    fishery_closures = FisheryClosures.objects.all()
+    inter_closures = [closure.name for closure in fishery_closures if closure.geometry.intersects(nsh.geometry_final)]
+    if len(inter_closures) == 0:
+        inter_closures = ['None']
+    else:
+        inter_closures = list(set(inter_closures))
+    nearest_closures = [(length_in_display_units(closure.geometry.distance(nsh.geometry_final)), closure.name) for closure in fishery_closures if closure.name not in inter_closures]
+    nearest_closures.sort()
+    nearest_closure = (nearest_closures[0][1], nearest_closures[0][0])
+    return inter_closures, nearest_closure
     
 '''
 Determines the Nearest Conservation Areas for the given nearshore habitat shape
