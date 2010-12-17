@@ -5,7 +5,7 @@ from analysis.models import *
 from settings import *
 from lingcod.unit_converter.models import length_in_display_units, area_in_display_units
 from analysis.utils import ensure_type, default_value
-from nsh_cache import has_cache, get_cache, create_cache
+from nsh_cache import nsh_cache_exists, get_nsh_cache, create_nsh_cache
 
 
 '''
@@ -15,20 +15,28 @@ Called by NSH_Analysis.display_nsh_analysis
 '''
 def display_phy_analysis(request, nsh, type='Physical', template='nsh_phy_report.html'):
     type = ensure_type(type)
+    context = get_nsh_phy_context(nsh, type)
+    return render_to_response(template, RequestContext(request, context)) 
+
+'''
+Called from display_aes_geo_analysis, and aes_analysis.
+'''    
+def get_nsh_phy_context(nsh, type): 
     #get context from cache or from running analysis
-    if has_cache(nsh, type):
+    if nsh_cache_exists(nsh, type):
         #retrieve context from cache
-        context = get_cache(nsh, type)
+        context = get_nsh_cache(nsh, type)
     else:
         #get context by running analysis
-        context = run_phy_analysis(nsh, type) 
+        context = run_nsh_phy_analysis(nsh, type)   
+        #cache these results
+        create_nsh_cache(nsh, type, context)   
+    return context
     
-    return render_to_response(template, RequestContext(request, context)) 
-     
 '''
 Run the analysis, create the cache, and return the results as a context dictionary so they may be rendered with template
 '''    
-def run_phy_analysis(nsh, type):     
+def run_nsh_phy_analysis(nsh, type):     
      #Intertidal Shoreline Length
     length = get_shoreline_length(nsh) 
     if length is None:
@@ -57,7 +65,7 @@ def run_phy_analysis(nsh, type):
     #compile context
     context = {'nsh': nsh, 'default_value': default_value, 'length': length, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'percent_shoreline': percent_shoreline, 'islands': islands, 'island_area': island_area, 'shoreline_proportions': shoreline_proportions, 'subtidal_area': subtidal_area, 'perc_shallow': perc_shallow, 'perc_deep': perc_deep, 'average_depth': average_depth, 'distance_to_shore': distance_to_shore, 'lithology_proportions': lithology_proportions}
     #cache these results
-    create_cache(nsh, type, context)   
+    create_nsh_cache(nsh, type, context)   
     return context
     
 def get_depth_stats(nsh):
