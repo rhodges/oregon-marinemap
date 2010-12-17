@@ -142,60 +142,60 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="humheader" colspan="4">Fishery Considerations</font></th>
+            <th class="humheader" colspan="6">Fishery Considerations</font></th>
         </tr>
         <tr>
-            <th>Proximity to Ports</th>
-            <th>ODFW Closures</th>
-            <th>Nearest (non-instersecting) ODFW Closure</th>
-            <th>Proximity to EFH Conservation Areas</th>
+            <th colspan="2">Proximity to Ports</th>
+            <th colspan="2">ODFW Closures</th>
+            <th colspan="2">Nearest (non-instersecting) ODFW Closure</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>
+            <td colspan="2" class="top">
                 {% for port in nearest_ports %}
                     {{port.0}} ({{port.1|floatformat:'1'}} {{length_units}})</br>
                 {% endfor %}
             </td>
-            <td class="top">
+            <td colspan="2" class="top">
                 {% for closure in intersecting_closures %}
                     {{closure}}</br>
                 {% endfor %}
             </td>
-            <td class="top">
+            <td colspan="2" class="top">
                 {{nearest_closure.0}} ({{nearest_closure.1|floatformat:'1'}} {{length_units}})
             </td>
-            <td>
-                {% for area in nearest_conservation_areas %}
-                    {{area.0}} ({{area.1|floatformat:'1'}} {{length_units}})</br>
-                {% endfor %}
-            </td>
         </tr>
-        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
     </tbody>
     <thead>
         <tr>
-            <th>Marine Managed Areas</th>
-            <th>Nearest (non-intersecting) Marine Managed Areas</th>
-            <th></th>
-            <th></th>
+            <th colspan="1">Marine Managed Areas</th>
+            <th colspan="2">Nearest (non-intersecting) Marine Managed Areas</th>
+            <th colspan="1">EFH Conservation Areas</th>
+            <th colspan="2">Nearest (non-intersecting) EFH Conservation Areas</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td class="top">
+            <td colspan="1" class="top">
                 {% for mma in intersecting_mmas %}
                     {{mma}}</br>
                 {% endfor %}
             </td>
-            <td class="top">
+            <td colspan="2" class="top">
                 {% for mma in nearest_mmas %}
                     {{mma.0}} ({{mma.1|floatformat:'1'}} {{length_units}})</br>
                 {% endfor %}
             </td>
-            <td class="top"></td>
-            <td class="top"></td>
+            <td colspan="1" class="top">
+                {% for area in intersecting_conservation_areas %}
+                    {{area}}</br>
+                {% endfor %}
+            </td>
+            <td colspan="2" class="top">
+                {{nearest_conservation_area.0}} ({{nearest_conservation_area.1|floatformat:'1'}} {{length_units}})</br>
+            </td>
         </tr>
     </tbody>
 </table>
