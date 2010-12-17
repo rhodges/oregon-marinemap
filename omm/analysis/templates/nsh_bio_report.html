@@ -106,7 +106,7 @@
         <br></br>
         <tr class="grey">
             <td><b>Kelp Survey Year</b></td>
-            <td colspan="2"><b>Kelp Proportions</b></td>
+            <td colspan="2"><b>{% if kelp_data.0.2 != default_value %}Kelp Proportions{% endif %}</b></td>
         </tr>
         {% if kelp_data.0.2 == default_value %}
         <tr>
