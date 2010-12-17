@@ -578,7 +578,8 @@
         </tr>
         <tr>
             <th>Proximity to Ports</th>
-            <th>Proximity to ODFW Closures</th>
+            <th>ODFW Closures</th>
+            <th>Nearest (non-instersecting) ODFW Closure</th>
             <th>Proximity to EFH Conservation Areas</th>
         </tr>
     </thead>
@@ -589,10 +590,13 @@
                     {{port.0}} ({{port.1|floatformat:'1'}} {{hum.length_units}})</br>
                 {% endfor %}
             </td>
-            <td>
-                {% for closure in hum.nearest_closures %}
-                    {{closure.0}} ({{closure.1|floatformat:'1'}} {{hum.length_units}})</br>
+            <td class="top">
+                {% for closure in hum.intersecting_closures %}
+                    {{closure}}</br>
                 {% endfor %}
+            </td>
+            <td class="top">
+                {{hum.nearest_closure.0}} ({{hum.nearest_closure.1|floatformat:'1'}} {{hum.length_units}})
             </td>
             <td>
                 {% for area in hum.nearest_conservation_areas %}
@@ -606,6 +610,7 @@
         <tr>
             <th>Marine Managed Areas</th>
             <th>Nearest (non-intersecting) Marine Managed Areas</th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
@@ -621,6 +626,7 @@
                     {{mma.0}} ({{mma.1|floatformat:'1'}} {{hum.length_units}})</br>
                 {% endfor %}
             </td>
+            <td class="top"></td>
             <td class="top"></td>
         </tr>
     </tbody>
