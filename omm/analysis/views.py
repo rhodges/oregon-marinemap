@@ -74,17 +74,17 @@ Empties NSHCache table
 Handles POST requests
 '''
 def admin_clear_nsh_cache(request, type=None, template='admin/analysis/nshcache/cache_is_cleared.html'):
-    from nsh.nsh_cache import clear_cache, remove_cache
+    from nsh.nsh_cache import clear_nsh_cache, remove_nsh_cache
     from utils import ensure_type
     if not request.user.is_staff:
         return HttpResponse('You do not have permission to view this feature', status=401)
     if request.method == 'POST':
         type = ensure_type(type)
         if type is None:
-            clear_cache(i_am_sure=True)
+            clear_nsh_cache(i_am_sure=True)
             return render_to_response( template, RequestContext(request, {"type": "All"}) )  
         else:
-            remove_cache(type=type)
+            remove_nsh_cache(type=type)
             return render_to_response( template, RequestContext(request, {"type": type}) )  
     
 '''
@@ -92,17 +92,17 @@ Empties NSHCache table
 Handles POST requests
 '''
 def admin_clear_aes_cache(request, type=None, template='admin/analysis/aescache/cache_is_cleared.html'):
-    from aes.aes_cache import clear_cache, remove_cache
+    from aes.aes_cache import clear_aes_cache, remove_aes_cache
     from utils import ensure_type
     if not request.user.is_staff:
         return HttpResponse('You do not have permission to view this feature', status=401)
     if request.method == 'POST':
         type = ensure_type(type)
         if type is None:
-            clear_cache(i_am_sure=True)
+            clear_aes_cache(i_am_sure=True)
             return render_to_response( template, RequestContext(request, {"type": "All"}) )  
         else:
-            remove_cache(type=type)
+            remove_aes_cache(type=type)
             return render_to_response( template, RequestContext(request, {"type": type}) )  
     
         

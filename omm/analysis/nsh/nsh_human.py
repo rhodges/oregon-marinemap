@@ -5,7 +5,7 @@ from analysis.models import *
 from settings import *
 from lingcod.unit_converter.models import length_in_display_units, area_in_display_units
 from analysis.utils import ensure_type, get_nearest_geometries, get_nearest_geometries_with_distances, get_intersecting_shape_names, default_value
-from nsh_cache import has_cache, get_cache, create_cache
+from nsh_cache import nsh_cache_exists, get_nsh_cache, create_nsh_cache
     
 
 '''
@@ -13,22 +13,30 @@ Runs analysis for Human Considerations report
 Renders the Human Considerations Report template
 Called by NSH_Analysis.display_nsh_analysis
 '''
-def display_hum_analysis(request, nsh, type='Human', template='nsh_hum_report.html'):
+def display_nsh_hum_analysis(request, nsh, type='Human', template='nsh_hum_report.html'):
     type = ensure_type(type)
+    context = get_nsh_hum_context(nsh, type)
+    return render_to_response(template, RequestContext(request, context)) 
+
+'''
+Called from display_aes_geo_analysis, and aes_analysis.
+'''    
+def get_nsh_hum_context(nsh, type): 
     #get context from cache or from running analysis
-    if has_cache(nsh, type):
+    if nsh_cache_exists(nsh, type):
         #retrieve context from cache
-        context = get_cache(nsh, type)
+        context = get_nsh_cache(nsh, type)
     else:
         #get context by running analysis
-        context = run_hum_analysis(nsh, type)   
-    
-    return render_to_response(template, RequestContext(request, context)) 
+        context = run_nsh_hum_analysis(nsh, type)   
+        #cache these results
+        create_nsh_cache(nsh, type, context)   
+    return context
      
 '''
 Run the analysis, create the cache, and return the results as a context dictionary so they may be rendered with template
 '''    
-def run_hum_analysis(nsh, type):     
+def run_nsh_hum_analysis(nsh, type):     
     #get nearest state parks
     nearest_parks = get_nearest_parks(nsh)
     #get nearest public access points
@@ -54,19 +62,19 @@ def run_hum_analysis(nsh, type):
     #compile context
     context = {'nsh': nsh, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'intersecting_mmas': intersecting_mmas, 'nearest_mmas': nearest_mmas, 'intersecting_closures': intersecting_closures, 'nearest_closure': nearest_closure, 'intersecting_conservation_areas': intersecting_conservation_areas, 'nearest_conservation_area': nearest_conservation_area}
     #cache these results
-    create_cache(nsh, type, context)   
+    create_nsh_cache(nsh, type, context)   
     return context
     
 '''
 Determines the Nearest State Park for the given nearshore habitat shape
-Called by run_hum_analysis
+Called by run_nsh_hum_analysis
 '''
 def get_nearest_parks(nsh):
     return get_nearest_geometries_with_distances(nsh, 'stateparks')
     
 '''
 Determines the Nearest Public Access Sites for the given nearshore habitat shape
-Called by run_hum_analysis
+Called by run_nsh_hum_analysis
 '''
 def get_nearest_access_sites(nsh):
     nearest_sites = get_nearest_geometries(nsh, 'publicaccess')
@@ -114,7 +122,7 @@ def get_cable_data(nsh):
     
 '''
 Determines if the given nearshore habitat shape intersects with a Tow Lane
-Called by run_hum_analysis
+Called by run_nsh_hum_analysis
 '''
 def intersects_towlane(nsh):
     towlanes = Towlanes.objects.all()
@@ -139,7 +147,7 @@ def get_wave_energy_data(nsh):
     
 '''
 Determines the Wave Energy Sites for the given nearshore habitat shape
-Called by run_hum_analysis
+Called by run_nsh_hum_analysis
 '''
 def get_intersecting_wave_energy_sites(nsh):
     wave_sites = WaveEnergyPermits.objects.all()
@@ -149,14 +157,14 @@ def get_intersecting_wave_energy_sites(nsh):
     
 '''
 Determines the Nearest Ports for the given nearshore habitat shape
-Called by run_hum_analysis
+Called by run_nsh_hum_analysis
 '''
 def get_nearest_ports(nsh):
     return get_nearest_geometries_with_distances(nsh, 'ports')
     
 '''
 Determines any Intersecting Marine Managed Areas as well as 2 nearest (non-intersecting) MMAs
-Called by run_hum_analysis
+Called by run_nsh_hum_analysis
 '''
 def get_mma_data(nsh):
     managed_areas = MarineManagedAreas.objects.all()
@@ -172,7 +180,7 @@ def get_mma_data(nsh):
     
 '''
 Determines any Intersecting Fishery Closures as well as nearest (non-intersecting) Closure
-Called by run_hum_analysis
+Called by run_nsh_hum_analysis
 '''
 def get_fishery_closures_data(nsh):
     fishery_closures = FisheryClosures.objects.all()
@@ -188,7 +196,7 @@ def get_fishery_closures_data(nsh):
     
 '''
 Determines any Intersecting Conservation Areas as well as nearest (non-intersecting) Conservation Area
-Called by run_hum_analysis
+Called by run_nsh_hum_analysis
 '''
 def get_conservation_areas_data(nsh):
     conservation_areas = ConservationAreas.objects.all()
