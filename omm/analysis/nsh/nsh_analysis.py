@@ -1,12 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from nsh_geography import display_geo_analysis, run_geo_analysis
-from nsh_physical import display_phy_analysis, run_phy_analysis
-from nsh_biology import display_bio_analysis, run_bio_analysis
-from nsh_human import display_hum_analysis, run_hum_analysis
+from nsh_geography import display_nsh_geo_analysis, get_nsh_geo_context
+from nsh_physical import display_phy_analysis, get_nsh_phy_context
+from nsh_biology import display_bio_analysis, get_nsh_bio_context
+from nsh_human import display_nsh_hum_analysis, get_nsh_hum_context
 from analysis.utils import type_is_geo, type_is_phy, type_is_bio, type_is_hum
-from nsh_cache import has_cache, get_cache
+from nsh_cache import nsh_cache_exists, get_nsh_cache
 
 '''
 calls display_<type>_analysis for a given type
@@ -14,27 +14,27 @@ called by views.nsh_analysis
 '''
 def display_nsh_analysis(request, nsh, type):
     if type_is_geo(type):
-        return display_geo_analysis(request, nsh)
+        return display_nsh_geo_analysis(request, nsh)
     elif type_is_phy(type):
         return display_phy_analysis(request, nsh)
     elif type_is_bio(type): 
         return display_bio_analysis(request, nsh)
     else: #must be Human Uses
-        return display_hum_analysis(request, nsh)
+        return display_nsh_hum_analysis(request, nsh)
     
 '''
 calls run_<type>_analysis for a given type
 called by get_or_create_cache
 '''    
-def run_nsh_analysis(nsh, type):   
+def get_nsh_context(nsh, type):   
     if type_is_geo(type):
-        return run_geo_analysis(nsh, type)
+        return get_nsh_geo_context(nsh, type)
     elif type_is_phy(type):
-        return run_phy_analysis(nsh, type)
+        return get_nsh_phy_context(nsh, type)
     elif type_is_bio(type): 
-        return run_bio_analysis(nsh, type)
+        return get_nsh_bio_context(nsh, type)
     else: #must be Human Uses
-        return run_hum_analysis(nsh, type)
+        return get_nsh_hum_context(nsh, type)
     
 '''
 renders template with type-specific context
@@ -102,16 +102,16 @@ def get_or_create_cache(nsh, type):
     if type == 'all':
         all_context = {}
         for single_type in ['geo', 'phy', 'bio', 'hum']:
-            if has_cache(nsh, single_type):
-                context = get_cache(nsh, single_type)
+            if nsh_cache_exists(nsh, single_type):
+                context = get_nsh_cache(nsh, single_type)
             else:
-                context = run_nsh_analysis(nsh, single_type)
+                context = get_nsh_context(nsh, single_type)
             all_context[single_type] = context
         return all_context
-    elif has_cache(nsh, type):
-        return get_cache(nsh, type)
+    elif nsh_cache_exists(nsh, type):
+        return get_nsh_cache(nsh, type)
     else:
-        context = run_nsh_analysis(nsh, type)
+        context = get_nsh_context(nsh, type)
     return context
         
 '''

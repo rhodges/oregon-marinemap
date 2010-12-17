@@ -5,7 +5,7 @@ from analysis.models import *
 from settings import *
 from lingcod.unit_converter.models import length_in_display_units, area_in_display_units
 from analysis.utils import ensure_type, default_value
-from nsh_cache import has_cache, get_cache, create_cache
+from nsh_cache import nsh_cache_exists, get_nsh_cache, create_nsh_cache
 
 
 '''
@@ -15,20 +15,28 @@ Called by NSH_Analysis.display_nsh_analysis
 '''
 def display_bio_analysis(request, nsh, type='Biology', template='nsh_bio_report.html'):
     type = ensure_type(type)
+    context = get_nsh_bio_context(nsh, type)
+    return render_to_response(template, RequestContext(request, context)) 
+
+'''
+Called from display_aes_geo_analysis, and aes_analysis.
+'''    
+def get_nsh_bio_context(nsh, type): 
     #get context from cache or from running analysis
-    if has_cache(nsh, type):
+    if nsh_cache_exists(nsh, type):
         #retrieve context from cache
-        context = get_cache(nsh, type)
+        context = get_nsh_cache(nsh, type)
     else:
         #get context by running analysis
-        context = run_bio_analysis(nsh, type) 
-
-    return render_to_response(template, RequestContext(request, context)) 
+        context = run_nsh_bio_analysis(nsh, type)   
+        #cache these results
+        create_nsh_cache(nsh, type, context)   
+    return context
      
 '''
 Run the analysis, create the cache, and return the results as a context dictionary so they may be rendered with template
 '''    
-def run_bio_analysis(nsh, type):     
+def run_nsh_bio_analysis(nsh, type):     
     #get pinniped haulout details
     num_haulouts, haulout_details = get_haulout_details(nsh)
     #get stellar sea lion rookery details
@@ -44,7 +52,7 @@ def run_bio_analysis(nsh, type):
     #compile context
     context = {'nsh': nsh, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'fish_list': fish_list, 'kelp_data': kelp_data}
     #cache these results
-    create_cache(nsh, type, context)   
+    create_nsh_cache(nsh, type, context)   
     return context
     
 '''
