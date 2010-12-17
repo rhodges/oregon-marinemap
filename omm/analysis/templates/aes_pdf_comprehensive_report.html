@@ -595,13 +595,12 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="humheader" colspan="8">Fishery Considerations</th>
+            <th class="humheader" colspan="6">Fishery Considerations</th>
         </tr>
         <tr>
             <th colspan="2">Proximity to Ports</th>
             <th colspan="2">ODFW Closures</th>
             <th colspan="2">Nearest (non-instersecting) ODFW Closure</th>
-            <th colspan="2">Proximity to EFH Conservation Areas</th>
         </tr>
     </thead>
     <tbody>
@@ -619,33 +618,36 @@
             <td valign="top" colspan="2">
                 {{hum.nearest_closure.0}} ({{hum.nearest_closure.1|floatformat:'1'}} {{hum.length_units}})
             </td>
-            <td valign="top" colspan="2">
-                {% for area in hum.nearest_conservation_areas %}
-                    {{area.0}} ({{area.1|floatformat:'1'}}{{hum.length_units}})</br>
-                {% endfor %}
-            </td>
         </tr>
     </tbody>
     <thead>
         <tr>
-            <th colspan="2">Marine Managed Areas</th>
-            <th colspan="3">Nearest (non-intersecting) Marine Managed Areas</th>
-            <th colspan="3"></th>
+            <th colspan="1">Marine Managed Areas</th>
+            <th colspan="2">Nearest (non-intersecting) Marine Managed Areas</th>
+            <th colspan="1">EFH Conservation Areas</th>
+            <th colspan="2">Nearest (non-intersecting) EFH Conservation Area</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td valign="top" colspan="2">
+            <td valign="top" colspan="1">
                 {% for mma in hum.intersecting_mmas %}
                     {{mma}}</br>
                 {% endfor %}
             </td>
-            <td valign="top" colspan="3">
+            <td valign="top" colspan="2">
                 {% for mma in hum.nearest_mmas %}
                     {{mma.0}} ({{mma.1|floatformat:'1'}} {{hum.length_units}})</br>
                 {% endfor %}
             </td>
-            <td valign="top" colspan="3"></td>
+            <td valign="top" colspan="1">
+                {% for area in hum.intersecting_conservation_areas %}
+                    {{area}}</br>
+                {% endfor %}
+            </td>
+            <td valign="top" colspan="2">
+                {{hum.nearest_conservation_area.0}} ({{hum.nearest_conservation_area.1|floatformat:'1'}} {{hum.length_units}})</br>
+            </td>
         </tr>
     </tbody>
 </table>
