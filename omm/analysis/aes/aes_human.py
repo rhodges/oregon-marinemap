@@ -54,9 +54,9 @@ def run_aes_hum_analysis(aes, type):
     #get intersecting or nearest beacons
     beacon_data = get_beacon_data(aes)
     #get intersecting or nearest signal equipment
-    signal_data = get_signal_data(aes)
+    signal_data, num_signals = get_signal_data(aes)
     #compile context
-    context = {'aes': aes, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'intersecting_airports': intersecting_airports, 'nearest_airport': nearest_airport, 'urbangrowthboundaries': nearest_ugbs, 'intersecting_protected_areas': intersecting_protected_areas, 'nearest_protected_area': nearest_protected_area, 'buoy_data': buoy_data, 'beacon_data': beacon_data, 'signal_data': signal_data, 'num_signals': len(signal_data[1])}
+    context = {'aes': aes, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'intersecting_airports': intersecting_airports, 'nearest_airport': nearest_airport, 'urbangrowthboundaries': nearest_ugbs, 'intersecting_protected_areas': intersecting_protected_areas, 'nearest_protected_area': nearest_protected_area, 'buoy_data': buoy_data, 'beacon_data': beacon_data, 'signal_data': signal_data, 'num_signals': num_signals}
     #cache these results
     create_aes_cache(aes, type, context)   
     return context
@@ -118,10 +118,12 @@ def get_beacon_data(aes):
 '''
 def get_signal_data(aes):
     intersecting_signals = get_intersecting_shape_names(aes, 'signalequipment')
-    nearest_signal = get_nearest_geometries_with_distances(aes, 'signalequipment', length=1)
+    #nearest_signal = get_nearest_geometries_with_distances(aes, 'signalequipment', length=1)
     if len(intersecting_signals) > 0:
-        signal_data = ('Yes', intersecting_signals)
+        signal_data = 'Yes'
+        num_signals = len(intersecting_signals)
     else:
-        signal_data = ('No', nearest_signal[0])
-    return signal_data       
+        signal_data = 'No'
+        num_signals = 0
+    return signal_data, num_signals     
     
