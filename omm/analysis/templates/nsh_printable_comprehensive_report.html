@@ -51,29 +51,29 @@
         </tr>
         <tr>
             <th>Adjacent County</th>
+            <th></th>
             <th>Nearest Ports</th>
             <th>Nearest Incorporated Cities</th>
-            <th>Nearest Rocky Shore Areas</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{geo.county.0}}</td>
+            <td></td>
             <td>{{geo.ports.0.0}}  ({{geo.ports.0.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.cities.0.0}}  ({{geo.cities.0.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.rockyshores.0.0}}  ({{geo.rockyshores.0.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
         <tr>
             <td>{{geo.county.1}}</td>
+            <td></td>
             <td>{{geo.ports.1.0}}  ({{geo.ports.1.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.cities.1.0}}  ({{geo.cities.1.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.rockyshores.1.0}}  ({{geo.rockyshores.1.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
         <tr>
             <td>{{geo.county.2}}</td>
+            <td></td>
             <td>{{geo.ports.2.0}}  ({{geo.ports.2.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.cities.2.0}}  ({{geo.cities.2.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.rockyshores.2.0}}  ({{geo.rockyshores.2.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
     </tbody>
 </table>
@@ -268,11 +268,12 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="humheader" colspan="2">Community & Recreational Considerations</th>
+            <th class="humheader" colspan="3">Community & Recreational Considerations</th>
         </tr>
         <tr>
             <th>Nearest State Parks</th>
             <th>Nearest Public Access</th>
+            <th>Nearest Rocky Shore Areas</th>
         </tr>
     </thead>
     <tbody>
@@ -285,6 +286,11 @@
             <td>
             {% for site in hum.access_sites %}
                 {{site.0}} &nbsp; ({{site.1|floatformat:'1'}} {{hum.length_units}})</br>
+            {% endfor %}
+            </td>
+            <td>
+            {% for rockyshore in hum.rockyshores %}
+                {{rockyshore.0}} &nbsp; ({{rockyshore.1|floatformat:'1'}} {{hum.length_units}})</br>
             {% endfor %}
             </td>
         </tr>

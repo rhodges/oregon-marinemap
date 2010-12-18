@@ -41,6 +41,8 @@ def run_nsh_hum_analysis(nsh, type):
     nearest_parks = get_nearest_parks(nsh)
     #get nearest public access points
     nearest_access_sites = get_nearest_access_sites(nsh)
+    #get nearest 3 rocky shores
+    rockyshores = get_nearest_rockyshores(nsh)
     #get intersecting or nearest dredge material disposal sites
     dmd_data = get_dmd_data(nsh)
     #get intersecting or nearest npde outfall sites
@@ -60,7 +62,7 @@ def run_nsh_hum_analysis(nsh, type):
     #get intersecting and nearest conservation areas
     intersecting_conservation_areas, nearest_conservation_area = get_conservation_areas_data(nsh)
     #compile context
-    context = {'nsh': nsh, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'intersecting_mmas': intersecting_mmas, 'nearest_mmas': nearest_mmas, 'intersecting_closures': intersecting_closures, 'nearest_closure': nearest_closure, 'intersecting_conservation_areas': intersecting_conservation_areas, 'nearest_conservation_area': nearest_conservation_area}
+    context = {'nsh': nsh, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'rockyshores': rockyshores, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'intersecting_mmas': intersecting_mmas, 'nearest_mmas': nearest_mmas, 'intersecting_closures': intersecting_closures, 'nearest_closure': nearest_closure, 'intersecting_conservation_areas': intersecting_conservation_areas, 'nearest_conservation_area': nearest_conservation_area}
     #cache these results
     create_nsh_cache(nsh, type, context)   
     return context
@@ -83,6 +85,13 @@ def get_nearest_access_sites(nsh):
         output = site.name + ' , ' + site.city + ' ' + site.county + ' County'
         site_tuples.append( (output, length_in_display_units(site.geometry.distance(nsh.geometry_final))) )
     return site_tuples
+    
+'''
+Determines the Nearest 3 Rocky Shores (in order of proximity) for the given nearshore habitat shape
+Called by display_nsh_geo_analysis
+'''    
+def get_nearest_rockyshores(nsh):
+    return get_nearest_geometries_with_distances(nsh, 'rockyshores')
     
 '''    
 Get any intersecting dmds or the three nearest dmds along with their distances
