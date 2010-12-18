@@ -452,7 +452,7 @@
             <td valign="top" colspan="4">{% for airport in hum.intersecting_airports %} {{airport}}<br>{% endfor %}</td>
             <td valign="top" colspan="4">{{hum.buoy_data.0}}</td>
             <td valign="top" colspan="4">{{hum.beacon_data.0}}</td>
-            <td valign="top" colspan="3">{{hum.signal_data.0}}</td>
+            <td valign="top" colspan="3">{{hum.signal_data}}</td>
         </tr>
     </tbody>
     <thead>
@@ -471,7 +471,7 @@
                 <th colspan="4">Closest Beacon</th>
             {% endif %}
             
-            <th colspan="3">Signal Equipment Count</th>
+            <th colspan="3">{% if hum.signal_data == 'Yes' %}Signal Equipment Count{% endif %}</th>
         </tr>
     </thead>
     <tbody>
@@ -495,9 +495,13 @@
                     {{hum.beacon_data.1.0}} ({{hum.beacon_data.1.1|floatformat:'2'}}{{hum.length_units}})
                 {% endif %}
             </td>
-            <td valign="top" colspan="3">{{hum.num_signals}}</td>
+            <td valign="top" colspan="3">{% if hum.signal_data == 'Yes' %}{{hum.num_signals}}{% endif %}</td>
         </tr>
     </tbody>
+</table>
+<br>
+
+<table class='marinemap-table' rules=rows>
     <thead>
         <tr>
             <th class="humheader" colspan="15">Existing or Proposed Transportation & Infrasructure Considerations</th>

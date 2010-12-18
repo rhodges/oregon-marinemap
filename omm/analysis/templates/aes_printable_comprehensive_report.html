@@ -431,7 +431,7 @@
             <td colspan="3">{% for airport in hum.intersecting_airports %} {{airport}}<br>{% endfor %}</td>
             <td colspan="3">{{hum.buoy_data.0}}</td>
             <td colspan="3">{{hum.beacon_data.0}}</td>
-            <td colspan="1">{{hum.signal_data.0}}</td>
+            <td colspan="1">{{hum.signal_data}}</td>
         </tr>
         <tr><td></td><td></td><td></td><td></td></tr>
     </tbody>
@@ -450,7 +450,7 @@
                 <th colspan="3">Closest Beacon</th>
             {% endif %}
             
-            <th colspan="1">Signal Equipment Count</th>
+            <th colspan="1">{% if hum.signal_data == 'Yes' %}Signal Equipment Count{% endif %}</th>
         </tr>
     </thead>
     <tbody>
@@ -474,7 +474,7 @@
                     {{hum.beacon_data.1.0}} ({{hum.beacon_data.1.1|floatformat:'2'}} {{hum.length_units}})
                 {% endif %}
             </td>
-            <td class="top" colspan="1">{{hum.num_signals}}</td>
+            <td class="top" colspan="1">{% if hum.signal_data == 'Yes' %}{{hum.num_signals}}{% endif %}</td>
         </tr>
         <tr><td></td><td></td><td></td><td></td></tr>
     </tbody>
