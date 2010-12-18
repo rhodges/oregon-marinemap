@@ -130,15 +130,16 @@
             <td colspan="3"><b>Signal Equipment</b></td>
         </tr>
         <tr>
-            <td colspan="3">{{signal_data.0}}</td>
+            <td colspan="3">{{signal_data}}</td>
         </tr>
-        
+        {% if signal_data == 'Yes' %}
         <tr class="grey">
             <td colspan="3"><b>Signal Equipment Count</b></td>
         </tr>        
         <tr>
             <td colspan="3">{{num_signals}}</td>
         </tr>
+        {% endif %}
         
         <!-- Dredge Materials Data -->
         <tr class="grey">
