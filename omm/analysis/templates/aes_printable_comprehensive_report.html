@@ -23,6 +23,31 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
+            <th class="geoheader" colspan="6">General Site Characteristics</th>
+        </tr>
+        <tr>
+            <th>Area</th>
+            <th>Perimeter</th>
+            <th>Intertidal</th>
+            <th>Islands</th>
+            <th>Visible From Shore</th>
+            <th>Percent of Territorial Sea</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{geo.area|floatformat:'2'}} ({{geo.area_units}})</td>
+            <td>{{geo.perimeter|floatformat:'2'}} ({{geo.length_units}})</td>
+            <td>{{geo.intertidal}}</td>
+            <td>{{geo.islands}}</td>
+            <td>{{geo.visible}}</td>
+            <td>{{geo.ratio|floatformat:'2'}} %</td>
+        </tr>
+    </tbody>
+</table>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
             <th class="geoheader" colspan="5">Geographic Setting</font></th>
         </tr>
         <tr>
@@ -56,12 +81,14 @@
             <td>{{geo.cities.2.0}}  ({{geo.cities.2.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
     </tbody>
+</table>
+<table class='marinemap-table' rules=rows>
     <thead>
         <tr>
             <th>Nearest Rocky Shore Areas</th>
             <th>Nearest Electical Substations</th>
             <th>Nearest Transmission Line (1993)</th>
-            <th colspan="2">Nearest Transmission Line (2010)</th>
+            <th>Nearest Transmission Line (2010)</th>
         </tr>
     </thead>
     <tbody>
@@ -69,49 +96,23 @@
             <td>{{geo.rockyshores.0.0}}  ({{geo.rockyshores.0.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.substations.0.0}}  ({{geo.substations.0.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.transmissionline1993|floatformat:'1'}} {{geo.length_units}}</td>
-            <td colspan="2">{{geo.transmissionline2010.0.0}}  ({{geo.transmissionline2010.0.1|floatformat:'2'}} {{geo.length_units}})</td>
+            <td>{{geo.transmissionline2010.0.0}}  ({{geo.transmissionline2010.0.1|floatformat:'2'}} {{geo.length_units}})</td>
         </tr>
         <tr>
             <td>{{geo.rockyshores.1.0}}  ({{geo.rockyshores.1.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.substations.1.0}}  ({{geo.substations.1.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td></td>
-            <td colspan="2"></td>
+            <td></td>
         </tr>
         <tr>
             <td>{{geo.rockyshores.2.0}}  ({{geo.rockyshores.2.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.substations.2.0}}  ({{geo.substations.2.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td></td>
-            <td colspan="2"></td>
+            <td></td>
         </tr>
     </tbody>
 </table>
 
-<br></br>
-<table class='marinemap-table' rules=rows>
-    <thead>
-        <tr>
-            <th class="geoheader" colspan="6">General Site Characteristics</th>
-        </tr>
-        <tr>
-            <th>Area</th>
-            <th>Perimeter</th>
-            <th>Intertidal</th>
-            <th>Islands</th>
-            <th>Visible From Shore</th>
-            <th>Percent of Territorial Sea</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{geo.area|floatformat:'2'}} ({{geo.area_units}})</td>
-            <td>{{geo.perimeter|floatformat:'2'}} ({{geo.length_units}})</td>
-            <td>{{geo.intertidal}}</td>
-            <td>{{geo.islands}}</td>
-            <td>{{geo.visible}}</td>
-            <td>{{geo.ratio|floatformat:'2'}} %</td>
-        </tr>
-    </tbody>
-</table>
 
 <!-- Physical Report -->
 

@@ -18,6 +18,30 @@
 
 <!-- Geographic Report -->
 
+<br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="geoheader" colspan="5">General Spatial Characteristics</th>
+        </tr>
+        <tr>
+            <th>Area</th>
+            <th>Perimeter</th>
+            <th>Intertidal</th>
+            <th>Islands</th>
+            <th>Percent of Territorial Sea</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{geo.area|floatformat:'2'}} {{geo.area_units}}</td>
+            <td>{{geo.perimeter|floatformat:'2'}} {{geo.length_units}}</td>
+            <td>{{geo.intertidal}}</td>
+            <td>{{geo.islands}}</td>
+            <td>{{geo.ratio|floatformat:'2'}}%</td>
+        </tr>
+    </tbody>
+</table>
 <br></br>
 <table class='marinemap-table' rules=rows>
     <thead>
@@ -53,30 +77,6 @@
     </tbody>
 </table>
 
-<br>
-<table class='marinemap-table' rules=rows>
-    <thead>
-        <tr>
-            <th class="geoheader" colspan="5">General Site Characteristics</th>
-        </tr>
-        <tr>
-            <th>Area</th>
-            <th>Perimeter</th>
-            <th>Intertidal</th>
-            <th>Islands</th>
-            <th>Percent of Territorial Sea</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{geo.area|floatformat:'2'}} {{geo.area_units}}</td>
-            <td>{{geo.perimeter|floatformat:'2'}} {{geo.length_units}}</td>
-            <td>{{geo.intertidal}}</td>
-            <td>{{geo.islands}}</td>
-            <td>{{geo.ratio|floatformat:'2'}}%</td>
-        </tr>
-    </tbody>
-</table>
 
 <!-- Physical Report -->
 
