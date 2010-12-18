@@ -42,8 +42,6 @@ def run_nsh_geo_analysis(nsh, type):
     ports = get_nearest_ports(nsh)
     #get nearest 3 cities
     cities = get_nearest_cities(nsh)
-    #get nearest 3 rocky shores
-    rockyshores = get_nearest_rockyshores(nsh)
     #get the area
     area = get_area(nsh)
     #get the perimeter
@@ -55,7 +53,7 @@ def run_nsh_geo_analysis(nsh, type):
     #get ratio to territorial sea
     ratio = get_ratio(nsh)
     #compile context
-    context = {'nsh': nsh, 'county': counties, 'ports': ports, 'cities': cities, 'rockyshores': rockyshores, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'ratio': ratio}
+    context = {'nsh': nsh, 'county': counties, 'ports': ports, 'cities': cities, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'ratio': ratio}
     return context
 '''
 Determines the Adjacent Counties for the given nearshore habitat shape
@@ -80,13 +78,6 @@ Called by display_nsh_geo_analysis
 '''    
 def get_nearest_cities(nsh):
     return get_nearest_geometries_with_distances(nsh, 'cities')
-    
-'''
-Determines the Nearest 3 Rocky Shores (in order of proximity) for the given nearshore habitat shape
-Called by display_nsh_geo_analysis
-'''    
-def get_nearest_rockyshores(nsh):
-    return get_nearest_geometries_with_distances(nsh, 'rockyshores')
     
 '''
 Determines the Area for the given nearshore habitat shape
