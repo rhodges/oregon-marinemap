@@ -18,6 +18,31 @@
 
 <!-- Geographic Report -->
 
+<br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="geoheader" colspan="5">General Spatial Characteristics</th>
+        </tr>
+        <tr>
+            <th>Area</th>
+            <th>Perimeter</th>
+            <th>Intertidal</th>
+            <th>Islands</th>
+            <th>Percent of Territorial Sea</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{geo.area|floatformat:'2'}} {{geo.area_units}}</td>
+            <td>{{geo.perimeter|floatformat:'2'}} {{geo.length_units}}</td>
+            <td>{{geo.intertidal}}</td>
+            <td>{{geo.islands}}</td>
+            <td>{{geo.ratio|floatformat:'2'}}%</td>
+        </tr>
+    </tbody>
+</table>
+
 <br></br>
 <table class='marinemap-table' rules=rows>
     <thead>
@@ -81,68 +106,6 @@
             <td colspan="2">{{geo.substations.2.0}}  ({{geo.substations.2.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td colspan="3"></td>
             <td colspan="3"></td>
-        </tr>
-    </tbody>
-</table>
-
-
-
-<br></br>
-<table class='marinemap-table' rules=rows>
-    <thead>
-        <tr>
-            <th class="geoheader" colspan="4">Geographic Setting</th>
-        </tr>
-        <tr>
-            <th>Adjacent County</th>
-            <th>Nearest Ports</th>
-            <th>Nearest Incorporated Cities</th>
-            <th>Nearest Rocky Shore Areas</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td valign="top">     {{geo.county.0}} 
-                <br> {{geo.county.1}} 
-                <br> {{geo.county.2}}
-            </td>
-            <td>     {{geo.ports.0.0}}  ({{geo.ports.0.1|floatformat:'1'}}{{geo.length_units}})
-                <br> {{geo.ports.1.0}}  ({{geo.ports.1.1|floatformat:'1'}}{{geo.length_units}})
-                <br> {{geo.ports.2.0}}  ({{geo.ports.2.1|floatformat:'1'}}{{geo.length_units}})
-            </td>
-            <td>     {{geo.cities.0.0}}  ({{geo.cities.0.1|floatformat:'1'}}{{geo.length_units}})
-                <br> {{geo.cities.1.0}}  ({{geo.cities.1.1|floatformat:'1'}}{{geo.length_units}})
-                <br> {{geo.cities.2.0}}  ({{geo.cities.2.1|floatformat:'1'}}{{geo.length_units}})
-            </td>
-            <td>     {{geo.rockyshores.0.0}}  ({{geo.rockyshores.0.1|floatformat:'1'}}{{geo.length_units}})
-                <br> {{geo.rockyshores.1.0}}  ({{geo.rockyshores.1.1|floatformat:'1'}}{{geo.length_units}})
-                <br> {{geo.rockyshores.2.0}}  ({{geo.rockyshores.2.1|floatformat:'1'}}{{geo.length_units}})
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-<br>
-<table class='marinemap-table' rules=rows>
-    <thead>
-        <tr>
-            <th class="geoheader" colspan="5">General Site Characteristics</th>
-        </tr>
-        <tr>
-            <th>Area</th>
-            <th>Perimeter</th>
-            <th>Intertidal</th>
-            <th>Islands</th>
-            <th>Percent of Territorial Sea</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{geo.area|floatformat:'2'}} {{geo.area_units}}</td>
-            <td>{{geo.perimeter|floatformat:'2'}} {{geo.length_units}}</td>
-            <td>{{geo.intertidal}}</td>
-            <td>{{geo.islands}}</td>
-            <td>{{geo.ratio|floatformat:'2'}}%</td>
         </tr>
     </tbody>
 </table>
