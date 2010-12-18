@@ -23,6 +23,15 @@
             <td colspan="3">{{site.0}} &nbsp; ({{site.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         {% endfor %}
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Rocky Shore Areas</b></td>
+        </tr>
+        {% for rockyshore in rockyshores %}
+        <tr class="{% cycle '' 'grey' %}">
+            <td colspan="3">{{rockyshore.0}} &nbsp; ({{rockyshore.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        {% endfor %}
     </tbody>
 </table>
 </div>
