@@ -44,7 +44,7 @@ Run the analysis, create the cache, and return the results as a context dictiona
 '''    
 def run_aes_phy_analysis(aes, type): 
     #compile context
-    context = {'aes': aes, 'default_value': default_value}
+    context = {'aes': aes}
     #cache these results
     create_aes_cache(aes, type, context)   
     return context

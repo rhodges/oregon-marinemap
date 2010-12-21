@@ -44,17 +44,15 @@ def run_nsh_hum_analysis(nsh, type):
     #get nearest 3 rocky shores
     rockyshores = get_nearest_rockyshores(nsh)
     #get intersecting or nearest dredge material disposal sites
-    dmd_data = get_dmd_data(nsh)
+    intersecting_dmds, nearest_dmd = get_dmd_data(nsh)
     #get intersecting or nearest npde outfall sites
-    outfall_data = get_outfall_data(nsh)
+    intersecting_outfalls, nearest_outfall = get_outfall_data(nsh)
     #get intersecting or nearest undersea cable routes
-    cable_data = get_cable_data(nsh)
-    #does it intersect a towlane
-    towlanes = intersects_towlane(nsh)
-    #get intersecting or nearest wave energy sites
-    wave_energy_data = get_wave_energy_data(nsh)
+    intersecting_cables, nearest_cable = get_cable_data(nsh)
     #get nearest ports
     nearest_ports = get_nearest_ports(nsh)
+    #get nearest 3 marinas
+    nearest_marinas = get_nearest_marinas(nsh)
     #get intersecting and nearest marine managed areas
     intersecting_mmas, nearest_mmas = get_mma_data(nsh)
     #get intersecting and nearest fishery closures
@@ -62,7 +60,7 @@ def run_nsh_hum_analysis(nsh, type):
     #get intersecting and nearest conservation areas
     intersecting_conservation_areas, nearest_conservation_area = get_conservation_areas_data(nsh)
     #compile context
-    context = {'nsh': nsh, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'rockyshores': rockyshores, 'dmd_data': dmd_data, 'outfall_data': outfall_data, 'cable_data': cable_data, 'towlanes': towlanes, 'wave_energy_data': wave_energy_data, 'nearest_ports': nearest_ports, 'intersecting_mmas': intersecting_mmas, 'nearest_mmas': nearest_mmas, 'intersecting_closures': intersecting_closures, 'nearest_closure': nearest_closure, 'intersecting_conservation_areas': intersecting_conservation_areas, 'nearest_conservation_area': nearest_conservation_area}
+    context = {'nsh': nsh, 'default_value': default_value, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'parks': nearest_parks, 'access_sites': nearest_access_sites, 'rockyshores': rockyshores, 'intersecting_dmds': intersecting_dmds, 'nearest_dmd': nearest_dmd, 'intersecting_outfalls': intersecting_outfalls, 'nearest_outfall': nearest_outfall, 'intersecting_cables': intersecting_cables, 'nearest_cable': nearest_cable, 'nearest_ports': nearest_ports, 'nearest_marinas': nearest_marinas, 'intersecting_mmas': intersecting_mmas, 'nearest_mmas': nearest_mmas, 'intersecting_closures': intersecting_closures, 'nearest_closure': nearest_closure, 'intersecting_conservation_areas': intersecting_conservation_areas, 'nearest_conservation_area': nearest_conservation_area}
     #cache these results
     create_nsh_cache(nsh, type, context)   
     return context
@@ -98,71 +96,41 @@ Get any intersecting dmds or the three nearest dmds along with their distances
 '''
 def get_dmd_data(nsh):
     intersecting_dmds = get_intersecting_shape_names(nsh, 'dmdsites')
-    nearest_dmd = get_nearest_geometries_with_distances(nsh, 'dmdsites', length=1)
-    if len(intersecting_dmds) > 0:
-        dmd_data = ('Yes', intersecting_dmds)
+    if len(intersecting_dmds) == 0:
+        intersecting_dmds = ['None']
     else:
-        dmd_data = ('No', nearest_dmd[0])
-    return dmd_data
+        intersecting_dmds = list(set(intersecting_dmds))
+    dmdsites = DMDSites.objects.all()
+    nearest_dmds = [(length_in_display_units(dmd.geometry.distance(nsh.geometry_final)), dmd.name) for dmd in dmdsites if dmd.name not in intersecting_dmds]
+    nearest_dmds.sort()
+    nearest_dmd = (nearest_dmds[0][1], nearest_dmds[0][0])
+    return intersecting_dmds, nearest_dmd
    
 '''    
 Get any intersecting outfalls or the three nearest outfalls along with their distances
 '''
 def get_outfall_data(nsh):
     intersecting_outfalls = get_intersecting_shape_names(nsh, 'outfalls')
-    nearest_outfall = get_nearest_geometries_with_distances(nsh, 'outfalls', length=1)
-    if len(intersecting_outfalls) > 0:
-        outfall_data = ('Yes', intersecting_outfalls)
-    else:
-        outfall_data = ('No', nearest_outfall[0])
-    return outfall_data
+    if len(intersecting_outfalls) == 0:
+        intersecting_outfalls = ['None']
+    outfalls = Outfalls.objects.all()
+    nearest_outfalls = [(length_in_display_units(outfall.geometry.distance(nsh.geometry_final)), outfall.name) for outfall in outfalls if outfall.name not in intersecting_outfalls]
+    nearest_outfalls.sort()
+    nearest_outfall = (nearest_outfalls[0][1], nearest_outfalls[0][0])
+    return intersecting_outfalls, nearest_outfall
 
 '''    
 Get any intersecting cables or the three nearest cables along with their distances
 '''
 def get_cable_data(nsh):
     intersecting_cables = get_intersecting_shape_names(nsh, 'underseacables')
-    nearest_cable = get_nearest_geometries_with_distances(nsh, 'underseacables', line=True, length=1)
-    if len(intersecting_cables) > 0:
-        cable_data = ('Yes', intersecting_cables)
-    else:
-        cable_data = ('No', nearest_cable[0])
-    return cable_data
-    
-'''
-Determines if the given nearshore habitat shape intersects with a Tow Lane
-Called by run_nsh_hum_analysis
-'''
-def intersects_towlane(nsh):
-    towlanes = Towlanes.objects.all()
-    inter_lanes = [lane for lane in towlanes if lane.geometry.intersects(nsh.geometry_final)]
-    if len(inter_lanes) > 0:
-        intersects = 'Yes'
-    else:
-        intersects = 'No'
-    return intersects
-    
-'''    
-Get any intersecting wave energy sites or the three nearest wave energy sites along with their distances
-'''
-def get_wave_energy_data(nsh):
-    intersecting_wave_energy_sites = get_intersecting_wave_energy_sites(nsh)
-    nearest_wave_energy_site = get_nearest_geometries_with_distances(nsh, 'waveenergypermits', length=1)
-    if len(intersecting_wave_energy_sites) > 0:
-        wave_data = ('Yes', intersecting_wave_energy_sites)
-    else:
-        wave_data = ('No', nearest_wave_energy_site)
-    return wave_data
-    
-'''
-Determines the Wave Energy Sites for the given nearshore habitat shape
-Called by run_nsh_hum_analysis
-'''
-def get_intersecting_wave_energy_sites(nsh):
-    wave_sites = WaveEnergyPermits.objects.all()
-    inter_sites = [site for site in wave_sites if site.geometry.intersects(nsh.geometry_final)]
-    inter_tuples = [(site.name, site.geometry.intersection(nsh.geometry_final).area / nsh.geometry_final.area * 100) for site in inter_sites]
-    return inter_tuples
+    if len(intersecting_cables) == 0:
+        intersecting_cables = ['None']
+    cables = UnderseaCables.objects.all()
+    nearest_cables = [(length_in_display_units(cable.geometry.distance(nsh.geometry_final)), cable.name) for cable in cables if cable.name not in intersecting_cables]
+    nearest_cables.sort()
+    nearest_cable = (nearest_cables[0][1], nearest_cables[0][0])
+    return intersecting_cables, nearest_cable   
     
 '''
 Determines the Nearest Ports for the given nearshore habitat shape
@@ -170,6 +138,13 @@ Called by run_nsh_hum_analysis
 '''
 def get_nearest_ports(nsh):
     return get_nearest_geometries_with_distances(nsh, 'ports')
+    
+'''
+Determines the Nearest 3 Ports (in order of proximity) for the given energy site shape
+Called by display_aes_geo_analysis
+'''    
+def get_nearest_marinas(nsh):
+    return get_nearest_geometries_with_distances(nsh, 'marinas')
     
 '''
 Determines any Intersecting Marine Managed Areas as well as 2 nearest (non-intersecting) MMAs

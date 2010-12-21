@@ -38,6 +38,8 @@ Run the analysis, create the cache, and return the results as a context dictiona
 def run_nsh_geo_analysis(nsh, type):
     #get adjacent county
     counties = get_adjacent_counties(nsh)
+    #get county shoreline percentages 
+    county_shoreline_percentages = get_county_shoreline_percentages(nsh, counties)
     #get nearest 3 ports
     ports = get_nearest_ports(nsh)
     #get nearest 3 cities
@@ -53,7 +55,7 @@ def run_nsh_geo_analysis(nsh, type):
     #get ratio to territorial sea
     ratio = get_ratio(nsh)
     #compile context
-    context = {'nsh': nsh, 'county': counties, 'ports': ports, 'cities': cities, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'ratio': ratio}
+    context = {'nsh': nsh, 'county': counties, 'county_shoreline_percentages': county_shoreline_percentages, 'ports': ports, 'cities': cities, 'area': area, 'area_units': settings.DISPLAY_AREA_UNITS, 'perimeter': perimeter, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'intertidal': intertidal, 'islands': islands, 'ratio': ratio}
     return context
 '''
 Determines the Adjacent Counties for the given nearshore habitat shape
@@ -64,6 +66,25 @@ def get_adjacent_counties(nsh):
     if len(intersecting_geometries) == 0:
         intersecting_geometries.append(default_value)
     return intersecting_geometries
+    
+'''
+'''
+def get_county_shoreline_percentages(nsh, counties):
+    shorelines = ClosedShoreline.objects.all()
+    islands = Islands.objects.all()
+    shoreline_percentages = []
+    for county_name in counties:
+        county = Counties.objects.get(name=county_name)
+        shorelines_length = sum([shoreline.geometry.intersection(county.geometry).length for shoreline in shorelines if shoreline.geometry.intersects(county.geometry)])
+        islands_length = sum([island.geometry.intersection(island.geometry).length for island in islands if island.geometry.intersects(county.geometry)])
+        total_shoreline_length = shorelines_length + islands_length
+        nsh_county_intersection = nsh.geometry_final.intersection(county.geometry)
+        nsh_shoreline_length = sum([shoreline.geometry.intersection(nsh_county_intersection).length for shoreline in shorelines if shoreline.geometry.intersects(nsh_county_intersection)])
+        nsh_island_length = sum([island.geometry.intersection(nsh_county_intersection).length for island in islands if island.geometry.intersects(nsh_county_intersection)])
+        total_nsh_shoreline_length = nsh_shoreline_length + nsh_island_length
+        percentage = total_nsh_shoreline_length / total_shoreline_length * 100
+        shoreline_percentages.append(percentage)
+    return shoreline_percentages
     
 '''
 Determines the Nearest 3 Ports (in order of proximity) for the given nearshore habitat shape

@@ -43,61 +43,27 @@ def get_aes_geo_context(aes, type):
 Run the analysis, create the cache, and return the results as a context dictionary so they may be rendered with template
 '''    
 def run_aes_geo_analysis(aes, type):
-    #get distance to nearest railroad
-    railroad = get_distance_to_nearest_railroad(aes)
+    #get nearest urban growth boundaries
+    nearest_ugbs = get_nearest_ugbs(aes)
     #get nearest 3 marinas
     marinas = get_nearest_marinas(aes)
-    #get nearest 3 substations
-    substations = get_nearest_substations(aes)
-    #get distance to nearest transmission line (1993 lines)
-    transmissionline1993 = get_distance_to_nearest_transmissionline1993(aes)
-    #get distance to nearest transmission line (2010 lines)
-    transmissionline2010 = get_distance_to_nearest_transmissionline2010(aes)
     #visible from shore
     visible = is_visible_from_shore(aes)
     #compile context
-    context = {'aes': aes, 'railroad': railroad, 'marinas': marinas, 'substations': substations, 'transmissionline1993': transmissionline1993, 'transmissionline2010': transmissionline2010, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'visible': visible}
+    context = {'aes': aes, 'nearest_ugbs': nearest_ugbs, 'marinas': marinas, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'visible': visible}
     return context
     
-    
 '''
 '''
-def get_distance_to_nearest_railroad(aes):
-    railroads = Railroads.objects.all()
-    distances = [rail.geometry.distance(aes.geometry_final) for rail in railroads]
-    distances.sort()
-    distance = length_in_display_units(distances[0])
-    return distance 
-    
-   
+def get_nearest_ugbs(aes):
+    return get_nearest_geometries_with_distances(aes, 'urbangrowthboundaries')
+        
 '''
 Determines the Nearest 3 Ports (in order of proximity) for the given energy site shape
 Called by display_aes_geo_analysis
 '''    
 def get_nearest_marinas(aes):
     return get_nearest_geometries_with_distances(aes, 'marinas')
-    
-'''
-Determines the Nearest 3 Electrical Substations (in order of proximity) for the given energy site shape
-Called by display_aes_geo_analysis
-'''    
-def get_nearest_substations(aes):
-    return get_nearest_geometries_with_distances(aes, 'substations', point=True)
-      
-'''
-'''
-def get_distance_to_nearest_transmissionline1993(aes):
-    lines = TransmissionLines1993.objects.all()
-    distances = [line.geometry.distance(aes.geometry_final) for line in lines if line.geometry is not None]
-    distances.sort()
-    distance = length_in_display_units(distances[0])
-    return distance 
-    
-'''
-'''
-def get_distance_to_nearest_transmissionline2010(aes):
-    nearest_line = get_nearest_geometries_with_distances(aes, 'transmissionlines2010', length=1)
-    return nearest_line
     
 '''
 '''
