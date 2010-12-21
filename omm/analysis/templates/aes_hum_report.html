@@ -152,7 +152,7 @@
         
         <!-- Beacons -->
         <tr class="grey">
-            <td colspan="3"><b>Intersecting Beacons</b></td>
+            <td colspan="3"><b>Beacons</b></td>
         </tr>        
         {% for data in intersecting_beacons %}
         <tr>
@@ -160,7 +160,7 @@
         </tr>
         {% endfor %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest Beacon</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) Beacon</b></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_beacon.0}} ({{nearest_beacon.1|floatformat:'2'}} {{length_units}})</td>
@@ -202,7 +202,7 @@
         {% endfor %}
         {% if intersecting_airports.0 == 'None' %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest Airport</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) Airport</b></td>
         </tr> 
         <tr>
             <td colspan="3">{{nearest_airport.0}} ({{nearest_airport.1|floatformat:'1'}} {{length_units}})</td>
@@ -229,7 +229,7 @@
         </tr>
         {% endfor %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest Dredge Materials Disposal Site</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) DMD Site</b></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_dmd.0}} ({{nearest_dmd.1|floatformat:'2'}} {{length_units}})</td>
@@ -246,7 +246,7 @@
         </tr>
         {% endfor %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest NPDES Outfall Site</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) Outfall Site</b></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_outfall.0}} ({{nearest_outfall.1|floatformat:'2'}} {{length_units}})</td>
@@ -263,7 +263,7 @@
         </tr>
         {% endfor %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest Undersea Cable Site</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) Cable Route</b></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_cable.0}} ({{nearest_cable.1|floatformat:'2'}} {{length_units}})</td>

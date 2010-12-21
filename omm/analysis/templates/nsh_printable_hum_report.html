@@ -32,7 +32,7 @@
         <tr>
             <td>
             {% for park in parks %}
-                {{park.0}} State Park &nbsp; ({{park.1|floatformat:'2'}} {{length_units}})</br>
+                {{park.0}} State Park &nbsp; ({{park.1|floatformat:'1'}} {{length_units}})</br>
             {% endfor %}
             </td>
             <td>
@@ -53,93 +53,45 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="humheader" colspan="5">Existing or Proposed Transportation & Infrasructure Considerations</font></th>
+            <th class="humheader" colspan="3">Transportation & Infrasructure Considerations</font></th>
         </tr>
         <tr>
-            <th>Dredge Materials Disposal</th>
+            <th>Dredge Materials Disposal Sites</th>
             <th>NPDES Outfall</th>
             <th>Undersea Cables</th>
-            <th>Towlanes</th>
-            <th>Wave Energy</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>{{dmd_data.0}}</td>
-            <td>{{outfall_data.0}}</td>
-            <td>{{cable_data.0}}</td>
-            <td>{{towlanes}}</td>
-            <td>{{wave_energy_data.0}}</td>
+            <td>
+            {% for data in intersecting_dmds %}
+                {{data}}</br>
+            {% endfor %}
+            </td>
+            <td>
+            {% for data in intersecting_outfalls %}
+                {{data}}</br>
+            {% endfor %}
+            </td>
+            <td>
+            {% for data in intersecting_cables %}
+                {{data}}</br>
+            {% endfor %}
+            </td>
         </tr>
     </tbody>
     <thead>
         <tr>
-            {% if dmd_data.0 == 'Yes' %}
-                <th>Intersecting DMD Sites</th>
-            {% else %}
-                <th>Closest DMD Sites</th>
-            {% endif %}
-            
-            {% if outfall_data.0 == 'Yes' %}
-                <th>Intersecting Outfall Sites</th>
-            {% else %}
-                <th>Closest Outfall</th>
-            {% endif %}
-            
-            {% if cable_data.0 == 'Yes' %}
-                <th>Intersecting Cables</th>
-            {% else %}
-                <th>Closest Cable</th>
-            {% endif %}
-            
-            <th></th>
-            
-            {% if wave_energy_data.0 == 'Yes' %}
-                <th>Intersecting Wave Energy</th>
-            {% else %}
-                <th>Closest Wave Energy</th>
-            {% endif %}
+            <th>Nearest (non-intersecting) DMD Site</th>
+            <th>Nearest (non-intersecting) Outfall Site</th>
+            <th>Nearest (non-intersecting) Cable Route</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>
-                {% if dmd_data.0 == 'Yes' %}
-                    {% for data in dmd_data.1 %}
-                        {{data}}</br>
-                    {% endfor %}
-                {% else %}
-                    {{dmd_data.1.0}} ({{dmd_data.1.1|floatformat:'2'}} {{length_units}})
-                {% endif %}
-            </td>
-            <td>
-                {% if outfall_data.0 == 'Yes' %}
-                    {% for data in outfall_data.1 %}
-                        {{data}}</br>
-                    {% endfor %}
-                {% else %}
-                    {{outfall_data.1.0}} ({{outfall_data.1.1|floatformat:'2'}} {{length_units}})
-                {% endif %}
-            </td>
-            <td>
-                {% if cable_data.0 == 'Yes' %}
-                    {% for data in cable_data.1 %}
-                        {{data}}</br>
-                    {% endfor %}
-                {% else %}
-                    {{cable_data.1.0}} ({{cable_data.1.1|floatformat:'2'}} {{length_units}})
-                {% endif %}
-            </td>
-            <td></td>
-            <td>
-                {% if wave_energy_data.0 == 'Yes' %}
-                    {% for data in wave_energy_data.1 %}
-                        {{data}}</br>
-                    {% endfor %}
-                {% else %}
-                    {{wave_energy_data.1.0.0}} ({{wave_energy_data.1.0.1|floatformat:'2'}} {{length_units}})
-                {% endif %}
-            </td>
+            <td>{{nearest_dmd.0}} ({{nearest_dmd.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{nearest_outfall.0}} ({{nearest_outfall.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{nearest_cable.0}} ({{nearest_cable.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
     </tbody>
 </table>
@@ -148,12 +100,11 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="humheader" colspan="6">Fishery Considerations</font></th>
+            <th class="humheader" colspan="4">Fishery Considerations</font></th>
         </tr>
         <tr>
             <th colspan="2">Proximity to Ports</th>
-            <th colspan="2">ODFW Closures</th>
-            <th colspan="2">Nearest (non-instersecting) ODFW Closure</th>
+            <th colspan="2">Nearest Marinas</th>
         </tr>
     </thead>
     <tbody>
@@ -164,42 +115,61 @@
                 {% endfor %}
             </td>
             <td colspan="2" class="top">
-                {% for closure in intersecting_closures %}
-                    {{closure}}</br>
+                {% for marina in nearest_marinas %}
+                    {{marina.0}} ({{marina.1|floatformat:'1'}} {{length_units}})</br>
                 {% endfor %}
-            </td>
-            <td colspan="2" class="top">
-                {{nearest_closure.0}} ({{nearest_closure.1|floatformat:'1'}} {{length_units}})
             </td>
         </tr>
         <tr><td></td><td></td><td></td></tr>
     </tbody>
+</table>
+<table class='marinemap-table' rules=rows>
     <thead>
         <tr>
             <th colspan="1">Marine Managed Areas</th>
-            <th colspan="2">Nearest (non-intersecting) Marine Managed Areas</th>
+            <th colspan="1">ODFW Closures</th>
             <th colspan="1">EFH Conservation Areas</th>
-            <th colspan="2">Nearest (non-intersecting) EFH Conservation Areas</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td colspan="1" class="top">
+            <td class="top">
                 {% for mma in intersecting_mmas %}
                     {{mma}}</br>
                 {% endfor %}
             </td>
-            <td colspan="2" class="top">
-                {% for mma in nearest_mmas %}
-                    {{mma.0}} ({{mma.1|floatformat:'1'}} {{length_units}})</br>
+            <td class="top">
+                {% for closure in intersecting_closures %}
+                    {{closure}}</br>
                 {% endfor %}
             </td>
-            <td colspan="1" class="top">
+            <td class="top">
                 {% for area in intersecting_conservation_areas %}
                     {{area}}</br>
                 {% endfor %}
             </td>
-            <td colspan="2" class="top">
+        </tr>
+    </tbody>
+</table>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th>Nearest (non-intersecting) MMAs</th>
+            <th>Nearest (non-intersecting) ODFW Closure</th>
+            <th>Nearest (non-intersecting) Conservation Area</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="top">
+                {% for mma in nearest_mmas %}
+                    {{mma.0}} ({{mma.1|floatformat:'1'}} {{length_units}})</br>
+                {% endfor %}
+            </td>
+            <td class="top">
+               {{nearest_closure.0}} ({{nearest_closure.1|floatformat:'1'}} {{length_units}})
+            </td>
+            <td class="top">
                 {{nearest_conservation_area.0}} ({{nearest_conservation_area.1|floatformat:'1'}} {{length_units}})</br>
             </td>
         </tr>
