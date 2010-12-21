@@ -20,7 +20,7 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="geoheader" colspan="5">General Spatial Characteristics</font></th>
+            <th class="geoheader" colspan="5">General Spatial Characteristics</th>
         </tr>
         <tr>
             <th>Area</th>
@@ -47,30 +47,30 @@
             <th class="geoheader" colspan="4">Geographic Setting</font></th>
         </tr>
         <tr>
-            <th class="left">Adjacent County</th>
-            <th class="left"></th>
-            <th class="left">Nearest Ports</th>
-            <th class="left">Nearest Incorporated Cities</th>
+            <th>Adjacent County</th>
+            <th>County Shoreline Percentage</th>
+            <th>Nearest Ports</th>
+            <th>Nearest Incorporated Cities</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td class="left">{{county.0}}</td>
-            <td class="left"></td>
-            <td class="left">{{ports.0.0}}  ({{ports.0.1|floatformat:'1'}} {{length_units}})</td>
-            <td class="left">{{cities.0.0}}  ({{cities.0.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{county.0}}</td>
+            <td>{{county_shoreline_percentages.0|floatformat:'1'}} %</td>
+            <td>{{ports.0.0}}  ({{ports.0.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{cities.0.0}}  ({{cities.0.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         <tr>
-            <td class="left">{{county.1}}</td>
-            <td class="left"></td>
-            <td class="left">{{ports.1.0}}  ({{ports.1.1|floatformat:'1'}} {{length_units}})</td>
-            <td class="left">{{cities.1.0}}  ({{cities.1.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{county.1}}</td>
+            <td>{% if county.1 %} {{county_shoreline_percentages.1|floatformat:'1'}} % {% endif %}</td>
+            <td>{{ports.1.0}}  ({{ports.1.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{cities.1.0}}  ({{cities.1.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         <tr>
-            <td class="left">{{county.2}}</td>
-            <td class="left"></td>
-            <td class="left">{{ports.2.0}}  ({{ports.2.1|floatformat:'1'}} {{length_units}})</td>
-            <td class="left">{{cities.2.0}}  ({{cities.2.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{county.2}}</td>
+            <td>{% if county.2 %} {{county_shoreline_percentages.2|floatformat:'1'}} % {% endif %}</td>
+            <td>{{ports.2.0}}  ({{ports.2.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{cities.2.0}}  ({{cities.2.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
     </tbody>
 </table>
@@ -87,8 +87,8 @@ div.img {
 table.marinemap-table {
     font-size:12px;
     width:100%;
-    border:solid 1px #ccc;
-    margin:5px;
+    border:solid 1px #fff;
+    margin:3px;
     padding-top:4px;
 }
 

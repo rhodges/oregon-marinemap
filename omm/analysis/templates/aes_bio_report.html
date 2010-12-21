@@ -1,6 +1,33 @@
 {% extends 'common/panel.html' %}
 {% block title %}{{aes.name}} Biological Analysis{% endblock title %}
 {% block panel %}
+
+<h3>Terrestrial Biological Characteristics</h3>
+<div class='freetext'>
+<br>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <!-- Plover -->
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Western Snowy Plover Critical Habitat &nbsp; </b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_snowy_plover|floatformat:'1'}} {{length_units}} &nbsp; </td>
+        </tr>
+        <br></br>
+        
+        <!-- Murrelet -->
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Marbled Murrelet Critical Habitat &nbsp; </b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_marbled_murrelet|floatformat:'1'}} {{length_units}} &nbsp; </td>
+        </tr>
+        <br></br>
+    </tbody>
+</table>
+</div>
+
 <h3>Intertidal Biological Characteristics</h3>
 <div class='freetext'>
 <br>
@@ -203,31 +230,6 @@
 </table>
 </div>
 
-<h3>Terrestrial Biological Characteristics</h3>
-<div class='freetext'>
-<br>
-<table  style='width:450px' class='aoi_analysis_container'>
-    <tbody>
-        <!-- Plover -->
-        <tr class="grey">
-            <td colspan="3"><b>Nearest Western Snowy Plover Critical Habitat &nbsp; </b></td>
-        </tr>
-        <tr>
-            <td colspan="3">{{nearest_snowy_plover|floatformat:'1'}} {{length_units}} &nbsp; </td>
-        </tr>
-        <br></br>
-        
-        <!-- Murrelet -->
-        <tr class="grey">
-            <td colspan="3"><b>Nearest Marbled Murrelet Critical Habitat &nbsp; </b></td>
-        </tr>
-        <tr>
-            <td colspan="3">{{nearest_marbled_murrelet|floatformat:'1'}} {{length_units}} &nbsp; </td>
-        </tr>
-        <br></br>
-    </tbody>
-</table>
-</div>
 
 <br></br>
 <div style='font-size: small'>

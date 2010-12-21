@@ -20,12 +20,31 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="bioheader" colspan="4">Intertidal Biological Characteristics</font></th>
+            <th class="bioheader" colspan="2">Terrestrial Biological Characteristics</font></th>
+        </tr>
+        <tr>
+            <th>Nearest Western Snowy Plover Critical Habitat</th>
+            <th>Nearest Marbled Murrelet Critical Habitat</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{nearest_snowy_plover|floatformat:'1'}} {{length_units}} &nbsp; </td>
+            <td>{{nearest_marbled_murrelet|floatformat:'1'}} {{length_units}} &nbsp; </td>
+        </tr>
+    </tbody>
+</table>
+        
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="bioheader" colspan="3">Intertidal Biological Characteristics</font></th>
         </tr>
         <tr>
             <th>Pinniped Haulouts</th>
-            <th>Stellar Sea Lion Rookeries</th>
-            <th colspan="2">Bird Colonies</th>
+            <th>Steller Sea Lion Rookeries</th>
+            <th>Bird Colonies</th>
         </tr>
     </thead>
     <tbody>
@@ -43,12 +62,34 @@
             {% endif %}
             
             {% if bird_colonies == 0 %}
-            <td colspan="2">No ({{bird_colonies}} colonies) &nbsp;</td>
+            <td>No ({{bird_colonies}} colonies) &nbsp;</td>
             {% else %}
-            <td colspan="2">Yes ({{bird_colonies}} colonies) &nbsp;</td>
+            <td>Yes ({{bird_colonies}} colonies) &nbsp;</td>
             {% endif %}
         </tr>
     </tbody>
+</table>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th>Stellar Sea Lion Critical Habitats</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% if num_sealion_habs == 0 %}
+            <td>None</td>
+            {% else %}
+            <td>
+            {% for hab in sealion_habs %}
+                {{hab.0}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{hab.1}} </br>
+            {% endfor %}
+            </td>
+            {% endif %}
+        </tr>
+    </tbody>
+</table>
+<table class='marinemap-table' rules=rows>
     <thead>
         <tr>
             <th colspan="2">Pinniped Haulout Details</th>
@@ -106,6 +147,32 @@
             </td>
         </tr>
     </tbody>
+</table>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th>Green Sturgeon</th>
+            <th>Green Sturgeon Area Percentage</th>
+            {% if intersecting_coho_streams != 'No' %}
+            <th>Coho Populated Streams</th>
+            {% else %}
+            <th>Nearest Coho Populated Stream</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{green_sturgeon}}</td>
+            <td>{{green_sturgeon_perc|floatformat:'1'}} %</td>
+            {% if intersecting_coho_streams != 'No' %}
+            <td>{{intersecting_coho_streams}}</td>
+            {% else %}
+            <td>{{nearest_coho_stream|floatformat:'1'}} {{length_units}}</td>
+            {% endif %}
+        </tr>
+    </tbody>
+</table>
+<table class='marinemap-table' rules=rows>
     <thead>
         <tr>
             <th>Kelp Survey Year</th>
@@ -114,18 +181,38 @@
     </thead>
     <tbody>
         {% if kelp_data.0.2 == default_value %}
-            <tr>
-                <td>{{kelp_data.0.0}}</td>
-                <td></td>
-            </tr>
+        <tr>
+            <td>{{kelp_data.0.0}}</td>
+            <td></td>
+        </tr>
         {% else %}
-            {% for data in kelp_data %}
-            <tr class="{% cycle '' 'grey' %}">
-                <td>{{data.0}}</td>
-                <td>{{data.1|floatformat:'2'}} {{area_units}} &nbsp; ({{data.2|floatformat:'2'}} % of Proposed Site)</td>
-            </tr>
-            {% endfor %}
+        {% for data in kelp_data %}
+        <tr class="{% cycle '' 'grey' %}">
+            <td>{{data.0}}</td>
+            <td>{{data.1|floatformat:'2'}} {{area_units}} &nbsp; ({{data.2|floatformat:'2'}} % of Proposed Site)</td>
+        </tr>
+        {% endfor %}
         {% endif %}
+    </tbody>
+</table>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            {% if seagrass_area == 0.0 %}
+            <th>SeaGrass</th>
+            {% else %}
+            <th>SeaGrass Area</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% if seagrass_area == 0.0 %}
+            <td>None</td>
+            {% else %}
+            <td>{{seagrass_area|floatformat:'2'}} {{area_units}}</td>
+            {% endif %}
+        </tr>
     </tbody>
 </table>
 <br></br>
