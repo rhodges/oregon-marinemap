@@ -43,7 +43,7 @@ def run_nsh_phy_analysis(nsh, type):
         length = 0.0
         percent_shoreline = default_value
         islands = 0
-        island_area = default_value
+        island_area = 0.0
         shoreline_proportions = [(default_value, default_value)]
     else:
         #percent of Oregon Coast Shoreline
@@ -57,13 +57,13 @@ def run_nsh_phy_analysis(nsh, type):
     #subtidal area
     subtidal_area = get_subtidal_area(nsh, island_area) 
     #percent percent shallow, percent deep, and average depth
-    perc_shallow, perc_deep, average_depth = get_depth_stats(nsh)
+    perc_shallow, perc_deep, average_depth, min_depth, max_depth = get_depth_stats(nsh)
     #seafloor lithology
     lithology_proportions = get_lithology_proportions(nsh)
     #proximity to shore
     distance_to_shore = get_distance_to_shore(nsh) 
     #compile context
-    context = {'nsh': nsh, 'default_value': default_value, 'length': length, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'percent_shoreline': percent_shoreline, 'islands': islands, 'island_area': island_area, 'shoreline_proportions': shoreline_proportions, 'subtidal_area': subtidal_area, 'perc_shallow': perc_shallow, 'perc_deep': perc_deep, 'average_depth': average_depth, 'distance_to_shore': distance_to_shore, 'lithology_proportions': lithology_proportions}
+    context = {'nsh': nsh, 'default_value': default_value, 'length': length, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'area_units': settings.DISPLAY_AREA_UNITS, 'percent_shoreline': percent_shoreline, 'islands': islands, 'island_area': island_area, 'shoreline_proportions': shoreline_proportions, 'subtidal_area': subtidal_area, 'perc_shallow': perc_shallow, 'perc_deep': perc_deep, 'average_depth': average_depth, 'min_depth': min_depth, 'max_depth': max_depth, 'distance_to_shore': distance_to_shore, 'lithology_proportions': lithology_proportions}
     #cache these results
     create_nsh_cache(nsh, type, context)   
     return context
@@ -86,6 +86,14 @@ def get_depth_stats(nsh):
     deep_area = 0.0
     numerator = 0.0
     denominator = 0.0
+    #determine the min and max depths
+    if len(inter_polys) > 0:
+        depths = [bath.depth for bath in inter_polys]
+        depths.sort()
+        max_depth = depths[0] #smallest value will be the deepest
+        min_depth = depths[-1] #both should be expressed as a positive value
+    else:
+        max_depth = min_depth = '---'
     #determine the total area of shallow waters (<=25m), total area of deep waters (>25m)
     #determine the average depth (depth * area / area)
     for depth, area in bath_dict.items():
@@ -98,7 +106,7 @@ def get_depth_stats(nsh):
     perc_shallow = shallow_area / total_area * 100
     perc_deep = deep_area / total_area * 100
     average_depth = numerator / denominator
-    return perc_shallow, perc_deep, average_depth
+    return perc_shallow, perc_deep, average_depth, min_depth, max_depth
     
     
     

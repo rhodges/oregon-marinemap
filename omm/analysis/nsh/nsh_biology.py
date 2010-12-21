@@ -4,7 +4,7 @@ from django.template import RequestContext
 from analysis.models import *
 from settings import *
 from lingcod.unit_converter.models import length_in_display_units, area_in_display_units
-from analysis.utils import ensure_type, default_value
+from analysis.utils import ensure_type, default_value, get_distance_to_nearest_geometry, get_intersecting_geometries
 from nsh_cache import nsh_cache_exists, get_nsh_cache, create_nsh_cache
 
 
@@ -19,7 +19,7 @@ def display_bio_analysis(request, nsh, type='Biology', template='nsh_bio_report.
     return render_to_response(template, RequestContext(request, context)) 
 
 '''
-Called from display_aes_geo_analysis, and aes_analysis.
+Called from display_nsh_geo_analysis, and nsh_analysis.
 '''    
 def get_nsh_bio_context(nsh, type): 
     #get context from cache or from running analysis
@@ -36,25 +36,101 @@ def get_nsh_bio_context(nsh, type):
 '''
 Run the analysis, create the cache, and return the results as a context dictionary so they may be rendered with template
 '''    
-def run_nsh_bio_analysis(nsh, type):     
+def run_nsh_bio_analysis(nsh, type):
     #get pinniped haulout details
     num_haulouts, haulout_details = get_haulout_details(nsh)
     #get stellar sea lion rookery details
     num_rookeries = get_num_rookeries(nsh)
+    #get stellar sea lion critical habitat details
+    num_sealion_habs, sealion_habs = get_sealion_habitats(nsh)
     #get bird colony details
     num_colonies, bird_details = get_bird_colony_details(nsh)
     #get habitat types and proportions
     habitat_proportions = get_habitat_proportions(nsh)
     #get fish list
     fish_list = get_fish_list(nsh)
+    #get seagrass area
+    seagrass_area = get_seagrass_area(nsh)
+    #get green sturgeon data (yes/no and percentage)
+    green_sturgeon, green_sturgeon_perc = get_green_sturgeon_data(nsh)
+    #get nearest coho populated stream
+    intersecting_coho_streams, nearest_coho_stream = get_nearest_coho_stream(nsh)
     #get kelp survey data
     kelp_data = get_kelp_data(nsh)
+    #get distance to nearest western snowy plover critical habitat
+    nearest_snowy_plover = distance_to_snowy_plover(nsh)
+    #get distance to nearest marbled murrelet critical habitat
+    nearest_marbled_murrelet = distance_to_marbled_murrelet(nsh)
     #compile context
-    context = {'nsh': nsh, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'fish_list': fish_list, 'kelp_data': kelp_data}
+    context = {'nsh': nsh, 'default_value': default_value, 'area_units': settings.DISPLAY_AREA_UNITS, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'num_haulouts': num_haulouts, 'num_rookeries': num_rookeries, 'haulout_sites': haulout_details, 'num_sealion_habs': num_sealion_habs, 'sealion_habs': sealion_habs, 'bird_colonies': num_colonies, 'bird_details': bird_details, 'habitat_proportions': habitat_proportions, 'fish_list': fish_list, 'seagrass_area': seagrass_area, 'green_sturgeon': green_sturgeon, 'green_sturgeon_perc': green_sturgeon_perc, 'intersecting_coho_streams': intersecting_coho_streams, 'nearest_coho_stream': nearest_coho_stream, 'kelp_data': kelp_data, 'nearest_snowy_plover': nearest_snowy_plover, 'nearest_marbled_murrelet': nearest_marbled_murrelet}
     #cache these results
     create_nsh_cache(nsh, type, context)   
     return context
+
+'''
+'''        
+def get_nearest_coho_stream(nsh):
+    coho_streams = Coho.objects.all()
+    intersections = [stream.strm_name for stream in coho_streams if stream.geometry.intersects(nsh.geometry_final)]
+    if len(intersections) > 0:
+        intersecting_streams = 'Yes'
+    else:
+        intersecting_streams = 'No'
+    buffered_nsh = nsh.geometry_final.buffer(80000)
+    distances = [stream.geometry.distance(nsh.geometry_final) for stream in coho_streams if stream.geometry.intersects(buffered_nsh)]
+    distances.sort()
+    distance_to_nearest_stream = length_in_display_units(distances[0])
+    return intersecting_streams, distance_to_nearest_stream
     
+'''
+'''    
+def get_green_sturgeon_data(nsh):
+    coastal_overlaps = get_intersecting_geometries(nsh, 'sturgeoncoastal')
+    estuary_overlaps = get_intersecting_geometries(nsh, 'sturgeonestuaries')
+    if len(coastal_overlaps) > 0 or len(estuary_overlaps) > 0:
+        presence = 'Yes'
+    else:
+        presence = 'No'
+    nsh_area = nsh.geometry_final.area
+    coastal_overlap_area = sum([overlap.area for overlap in coastal_overlaps])
+    estuary_overlap_area = sum([overlap.area for overlap in estuary_overlaps])
+    overlap_area = coastal_overlap_area + estuary_overlap_area
+    overlap_area_percentage = overlap_area / nsh_area * 100
+    return presence, overlap_area_percentage
+    
+'''
+'''    
+def get_seagrass_area(nsh):
+    seagrass = Seagrass.objects.all()
+    inter_grass = [grass for grass in seagrass if grass.geometry.intersects(nsh.geometry_final)]
+    area_of_intersect = 0.0
+    for grass in inter_grass:
+        area_of_intersect += grass.geometry.intersection(nsh.geometry_final).area
+    area_of_intersect_converted_units = area_in_display_units(area_of_intersect)
+    return area_of_intersect_converted_units
+        
+'''
+'''        
+def distance_to_marbled_murrelet(nsh):
+    distance = get_distance_to_nearest_geometry(nsh, 'marbledmurrelet')
+    return length_in_display_units(distance)
+
+'''
+'''
+def distance_to_snowy_plover(nsh):
+    distance = get_distance_to_nearest_geometry(nsh, 'snowyplover')
+    return length_in_display_units(distance)
+
+'''
+'''    
+def get_sealion_habitats(nsh):
+    sealion_habitats = StellerHabitats.objects.all()
+    inter_habs = [hab for hab in sealion_habitats if hab.geometry.intersects(nsh.geometry_final)==True]
+    hab_tuples = [(hab.name, hab.type) for hab in inter_habs if hab.geometry.intersects(nsh.geometry_final)==True]
+    hab_tuples.sort()
+    num_habs = len(hab_tuples)
+    return num_habs, hab_tuples
+        
 '''
 Determines the Pinniped Haulout Details for the given nearshore habitat shape
 Called by display_phy_analysis
@@ -187,6 +263,8 @@ def get_kelp_data(nsh):
     survey_proportion_list.sort()
     return survey_proportion_list    
     
+'''
+'''    
 def get_fish_list(nsh):
     #get habitat types
     habs = GeologicalHabitat.objects.all()
