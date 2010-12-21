@@ -12,7 +12,7 @@
         </tr>
         {% for park in parks %}
         <tr>
-            <td colspan="3">{{park.0}} State Park &nbsp; ({{park.1|floatformat:'2'}} {{length_units}})</td>
+            <td colspan="3">{{park.0}} State Park &nbsp; ({{park.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         {% endfor %}
         <br></br>
@@ -58,7 +58,7 @@
         </tr>
         {% endfor %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest DMD Site</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) DMD Site</b></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_dmd.0}} ({{nearest_dmd.1|floatformat:'2'}} {{length_units}})</td>
@@ -75,7 +75,7 @@
         </tr>
         {% endfor %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest NPDES Outfall Site</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) Outfall Site</b></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_outfall.0}} ({{nearest_outfall.1|floatformat:'2'}} {{length_units}})</td>
@@ -92,7 +92,7 @@
         </tr>
         {% endfor %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest Undersea Cable Site</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) Cable Route</b></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_cable.0}} ({{nearest_cable.1|floatformat:'2'}} {{length_units}})</td>
@@ -135,12 +135,12 @@
             <td colspan="3"><b>Marine Managed Areas</b></td>
         </tr>
         {% for mma in intersecting_mmas %}
-            <tr class="{% cycle '' 'grey' %}">
+            <tr>
                 <td colspan="3">{{mma}}</td>
             </tr>
         {% endfor %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest Marine Managed Areas</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) MMAs</b></td>
         </tr>
         {% for mma in nearest_mmas %}
             <tr>
@@ -154,12 +154,12 @@
             <td colspan="3"><b>ODFW Closures</b></td>
         </tr>
         {% for closure in intersecting_closures %}
-            <tr class="{% cycle '' 'grey' %}">
+            <tr>
                 <td colspan="3">{{closure}}</td>
             </tr>
         {% endfor %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest ODFW Closure</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) ODFW Closure</b></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_closure.0}} ({{nearest_closure.1|floatformat:'1'}} {{length_units}})</td>
@@ -171,13 +171,13 @@
             <td colspan="3"><b>EFH Conservation Areas</b></td>
         </tr>
         {% for area in intersecting_conservation_areas %}
-            <tr class="{% cycle '' 'grey' %}">
+            <tr>
                 <td colspan="3">{{area}}</td>
             </tr>
         {% endfor %}
         <tr><td></td><td></td><td></td><td></td></tr>
         <tr class="grey">
-            <td colspan="3"><b>Nearest EFH Conservation Areas</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) Conservation Areas</b></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_conservation_area.0}} ({{nearest_conservation_area.1|floatformat:'1'}} {{length_units}})</td>
