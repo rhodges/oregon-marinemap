@@ -23,14 +23,13 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="geoheader" colspan="6">General Site Characteristics</th>
+            <th class="geoheader" colspan="5">General Spatial Characteristics</font></th>
         </tr>
         <tr>
             <th>Area</th>
             <th>Perimeter</th>
             <th>Intertidal</th>
             <th>Islands</th>
-            <th>Visible From Shore</th>
             <th>Percent of Territorial Sea</th>
         </tr>
     </thead>
@@ -40,11 +39,11 @@
             <td>{{geo.perimeter|floatformat:'2'}} ({{geo.length_units}})</td>
             <td>{{geo.intertidal}}</td>
             <td>{{geo.islands}}</td>
-            <td>{{geo.visible}}</td>
             <td>{{geo.ratio|floatformat:'2'}} %</td>
         </tr>
     </tbody>
 </table>
+<br></br>
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
@@ -52,63 +51,43 @@
         </tr>
         <tr>
             <th>Adjacent County</th>
-            <th>Distance to Nearest Railroad</th>
+            <th>Urban Growth Boundaries</th>
             <th>Nearest Ports</th>
-            <th>Nearest Marinas</th>
-            <th>Nearest Incorporated Cities</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{geo.county.0}}</td>
-            <td>{{geo.railroad|floatformat:'1'}} {{geo.length_units}}</td>
+            <td>{{geo.nearest_ugbs.0.0}} &nbsp; ({{geo.nearest_ugbs.0.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.ports.0.0}}  ({{geo.ports.0.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.marinas.0.0}}  ({{geo.marinas.0.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.cities.0.0}}  ({{geo.cities.0.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
         <tr>
             <td>{{geo.county.1}}</td>
-            <td></td>
+            <td>{{geo.nearest_ugbs.1.0}} &nbsp; ({{geo.nearest_ugbs.1.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.ports.1.0}}  ({{geo.ports.1.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.marinas.1.0}}  ({{geo.marinas.1.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.cities.1.0}}  ({{geo.cities.1.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
         <tr>
             <td>{{geo.county.2}}</td>
-            <td></td>
+            <td>{{geo.nearest_ugbs.2.0}} &nbsp; ({{geo.nearest_ugbs.2.1|floatformat:'1'}} {{geo.length_units}})</td>
             <td>{{geo.ports.2.0}}  ({{geo.ports.2.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.marinas.2.0}}  ({{geo.marinas.2.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.cities.2.0}}  ({{geo.cities.2.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
     </tbody>
 </table>
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th>Nearest Rocky Shore Areas</th>
-            <th>Nearest Electical Substations</th>
-            <th>Nearest Transmission Line (1993)</th>
-            <th>Nearest Transmission Line (2010)</th>
+            <th>Nearest Marinas</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>{{geo.rockyshores.0.0}}  ({{geo.rockyshores.0.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.substations.0.0}}  ({{geo.substations.0.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.transmissionline1993|floatformat:'1'}} {{geo.length_units}}</td>
-            <td>{{geo.transmissionline2010.0.0}}  ({{geo.transmissionline2010.0.1|floatformat:'2'}} {{geo.length_units}})</td>
+            <td>{{geo.marinas.0.0}}  ({{geo.marinas.0.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
         <tr>
-            <td>{{geo.rockyshores.1.0}}  ({{geo.rockyshores.1.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.substations.1.0}}  ({{geo.substations.1.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td></td>
-            <td></td>
+            <td>{{geo.marinas.1.0}}  ({{geo.marinas.1.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
         <tr>
-            <td>{{geo.rockyshores.2.0}}  ({{geo.rockyshores.2.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td>{{geo.substations.2.0}}  ({{geo.substations.2.1|floatformat:'1'}} {{geo.length_units}})</td>
-            <td></td>
-            <td></td>
+            <td>{{geo.marinas.2.0}}  ({{geo.marinas.2.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
     </tbody>
 </table>
@@ -162,8 +141,9 @@
         <tr>
             <th>Subtidal Area</th>
             <th>Percent Shallow <br/>Percent Deep</th>
-            <th colspan="2">Seafloor Lithology</th>
+            <th>Seafloor Lithology</th>
             <th>Average Depth</th>
+            <th>Min Depth <br/> Max Depth</th>
             <th>Proximity to Shore</th>
         </tr>
     </thead>
@@ -171,18 +151,38 @@
         <tr>
             <td class="top">{{phy.subtidal_area|floatformat:'1'}} ({{phy.area_units}})</td>
             <td class="top">{{phy.perc_shallow|floatformat:'1'}} % &nbsp; shallow<br/> {{phy.perc_deep|floatformat:'1'}} % &nbsp; deep</td>
-            <td class="top" colspan="2">
+            <td class="top">
                 {% for proportion in phy.lithology_proportions %}
                     {{proportion.0|floatformat:'1'}}% &nbsp; {{proportion.1}} &nbsp; ({{proportion.2|floatformat:'2'}} {{phy.length_units}}) </br>
                 {% endfor %}
             </td>
             <td class="top">{{phy.average_depth|floatformat:'2'}} (meters)</td>
+            <td class="top">{{phy.min_depth|floatformat:'1'}} meters <br/> {{phy.max_depth|floatformat:'1'}} meters</td>
             <td class="top">{{phy.distance_to_shore|floatformat:'1'}} ({{phy.length_units}})</td>
         </tr>
     </tbody>
 </table>
 
 <!-- Biology Report -->
+
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="bioheader" colspan="2">Terrestrial Biological Characteristics</font></th>
+        </tr>
+        <tr>
+            <th>Nearest Western Snowy Plover Critical Habitat</th>
+            <th>Nearest Marbled Murrelet Critical Habitat</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{bio.nearest_snowy_plover|floatformat:'1'}} {{bio.length_units}} &nbsp; </td>
+            <td>{{bio.nearest_marbled_murrelet|floatformat:'1'}} {{bio.length_units}} &nbsp; </td>
+        </tr>
+    </tbody>
+</table>
 
 <br></br>
 <table class='marinemap-table' rules=rows>
@@ -217,10 +217,33 @@
             {% endif %}
         </tr>
     </tbody>
+</table>
+    
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th>Steller Sea Lion Critical Habitats</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% if bio.num_sealion_habs == 0 %}
+            <td>None</td>
+            {% else %}
+            <td>
+            {% for hab in bio.sealion_habs %}
+                {{hab.0}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{hab.1}} </br>
+            {% endfor %}
+            </td>
+            {% endif %}
+        </tr>
+    </tbody>
+</table>
+    
+<table class='marinemap-table' rules=rows>
     <thead>
         <tr>
             <th colspan="2">{% if bio.num_haulouts == 0 %}&nbsp;{% else %}Pinniped Haulout Details{% endif %}</th>
-            <th colspan="2">Steller Sea Lion Critical Habitats</th>
             <th colspan="2">{% if bio.bird_colonies == 0 %}&nbsp;{% else %}Bird Colony Details{% endif %}</th>
         </tr>
     </thead>
@@ -235,16 +258,6 @@
             </br>
         {% endfor %}
         </td>
-        
-        <td class="top" colspan="2">
-        {% if bio.num_sealion_habs == 0 %}
-            None
-        {% else %}
-        {% for hab in bio.sealion_habs %}
-            {{hab.0}} , ({{hab.1}})</br>
-        {% endfor %}
-        {% endif %}
-        </td>        
         
         <td colspan="2">
         {% for details in bio.bird_details %}
@@ -287,11 +300,38 @@
             </td>
         </tr>
     </tbody>
+</table>
+    
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th>Green Sturgeon</th>
+            <th>Green Sturgeon Area Percentage</th>
+            {% if bio.intersecting_coho_streams != 'No' %}
+            <th>Coho Populated Streams</th>
+            {% else %}
+            <th>Nearest Coho Populated Stream</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{bio.green_sturgeon}}</td>
+            <td>{{bio.green_sturgeon_perc|floatformat:'1'}} %</td>
+            {% if bio.intersecting_coho_streams != 'No' %}
+            <td>{{bio.intersecting_coho_streams}}</td>
+            {% else %}
+            <td>{{bio.nearest_coho_stream|floatformat:'1'}} {{bio.length_units}}</td>
+            {% endif %}
+        </tr>
+    </tbody>
+</table>
+    
+<table class='marinemap-table' rules=rows>
     <thead>
         <tr>
             <th>Kelp Survey Year</th>
             <th>Kelp Proportions</th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -299,64 +339,39 @@
             <tr>
                 <td>{{bio.kelp_data.0.0}}</td>
                 <td></td>
-                <td></td>
             </tr>
         {% else %}
             {% for data in bio.kelp_data %}
             <tr class="{% cycle '' 'grey' %}">
                 <td>{{data.0}}</td>
                 <td>{{data.1|floatformat:'2'}} {{bio.area_units}} &nbsp; ({{data.2|floatformat:'2'}} % of Proposed Site)</td>
-                <td></td>
             </tr>
             {% endfor %}
         {% endif %}
     </tbody>
+</table>
+    
+<table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th>Seagrass Area</th>
-            <th>Green Sturgeon</th>
-            <th>Green Sturgeon Area Percentage</th>
+            {% if bio.seagrass_area == 0.0 %}
+            <th>SeaGrass</th>
+            {% else %}
+            <th>SeaGrass Area</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
-        <tr class="{% cycle '' 'grey' %}">
+        <tr>
+            {% if bio.seagrass_area == 0.0 %}
+            <td>None</td>
+            {% else %}
             <td>{{bio.seagrass_area|floatformat:'2'}} {{bio.area_units}}</td>
-            <td>{{bio.green_sturgeon}}</td>
-            <td>{{bio.green_sturgeon_perc|floatformat:'1'}} %</td>
-        </tr>
-        <tr class="{% cycle '' 'grey' %}">
-            <td></td>
-            <td></td>
-            <td></td>
+            {% endif %}
         </tr>
     </tbody>
 </table>
 
-<br></br>
-<table class='marinemap-table' rules=rows>
-    <thead>
-        <tr>
-            <th class="bioheader" colspan="3">Terrestrial and Estuarine Biological Characteristics</font></th>
-        </tr>
-        <tr>
-            <th>Nearest Western Snowy Plover Critical Habitat</th>
-            <th>Nearest Marbled Murrelet Critical Habitat</th>
-            <th>Nearest Coho Populated Stream</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="{% cycle '' 'grey' %}">
-            <td>{{bio.nearest_snowy_plover|floatformat:'1'}} {{bio.length_units}}</td>
-            <td>{{bio.nearest_marbled_murrelet|floatformat:'1'}} {{bio.length_units}}</td>
-            <td>{{bio.nearest_coho_stream|floatformat:'1'}} {{bio.length_units}}</td>
-        </tr>
-        <tr class="{% cycle '' 'grey' %}">
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
 
 <!-- Human Uses Report -->
 
@@ -364,19 +379,20 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="humheader" colspan="3">Community & Recreational Considerations</th>
+            <th class="humheader" colspan="4">Community Considerations</font></th>
         </tr>
         <tr>
             <th>Nearest Urban Growth Boundaries</th>
             <th>Nearest State Parks</th>
             <th>Nearest Public Access</th>
+            <th>Visible From Shore</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>
             {% for ugb in hum.urbangrowthboundaries %}
-                {{ugb.0}} &nbsp; ({{ugb.1|floatformat:'2'}} {{hum.length_units}})</br>
+                {{ugb.0}} &nbsp; ({{ugb.1|floatformat:'1'}} {{hum.length_units}})</br>
             {% endfor %}
             </td>
             <td>
@@ -389,27 +405,127 @@
                 {{site.0}} &nbsp; ({{site.1|floatformat:'1'}} {{hum.length_units}})</br>
             {% endfor %}
             </td>
+            <td class="top">
+            {{hum.visible}}
+            </td>
         </tr>
         <tr><td></td><td></td><td></td></tr>
     </tbody>
+</table>
+
+<br></br>
+<table class='marinemap-table' rules=rows>
     <thead>
         <tr>
+            <th class="humheader" colspan="4">Planning Considerations</font></th>
+        </tr>
+        <tr>
+            <th>Nearest Rocky Shore Areas</th>
             <th>Protected Areas</th>
-            <th>Nearest (non-intersecting) Protected Area</th>
-            <th></th>
+            <th>Marine Managed Areas</th>
+            <th>Wave Energy Sites</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td class="top">
-            {% for area in hum.intersecting_protected_areas %}
-                {{area}}
+            <td>
+            {% for rockyshore in hum.rockyshores %}
+                {{rockyshore.0}} &nbsp; ({{rockyshore.1|floatformat:'1'}} {{hum.length_units}})</br>
             {% endfor %}
             </td>
             <td class="top">
-                {{hum.nearest_protected_area.0}} &nbsp; ({{hum.nearest_protected_area.1|floatformat:'1'}} {{hum.length_units}})
+            {% for area in hum.intersecting_protected_areas %}
+                {{area}}</br>
+            {% endfor %}
             </td>
-            <td class="top"></td>
+            <td class="top">
+            {% for mma in hum.intersecting_mmas %}
+                {{mma}}</br>
+            {% endfor %}
+            </td>
+            <td class="top">
+            {% for data in hum.intersecting_wave_energy_sites %}
+                {% if data != 'None' %} 
+                    {{data.0}} ({{data.1|floatformat:'2'}} %)</br>
+                {% else %}
+                    {{data}}
+                {% endif %}
+            {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <th colspan="1">&nbsp;</th>
+            <th>Nearest (non-intersecting) Protected Area</th>
+            <th>Nearest (non-intersecting) MMAs</th>
+            <th>Nearest (non-intersecting) Wave Energy Site</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>&nbsp;</td>
+            <td class="top">{{hum.nearest_protected_area.0}} &nbsp; ({{hum.nearest_protected_area.1|floatformat:'1'}} {{hum.length_units}})</td>
+            <td>
+            {% for mma in hum.nearest_mmas %}
+                {{mma.0}} ({{mma.1|floatformat:'1'}} {{hum.length_units}})</br>
+            {% endfor %}
+            </td>
+            <td class="top">{{hum.nearest_wave_energy_site.0}} ({{hum.nearest_wave_energy_site.1|floatformat:'2'}} {{hum.length_units}})</td>
+        </tr>
+        <tr><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="humheader" colspan="5">Transportation Considerations</font></th>
+        </tr>
+        <tr>
+            <th>Buoys</th>
+            <th>Beacons</th>
+            <th>Signal Equipment</th>
+            <th>Tugboat Towlanes</th>
+            <th>Intersecting Aiports</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="top">
+            {% for data in hum.intersecting_buoys %}
+                {{data}}</br>
+            {% endfor %}
+            </td>
+            <td class="top">
+            {% for data in hum.intersecting_beacons %}
+                {{data}}</br>
+            {% endfor %}
+            </td>
+            <td class="top">{{hum.signal_data}}</td>
+            <td class="top">{{hum.towlanes}}</td>
+            <td class="top">
+            {% for airport in hum.intersecting_airports %} 
+                {{airport}}</br>
+            {% endfor %}
+            </td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th>Nearest (non-intersecting) Buoy</th>
+            <th>Nearest (non-intersecting) Beacon</th>
+            <th>Signal Equipment Count</th>
+            <th></th>
+            <th>Nearest (non-intersecting) Airport</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{hum.nearest_buoy.0}} ({{hum.nearest_buoy.1|floatformat:'2'}} {{hum.length_units}})</td>
+            <td>{{hum.nearest_beacon.0}} ({{hum.nearest_beacon.1|floatformat:'2'}} {{hum.length_units}})</td>
+            <td>{{hum.num_signals}}</td>
+            <td></td>
+            <td>{{hum.nearest_airport.0}} ({{hum.nearest_airport.1|floatformat:'1'}} {{hum.length_units}})</td>
         </tr>
     </tbody>
 </table>
@@ -418,215 +534,120 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="humheader" colspan="10">Existing or Proposed Transportation & Infrasructure Considerations</th>
+            <th class="humheader" colspan="5">Infrastructure Considerations</font></th>
         </tr>
         <tr>
-            <th colspan="3">Intersecting Aiports</th>
-            <th colspan="3">Buoys</th>
-            <th colspan="3">Beacons</th>
-            <th colspan="1">Signal Equipment</th>
+            <th>Dredge Materials Disposal Sites</th>
+            <th>NPDES Outfall Sites</th>
+            <th>Undersea Cable Routes</th>
+            <th>Nearest Transmission Line (1993)</th>
+            <th>Nearest Electrical Substations</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td colspan="3">{% for airport in hum.intersecting_airports %} {{airport}}<br>{% endfor %}</td>
-            <td colspan="3">{{hum.buoy_data.0}}</td>
-            <td colspan="3">{{hum.beacon_data.0}}</td>
-            <td colspan="1">{{hum.signal_data}}</td>
+            <td class="top">
+            {% for data in hum.intersecting_dmds %}
+                {{data}}</br>
+            {% endfor %}
+            </td>
+            <td class="top">
+            {% for data in hum.intersecting_outfalls %}
+                {{data}}</br>
+            {% endfor %}
+            </td>
+            <td class="top">
+            {% for data in hum.intersecting_cables %}
+                {{data}}</br>
+            {% endfor %}
+            </td>
+            <td class="top">{{hum.transmissionline2010|floatformat:'1'}} {{hum.length_units}}</td>
+            <td class="top">
+            {% for substation in hum.substations %}
+                {{substation.0}} ({{substation.1|floatformat:'1'}} {{hum.length_units}})</br>
+            {% endfor %}
+            </td>
         </tr>
-        <tr><td></td><td></td><td></td><td></td></tr>
     </tbody>
     <thead>
         <tr>
-            <th colspan="3">Nearest Airport</th>
-            {% if hum.buoy_data.0 == 'Yes' %}
-                <th colspan="3">Intersecting Buoys</th>
-            {% else %}
-                <th colspan="3">Closest Buoy</th>
-            {% endif %}
-            
-            {% if hum.beacon_data.0 == 'Yes' %}
-                <th colspan="3">Intersecting Beacons</th>
-            {% else %}
-                <th colspan="3">Closest Beacon</th>
-            {% endif %}
-            
-            <th colspan="1">{% if hum.signal_data == 'Yes' %}Signal Equipment Count{% endif %}</th>
+            <th>Nearest (non-intersecting) DMD Site</th>
+            <th>Nearest (non-intersecting) Outfall Site</th>
+            <th>Nearest (non-intersecting) Cable Route</th>
+            <th>Nearest Transmission Line (2010)</th>
+            <th>Distance to Nearest Railroad</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td class="top" colspan="3">{{hum.nearest_airport.0}} ({{hum.nearest_airport.1|floatformat:'1'}} {{hum.length_units}})</td>
-            <td class="top" colspan="3">
-                {% if hum.buoy_data.0 == 'Yes' %}
-                    {% for data in hum.buoy_data.1 %}
-                        {{data}}</br>
-                    {% endfor %}
-                {% else %}
-                    {{hum.buoy_data.1.0}} ({{hum.buoy_data.1.1|floatformat:'2'}} {{hum.length_units}})
-                {% endif %}
-            </td>
-            <td class="top" colspan="3">
-                {% if hum.beacon_data.0 == 'Yes' %}
-                    {% for data in hum.beacon_data.1 %}
-                        {{data}}</br>
-                    {% endfor %}
-                {% else %}
-                    {{hum.beacon_data.1.0}} ({{hum.beacon_data.1.1|floatformat:'2'}} {{hum.length_units}})
-                {% endif %}
-            </td>
-            <td class="top" colspan="1">{% if hum.signal_data == 'Yes' %}{{hum.num_signals}}{% endif %}</td>
-        </tr>
-        <tr><td></td><td></td><td></td><td></td></tr>
-    </tbody>
-    <thead>
-        <tr>
-            <th colspan="2">Dredge Materials Disposal</th>
-            <th colspan="2">NPDES Outfall</th>
-            <th colspan="2">Undersea Cables</th>
-            <th colspan="2">Towlanes</th>
-            <th colspan="2">Wave Energy</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td colspan="2">{{hum.dmd_data.0}}</td>
-            <td colspan="2">{{hum.outfall_data.0}}</td>
-            <td colspan="2">{{hum.cable_data.0}}</td>
-            <td colspan="2">{{hum.towlanes}}</td>
-            <td colspan="2">{{hum.wave_energy_data.0}}</td>
-        </tr>
-        <tr><td></td><td></td><td></td><td></td><td></td></tr>
-    </tbody>
-    <thead>
-        <tr>
-            {% if hum.dmd_data.0 == 'Yes' %}
-                <th colspan="2">Intersecting DMD Sites</th>
-            {% else %}
-                <th colspan="2">Closest DMD Site</th>
-            {% endif %}
-            
-            {% if hum.outfall_data.0 == 'Yes' %}
-                <th colspan="2">Intersecting Outfall Sites</th>
-            {% else %}
-                <th colspan="2">Closest Outfall</th>
-            {% endif %}
-            
-            {% if hum.cable_data.0 == 'Yes' %}
-                <th colspan="2">Intersecting Cables</th>
-            {% else %}
-                <th colspan="2">Closest Cable</th>
-            {% endif %}
-            
-            <th colspan="2">
-            
-            {% if hum.wave_energy_data.0 == 'Yes' %}
-                <th colspan="2">Intersecting Wave Energy</th>
-            {% else %}
-                <th colspan="2">Closest Wave Energy</th>
-            {% endif %}
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="top" colspan="2">
-                {% if hum.dmd_data.0 == 'Yes' %}
-                    {% for data in hum.dmd_data.1 %}
-                        {{data}}</br>
-                    {% endfor %}
-                {% else %}
-                    {{hum.dmd_data.1.0}} ({{hum.dmd_data.1.1|floatformat:'2'}} {{hum.length_units}})
-                {% endif %}
-            </td>
-            <td class="top" colspan="2">
-                {% if hum.outfall_data.0 == 'Yes' %}
-                    {% for data in hum.outfall_data.1 %}
-                        {{data}}</br>
-                    {% endfor %}
-                {% else %}
-                    {{hum.outfall_data.1.0}} ({{hum.outfall_data.1.1|floatformat:'2'}} {{hum.length_units}})
-                {% endif %}
-            </td>
-            <td class="top" colspan="2">
-                {% if hum.cable_data.0 == 'Yes' %}
-                    {% for data in hum.cable_data.1 %}
-                        {{data}}</br>
-                    {% endfor %}
-                {% else %}
-                    {{hum.cable_data.1.0}} ({{hum.cable_data.1.1|floatformat:'2'}} {{hum.length_units}})
-                {% endif %}
-            </td>
-            <td class="top" colspan="2"></td>
-            <td class="top" colspan="2">
-                {% if hum.wave_energy_data.0 == 'Yes' %}
-                    {% for data in hum.wave_energy_data.1 %}
-                        {{data}}</br>
-                    {% endfor %}
-                {% else %}
-                    {{hum.wave_energy_data.1.0.0}} ({{hum.wave_energy_data.1.0.1|floatformat:'2'}} {{hum.length_units}})
-                {% endif %}
-            </td>
+            <td>{{hum.nearest_dmd.0}} ({{hum.nearest_dmd.1|floatformat:'2'}} {{hum.length_units}})</td>
+            <td>{{hum.nearest_outfall.0}} ({{hum.nearest_outfall.1|floatformat:'2'}} {{hum.length_units}})</td>
+            <td>{{hum.nearest_cable.0}} ({{hum.nearest_cable.1|floatformat:'2'}} {{hum.length_units}})</td>
+            <td>{{hum.transmissionline2010|floatformat:'1'}} {{hum.length_units}}</td>
+            <td>{{hum.railroad|floatformat:'2'}} {{hum.length_units}}</td>
         </tr>
     </tbody>
-    
 </table>
 
 <br></br>
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="humheader" colspan="6">Fishery Considerations</font></th>
+            <th class="humheader" colspan="2">Fishery Considerations</font></th>
         </tr>
         <tr>
-            <th colspan="2">Proximity to Ports</th>
-            <th colspan="2">ODFW Closures</th>
-            <th colspan="2">Nearest (non-instersecting) ODFW Closure</th>
+            <th>Proximity to Ports</th>
+            <th>Nearest Marinas</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td colspan="2" class="top">
+            <td class="top">
                 {% for port in hum.nearest_ports %}
-                    {{port.0}} ({{port.1|floatformat:'1'}} {{length_units}})</br>
+                    {{port.0}} ({{port.1|floatformat:'1'}} {{hum.length_units}})</br>
                 {% endfor %}
             </td>
-            <td colspan="2" class="top">
+            <td class="top">
+                {% for marina in hum.nearest_marinas %}
+                    {{marina.0}} ({{marina.1|floatformat:'1'}} {{hum.length_units}})</br>
+                {% endfor %}
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th>ODFW Closures</th>
+            <th>EFH Conservation Areas</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="top">
                 {% for closure in hum.intersecting_closures %}
                     {{closure}}</br>
                 {% endfor %}
             </td>
-            <td colspan="2" class="top">
-                {{hum.nearest_closure.0}} ({{hum.nearest_closure.1|floatformat:'1'}} {{hum.length_units}})
-            </td>
-        </tr>
-        <tr><td></td><td></td><td></td></tr>
-    </tbody>
-    <thead>
-        <tr>
-            <th colspan="1">Marine Managed Areas</th>
-            <th colspan="2">Nearest (non-intersecting) Marine Managed Areas</th>
-            <th colspan="1">EFH Conservation Areas</th>
-            <th colspan="2">Nearest (non-intersecting) EFH Conservation Area</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td colspan="1" class="top">
-                {% for mma in hum.intersecting_mmas %}
-                    {{mma}}</br>
-                {% endfor %}
-            </td>
-            <td colspan="2" class="top">
-                {% for mma in hum.nearest_mmas %}
-                    {{mma.0}} ({{mma.1|floatformat:'1'}} {{hum.length_units}})</br>
-                {% endfor %}
-            </td>
-            <td colspan="1" class="top">
+            <td class="top">
                 {% for area in hum.intersecting_conservation_areas %}
                     {{area}}</br>
                 {% endfor %}
             </td>
-            <td colspan="2" class="top">
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th>Nearest (non-intersecting) ODFW Closure</th>
+            <th>Nearest (non-intersecting) EFH Conservation Area</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="top">
+               {{hum.nearest_closure.0}} ({{hum.nearest_closure.1|floatformat:'1'}} {{hum.length_units}})
+            </td>
+            <td class="top">
                 {{hum.nearest_conservation_area.0}} ({{hum.nearest_conservation_area.1|floatformat:'1'}} {{hum.length_units}})</br>
             </td>
         </tr>
