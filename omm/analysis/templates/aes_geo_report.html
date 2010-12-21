@@ -30,12 +30,12 @@
         </tr>
         <br></br>
         <tr class="grey">
-            <td><b>Visible From Shore</b></td>
+            <td></td>
             <td></td>
             <td><b>Percent of Territorial Sea</b></td>
         </tr>
         <tr>
-            <td>{{visible}}</td>
+            <td></td>
             <td></td>
             <td>{{ratio|floatformat:'2'}} %</td>
         </tr>
@@ -54,73 +54,42 @@
             {% else %}
             <td><b>Adjacent County</b></td>
             {% endif %}
-            <td><b>Distance to Nearest Railroad</b></td>
+            <td><b>Nearest Urban Growth Boundaries</b></td>
         </tr>
         <tr>
             <td>{{county.0}}</td>
-            <td>{{railroad|floatformat:'2'}} {{length_units}}</td>
+            <td>{{ nearest_ugbs.0.0}} &nbsp; ({{ nearest_ugbs.0.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
-        {% if county.1 %}
-        <tr class="grey">
-            <td>{{county.1}}</td>
+        <tr>
+            <td>{% if county.1 %}{{county.1}}{% endif %}</td>
+            <td>{{ nearest_ugbs.1.0}} &nbsp; ({{ nearest_ugbs.1.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <tr>
             <td></td>
+            <td>{{ nearest_ugbs.2.0}} &nbsp; ({{ nearest_ugbs.2.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
-        {% endif %}
         <br></br>
     
         <tr class="grey">
-            <td><b>Nearest Ports</b></td>
-            <td><b>Nearest Marinas</b></td>
+            <td colspan="2"><b>Nearest Ports</b></td>
         </tr>
+        {% for port in ports%}
         <tr>
-            <td>{{ports.0.0}}  ({{ports.0.1|floatformat:'1'}} {{length_units}})</td>
-            <td>{{marinas.0.0}}  ({{marinas.0.1|floatformat:'1'}} {{length_units}})</td>
+            <td colspan="2">{{port.0}}  ({{port.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
-        <tr class="grey">
-            <td>{{ports.1.0}}  ({{ports.1.1|floatformat:'1'}} {{length_units}})</td>
-            <td>{{marinas.1.0}}  ({{marinas.1.1|floatformat:'1'}} {{length_units}})</td>
-        </tr>
-        <tr>
-            <td>{{ports.2.0}}  ({{ports.2.1|floatformat:'1'}} {{length_units}})</td>
-            <td>{{marinas.2.0}}  ({{marinas.2.1|floatformat:'1'}} {{length_units}})</td>
-        </tr>
+        {% endfor %}
         <br></br>
         
         <tr class="grey">
-            <td><b>Nearest Incorporated Cities</b></td>
-            <td><b>Nearest Rocky Shore Areas</b></td>
+            <td colspan="2"><b>Nearest Marinas</b></td>
         </tr>
+        {% for marina in marinas %}
         <tr>
-            <td>{{cities.0.0}}  ({{cities.0.1|floatformat:'1'}} {{length_units}})</td>
-            <td>{{rockyshores.0.0}}  ({{rockyshores.0.1|floatformat:'1'}} {{length_units}})</td>
+            <td colspan="2">{{marina.0}}  ({{marina.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
-        <tr class="grey">
-            <td>{{cities.1.0}}  ({{cities.1.1|floatformat:'1'}} {{length_units}})</td>
-            <td>{{rockyshores.1.0}}  ({{rockyshores.1.1|floatformat:'1'}} {{length_units}})</td>
-        </tr>
-        <tr>
-            <td>{{cities.2.0}}  ({{cities.2.1|floatformat:'1'}} {{length_units}})</td>
-            <td>{{rockyshores.2.0}}  ({{rockyshores.2.1|floatformat:'1'}} {{length_units}})</td>
-        </tr>
-        
+        {% endfor %}
         <br></br>
-        <tr class="grey">
-            <td><b>Nearest Electrical Substations</b></td>
-            <td><b>Nearest Transmission Line (1993)</b></td>
-        </tr>
-        <tr>
-            <td>{{substations.0.0}}  ({{substations.0.1|floatformat:'1'}} {{length_units}})</td>
-            <td>{{transmissionline1993|floatformat:'2'}} {{length_units}}</td>
-        </tr>
-        <tr class="grey">
-            <td>{{substations.1.0}}  ({{substations.1.1|floatformat:'1'}} {{length_units}})</td>
-            <td><b>Nearest Transmission Line (2010)</b></td>
-        </tr>
-        <tr>
-            <td>{{substations.2.0}}  ({{substations.2.1|floatformat:'1'}} {{length_units}})</td>
-            <td>{{transmissionline2010.0.0}}  ({{transmissionline2010.0.1|floatformat:'2'}} {{length_units}})</td>
-        </tr>
-
+        
     </tbody>
 </table>
 </div>

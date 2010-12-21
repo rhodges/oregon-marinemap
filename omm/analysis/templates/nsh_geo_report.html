@@ -55,23 +55,31 @@
             <td><b>Adjacent County</b></td>
             {% endif %}
             <td></td>
-            <td></td>
+            {% if county.1 %}
+            <td><b>County Shoreline Percentages</b></td>
+            {% else %}
+            <td><b>County Shoreline Percentage</b></td>
+            {% endif %}
         </tr>
         <tr>
             <td>{{county.0}}</td>
             <td></td>
-            <td></td>
+            <td>{{county_shoreline_percentages.0|floatformat:'1'}} %</td>
         </tr>
+        {% if county.1 %}
         <tr>
             <td>{{county.1}}</td>
             <td></td>
-            <td></td>
+            <td>{{county_shoreline_percentages.1|floatformat:'1'}} %</td>
         </tr>
+        {% endif %}
+        {% if county.2 %}
         <tr>
             <td>{{county.2}}</td>
             <td></td>
-            <td></td>
+            <td>{{county_shoreline_percentages.2|floatformat:'1'}} %</td>
         </tr>
+        {% endif %}
         <br></br>
         <tr class="grey">
             <td><b>Nearest Incorporated Cities</b></td>
