@@ -8,7 +8,7 @@ from nsh.nsh_models import Cities, Islands, Ports, Counties, Shoreline, RockySho
 #import NSH_Physical models
 from nsh.nsh_models import ClosedShoreline, Lithology, Bathymetry
 #import NSH_Biological models 
-from nsh.nsh_models import PinnipedHaulouts, SeabirdColonies, Habitats, KelpSurveys, GeologicalHabitat
+from nsh.nsh_models import PinnipedHaulouts, SeabirdColonies, KelpSurveys, GeologicalHabitat, Habitats
 #import NSH_Human Use models
 from nsh.nsh_models import StateParks, PublicAccess, DMDSites, Outfalls, UnderseaCables, Towlanes, WaveEnergyPermits, MarineManagedAreas, FisheryClosures, ConservationAreas
                         

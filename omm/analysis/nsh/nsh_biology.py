@@ -195,7 +195,7 @@ Called by display_phy_analysis
 def get_habitat_proportions(nsh):
     habitats = Habitats.objects.all()
     inter_habitats = [habitat for habitat in habitats if habitat.geometry.intersects(nsh.geometry_final)]
-    inter_habitat_tuples = [(habitat.hab_type, habitat.geometry.intersection(nsh.geometry_final).area) for habitat in inter_habitats]
+    inter_habitat_tuples = [((habitat.sgh_prefix, habitat.sgh_lith), habitat.geometry.intersection(nsh.geometry_final).area) for habitat in inter_habitats]
     total_area = 0.0
     habitat_dict = {}
     for tuple in inter_habitat_tuples:
@@ -209,10 +209,20 @@ def get_habitat_proportions(nsh):
         hab_type = key
         area = habitat_dict[key]
         proportion = area / total_area * 100
-        habitat_proportion_list.append((proportion, hab_type, area_in_display_units(area)))
+        habitat_proportion_list.append((proportion, hab_type_to_string(hab_type), area_in_display_units(area)))
     habitat_proportion_list.sort()
     habitat_proportion_list.reverse()
     return habitat_proportion_list    
+     
+def hab_type_to_string(hab_tuple):
+    habitat_lookup =  {'Ns': 'Nearshore, unconsolodated (soft)', 'Nh': 'Nearshore, rocky (hard)', 'Nm': 'Nearshore, mixed', 'Ss': 'Shelf, unconsolodated (soft)', 'Sh': 'Shelf, rocky (hard)', 'Sm': 'Shelf, mixed', 'Fs': 'Flank (Slope), unconsolodated (soft)', 'Fh': 'Flank (Slope), rocky (hard)', 'Fm': 'Flank (Slope), mixed', 'Cs': 'Canyon, unconsolodated (soft)', 'Ch': 'Canyon, rocky (hard)', 'Cm': 'Canyon, mixed'}
+    prefix = hab_tuple[0]
+    lith = hab_tuple[1]
+    if prefix in habitat_lookup.keys():
+        string_rep = habitat_lookup[prefix] + ' ' + lith
+    else:
+        string_rep = lith
+    return string_rep   
      
 '''
 Determines the areas and ratios for each kelp survey year represented within the given nearshore habitat shape
