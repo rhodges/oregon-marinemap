@@ -19,6 +19,17 @@ def aes_analysis(request, aes_id, type):
     aes = get_object_or_404(AOI, pk=aes_id)
     return display_aes_analysis(request, aes, type)
     
+def excel_nsh_report(request, nsh_id, type):
+    from nsh.nsh_analysis import excel_report
+    from lingcod.common.utils import get_mpa_class
+    from lingcod.sharing.utils import can_user_view
+    user_can_view, response = can_user_view(get_mpa_class(), nsh_id, request.user)
+    if not user_can_view:
+        return response
+    nsh = get_object_or_404(AOI, pk=nsh_id)
+    return excel_report(request, nsh, type)
+    
+    
 '''
 '''
 def pdf_nsh_report(request, nsh_id, type):
