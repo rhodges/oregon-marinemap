@@ -108,4 +108,16 @@ def get_intersecting_geometries(aoi, model_name):
     intersecting_geometries = [shape.geometry.intersection(aoi.geometry_final) for shape in shapes if shape.geometry.intersects(aoi.geometry_final)]
     return intersecting_geometries    
     
+'''
+'''
+def build_excel_response(file_name, workbook):
+    """
+    This method assumes you've built an excel workbook elsewhere and just want to build a response object from it.
+    """
+    from django.http import HttpResponse
+    response = HttpResponse(mimetype='application/ms-excel')
+    response['Content-Disposition'] = 'attachement; filename=%s.xls' % ( file_name )
+    workbook.save(response)
+
+    return response        
     
