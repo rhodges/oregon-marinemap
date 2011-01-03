@@ -39,9 +39,9 @@ Run the analysis, create the cache, and return the results as a context dictiona
 def run_nsh_bio_analysis(nsh, type):
     #get pinniped haulout details
     num_haulouts, haulout_details = get_haulout_details(nsh)
-    #get stellar sea lion rookery details
+    #get steller sea lion rookery details
     num_rookeries = get_num_rookeries(nsh)
-    #get stellar sea lion critical habitat details
+    #get steller sea lion critical habitat details
     num_sealion_habs, sealion_habs = get_sealion_habitats(nsh)
     #get bird colony details
     num_colonies, bird_details = get_bird_colony_details(nsh)
@@ -146,7 +146,7 @@ def get_haulout_details(nsh):
         if haulout.pv_use > 0:
             use_list.append('Pacific Harbor Seals')
         if haulout.ej_use > 0:
-            use_list.append('Stellar Sea Lions')
+            use_list.append('Steller Sea Lions')
         if haulout.zc_use > 0:
             use_list.append('California Sea Lions')
         haulout_dict[key_tuple] = (use_list)
