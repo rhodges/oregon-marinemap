@@ -207,7 +207,7 @@ class StellerHabitats(models.Model):
     type = models.CharField(max_length=50)
     length = models.FloatField()
     area = models.FloatField()
-    geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Stellar Sealions Critical Habitats 2008")
+    geometry = models.MultiPolygonField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Steller Sealions Critical Habitats 2008")
     objects = models.GeoManager()   
     
     class Meta:
