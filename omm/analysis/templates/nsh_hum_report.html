@@ -3,7 +3,7 @@
 {% block panel %}
 <h3>Community & Recreational Considerations</h3>
 <div class='freetext'>
-<br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <!-- Parks -->
@@ -15,7 +15,7 @@
             <td colspan="3">{{park.0}} State Park &nbsp; ({{park.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         {% endfor %}
-        <br></br>
+        <p>
         
         <!-- Public Access -->
         <tr class="grey">
@@ -26,7 +26,7 @@
             <td colspan="3">{{site.0}} &nbsp; ({{site.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         {% endfor %}
-        <br></br>
+        <p>
         
         <!-- Rocky Shores -->
         <tr class="grey">
@@ -37,14 +37,14 @@
             <td colspan="3">{{rockyshore.0}} &nbsp; ({{rockyshore.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         {% endfor %}
-        <br></br>
+        <p>
     </tbody>
 </table>
 </div>
 
 <h3>Transportation & Infrastructure Considerations</h3>
 <div class='freetext'>
-<br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
     
@@ -63,7 +63,7 @@
         <tr>
             <td colspan="3">{{nearest_dmd.0}} ({{nearest_dmd.1|floatformat:'2'}} {{length_units}})</td>
         </tr>
-        <br></br>
+        <p>
 
         <!-- Outfall Sites Data -->
         <tr class="grey">
@@ -80,7 +80,7 @@
         <tr>
             <td colspan="3">{{nearest_outfall.0}} ({{nearest_outfall.1|floatformat:'2'}} {{length_units}})</td>
         </tr>
-        <br></br>
+        <p>
         
         <!-- Undersea Cable Data -->
         <tr class="grey">
@@ -97,7 +97,7 @@
         <tr>
             <td colspan="3">{{nearest_cable.0}} ({{nearest_cable.1|floatformat:'2'}} {{length_units}})</td>
         </tr>
-        <br></br>
+        <p>
         
     </tbody>
 </table>
@@ -105,7 +105,7 @@
 
 <h3>Fishery Considerations</h3>
 <div class='freetext'>
-<br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <!-- Ports -->
@@ -117,7 +117,7 @@
                 <td colspan="3">{{port.0}} ({{port.1|floatformat:'1'}} {{length_units}})</td>
             </tr>
         {% endfor %}
-        <br></br>
+        <p>
         
         <!-- Marinas -->
         <tr class="grey">
@@ -128,7 +128,7 @@
                 <td colspan="3">{{marina.0}} ({{marina.1|floatformat:'1'}} {{length_units}})</td>
             </tr>
         {% endfor %}
-        <br></br>
+        <p>
         
         <!-- MMAs -->
         <tr class="grey">
@@ -147,7 +147,7 @@
                 <td colspan="3">{{mma.0}} ({{mma.1|floatformat:'1'}} {{length_units}})</td>
             </tr>
         {% endfor %}
-        <br></br>
+        <p>
         
         <!-- ODFW Fishery Closures -->
         <tr class="grey">
@@ -164,7 +164,7 @@
         <tr>
             <td colspan="3">{{nearest_closure.0}} ({{nearest_closure.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
-        <br></br>
+        <p>
         
         <!-- EFH Conservation Areas -->
         <tr class="grey">
@@ -177,31 +177,33 @@
         {% endfor %}
         <tr><td></td><td></td><td></td><td></td></tr>
         <tr class="grey">
-            <td colspan="3"><b>Nearest (non-intersecting) Conservation Areas</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) Conservation Area</b></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_conservation_area.0}} ({{nearest_conservation_area.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
-        <br></br>
+        <p>
     </tbody>
 </table>
 
 </div>
-<br></br>
+<p>
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_nsh_report nsh.id "hum" %}'>Printable Human Uses Report</a>
     &nbsp; 
     <!--<a target='_blank' href='{% url pdf_nsh_report nsh.id "hum" %}'> (View PDF) </a>    -->
 </div>
-<br></br>
+<p>
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_nsh_report nsh.id "all" %}'>Printable Comprehensive Report</a>
     &nbsp; 
     <a target='_blank' href='{% url pdf_nsh_report nsh.id "all" %}'> (PDF) </a> 
+    &nbsp; 
+    <a target='_blank' href='{% url excel_nsh_report nsh.id "all" %}'> (Excel) </a> 
     
-    <br>(Comprehensive reports combine Geographical, Physical, Biological, </br>
-    <br>and Human Use reports for a given Nearshore Habitat into a single </br>
-    <br>printable and/or exportable document.)</br>   
+    <br>(Comprehensive reports combine Geographical, Physical, Biological, 
+    and Human Use reports for a given Nearshore Habitat into a single 
+    printable and/or exportable document.)</br>   
 </div>
 <br></br>
 {% endblock panel %}

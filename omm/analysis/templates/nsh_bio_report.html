@@ -4,7 +4,7 @@
 
 <h3>Terrestrial Biological Characteristics</h3>
 <div class='freetext'>
-<br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <!-- Plover -->
@@ -14,7 +14,7 @@
         <tr>
             <td colspan="3">{{nearest_snowy_plover|floatformat:'1'}} {{length_units}} &nbsp; </td>
         </tr>
-        <br></br>
+        <p>
         
         <!-- Murrelet -->
         <tr class="grey">
@@ -23,14 +23,14 @@
         <tr>
             <td colspan="3">{{nearest_marbled_murrelet|floatformat:'1'}} {{length_units}} &nbsp; </td>
         </tr>
-        <br></br>
+        <p>
     </tbody>
 </table>
 </div>
 
 <h3>Intertidal Biological Characteristics</h3>
 <div class='freetext'>
-<br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <tr class="grey">
@@ -74,7 +74,7 @@
     </tbody>
 </table>
 
-<br></br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <tr class="grey">
@@ -95,7 +95,7 @@
     </tbody>
 </table>
 
-<br></br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <tr class="grey">
@@ -131,33 +131,44 @@
     </tbody>
 </table>
 </div>
+<p>
 
 <h3>Subtidal Biological Characteristics</h3>
 <div class='freetext'>
-<br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <!-- Habitat Types -->
         <tr class="grey">
             <td colspan="3"><b>Habitat Type & Proportions</b></td>
         </tr>
-        {% for details in habitat_proportions %}
         <tr>
-            <td colspan="3">{{details.0|floatformat:'2'}} % &nbsp; &nbsp; &nbsp; {{details.1}} &nbsp; &nbsp; &nbsp; ({{details.2|floatformat:'2'}} {{area_units}})</td>
+            <td colspan="3">
+            {% if not habitat_proportions.0 %}
+                ---
+            {% endif %}
+            {% for details in habitat_proportions %}
+                {{details.0|floatformat:'2'}} % &nbsp; &nbsp; &nbsp; {{details.1}} &nbsp; &nbsp; &nbsp; ({{details.2|floatformat:'2'}} {{area_units}})<br></br>
+            {% endfor %}
+            </td>
         </tr>
-        {% endfor %}
-        <br></br>
+        <p>
         
         <!-- Fish Species -->
         <tr class="grey">
-            <td colspan="3"><b>Predicted Fish Species <br></br>(Provided by <a target="_blank" href="http://www.nwfsc.noaa.gov/">NOAA's Northwest Fisheries Science Center)</a></b></td>
+            <td colspan="3"><b>Predicted Fish Species <br></br>(Provided by <a target="_blank" href="http://www.nwfsc.noaa.gov/">NOAA's Northwest Fisheries Science Center</a>)</b></td>
         </tr>
-        {% for fish in fish_list %}
         <tr class="{% cycle '' 'grey' %}">
-            <td colspan="3">{{fish}}</td>
+            <td colspan="3">
+            {% if not fish_list.0 %}
+                ---
+            {% endif %}
+            {% for fish in fish_list %}
+                {{fish}}<br></br>
+            {% endfor %}
+            </td>
         </tr>
-        {% endfor %}
-        <br></br>
+        <p>
         
         <!-- Sturgeon -->
         <tr class="grey">
@@ -168,7 +179,7 @@
             <td>{{green_sturgeon}}</td>
             <td>{{green_sturgeon_perc|floatformat:'1'}} %</td>
         </tr>
-        <br></br>
+        <p>
         
         <!-- Coho -->
         {% if intersecting_coho_streams != 'No' %}
@@ -186,7 +197,7 @@
             <td colspan="3">{{nearest_coho_stream|floatformat:'1'}} {{length_units}} &nbsp; </td>
         </tr>
         {% endif %}
-        <br></br>
+        <p>
         
         <!-- Kelp -->
         {% if kelp_data.0.2 == default_value %}
@@ -208,7 +219,7 @@
         </tr>
         {% endfor %}
         {% endif %}
-        <br></br>
+        <p>
         
         <!-- Seagrass -->
         {% if seagrass_area == 0.0 %}
@@ -230,21 +241,23 @@
 </table>
 </div>
 
-<br></br>
+<p>
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_nsh_report nsh.id "bio" %}'>Printable Biology Report</a>
     &nbsp; 
     <!--<a target='_blank' href='{% url pdf_nsh_report nsh.id "bio" %}'> (View PDF) </a>    -->
 </div>
-<br></br>
+<p>
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_nsh_report nsh.id "all" %}'>Printable Comprehensive Report</a>
     &nbsp; 
-    <a target='_blank' href='{% url pdf_nsh_report nsh.id "all" %}'> (PDF) </a> 
+    <a target='_blank' href='{% url pdf_nsh_report nsh.id "all" %}'> (PDF) </a>
+    &nbsp; 
+    <a target='_blank' href='{% url excel_nsh_report nsh.id "all" %}'> (Excel) </a>   
     
-    <br>(Comprehensive reports combine Geographical, Physical, Biological, </br>
-    <br>and Human Use reports for a given Nearshore Habitat into a single </br>
-    <br>printable and/or exportable document.)</br>   
+    <br>(Comprehensive reports combine Geographical, Physical, Biological, 
+    and Human Use reports for a given Nearshore Habitat into a single 
+    printable and/or exportable document.)</br>   
 </div>
 <br></br>
 
