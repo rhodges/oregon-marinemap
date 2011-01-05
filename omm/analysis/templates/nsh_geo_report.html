@@ -4,7 +4,7 @@
 
 <h3>General Spatial Characteristics</h3>
 <div class='freetext'>
-<br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <tr class="grey">
@@ -17,7 +17,7 @@
             <td></td>
             <td>{{perimeter|floatformat:'2'}} {{length_units}}</td>
         </tr>
-        <br></br>
+        <p>
         <tr class="grey">
             <td><b>Intertidal</b></td>
             <td></td>
@@ -28,7 +28,7 @@
             <td></td>
             <td>{{islands}}</td>
         </tr>
-        <br></br>
+        <p>
         <tr class="grey">
             <td></td>
             <td></td>
@@ -45,7 +45,7 @@
 
 <h3>Geographic Setting</h3>
 <div class='freetext'>
-<br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <tr class="grey">
@@ -80,7 +80,7 @@
             <td>{{county_shoreline_percentages.2|floatformat:'1'}} %</td>
         </tr>
         {% endif %}
-        <br></br>
+        <p>
         <tr class="grey">
             <td><b>Nearest Incorporated Cities</b></td>
             <td></td>
@@ -105,25 +105,24 @@
 </table>
 </div>
 
-<br></br>
+<p>
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_nsh_report nsh.id "geo" %}'>Printable Geography Report</a>
     &nbsp; 
     <!--<a target='_blank' href='{% url pdf_nsh_report nsh.id "geo" %}'> (View PDF) </a>    -->
 </div>
-<br></br>
+<p>
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_nsh_report nsh.id "all" %}'>Printable Comprehensive Report</a>
     &nbsp; 
-    <a target='_blank' href='{% url pdf_nsh_report nsh.id "all" %}'> (PDF) </a>  
-    <!--
+    <a target='_blank' href='{% url pdf_nsh_report nsh.id "all" %}'> (PDF) </a> 
     &nbsp; 
     <a target='_blank' href='{% url excel_nsh_report nsh.id "all" %}'> (Excel) </a>  
-    -->
     
-    <br>(Comprehensive reports combine Geographical, Physical, Biological, </br>
-    <br>and Human Use reports for a given Nearshore Habitat into a single </br>
-    <br>printable and/or exportable document.)</br>    
+    
+    <br>(Comprehensive reports combine Geographical, Physical, Biological, 
+    and Human Use reports for a given Nearshore Habitat into a single 
+    printable and/or exportable document.)</br>    
 </div>
 <br></br>
 
