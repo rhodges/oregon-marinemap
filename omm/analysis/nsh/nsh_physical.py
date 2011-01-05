@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from analysis.models import *
+from omm_manipulators.models import TerrestrialAndEstuaries
 from settings import *
 from lingcod.unit_converter.models import length_in_display_units, area_in_display_units
 from analysis.utils import ensure_type, default_value
@@ -103,9 +104,14 @@ def get_depth_stats(nsh):
             deep_area += area
         numerator += depth * area
         denominator += area
-    perc_shallow = shallow_area / total_area * 100
-    perc_deep = deep_area / total_area * 100
-    average_depth = numerator / denominator
+    if total_area == 0.0:
+        perc_shallow = '---'
+        perc_deep = '---'
+        average_depth = '---'
+    else:
+        perc_shallow = shallow_area / total_area * 100
+        perc_deep = deep_area / total_area * 100
+        average_depth = numerator / denominator
     return perc_shallow, perc_deep, average_depth, min_depth, max_depth
     
     
@@ -212,9 +218,10 @@ Called by display_phy_analysis
 '''   
 def get_subtidal_area(nsh, island_area):
     total_area = area_in_display_units(nsh.geometry_final.area)
-    if island_area != default_value:
-        return total_area - island_area
-    return total_area
+    land = TerrestrialAndEstuaries.objects.current()
+    land_area = area_in_display_units(land.geometry.intersection(nsh.geometry_final).area)
+    subtidal_area = total_area - land_area - island_area
+    return subtidal_area
     
 '''
 Determines the distance to shore for the given nearshore habitat shape

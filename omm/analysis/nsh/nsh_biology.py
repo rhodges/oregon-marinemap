@@ -311,6 +311,8 @@ def get_fish_list(nsh):
     inter_baths = [bath for bath in baths if bath.geometry.intersects(nsh.geometry_final)]
     depths = [bath.depth for bath in inter_baths]
     depths.sort()
+    if len(depths) == 0:
+        return []
     deepmax = -depths[0] #smallest value will be the deepest
     deepmin = -depths[-1] #both should be expressed as a positive value
     

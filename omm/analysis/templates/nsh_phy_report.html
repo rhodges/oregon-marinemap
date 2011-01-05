@@ -3,7 +3,7 @@
 {% block panel %}
 <h3>Intertidal Physical Characteristics</h3>
 <div class='freetext'>
-<br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <tr class="grey">
@@ -24,7 +24,7 @@
         </tr>
     </tbody>
 </table>
-<br></br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <tr class="grey">
@@ -45,10 +45,10 @@
         </tr>
         {% endif %}
         {% endfor %}
-        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
     </tbody>
 </table>
-<br></br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <tr class="grey">
@@ -71,7 +71,7 @@
 
 <h3>Subtidal Physical Characteristics</h3>
 <div class='freetext'>
-<br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <tr class="grey">
@@ -82,16 +82,25 @@
         <tr>
             <td>{{subtidal_area|floatformat:'1'}} {{area_units}}</td>
             <td></td>
-            <td>{{perc_shallow|floatformat:'1'}} % &nbsp; shallow<br/> {{perc_deep|floatformat:'1'}} % &nbsp; deep</td>
+            <td class="top">
+            {% if subtidal_area == 0.0 %}
+                ---
+            {% else %}
+                {{perc_shallow|floatformat:'1'}} % &nbsp; shallow<br/> {{perc_deep|floatformat:'1'}} % &nbsp; deep</td>
+            {% endif %}
+            </td>
         </tr>
     </tbody>
 </table>
-<br></br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <tr class="grey">
             <td colspan="3"><b>Seafloor Lithology &nbsp; </b></td>
         </tr>
+        {% if not lithology_proportions.0 %}
+        <tr><td colspan="3">---</td></tr>
+        {% endif %}
         {% for proportion in lithology_proportions %}
         <tr class="{% cycle '' 'grey' %}">
             <td>&nbsp; {{proportion.0|floatformat:'1'}}%</td>
@@ -99,10 +108,10 @@
             <td>({{proportion.2|floatformat:'2'}} {{length_units}})</td>
         </tr>
         {% endfor %}
-        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
     </tbody>
 </table>
-<br></br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         {% if min_depth != '---' %}
@@ -138,23 +147,25 @@
     </tbody>
 </table>
 </div>
-<br></br>
+<p>
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_nsh_report nsh.id "phy" %}'>Printable Physical Report</a>
     &nbsp; 
     <!--<a target='_blank' href='{% url pdf_nsh_report nsh.id "phy" %}'> (View PDF) </a>    -->
 </div>
-<br></br>
+<p>
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_nsh_report nsh.id "all" %}'>Printable Comprehensive Report</a>
     &nbsp; 
     <a target='_blank' href='{% url pdf_nsh_report nsh.id "all" %}'> (PDF) </a> 
+    &nbsp; 
+    <a target='_blank' href='{% url excel_nsh_report nsh.id "all" %}'> (Excel) </a>  
     
-    <br>(Comprehensive reports combine Geographical, Physical, Biological, </br>
-    <br>and Human Use reports for a given Nearshore Habitat into a single </br>
-    <br>printable and/or exportable document.)</br>   
+    <br>(Comprehensive reports combine Geographical, Physical, Biological, 
+    and Human Use reports for a given Nearshore Habitat into a single 
+    printable and/or exportable document.)</br>   
 </div>
-<br></br>
+<p>
 
 {% endblock panel %}
 
