@@ -1,48 +1,9 @@
-{% extends 'common/panel.html' %}
+{% extends 'geo_report.html' %}
 {% block title %}{{nsh.name}} Geographic Analysis{% endblock title %}
-{% block panel %}
 
-<h3>General Spatial Characteristics</h3>
-<div class='freetext'>
-<p>
-<table  style='width:450px' class='aoi_analysis_container'>
-    <tbody>
-        <tr class="grey">
-            <td><b>Area</b></td>
-            <td></td>
-            <td><b>Perimeter</b></td>
-        </tr>
-        <tr>
-            <td>{{area|floatformat:'2'}} {{area_units}}</td>
-            <td></td>
-            <td>{{perimeter|floatformat:'2'}} {{length_units}}</td>
-        </tr>
-        <p>
-        <tr class="grey">
-            <td><b>Intertidal</b></td>
-            <td></td>
-            <td><b>Islands</b></td>
-        </tr>
-        <tr>
-            <td>{{intertidal}}</td>
-            <td></td>
-            <td>{{islands}}</td>
-        </tr>
-        <p>
-        <tr class="grey">
-            <td></td>
-            <td></td>
-            <td><b>Percent of Territorial Sea</b></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td>{{ratio|floatformat:'2'}} %</td>
-        </tr>
-    </tbody>
-</table>
-</div>
+<!-- Inheriting General Spatial Characteristics from geo_report -->
 
+{% block GeographicSetting %}
 <h3>Geographic Setting</h3>
 <div class='freetext'>
 <p>
@@ -104,12 +65,13 @@
     </tbody>
 </table>
 </div>
+{% endblock GeographicSetting %}
 
+{% block ExportableReports %}
 <p>
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_nsh_report nsh.id "geo" %}'>Printable Geography Report</a>
     &nbsp; 
-    <!--<a target='_blank' href='{% url pdf_nsh_report nsh.id "geo" %}'> (View PDF) </a>    -->
 </div>
 <p>
 <div style='font-size: small'>
@@ -119,12 +81,11 @@
     &nbsp; 
     <a target='_blank' href='{% url excel_nsh_report nsh.id "all" %}'> (Excel) </a>  
     
-    
     <br>(Comprehensive reports combine Geographical, Physical, Biological, 
     and Human Use reports for a given Nearshore Habitat into a single 
     printable and/or exportable document.)</br>    
 </div>
 <br></br>
+{% endblock ExportableReports %}
 
-{% endblock panel %}
 

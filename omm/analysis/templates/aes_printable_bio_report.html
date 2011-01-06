@@ -99,6 +99,9 @@
     <tbody>
         <tr>
         <td class="top" colspan="2">
+        {% if num_haulouts == 0 %}
+            {{default_value}}
+        {% else %}
         {% for site in haulout_sites %}
             {{site.0.0}} , ({{site.0.1}})</br>
             {% for species in site.1 %}
@@ -106,9 +109,13 @@
             {% endfor %}
             </br>
         {% endfor %}
+        {% endif %}
         </td>
         
         <td colspan="2">
+        {% if bird_colonies == 0 %}
+            {{default_value}}
+        {% else %}
         {% for details in bird_details %}
             {{details.0.0}} , (Colony #{{details.0.1}})</br>
             {% for bird in details.1 %}
@@ -116,6 +123,7 @@
             {% endfor %}
             </br>
         {% endfor %}
+        {% endif %}
         </td>
             
         </tr>
@@ -136,11 +144,17 @@
     <tbody>
         <tr>
             <td class="top">
+            {% if not habitat_proportions.0 %}
+                {{default_value}}
+            {% endif %}
             {% for details in habitat_proportions %}
                 {{details.0|floatformat:'2'}} % &nbsp; &nbsp; &nbsp; {{details.1}} &nbsp; &nbsp; &nbsp; ({{details.2|floatformat:'2'}} {{area_units}})</br>
             {% endfor %}
             </td>
             <td>
+            {% if not fish_list.0 %}
+                {{default_value}}
+            {% endif %}
             {% for fish in fish_list %}
                 {{fish}}</br>
             {% endfor %}
@@ -183,7 +197,7 @@
         {% if kelp_data.0.2 == default_value %}
         <tr>
             <td>{{kelp_data.0.0}}</td>
-            <td></td>
+            <td>{{default_value}}</td>
         </tr>
         {% else %}
         {% for data in kelp_data %}

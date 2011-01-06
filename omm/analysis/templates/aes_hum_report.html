@@ -4,7 +4,7 @@
 
 <h3>Community Considerations</h3>
 <div class='freetext'>
-<br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <!-- Urban Growth Boundaries -->
@@ -16,7 +16,7 @@
             <td colspan="3">{{ ugb.0}} &nbsp; ({{ ugb.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         {% endfor %}
-        <br></br>
+        <p>
         
         <!-- State Parks -->
         <tr class="grey">
@@ -27,7 +27,7 @@
             <td colspan="3">{{park.0}} State Park &nbsp; ({{park.1|floatformat:'2'}} {{length_units}})</td>
         </tr>
         {% endfor %}
-        <br></br>
+        <p>
         
         <!-- Public Access -->
         <tr class="grey">
@@ -38,7 +38,7 @@
             <td colspan="3">{{site.0}} &nbsp; ({{site.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         {% endfor %}
-        <br></br>
+        <p>
         
         <!-- Visible from Shore -->
         <tr class="grey">
@@ -53,7 +53,7 @@
 
 <h3>Planning Considerations</h3>
 <div class='freetext'>
-<br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <!-- Rocky Shores -->
@@ -65,7 +65,7 @@
             <td colspan="3">{{rockyshore.0}} &nbsp; ({{rockyshore.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         {% endfor %}
-        <br></br>
+        <p>
         
         <!-- Protected Areas -->
         <tr class="grey">
@@ -82,7 +82,7 @@
         <tr>
             <td colspan="3">{{nearest_protected_area.0}} &nbsp; ({{nearest_protected_area.1|floatformat:'1'}} {{length_units}})</td>
         </tr> 
-        <br></br>
+        <p>
         
         <!-- Marine Managed Areas -->
         <tr class="grey">
@@ -101,7 +101,7 @@
             <td colspan="3">{{mma.0}} ({{mma.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         {% endfor %}
-        <br></br>
+        <p>
         
         <!-- Wave Energy Data -->
         <tr class="grey">
@@ -130,7 +130,7 @@
 
 <h3>Transportation Considerations</h3>
 <div class='freetext'>
-<br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <!-- Buoys --> 
@@ -148,7 +148,7 @@
         <tr>
             <td colspan="3">{{nearest_buoy.0}} ({{nearest_buoy.1|floatformat:'2'}} {{length_units}})</td>
         </tr>
-        <br></br>
+        <p>
         
         <!-- Beacons -->
         <tr class="grey">
@@ -165,7 +165,7 @@
         <tr>
             <td colspan="3">{{nearest_beacon.0}} ({{nearest_beacon.1|floatformat:'2'}} {{length_units}})</td>
         </tr>
-        <br></br>
+        <p>
         
         <!-- Signal Equipment Data -->
         <tr class="grey">
@@ -180,7 +180,7 @@
         <tr>
             <td colspan="3">{{num_signals}}</td>
         </tr>
-        <br></br>
+        <p>
         
         <!-- Towlane Data -->
         <tr class="grey">
@@ -189,7 +189,7 @@
         <tr>
             <td colspan="3">{{towlanes}}</td>
         </tr>  
-        <br></br>      
+        <p>      
         
         <!-- Airport Data -->
         <tr class="grey">
@@ -208,7 +208,7 @@
             <td colspan="3">{{nearest_airport.0}} ({{nearest_airport.1|floatformat:'1'}} {{length_units}})</td>
         </tr>    
         {% endif %}
-        <br></br>
+        <p>
         
     </tbody>
 </table>
@@ -216,7 +216,7 @@
 
 <h3>Infrastructure Considerations</h3>
 <div class='freetext'>
-<br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <!-- Dredge Materials Data -->
@@ -234,7 +234,7 @@
         <tr>
             <td colspan="3">{{nearest_dmd.0}} ({{nearest_dmd.1|floatformat:'2'}} {{length_units}})</td>
         </tr>
-        <br></br>
+        <p>
 
         <!-- Outfall Sites Data -->
         <tr class="grey">
@@ -251,7 +251,7 @@
         <tr>
             <td colspan="3">{{nearest_outfall.0}} ({{nearest_outfall.1|floatformat:'2'}} {{length_units}})</td>
         </tr>
-        <br></br>
+        <p>
         
         <!-- Undersea Cable Data -->
         <tr class="grey">
@@ -268,7 +268,7 @@
         <tr>
             <td colspan="3">{{nearest_cable.0}} ({{nearest_cable.1|floatformat:'2'}} {{length_units}})</td>
         </tr>
-        <br></br>
+        <p>
         
         <!-- Transmission Line (1993) -->
         <tr class="grey">
@@ -285,7 +285,7 @@
         <tr>
             <td colspan="3">{{transmissionline2010|floatformat:'1'}} {{length_units}}</td>
         </tr>
-        <br></br>
+        <p>
         
         <!-- Electrical Substations -->
         <tr class="grey">
@@ -296,7 +296,7 @@
             <td colspan="3">{{substation.0}} ({{substation.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         {% endfor %}
-        <br></br>
+        <p>
         
         <!-- Railroads -->
         <tr class="grey">
@@ -312,7 +312,7 @@
 
 <h3>Fishery Considerations</h3>
 <div class='freetext'>
-<br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <!-- Ports -->
@@ -324,7 +324,7 @@
             <td colspan="3">{{port.0}} ({{port.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         {% endfor %}
-        <br></br>
+        <p>
         
         <!-- Marinas -->
         <tr class="grey">
@@ -335,7 +335,7 @@
             <td colspan="3">{{marina.0}} ({{marina.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         {% endfor %}
-        <br></br>
+        <p>
         
         <!-- ODFW Fishery Closures -->
         <tr class="grey">
@@ -346,14 +346,14 @@
             <td colspan="3">{{closure}}</td>
         </tr>
         {% endfor %}
-        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
         <tr class="grey">
             <td colspan="3"><b>Nearest (non-intersecting) ODFW Closure</b></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_closure.0}} ({{nearest_closure.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
-        <br></br>
+        <p>
         
         <!-- EFH Conservation Areas -->
         <tr class="grey">
@@ -371,26 +371,26 @@
         <tr>
             <td colspan="3">{{nearest_conservation_area.0}} ({{nearest_conservation_area.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
-        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
     </tbody>
 </table>
 </div>
-<br></br>
+<p>
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_aes_report aes.id "hum" %}'>Printable Human Uses Report</a>
     &nbsp; 
     <!--<a target='_blank' href='{% url pdf_aes_report aes.id "hum" %}'> (View PDF) </a>    -->
 </div>
-<br></br>
+<p>
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_aes_report aes.id "all" %}'>Printable Comprehensive Report</a>
     &nbsp; 
     <a target='_blank' href='{% url pdf_aes_report aes.id "all" %}'> (PDF) </a> 
     
-    <br>(Comprehensive reports combine Geographical, Physical, Biological, </br>
-    <br>and Human Use reports for a given Energy Site into a single </br>
-    <br>printable and/or exportable document.)</br>   
+    <br>(Comprehensive reports combine Geographical, Physical, Biological, 
+    and Human Use reports for a given Energy Site into a single 
+    printable and/or exportable document.)</br>   
 </div>
-<br></br>
+<p>
 {% endblock panel %}
 

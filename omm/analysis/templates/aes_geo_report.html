@@ -1,51 +1,12 @@
-{% extends 'common/panel.html' %}
+{% extends 'geo_report.html' %}
 {% block title %}{{aes.name}} Geographic Analysis{% endblock title %}
-{% block panel %}
 
-<h3>General Spatial Characteristics</h3>
-<div class='freetext'>
-<br>
-<table  style='width:450px' class='aoi_analysis_container'>
-    <tbody>
-        <tr class="grey">
-            <td><b>Area</b></td>
-            <td></td>
-            <td><b>Perimeter</b></td>
-        </tr>
-        <tr>
-            <td>{{area|floatformat:'2'}} {{area_units}}</td>
-            <td></td>
-            <td>{{perimeter|floatformat:'2'}} {{length_units}}</td>
-        </tr>
-        <br></br>
-        <tr class="grey">
-            <td><b>Intertidal</b></td>
-            <td></td>
-            <td><b>Islands</b></td>
-        </tr>
-        <tr>
-            <td>{{intertidal}}</td>
-            <td></td>
-            <td>{{islands}}</td>
-        </tr>
-        <br></br>
-        <tr class="grey">
-            <td></td>
-            <td></td>
-            <td><b>Percent of Territorial Sea</b></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td>{{ratio|floatformat:'2'}} %</td>
-        </tr>
-    </tbody>
-</table>
-</div>
+<!-- Inheriting General Spatial Characteristics from geo_report -->
 
+{% block GeographicSetting %}
 <h3>Geographic Setting</h3>
 <div class='freetext'>
-<br>
+<p>
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <tr class="grey">
@@ -68,7 +29,7 @@
             <td></td>
             <td>{{ nearest_ugbs.2.0}} &nbsp; ({{ nearest_ugbs.2.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
-        <br></br>
+        <p>
     
         <tr class="grey">
             <td colspan="2"><b>Nearest Ports</b></td>
@@ -78,7 +39,7 @@
             <td colspan="2">{{port.0}}  ({{port.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         {% endfor %}
-        <br></br>
+        <p>
         
         <tr class="grey">
             <td colspan="2"><b>Nearest Marinas</b></td>
@@ -88,28 +49,31 @@
             <td colspan="2">{{marina.0}}  ({{marina.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         {% endfor %}
-        <br></br>
+        <p>
         
     </tbody>
 </table>
 </div>
-<br></br>
+{% endblock GeographicSetting %}
+
+{% block ExportableReports %}
+<p>
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_aes_report aes.id "geo" %}'>Printable Geography Report</a>
     &nbsp; 
     <!--<a target='_blank' href='{% url pdf_aes_report aes.id "geo" %}'> (View PDF) </a>    -->
 </div>
-<br></br>
+<p>
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_aes_report aes.id "all" %}'>Printable Comprehensive Report</a>
     &nbsp; 
     <a target='_blank' href='{% url pdf_aes_report aes.id "all" %}'> (PDF) </a> 
     
-    <br>(Comprehensive reports combine Geographical, Physical, Biological, </br>
-    <br>and Human Use reports for a given Energy Site into a single </br>
-    <br>printable and/or exportable document.)</br>   
+    <br>(Comprehensive reports combine Geographical, Physical, Biological, 
+    and Human Use reports for a given Energy Site into a single 
+    printable and/or exportable document.)</br>   
 </div>
-<br></br>
+<p>
+{% endblock ExportableReports %}
 
-{% endblock panel %}
 
