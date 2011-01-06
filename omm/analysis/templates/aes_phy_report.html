@@ -1,160 +1,27 @@
-{% extends 'common/panel.html' %}
+{% extends 'phy_report.html' %}
 {% block title %}{{aes.name}} Physical Analysis{% endblock title %}
-{% block panel %}
-<h3>Intertidal Physical Characteristics</h3>
-<div class='freetext'>
-<br>
-<table  style='width:450px' class='aoi_analysis_container'>
-    <tbody>
-        <tr class="grey">
-            <td><b>Length of Intertidal Shoreline</b></td>
-            <td></td>
-            <td><b>Percent of Oregon Coast Shoreline</b></td>
-        </tr>
-        <tr>
-            {% if percent_shoreline == default_value %}
-            <td>0.0 {{length_units}}</td>
-            <td></td>
-            <td>0.0 %</td>
-            {% else %}
-            <td>{{length|floatformat:'2'}} {{length_units}}</td>
-            <td></td>
-            <td>{{percent_shoreline|floatformat:'2'}} %</td>
-            {% endif %}
-        </tr>
-    </tbody>
-</table>
-<br></br>
-<table  style='width:450px' class='aoi_analysis_container'>
-    <tbody>
-        <tr class="grey">
-            <td colspan="3"><b>Shoreline Types and Proportions &nbsp; </b></td>
-        </tr>
-        {% for proportion in shoreline_proportions %}
-        {% if proportion.1 == default_value %}
-        <tr class="{% cycle '' 'grey' %}">
-            <td></td>
-            <td>&nbsp; &nbsp; {{proportion.1}}</td>
-            <td></td>
-        </tr>
-        {% else %}
-        <tr class="{% cycle '' 'grey' %}">
-            <td>&nbsp; &nbsp; {{proportion.0|floatformat:'0'}}%</td>
-            <td>&nbsp; &nbsp; {{proportion.1}}</td>
-            <td>({{proportion.2|floatformat:'2'}} {{length_units}})</td>
-        </tr>
-        {% endif %}
-        {% endfor %}
-        <tr><td></td><td></td><td></td><td></td></tr>
-    </tbody>
-</table>
-<br></br>
-<table  style='width:450px' class='aoi_analysis_container'>
-    <tbody>
-        <tr class="grey">
-            <td><b>Number of Islands</b></td>
-            <td></td>
-            <td><b>Total Island Area</b></td>
-        </tr>
-        <tr>
-            <td>{{islands}}</td>
-            <td></td>
-            {% if island_area == 0.0 %}
-            <td>{{island_area}} {{area_units}}</td>
-            {% else %}
-            <td>{{island_area|floatformat:'3'}} {{area_units}}</td>
-            {% endif %}
-        </tr>
-    </tbody>
-</table>
-</div>
 
-<h3>Subtidal Physical Characteristics</h3>
-<div class='freetext'>
-<br>
-<table  style='width:450px' class='aoi_analysis_container'>
-    <tbody>
-        <tr class="grey">
-            <td><b>Subtidal Area</b></td>
-            <td></td>
-            <td><b>Percent Shallow <br/>Percent Deep</b></td>
-        </tr>
-        <tr>
-            <td>{{subtidal_area|floatformat:'1'}} {{area_units}}</td>
-            <td></td>
-            <td>{{perc_shallow|floatformat:'1'}} % &nbsp; shallow<br/> {{perc_deep|floatformat:'1'}} % &nbsp; deep</td>
-        </tr>
-    </tbody>
-</table>
-<br></br>
-<table  style='width:450px' class='aoi_analysis_container'>
-    <tbody>
-        <tr class="grey">
-            <td colspan="3"><b>Seafloor Lithology &nbsp; </b></td>
-        </tr>
-        {% for proportion in lithology_proportions %}
-        <tr class="{% cycle '' 'grey' %}">
-            <td>&nbsp; {{proportion.0|floatformat:'1'}}%</td>
-            <td>&nbsp; {{proportion.1}}</td>
-            <td>({{proportion.2|floatformat:'2'}} {{length_units}})</td>
-        </tr>
-        {% endfor %}
-        <tr><td></td><td></td><td></td><td></td></tr>
-    </tbody>
-</table>
-<br></br>
-<table  style='width:450px' class='aoi_analysis_container'>
-    <tbody>
-        {% if min_depth != '---' %}
-        <tr class="grey">
-            <td><b>Average Depth</b></td>
-            <td><b>Min Depth</b></td>
-            <td><b>Max Depth</b></td>
-        </tr>
-        <tr>
-            <td>{{average_depth|floatformat:'1'}} meters</td>
-            <td>{{min_depth|floatformat:'1'}} meters</td>
-            <td>{{max_depth|floatformat:'1'}} meters</td>
-        </tr>
-        {% else %}
-        <tr class="grey">
-            <td><b>Average Depth</b></td>
-            <td><b>Min Depth</b></td>
-            <td><b>Max Depth</b></td>
-        </tr>
-        <tr>
-            <td>---</td>
-            <td>---</td>
-            <td>---</td>
-        </tr>
-        {% endif %}
-        <br></br>
-        <tr class="grey">
-            <td colspan='3'><b>Proximity to Shore</b></td>
-        </tr>
-        <tr>
-            <td colspan='3'>{{distance_to_shore|floatformat:'1'}} {{length_units}}</td>
-        </tr>
-    </tbody>
-</table>
-</div>
-<br></br>
+<!-- Inheriting Intertidal Physical Characteristics from phy_report -->
+
+<!-- Inheriting Subtidal Physical Characteristics from phy_report -->
+
+{% block ExportableReports %}
+<p>
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_aes_report aes.id "phy" %}'>Printable Physical Report</a>
     &nbsp; 
     <!--<a target='_blank' href='{% url pdf_aes_report aes.id "phy" %}'> (View PDF) </a>    -->
 </div>
-<br></br>
+<p>
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_aes_report aes.id "all" %}'>Printable Comprehensive Report</a>
     &nbsp; 
     <a target='_blank' href='{% url pdf_aes_report aes.id "all" %}'> (PDF) </a> 
     
-    <br>(Comprehensive reports combine Geographical, Physical, Biological, </br>
-    <br>and Human Use reports for a given Energy Site into a single </br>
-    <br>printable and/or exportable document.)</br>   
+    <br>(Comprehensive reports combine Geographical, Physical, Biological, 
+    and Human Use reports for a given Energy Site into a single 
+    printable and/or exportable document.)</br>   
 </div>
-<br></br>
-
-{% endblock panel %}
+<p>
+{% endblock ExportableReports %}
 
