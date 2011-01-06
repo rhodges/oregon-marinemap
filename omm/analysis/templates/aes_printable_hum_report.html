@@ -1,4 +1,4 @@
-<h1 align="center">{{ aes.name }} Alternative Energy Human Uses Analysis Report</h1>
+<h1 align="center">{{ aes.name }} Energy Site Human Uses Analysis Report</h1>
 
 <div align="middle" >
     <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ aes.id }}&amp;autozoom=true&amp;width=308&amp;height=400">
@@ -10,7 +10,7 @@
 <h4>Report Summary</h4>
 <table class='allowed_uses'>
 <tr><td width=150>Type:</td><td>Human Uses</td></tr>
-<tr><td width=150>Nearshore Habitat:</td><td>{{ aes.name }}</td></tr>
+<tr><td width=150>Energy Site:</td><td>{{ aes.name }}</td></tr>
 <tr><td width=150>ID #:</td><td>{{ aes.id }}</td></tr>
 </table>
 </div>
@@ -50,7 +50,7 @@
             {{visible}}
             </td>
         </tr>
-        <tr><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
     </tbody>
 </table>
 
@@ -112,7 +112,7 @@
             </td>
             <td class="top">{{nearest_wave_energy_site.0}} ({{nearest_wave_energy_site.1|floatformat:'2'}} {{length_units}})</td>
         </tr>
-        <tr><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
     </tbody>
 </table>
 
@@ -169,6 +169,7 @@
             <td></td>
             <td>{{nearest_airport.0}} ({{nearest_airport.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
     </tbody>
 </table>
 
@@ -229,6 +230,7 @@
             <td>{{transmissionline2010|floatformat:'1'}} {{length_units}}</td>
             <td>{{railroad|floatformat:'2'}} {{length_units}}</td>
         </tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
     </tbody>
 </table>
 
@@ -295,6 +297,7 @@
                 {{nearest_conservation_area.0}} ({{nearest_conservation_area.1|floatformat:'1'}} {{length_units}})</br>
             </td>
         </tr>
+        <tr><td></td><td></td></tr>
     </tbody>
 </table>
 <br></br>

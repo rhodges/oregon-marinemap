@@ -1,4 +1,4 @@
-<h1 align="center">{{ aes.name }} Alternative Energy Geography Analysis Report</h1>
+<h1 align="center">{{ aes.name }} Energy Site Geography Analysis Report</h1>
 
 <div class="img" align="middle">
     <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ aes.id }}&amp;autozoom=true&amp;width=308&amp;height=400">
@@ -10,7 +10,7 @@
 <h4>Report Summary</h4>
 <table class='allowed_uses'>
 <tr><td width=150>Type:</td><td>Geography</td></tr>
-<tr><td width=150>Nearshore Habitat:</td><td>{{ aes.name }}</td></tr>
+<tr><td width=150>Energy Site:</td><td>{{ aes.name }}</td></tr>
 <tr><td width=150>ID #:</td><td>{{ aes.id }}</td></tr>
 </table>
 </div>
@@ -20,7 +20,7 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="geoheader" colspan="5">General Spatial Characteristics</font></th>
+            <th class="geoheader" colspan="5">General Spatial Characteristics</th>
         </tr>
         <tr>
             <th>Area</th>
@@ -38,6 +38,7 @@
             <td>{{islands}}</td>
             <td>{{ratio|floatformat:'2'}} %</td>
         </tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
     </tbody>
 </table>
 <br></br>
@@ -86,6 +87,7 @@
         <tr>
             <td>{{marinas.2.0}}  ({{marinas.2.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
+        <tr><td></td></tr>
     </tbody>
 </table>
 
