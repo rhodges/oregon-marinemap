@@ -47,7 +47,7 @@
 <table class='marinemap-table' rules=rows>
     <thead>
         <tr>
-            <th class="geoheader" colspan="3">Geographic Setting</font></th>
+            <th class="geoheader" colspan="3">Geographic Setting</th>
         </tr>
         <tr>
             <th>Adjacent County</th>
@@ -116,15 +116,21 @@
     <tbody>
         <tr>
             <td valign="top">{{phy.length|floatformat:'2'}} {{phy.length_units}}</td>
+            <td valign="top">
             {% if phy.percent_shoreline == phy.default_value %}
-            <td valign="top">{{phy.default_value}}</td>
+                {{phy.default_value}}
             {% else %}
-            <td valign="top">{{phy.percent_shoreline|floatformat:'2'}}%</td>
+                {{phy.percent_shoreline|floatformat:'2'}}%
             {% endif %}
+            </td>
             <td valign="top" colspan="3">
-                {% for proportion in phy.shoreline_proportions %}
-                    {{proportion.0|floatformat:'0'}}% &nbsp; &nbsp; {{proportion.1}} &nbsp; &nbsp; ({{proportion.2|floatformat:'2'}}{{phy.length_units}}) </br>
-                {% endfor %}
+            {% if phy.shoreline_proportions.0.1 == phy.default_value %}
+                {{phy.default_value}}
+            {% else %}
+            {% for proportion in phy.shoreline_proportions %}
+                {{proportion.0|floatformat:'0'}}% &nbsp; &nbsp; {{proportion.1}} &nbsp; &nbsp; ({{proportion.2|floatformat:'2'}}{{phy.length_units}}) </br>
+            {% endfor %}
+            {% endif %}
             </td>
             <td valign="top">{{phy.islands}} islands</td>
             {% if phy.island_area == phy.default_value %}
@@ -154,14 +160,28 @@
     <tbody>
         <tr>
             <td valign="top">{{phy.subtidal_area|floatformat:'1'}} {{phy.area_units}}</td>
-            <td valign="top">{{phy.perc_shallow|floatformat:'1'}}% &nbsp; shallow<br/> {{phy.perc_deep|floatformat:'1'}} % &nbsp; deep</td>
-            <td valign="top" colspan="2">
-                {% for proportion in phy.lithology_proportions %}
-                    {{proportion.0|floatformat:'1'}}% &nbsp; {{proportion.1}} &nbsp; ({{proportion.2|floatformat:'2'}}{{phy.length_units}}) </br>
-                {% endfor %}
+            <td valign="top">            
+            {% if phy.subtidal_area == 0.0 %}
+                {{phy.default_value}}
+            {% else %}
+                {{phy.perc_shallow|floatformat:'1'}}% &nbsp; shallow<br/> {{phy.perc_deep|floatformat:'1'}} % &nbsp; deep
+            {% endif %}
             </td>
+            <td valign="top" colspan="2">
+            {% if not phy.lithology_proportions.0 %}
+                {{phy.default_value}}
+            {% endif %}
+            {% for proportion in phy.lithology_proportions %}
+                {{proportion.0|floatformat:'1'}}% &nbsp; {{proportion.1}} &nbsp; ({{proportion.2|floatformat:'2'}}{{phy.length_units}}) </br>
+            {% endfor %}
+            </td>
+            {% if phy.subtidal_area == 0.0 %}
+            <td class="top">{{phy.default_value}}</td>
+            <td class="top">{{phy.default_value}}</td>
+            {% else %}
             <td valign="top">{{phy.average_depth|floatformat:'2'}} meters</td>
             <td valign="top">{{phy.min_depth|floatformat:'1'}} meters <br/> {{phy.max_depth|floatformat:'1'}} meters</td>
+            {% endif %}
             <td valign="top">{{phy.distance_to_shore|floatformat:'1'}} {{phy.length_units}}</td>
         </tr>
     </tbody>
@@ -207,19 +227,19 @@
     <tbody>
         <tr>
             {% if bio.num_haulouts == 0 %}
-            <td>No ({{bio.num_haulouts}} haulouts)</td>
+            <td>None ({{bio.num_haulouts}} haulouts)</td>
             {% else %}
             <td>Yes ({{bio.num_haulouts}} haulouts)</td>
             {% endif %}
             
             {% if bio.num_rookeries == 0 %}
-            <td>No ({{bio.num_rookeries}} rookeries)</td>
+            <td>None ({{bio.num_rookeries}} rookeries)</td>
             {% else %}
             <td>Yes ({{bio.num_rookeries}} rookeries)</td>
             {% endif %}
             
             {% if bio.bird_colonies == 0 %}
-            <td>No ({{bio.bird_colonies}} colonies) &nbsp;</td>
+            <td>None ({{bio.bird_colonies}} colonies) &nbsp;</td>
             {% else %}
             <td>Yes ({{bio.bird_colonies}} colonies) &nbsp;</td>
             {% endif %}
@@ -258,6 +278,9 @@
     <tbody>
         <tr>
         <td valign="top" colspan="2">
+        {% if bio.num_haulouts == 0 %}
+            {{bio.default_value}}
+        {% else %}
         {% for site in bio.haulout_sites %}
             {{site.0.0}} , ({{site.0.1}})</br>
             {% for species in site.1 %}
@@ -265,9 +288,13 @@
             {% endfor %}
             </br>
         {% endfor %}
+        {% endif %}
         </td>
         
         <td colspan="2">
+        {% if bio.bird_colonies == 0 %}
+            {{bio.default_value}}
+        {% else %}
         {% for details in bio.bird_details %}
             {{details.0.0}} , (Colony #{{details.0.1}})<br>
             {% for bird in details.1 %}
@@ -275,6 +302,7 @@
             {% endfor %}
             <br><br>
         {% endfor %}
+        {% endif %}
         </td>
             
         </tr>
@@ -295,13 +323,19 @@
     <tbody>
         <tr>
             <td colspan="3" valign="top">
+            {% if not bio.habitat_proportions.0 %}
+                {{bio.default_value}}
+            {% endif %}
             {% for details in bio.habitat_proportions %}
                 {{details.0|floatformat:'2'}}% &nbsp; &nbsp; &nbsp; {{details.1}} &nbsp; &nbsp; &nbsp; ({{details.2|floatformat:'2'}} {{bio.area_units}})</br>
             {% endfor %}
             </td>
             <td colspan="3">
+            {% if not bio.fish_list.0 %}
+                {{bio.default_value}}
+            {% endif %}
             {% for fish in bio.fish_list %}
-                {{fish}} &nbsp;
+                {{fish}} &nbsp;</br>
             {% endfor %}
             </td>
         </tr>
@@ -344,7 +378,7 @@
         {% if bio.kelp_data.0.2 == bio.default_value %}
             <tr>
                 <td>{{bio.kelp_data.0.0}}</td>
-                <td></td>
+                <td>{{bio.default_value}}</td>
             </tr>
         {% else %}
             {% for data in bio.kelp_data %}
@@ -461,8 +495,8 @@
         <tr>
             <th>&nbsp;</th>
             <th>Nearest (non-intersecting) Protected Area</th>
-            <th>Nearest Marine Managed Areas</th>
-            <th>Nearest Wave Energy Site</th>
+            <th>Nearest (non-intersecting) MMAs</th>
+            <th>Nearest (non-intersecting) Wave Energy Site</th>
         </tr>
     </thead>
     <tbody>
