@@ -23,5 +23,20 @@ def geo_setting_headers(ws, context, row=7):
     ws.write(row, 4, "Nearest Marinas", heading_column_style)
     
 def geo_setting_data(ws, context, row=8):
-    pass
+    offset = 0
+    for county in context['county']:
+        ws.write(row+offset, 1, county, data_style)
+        offset += 1
+    offset = 0
+    for ugb in context['nearest_ugbs']:
+        ws.write(row+offset, 2, str(ugb[0]) + ' (%.1f %s)' % (ugb[1], context['length_units']), data_style)
+        offset += 1
+    offset = 0
+    for port in context['ports']:
+        ws.write(row+offset, 3, str(port[0]) + ' (%.1f %s)' % (port[1], context['length_units']), data_style)
+        offset += 1
+    offset = 0
+    for marina in context['marinas']:
+        ws.write(row+offset, 4, str(marina[0]) + ' (%.1f %s)' % (marina[1], context['length_units']), data_style)
+        offset += 1
     

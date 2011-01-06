@@ -43,11 +43,9 @@ def phy_subtidal_headers(ws, row=6):
     ws.write(row, 2, "Percent Shallow (<=25m)\n Percent Deep (>25m)", heading_column_style)
     ws.write(row, 3, "Seafloor Lithology", heading_column_style)
     ws.write(row, 4, "Average Depth", heading_column_style)
-    ws.write(row, 5, "Min Depth", heading_column_style)
-    ws.write(row, 6, "Max Depth", heading_column_style)
-    ws.col(6).width = 35*256
-    ws.write(row, 7, "Proximity to Shore", heading_column_style)
-    ws.col(7).width = 35*256
+    ws.write(row+3, 4, "Min Depth", heading_column_style)
+    ws.write(row+6, 4, "Max Depth", heading_column_style)
+    ws.write(row, 5, "Proximity to Shore", heading_column_style)
     
 def phy_subtidal_data(ws, context, row=7):
     row += subtidal_offset
@@ -64,12 +62,12 @@ def phy_subtidal_data(ws, context, row=7):
         offset += 1
     if context['subtidal_area'] > 0.0:
         ws.write(row, 4, str('%.1f meters') % context['average_depth'], data_style)
-        ws.write(row, 5, str('%.1f meters') % context['min_depth'], data_style)
-        ws.write(row, 6, str('%.1f meters') % context['max_depth'], data_style)
+        ws.write(row+3, 4, str('%.1f meters') % context['min_depth'], data_style)
+        ws.write(row+6, 4, str('%.1f meters') % context['max_depth'], data_style)
     else:
         ws.write(row, 3, context['default_value'], data_style)
         ws.write(row, 4, context['default_value'], data_style)
-        ws.write(row, 5, context['default_value'], data_style)
-        ws.write(row, 6, context['default_value'], data_style)
-    ws.write(row, 7, str('%.1f %s') % (context['distance_to_shore'], context['length_units']), data_style)
+        ws.write(row+3, 4, context['default_value'], data_style)
+        ws.write(row+6, 4, context['default_value'], data_style)
+    ws.write(row, 5, str('%.1f %s') % (context['distance_to_shore'], context['length_units']), data_style)
     

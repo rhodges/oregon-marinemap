@@ -41,12 +41,11 @@ def hum_recreational_data(ws, context, row=4):
         
 def hum_infrastructure_data(ws, context, row=10):
     global infrastructure_offset
-    infrastructure_offset = 2
     offset = 0
     for data in context['intersecting_dmds']:
         ws.write(row+offset, 1, data, data_style)
         offset += 1
-    if offset+2 > infrastructure_offset: infrastructure_offset = offset+2  
+    infrastructure_offset = offset+2  
     ws.write(row+infrastructure_offset, 1, str('%s (%.2f %s)') % (context['nearest_dmd'][0], context['nearest_dmd'][1], context['length_units']), data_style)
         
     offset = 0
