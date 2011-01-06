@@ -94,7 +94,7 @@
         </tr>
         {% endfor %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest Marine Managed Areas</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) MMAs</b></td>
         </tr>
         {% for mma in nearest_mmas %}
         <tr>
@@ -117,7 +117,7 @@
         </tr>
         {% endfor %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest Wave Energy Site</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) Wave Energy Site</b></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_wave_energy_site.0}} ({{nearest_wave_energy_site.1|floatformat:'2'}} {{length_units}})</td>
@@ -200,14 +200,12 @@
             <td colspan="3">{{airport}}</td>
         </tr>
         {% endfor %}
-        {% if intersecting_airports.0 == 'None' %}
         <tr class="grey">
             <td colspan="3"><b>Nearest (non-intersecting) Airport</b></td>
         </tr> 
         <tr>
             <td colspan="3">{{nearest_airport.0}} ({{nearest_airport.1|floatformat:'1'}} {{length_units}})</td>
         </tr>    
-        {% endif %}
         <p>
         
     </tbody>
