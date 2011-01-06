@@ -8,6 +8,7 @@ from aes_human import display_aes_hum_analysis, get_aes_hum_context
 from analysis.utils import type_is_geo, type_is_phy, type_is_bio, type_is_hum
 from analysis.excel.utils import build_excel_response
 from aes_cache import aes_cache_exists, get_aes_cache
+from django.template.defaultfilters import slugify
 
 '''
 calls display_<type>_analysis for a given type
@@ -52,14 +53,11 @@ def printable_report(request, aes, type):
 currently in the testing phase: /analysis/aes/excel_report/1112/all
 '''    
 def excel_report(request, aes, type):
-    return HttpResponse('This Excel request is temporarily un-available') 
-    '''
     from aes_excel import generate_aes_excel_doc
     context = get_or_create_cache(aes, type)
     excel_doc = generate_aes_excel_doc(context)
     
     return build_excel_response(slugify("EnergySiteReport.xls"),excel_doc) 
-    '''    
     
 '''
 renders printable template as pdf
