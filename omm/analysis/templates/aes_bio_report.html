@@ -1,253 +1,29 @@
-{% extends 'common/panel.html' %}
+{% extends 'bio_report.html' %}
 {% block title %}{{aes.name}} Biological Analysis{% endblock title %}
-{% block panel %}
 
-<h3>Terrestrial Biological Characteristics</h3>
-<div class='freetext'>
-<br>
-<table  style='width:450px' class='aoi_analysis_container'>
-    <tbody>
-        <!-- Plover -->
-        <tr class="grey">
-            <td colspan="3"><b>Nearest Western Snowy Plover Critical Habitat &nbsp; </b></td>
-        </tr>
-        <tr>
-            <td colspan="3">{{nearest_snowy_plover|floatformat:'1'}} {{length_units}} &nbsp; </td>
-        </tr>
-        <br></br>
-        
-        <!-- Murrelet -->
-        <tr class="grey">
-            <td colspan="3"><b>Nearest Marbled Murrelet Critical Habitat &nbsp; </b></td>
-        </tr>
-        <tr>
-            <td colspan="3">{{nearest_marbled_murrelet|floatformat:'1'}} {{length_units}} &nbsp; </td>
-        </tr>
-        <br></br>
-    </tbody>
-</table>
-</div>
+<!-- Inheriting Terrestrial Biological Characteristics from bio_report -->
 
-<h3>Intertidal Biological Characteristics</h3>
-<div class='freetext'>
-<br>
-<table  style='width:450px' class='aoi_analysis_container'>
-    <tbody>
-        <tr class="grey">
-            <td><b>Pinniped Haulouts</b></td>
-            <td></td>
-            <td><b>Steller Sea Lion Rookeries</b></td>
-        </tr>
-        <tr>
-            {% if num_haulouts == 0 %}
-            <td>No ({{num_haulouts}} haulouts)</td>
-            {% else %}
-            <td>Yes ({{num_haulouts}} haulouts)</td>
-            {% endif %}
-            <td></td>
-            {% if num_rookeries == 0 %}
-            <td>No ({{num_rookeries}} rookeries)</td>
-            {% else %}
-            <td>Yes ({{num_rookeries}} rookeries)</td>
-            {% endif %}
-        </tr>
-        {% if num_haulouts != 0 %}
-        <tr class="grey">
-            <td colspan="3"><b>Pinniped Haulout Details &nbsp; </b></td>
-        </tr>
-        {% endif %}
-    </tbody>
-</table>
-<table  style='width:450px' class='aoi_analysis_container'>
-    <tbody>
-        {% for site in haulout_sites %}
-            <tr>
-                <td colspan="3">{{site.0.0}} , ({{site.0.1}})</td>
-            </tr>
-            {% for species in site.1 %}
-            <tr class="grey">
-                <td colspan="3">{{species}}</td>
-            </tr>
-            {% endfor %}
-        {% endfor %}
-        <tr><td></td><td></td><td></td><td></td></tr>
-    </tbody>
-</table>
+<!-- Inheriting Intertidal Biological Characteristics from bio_report -->
 
-<br></br>
-<table  style='width:450px' class='aoi_analysis_container'>
-    <tbody>
-        <tr class="grey">
-            <td colspan="2"><b>Steller Sea Lion Critical Habitats &nbsp; </b></td>
-        </tr>
-        {% if num_sealion_habs == 0 %}
-        <tr>
-            <td colspan="2">None &nbsp;</td>
-        </tr>
-        {% else %}
-        {% for hab in sealion_habs %}
-        <tr>
-            <td>{{hab.0}}</td>
-            <td>{{hab.1}}</td>
-        </tr>
-        {% endfor %}
-        {% endif %}
-    </tbody>
-</table>
+<!-- Inheriting Subtidal Biological Characteristics from bio_report -->
 
-<br></br>
-<table  style='width:450px' class='aoi_analysis_container'>
-    <tbody>
-        <tr class="grey">
-            <td colspan="3"><b>Bird Colonies &nbsp; </b></td>
-        </tr>
-        <tr>
-            {% if bird_colonies == 0 %}
-            <td colspan="3">No ({{bird_colonies}} colonies) &nbsp;</td>
-            {% else %}
-            <td colspan="3">Yes ({{bird_colonies}} colonies) &nbsp;</td>
-            {% endif %}
-        </tr>
-        {% if bird_colonies != 0 %}
-        <tr class="grey">
-            <td colspan="3"><b>Bird Colony Details &nbsp; </b></td>
-        </tr>
-        {% endif %}
-    </tbody>
-</table>
-<table  style='width:450px' class='aoi_analysis_container'>
-    <tbody>
-        {% for details in bird_details %}
-                <tr>
-                    <td colspan="3">{{details.0.0}} , (Colony #{{details.0.1}})</td>
-                </tr>
-                {% for bird in details.1 %}
-                <tr class="grey">
-                    <td colspan="3">{{bird}}</td>
-                </tr>
-                {% endfor %}
-        {% endfor %}
-        <tr><td></td><td></td><td></td><td></td></tr>
-    </tbody>
-</table>
-</div>
-
-<h3>Subtidal Biological Characteristics</h3>
-<div class='freetext'>
-<br>
-<table  style='width:450px' class='aoi_analysis_container'>
-    <tbody>
-        <!-- Habitat Types -->
-        <tr class="grey">
-            <td colspan="3"><b>Habitat Type & Proportions</b></td>
-        </tr>
-        {% for details in habitat_proportions %}
-        <tr>
-            <td colspan="3">{{details.0|floatformat:'2'}} % &nbsp; {{details.1}} &nbsp; ({{details.2|floatformat:'2'}} {{area_units}})</td>
-        </tr>
-        {% endfor %}
-        <br></br>
-        
-        <!-- Fish Species -->
-        <tr class="grey">
-            <td colspan="3"><b>Predicted Fish Species <br></br>(Provided by <a target="_blank" href="http://www.nwfsc.noaa.gov/">NOAA's Northwest Fisheries Science Center)</a></b></td>
-        </tr>
-        {% for fish in fish_list %}
-        <tr class="{% cycle '' 'grey' %}">
-            <td colspan="3">{{fish}}</td>
-        </tr>
-        {% endfor %}
-        <br></br>
-        
-        <!-- Sturgeon -->
-        <tr class="grey">
-            <td><b>Green Sturgeon</b></td>
-            <td><b>Green Sturgeon Area Percentage</b></td>
-        </tr>
-        <tr>
-            <td>{{green_sturgeon}}</td>
-            <td>{{green_sturgeon_perc|floatformat:'1'}} %</td>
-        </tr>
-        <br></br>
-        
-        <!-- Coho -->
-        {% if intersecting_coho_streams != 'No' %}
-        <tr class="grey">
-            <td colspan="3"><b>Coho Populated Streams</b></td>
-        </tr>
-        <tr>
-            <td colspan="3">{{intersecting_coho_streams}} &nbsp; </td>
-        </tr>
-        {% else %}
-        <tr class="grey">
-            <td colspan="3"><b>Nearest Coho Populated Stream</b></td>
-        </tr>
-        <tr>
-            <td colspan="3">{{nearest_coho_stream|floatformat:'1'}} {{length_units}} &nbsp; </td>
-        </tr>
-        {% endif %}
-        <br></br>
-        
-        <!-- Kelp -->
-        {% if kelp_data.0.2 == default_value %}
-         <tr class="grey">
-            <td colspan="3"><b>Kelp Surveys</b></td>
-        </tr>
-        <tr>
-            <td colspan="3">{{kelp_data.0.0}}</td>
-        </tr>
-        {% else %}
-        <tr class="grey">
-            <td><b>Kelp Survey Year</b></td>
-            <td colspan="2"><b>Kelp Proportions</b></td>
-        </tr>
-        {% for data in kelp_data %}
-        <tr>
-            <td>{{data.0}}</td>
-            <td colspan="2">{{data.1|floatformat:'2'}} {{area_units}} &nbsp; &nbsp; {{data.2|floatformat:'2'}} %</td>
-        </tr>
-        {% endfor %}
-        {% endif %}
-        <br></br>
-        
-        <!-- Seagrass -->
-        {% if seagrass_area == 0.0 %}
-        <tr class="grey">
-            <td colspan="3"><b>Seagrass</b></td>
-        </tr>
-        <tr>
-            <td colspan="3">None</td>
-        </tr>
-        {% else %}
-        <tr class="grey">
-            <td colspan="3"><b>Seagrass Area</b></td>
-        </tr>
-        <tr>
-            <td colspan="3">{{seagrass_area|floatformat:'2'}} {{area_units}}</td>
-        </tr>
-        {% endif %}
-    </tbody>
-</table>
-</div>
-
-
-<br></br>
+{% block ExportableReports %}
+<p>
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_aes_report aes.id "bio" %}'>Printable Biology Report</a>
     &nbsp; 
     <!--<a target='_blank' href='{% url pdf_aes_report aes.id "bio" %}'> (View PDF) </a>    -->
 </div>
-<br></br>
+<p>
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_aes_report aes.id "all" %}'>Printable Comprehensive Report</a>
     &nbsp; 
     <a target='_blank' href='{% url pdf_aes_report aes.id "all" %}'> (PDF) </a> 
     
-    <br>(Comprehensive reports combine Geographical, Physical, Biological, </br>
-    <br>and Human Use reports for a given Energy Site into a single </br>
-    <br>printable and/or exportable document.)</br>   
+    <br>(Comprehensive reports combine Geographical, Physical, Biological, 
+    and Human Use reports for a given Energy Site into a single 
+    printable and/or exportable document.)</br>   
 </div>
-<br></br>
-
-{% endblock panel %}
+<p>
+{% endblock ExportableReports %}
 
