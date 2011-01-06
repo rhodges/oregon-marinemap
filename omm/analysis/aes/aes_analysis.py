@@ -6,6 +6,7 @@ from aes_physical import display_phy_analysis, get_aes_phy_context
 from aes_biology import display_bio_analysis, get_aes_bio_context
 from aes_human import display_aes_hum_analysis, get_aes_hum_context
 from analysis.utils import type_is_geo, type_is_phy, type_is_bio, type_is_hum
+from analysis.excel.utils import build_excel_response
 from aes_cache import aes_cache_exists, get_aes_cache
 
 '''
@@ -46,6 +47,18 @@ def printable_report(request, aes, type):
     template = get_printable_template(type)
     context = get_or_create_cache(aes, type)
     return render_to_response(template, RequestContext(request, context))
+    
+'''
+currently in the testing phase: /analysis/nsh/excel_report/1112/all
+'''    
+def excel_report(request, nsh, type):
+    return HttpResponse('This Excel request is temporarily un-available') 
+    from nsh_excel import generate_nsh_excel_doc
+    context = get_or_create_cache(nsh, type)
+    excel_doc = generate_nsh_excel_doc(context)
+    
+    return build_excel_response(slugify("my_excel.xls"),excel_doc)    
+    #return HttpResponse('This Excel request is temporarily un-available: ' + excel_doc) 
     
 '''
 renders printable template as pdf

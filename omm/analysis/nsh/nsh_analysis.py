@@ -5,7 +5,8 @@ from nsh_geography import display_nsh_geo_analysis, get_nsh_geo_context
 from nsh_physical import display_phy_analysis, get_nsh_phy_context
 from nsh_biology import display_bio_analysis, get_nsh_bio_context
 from nsh_human import display_nsh_hum_analysis, get_nsh_hum_context
-from analysis.utils import type_is_geo, type_is_phy, type_is_bio, type_is_hum, build_excel_response
+from analysis.utils import type_is_geo, type_is_phy, type_is_bio, type_is_hum
+from analysis.excel.utils import build_excel_response
 from nsh_cache import nsh_cache_exists, get_nsh_cache
 from django.template.defaultfilters import slugify
 
@@ -55,7 +56,6 @@ def excel_report(request, nsh, type):
     excel_doc = generate_nsh_excel_doc(context)
     
     return build_excel_response(slugify("my_excel.xls"),excel_doc)    
-    #return HttpResponse('This Excel request is temporarily un-available: ' + excel_doc) 
     
 '''
 renders printable template as pdf

@@ -1,12 +1,6 @@
 import xlwt
+from analysis.excel.utils import major_heading_style, minor_heading_style, heading_column_style, data_style
 
-major_heading_style = xlwt.easyxf('font: bold true, italic on; alignment: horizontal left;')
-minor_heading_style = xlwt.easyxf('font: italic on; alignment: horizontal left;')
-heading_column_style = xlwt.easyxf('font: bold true; alignment: horizontal center, wrap on;')
-integer_data_style = xlwt.easyxf('alignment: horizontal center;',num_format_str='#,##0')
-data_style = xlwt.easyxf('alignment: horizontal center, wrap on;',num_format_str='#,##0.0')
-integer_perc_style = xlwt.easyxf('alignment: horizontal center;',num_format_str='0%')
-perc_style = xlwt.easyxf('alignment: horizontal center;',num_format_str='0.0%')
 
 def populate_hum_sheet(ws, context):
     hum_header(ws, context)
