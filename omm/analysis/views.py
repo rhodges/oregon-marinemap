@@ -18,7 +18,9 @@ def aes_analysis(request, aes_id, type):
     from aes.aes_analysis import display_aes_analysis
     aes = get_object_or_404(AOI, pk=aes_id)
     return display_aes_analysis(request, aes, type)
-    
+
+'''
+'''    
 def excel_nsh_report(request, nsh_id, type):
     from nsh.nsh_analysis import excel_report
     from lingcod.common.utils import get_mpa_class
@@ -28,6 +30,18 @@ def excel_nsh_report(request, nsh_id, type):
         return response
     nsh = get_object_or_404(AOI, pk=nsh_id)
     return excel_report(request, nsh, type)
+    
+'''
+'''    
+def excel_aes_report(request, aes_id, type):
+    from aes.aes_analysis import excel_report
+    from lingcod.common.utils import get_mpa_class
+    from lingcod.sharing.utils import can_user_view
+    user_can_view, response = can_user_view(get_mpa_class(), aes_id, request.user)
+    if not user_can_view:
+        return response
+    aes = get_object_or_404(AOI, pk=aes_id)
+    return excel_report(request, aes, type)
     
     
 '''
