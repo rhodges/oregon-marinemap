@@ -1,4 +1,4 @@
-<h1 align="center">{{ aes.name }} Alternative Energy Physical Analysis Report</h1>
+<h1 align="center">{{ aes.name }} Energy Site Physical Analysis Report</h1>
 
 <div align="middle" >
     <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ aes.id }}&amp;autozoom=true&amp;width=308&amp;height=400">
@@ -10,7 +10,7 @@
 <h4>Report Summary</h4>
 <table class='allowed_uses'>
 <tr><td width=150>Type:</td><td>Physical</td></tr>
-<tr><td width=150>Nearshore Habitat:</td><td>{{ aes.name }}</td></tr>
+<tr><td width=150>Energy Site:</td><td>{{ aes.name }}</td></tr>
 <tr><td width=150>ID #:</td><td>{{ aes.id }}</td></tr>
 </table>
 </div>
@@ -54,8 +54,7 @@
             <td class="top">{{island_area|floatformat:'3'}} ({{area_units}})</td>
             {% endif %}
         </tr>
-        <tr>
-        </tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
     </tbody>
 </table>
 
@@ -101,6 +100,7 @@
             {% endif %}
             <td class="top">{{distance_to_shore|floatformat:'1'}} ({{length_units}})</td>
         </tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
     </tbody>
 </table>
 <br></br>

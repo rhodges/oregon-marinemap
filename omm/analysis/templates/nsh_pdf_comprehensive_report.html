@@ -42,6 +42,7 @@
         </tr>
     </tbody>
 </table>
+
 <br></br>
 <table class='marinemap-table' rules=rows>
     <thead>
@@ -57,26 +58,25 @@
     </thead>
     <tbody>
         <tr>
-            <td valign="top">     {{geo.county.0}} 
-                <br> {{geo.county.1}} 
-                <br> {{geo.county.2}}
-            </td>
-            <td valign="top">    {{geo.county_shoreline_percentages.0|floatformat:'1'}} %
-                    {% if geo.county.1 %} <br> {{geo.county_shoreline_percentages.1|floatformat:'1'}} % {% endif %}
-                    {% if geo.county.2 %} <br> {{geo.county_shoreline_percentages.2|floatformat:'1'}} % {% endif %}
-            </td>
-            <td>     {{geo.ports.0.0}}  ({{geo.ports.0.1|floatformat:'1'}}{{geo.length_units}})
-                <br> {{geo.ports.1.0}}  ({{geo.ports.1.1|floatformat:'1'}}{{geo.length_units}})
-                <br> {{geo.ports.2.0}}  ({{geo.ports.2.1|floatformat:'1'}}{{geo.length_units}})
-            </td>
-            <td>     {{geo.cities.0.0}}  ({{geo.cities.0.1|floatformat:'1'}}{{geo.length_units}})
-                <br> {{geo.cities.1.0}}  ({{geo.cities.1.1|floatformat:'1'}}{{geo.length_units}})
-                <br> {{geo.cities.2.0}}  ({{geo.cities.2.1|floatformat:'1'}}{{geo.length_units}})
-            </td>
+            <td>{{geo.county.0}}</td>
+            <td>{{geo.county_shoreline_percentages.0|floatformat:'1'}} %</td>
+            <td>{{geo.ports.0.0}}  ({{geo.ports.0.1|floatformat:'1'}}{{geo.length_units}})</td>
+            <td>{{geo.cities.0.0}}  ({{geo.cities.0.1|floatformat:'1'}}{{geo.length_units}})</td>
+        </tr>
+        <tr>
+            <td>{{geo.county.1}}</td>
+            <td>{% if geo.county.1 %} {{geo.county_shoreline_percentages.1|floatformat:'1'}} % {% endif %}</td>
+            <td>{{geo.ports.1.0}}  ({{geo.ports.1.1|floatformat:'1'}}{{geo.length_units}})</td>
+            <td>{{geo.cities.1.0}}  ({{geo.cities.1.1|floatformat:'1'}}{{geo.length_units}})</td>
+        </tr>
+        <tr>
+            <td>{{geo.county.2}}</td>
+            <td>{% if geo.county.2 %} {{geo.county_shoreline_percentages.2|floatformat:'1'}} % {% endif %}</td>
+            <td>{{geo.ports.2.0}}  ({{geo.ports.2.1|floatformat:'1'}}{{geo.length_units}})</td>
+            <td>{{geo.cities.2.0}}  ({{geo.cities.2.1|floatformat:'1'}}{{geo.length_units}})</td>
         </tr>
     </tbody>
 </table>
-
 
 <!-- Physical Report -->
 
@@ -258,34 +258,33 @@
     </thead>
     <tbody>
         <tr>
-        <td class="top" colspan="2" valign="top">
-        {% if bio.num_haulouts == 0 %}
-            {{bio.default_value}}
-        {% else %}
-        {% for site in bio.haulout_sites %}
-            {{site.0.0}} , ({{site.0.1}})</br>
-            {% for species in site.1 %}
-                &nbsp; &nbsp; &nbsp; {{species}} </br>
+            <td class="top" colspan="2" valign="top">
+            {% if bio.num_haulouts == 0 %}
+                {{bio.default_value}}
+            {% else %}
+            {% for site in bio.haulout_sites %}
+                {{site.0.0}} , ({{site.0.1}})</br>
+                {% for species in site.1 %}
+                    &nbsp; &nbsp; &nbsp; {{species}} </br>
+                {% endfor %}
+                </br>
             {% endfor %}
-            </br>
-        {% endfor %}
-        {% endif %}
-        </td>
-        
-        <td colspan="2">
-        {% if bio.bird_colonies == 0 %}
-            {{bio.default_value}}
-        {% else %}
-        {% for details in bio.bird_details %}
-            {{details.0.0}} , (Colony #{{details.0.1}})<br>
-            {% for bird in details.1 %}
-                {{bird}} &nbsp;
-            {% endfor %}
-            <br><br>
-        {% endfor %}
-        {% endif %}
-        </td>
+            {% endif %}
+            </td>
             
+            <td colspan="2">
+            {% if bio.bird_colonies == 0 %}
+                {{bio.default_value}}
+            {% else %}
+            {% for details in bio.bird_details %}
+                {{details.0.0}} , (Colony #{{details.0.1}})<br>
+                {% for bird in details.1 %}
+                    {{bird}} &nbsp;
+                {% endfor %}
+                <br><br>
+            {% endfor %}
+            {% endif %}
+            </td>
         </tr>
     </tbody>
 </table>
@@ -316,7 +315,7 @@
                 {{bio.default_value}}
             {% endif %}
             {% for fish in bio.fish_list %}
-                {{fish}} &nbsp;
+                {{fish}} &nbsp;</br>
             {% endfor %}
             </td>
         </tr>
