@@ -39,9 +39,13 @@
             <td class="top">{{percent_shoreline|floatformat:'2'}} %</td>
             {% endif %}
             <td>
-                {% for proportion in shoreline_proportions %}
-                    {{proportion.0|floatformat:'0'}}% &nbsp; &nbsp; {{proportion.1}} &nbsp; &nbsp; ({{proportion.2|floatformat:'2'}} {{length_units}}) </br>
-                {% endfor %}
+            {% if shoreline_proportions.0.1 == default_value %}
+                {{default_value}}
+            {% else %}
+            {% for proportion in shoreline_proportions %}
+                {{proportion.0|floatformat:'0'}}% &nbsp; &nbsp; {{proportion.1}} &nbsp; &nbsp; ({{proportion.2|floatformat:'2'}} {{length_units}}) </br>
+            {% endfor %}
+            {% endif %}
             </td>
             <td class="top">{{islands}} islands</td>
             {% if island_area == default_value %}
@@ -73,14 +77,28 @@
     <tbody>
         <tr>
             <td class="top">{{subtidal_area|floatformat:'1'}} ({{area_units}})</td>
-            <td class="top">{{perc_shallow|floatformat:'1'}} % &nbsp; shallow<br/> {{perc_deep|floatformat:'1'}} % &nbsp; deep</td>
-            <td>
-                {% for proportion in lithology_proportions %}
-                    {{proportion.0|floatformat:'1'}}% &nbsp; {{proportion.1}} &nbsp; ({{proportion.2|floatformat:'2'}} {{length_units}}) </br>
-                {% endfor %}
+            <td class="top">
+            {% if subtidal_area == 0.0 %}
+                {{default_value}}
+            {% else %}
+                {{perc_shallow|floatformat:'1'}} % &nbsp; shallow<br/> {{perc_deep|floatformat:'1'}} % &nbsp; deep
+            {% endif %}
             </td>
+            <td class="top">
+            {% if not lithology_proportions.0 %}
+                {{default_value}}
+            {% endif %}
+            {% for proportion in lithology_proportions %}
+                {{proportion.0|floatformat:'1'}}% &nbsp; {{proportion.1}} &nbsp; ({{proportion.2|floatformat:'2'}} {{length_units}}) </br>
+            {% endfor %}
+            </td>
+            {% if subtidal_area == 0.0 %}
+            <td class="top">{{default_value}}</td>
+            <td class="top">{{default_value}}</td>
+            {% else %}
             <td class="top">{{average_depth|floatformat:'1'}} meters</td>
             <td class="top">{{min_depth|floatformat:'1'}} meters <br/> {{max_depth|floatformat:'1'}} meters</td>
+            {% endif %}
             <td class="top">{{distance_to_shore|floatformat:'1'}} ({{length_units}})</td>
         </tr>
     </tbody>
