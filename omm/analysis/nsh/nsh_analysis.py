@@ -55,7 +55,7 @@ def excel_report(request, nsh, type):
     context = get_or_create_cache(nsh, type)
     excel_doc = generate_nsh_excel_doc(context)
     
-    return build_excel_response(slugify("my_excel.xls"),excel_doc)    
+    return build_excel_response(slugify("NearshoreReport.xls"),excel_doc)    
     
 '''
 renders printable template as pdf

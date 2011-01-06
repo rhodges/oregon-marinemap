@@ -49,16 +49,17 @@ def printable_report(request, aes, type):
     return render_to_response(template, RequestContext(request, context))
     
 '''
-currently in the testing phase: /analysis/nsh/excel_report/1112/all
+currently in the testing phase: /analysis/aes/excel_report/1112/all
 '''    
-def excel_report(request, nsh, type):
+def excel_report(request, aes, type):
     return HttpResponse('This Excel request is temporarily un-available') 
-    from nsh_excel import generate_nsh_excel_doc
-    context = get_or_create_cache(nsh, type)
-    excel_doc = generate_nsh_excel_doc(context)
+    '''
+    from aes_excel import generate_aes_excel_doc
+    context = get_or_create_cache(aes, type)
+    excel_doc = generate_aes_excel_doc(context)
     
-    return build_excel_response(slugify("my_excel.xls"),excel_doc)    
-    #return HttpResponse('This Excel request is temporarily un-available: ' + excel_doc) 
+    return build_excel_response(slugify("EnergySiteReport.xls"),excel_doc) 
+    '''    
     
 '''
 renders printable template as pdf
