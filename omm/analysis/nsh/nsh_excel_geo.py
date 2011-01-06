@@ -1,11 +1,6 @@
 import xlwt
-
-major_heading_style = xlwt.easyxf('font: bold true, italic on; alignment: horizontal left;')
-minor_heading_style = xlwt.easyxf('font: italic on; alignment: horizontal left;')
-heading_column_style = xlwt.easyxf('font: bold true; alignment: horizontal center;')
-heading_row_style = xlwt.easyxf('font: bold true; alignment: horizontal center, wrap true;')
-data_style = xlwt.easyxf('alignment: horizontal center;',num_format_str='#,##0.0')
-perc_style = xlwt.easyxf('alignment: horizontal center;',num_format_str='0.00%')
+from analysis.excel.utils import major_heading_style, minor_heading_style, heading_column_style, heading_row_style, data_style, perc_style
+from analysis.excel.geography import geo_spatial_headers, geo_spatial_data
 
 def populate_geo_sheet(ws, context):
     geo_header(ws, context)
@@ -17,26 +12,6 @@ def populate_geo_sheet(ws, context):
 def geo_header(ws, context):
     ws.write(0, 0, "Nearshore Habitat Geography Report for %s" % context['nsh'].name, major_heading_style)
     
-def geo_spatial_headers(ws, row=3):
-    ws.write(row-1, 0, "General Spatial Characteristics", minor_heading_style)
-    ws.write(row, 1, "Area", heading_column_style)
-    ws.col(1).width = 35*256
-    ws.write(row, 2, "Perimeter", heading_column_style)
-    ws.col(2).width = 35*256
-    ws.write(row, 3, "Intertidal", heading_column_style)
-    ws.col(3).width = 35*256
-    ws.write(row, 4, "Islands", heading_column_style)
-    ws.col(4).width = 35*256
-    ws.write(row, 5, "Percent of Territorial Sea", heading_column_style)
-    ws.col(5).width = 35*256
-    
-def geo_spatial_data(ws, context, row=4):
-    ws.write(row, 1, str('%.1f %s') % (context['area'], context['area_units']), data_style)
-    ws.write(row, 2, str('%.1f %s') % (context['perimeter'], context['length_units']), data_style)
-    ws.write(row, 3, context['intertidal'], data_style)
-    ws.write(row, 4, context['islands'], data_style)
-    ws.write(row, 5, context['ratio']/100, perc_style)
-        
 def geo_setting_headers(ws, context, row=7):
     ws.write(row-1, 0, "Geographic Setting", minor_heading_style)
     if len(context['county']) > 1:
