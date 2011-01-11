@@ -1,0 +1,396 @@
+{% extends 'common/panel.html' %}
+{% block title %}{{aes.name}} Biological Analysis{% endblock title %}
+{% block panel %}
+
+<h3>Community Considerations</h3>
+<div class='freetext'>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <!-- Urban Growth Boundaries -->
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Urban Growth Boundaries</b></td>
+        </tr>
+        {% for ugb in urbangrowthboundaries %}
+        <tr>
+            <td colspan="3">{{ ugb.0}} &nbsp; ({{ ugb.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        {% endfor %}
+        <p>
+        
+        <!-- State Parks -->
+        <tr class="grey">
+            <td colspan="3"><b>Nearest State Parks</b></td>
+        </tr>
+        {% for park in parks %}
+        <tr>
+            <td colspan="3">{{park.0}} State Park &nbsp; ({{park.1|floatformat:'2'}} {{length_units}})</td>
+        </tr>
+        {% endfor %}
+        <p>
+        
+        <!-- Public Access -->
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Public Access Sites</b></td>
+        </tr>
+        {% for site in access_sites %}
+        <tr>
+            <td colspan="3">{{site.0}} &nbsp; ({{site.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        {% endfor %}
+        <p>
+        
+        <!-- Visible from Shore -->
+        <tr class="grey">
+            <td colspan="3"><b>Visible From Shore</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{visible}}</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<h3>Planning Considerations</h3>
+<div class='freetext'>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <!-- Rocky Shores -->
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Rocky Shore Areas</b></td>
+        </tr>
+        {% for rockyshore in rockyshores %}
+        <tr>
+            <td colspan="3">{{rockyshore.0}} &nbsp; ({{rockyshore.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        {% endfor %}
+        <p>
+        
+        <!-- Protected Areas -->
+        <tr class="grey">
+            <td colspan="3"><b>Protected Areas</b></td>
+        </tr>
+        {% for area in intersecting_protected_areas %}
+        <tr>
+            <td colspan="3">{{area}}</td>
+        </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) Protected Area</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_protected_area.0}} &nbsp; ({{nearest_protected_area.1|floatformat:'1'}} {{length_units}})</td>
+        </tr> 
+        <p>
+        
+        <!-- Marine Managed Areas -->
+        <tr class="grey">
+            <td colspan="3"><b>Marine Managed Areas</b></td>
+        </tr>
+        {% for mma in intersecting_mmas %}
+        <tr>
+            <td colspan="3">{{mma}}</td>
+        </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) MMAs</b></td>
+        </tr>
+        {% for mma in nearest_mmas %}
+        <tr>
+            <td colspan="3">{{mma.0}} ({{mma.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        {% endfor %}
+        <p>
+        
+        <!-- Wave Energy Data -->
+        <tr class="grey">
+            <td colspan="3"><b>Wave Energy Sites</b></td>
+        </tr>
+        {% for data in intersecting_wave_energy_sites %}
+        <tr>
+            {% if data != 'None' %} 
+            <td colspan="3">{{data.0}} ({{data.1|floatformat:'2'}} %)</td>
+            {% else %}
+            <td colspan="3">{{data}}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) Wave Energy Site</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_wave_energy_site.0}} ({{nearest_wave_energy_site.1|floatformat:'2'}} {{length_units}})</td>
+        </tr>
+        
+    </tbody>
+</table>
+</div>
+    
+
+<h3>Transportation Considerations</h3>
+<div class='freetext'>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <!-- Buoys --> 
+        <tr class="grey">
+            <td colspan="3"><b>Buoys</b></td>
+        </tr>        
+        {% for data in intersecting_buoys %}
+        <tr>
+            <td colspan="3">{{data}}</td>
+        </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) Buoy</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_buoy.0}} ({{nearest_buoy.1|floatformat:'2'}} {{length_units}})</td>
+        </tr>
+        <p>
+        
+        <!-- Beacons -->
+        <tr class="grey">
+            <td colspan="3"><b>Beacons</b></td>
+        </tr>        
+        {% for data in intersecting_beacons %}
+        <tr>
+            <td colspan="3">{{data}}</td>
+        </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) Beacon</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_beacon.0}} ({{nearest_beacon.1|floatformat:'2'}} {{length_units}})</td>
+        </tr>
+        <p>
+        
+        <!-- Signal Equipment Data -->
+        <tr class="grey">
+            <td colspan="3"><b>Signal Equipment</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{signal_data}}</td>
+        </tr> 
+        <tr class="grey">
+            <td colspan="3"><b>Signal Equipment Count</b></td>
+        </tr>        
+        <tr>
+            <td colspan="3">{{num_signals}}</td>
+        </tr>
+        <p>
+        
+        <!-- Towlane Data -->
+        <tr class="grey">
+            <td colspan="3"><b>Tugboat Towlanes</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{towlanes}}</td>
+        </tr>  
+        <p>      
+        
+        <!-- Airport Data -->
+        <tr class="grey">
+            <td colspan="3"><b>Airports</b></td>
+        </tr>        
+        {% for airport in intersecting_airports %}
+        <tr>
+            <td colspan="3">{{airport}}</td>
+        </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) Airport</b></td>
+        </tr> 
+        <tr>
+            <td colspan="3">{{nearest_airport.0}} ({{nearest_airport.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>    
+        <p>
+        
+    </tbody>
+</table>
+</div>
+
+<h3>Infrastructure Considerations</h3>
+<div class='freetext'>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <!-- Dredge Materials Data -->
+        <tr class="grey">
+            <td colspan="3"><b>Dredge Materials Disposal Sites</b></td>
+        </tr>
+        {% for data in intersecting_dmds %}
+        <tr>
+            <td colspan="3">{{data}}</td>
+        </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) DMD Site</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_dmd.0}} ({{nearest_dmd.1|floatformat:'2'}} {{length_units}})</td>
+        </tr>
+        <p>
+
+        <!-- Outfall Sites Data -->
+        <tr class="grey">
+            <td colspan="3"><b>NPDES Outfall Sites</b></td>
+        </tr>
+        {% for data in intersecting_outfalls %}
+        <tr>
+            <td colspan="3">{{data}}</td>
+        </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) Outfall Site</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_outfall.0}} ({{nearest_outfall.1|floatformat:'2'}} {{length_units}})</td>
+        </tr>
+        <p>
+        
+        <!-- Undersea Cable Data -->
+        <tr class="grey">
+            <td colspan="3"><b>Undersea Cable Routes</b></td>
+        </tr>
+        {% for data in intersecting_cables %}
+        <tr>
+            <td colspan="3">{{data}}</td>
+        </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) Cable Route</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_cable.0}} ({{nearest_cable.1|floatformat:'2'}} {{length_units}})</td>
+        </tr>
+        <p>
+        
+        <!-- Transmission Line (1993) -->
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Transmission Line (1993)</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{transmissionline1993|floatformat:'1'}} {{length_units}}</td>
+        </tr>
+        
+        <!-- Transmission Line (2010) -->
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Transmission Line (2010)</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{transmissionline2010|floatformat:'1'}} {{length_units}}</td>
+        </tr>
+        <p>
+        
+        <!-- Electrical Substations -->
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Electrical Substations</b></td>
+        </tr>
+        {% for substation in substations %}
+        <tr>
+            <td colspan="3">{{substation.0}} ({{substation.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        {% endfor %}
+        <p>
+        
+        <!-- Railroads -->
+        <tr class="grey">
+            <td colspan="3"><b>Distance to Nearest Railroad</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{railroad|floatformat:'2'}} {{length_units}}</td>
+        </tr>
+        
+    </tbody>
+</table>
+</div>
+
+<h3>Fishery Considerations</h3>
+<div class='freetext'>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <!-- Ports -->
+        <tr class="grey">
+            <td colspan="3"><b>Proximity to Ports</b></td>
+        </tr>
+        {% for port in nearest_ports %}
+        <tr>
+            <td colspan="3">{{port.0}} ({{port.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        {% endfor %}
+        <p>
+        
+        <!-- Marinas -->
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Marinas</b></td>
+        </tr>
+        {% for marina in nearest_marinas %}
+        <tr>
+            <td colspan="3">{{marina.0}} ({{marina.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        {% endfor %}
+        <p>
+        
+        <!-- ODFW Fishery Closures -->
+        <tr class="grey">
+            <td colspan="3"><b>ODFW Closures</b></td>
+        </tr>
+        {% for closure in intersecting_closures %}
+        <tr>
+            <td colspan="3">{{closure}}</td>
+        </tr>
+        {% endfor %}
+        <tr><td></td><td></td><td></td></tr>
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) ODFW Closure</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_closure.0}} ({{nearest_closure.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <p>
+        
+        <!-- EFH Conservation Areas -->
+        <tr class="grey">
+            <td colspan="3"><b>EFH Conservation Areas</b></td>
+        </tr>
+        {% for area in intersecting_conservation_areas %}
+        <tr>
+            <td colspan="3">{{area}}</td>
+        </tr>
+        {% endfor %}
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) EFH Conservation Areas</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_conservation_area.0}} ({{nearest_conservation_area.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <tr><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+</div>
+<p>
+<div style='font-size: small'>
+    <a target='_blank' href='{% url printable_aes_report aes.id "hum" %}'>Printable Human Uses Report</a>
+    &nbsp; 
+    <!--<a target='_blank' href='{% url pdf_aes_report aes.id "hum" %}'> (View PDF) </a>    -->
+</div>
+<p>
+<div style='font-size: small'>
+    <a target='_blank' href='{% url printable_aes_report aes.id "all" %}'>Printable Comprehensive Report</a>
+    &nbsp; 
+    <a target='_blank' href='{% url pdf_aes_report aes.id "all" %}'> (PDF) </a> 
+    &nbsp; 
+    <a target='_blank' href='{% url excel_aes_report aes.id "all" %}'> (Excel) </a> 
+    
+    <br>(Comprehensive reports combine Geographical, Physical, Biological, 
+    and Human Use reports for a given Energy Site into a single 
+    printable and/or exportable document.)</br>   
+</div>
+<p>
+{% endblock panel %}
+

@@ -1,0 +1,248 @@
+<h1 align="center">{{ nsh.name }} Nearshore Habitat Human Uses Analysis Report</h1>
+
+<div align="middle" >
+    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ nsh.id }}&amp;autozoom=true&amp;width=308&amp;height=400">
+    &nbsp; &nbsp;
+    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ nsh.id }}&amp;width=154&amp;height=200">
+</div>
+
+<div class="freetext">
+<h4>Report Summary</h4>
+<table class='allowed_uses'>
+<tr><td width=150>Type:</td><td>Human Uses</td></tr>
+<tr><td width=150>Nearshore Habitat:</td><td>{{ nsh.name }}</td></tr>
+<tr><td width=150>ID #:</td><td>{{ nsh.id }}</td></tr>
+</table>
+</div>
+
+<div class='freetext'>
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="humheader" colspan="3">Community & Recreational Considerations</font></th>
+        </tr>
+        <tr>
+            <th>Nearest State Parks</th>
+            <th>Nearest Public Access</th>
+            <th>Nearest Rocky Shore Areas</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+            {% for park in parks %}
+                {{park.0}} State Park &nbsp; ({{park.1|floatformat:'1'}} {{length_units}})</br>
+            {% endfor %}
+            </td>
+            <td>
+            {% for site in access_sites %}
+                {{site.0}} &nbsp; ({{site.1|floatformat:'1'}} {{length_units}})</br>
+            {% endfor %}
+            </td>
+            <td>
+            {% for rockyshore in rockyshores %}
+                {{rockyshore.0}} &nbsp; ({{rockyshore.1|floatformat:'1'}} {{length_units}})</br>
+            {% endfor %}
+            </td>
+        </tr>
+        <tr><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="humheader" colspan="3">Transportation & Infrasructure Considerations</font></th>
+        </tr>
+        <tr>
+            <th>Dredge Materials Disposal Sites</th>
+            <th>NPDES Outfall</th>
+            <th>Undersea Cables</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+            {% for data in intersecting_dmds %}
+                {{data}}</br>
+            {% endfor %}
+            </td>
+            <td>
+            {% for data in intersecting_outfalls %}
+                {{data}}</br>
+            {% endfor %}
+            </td>
+            <td>
+            {% for data in intersecting_cables %}
+                {{data}}</br>
+            {% endfor %}
+            </td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th>Nearest (non-intersecting) DMD Site</th>
+            <th>Nearest (non-intersecting) Outfall Site</th>
+            <th>Nearest (non-intersecting) Cable Route</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{nearest_dmd.0}} ({{nearest_dmd.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{nearest_outfall.0}} ({{nearest_outfall.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{nearest_cable.0}} ({{nearest_cable.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <tr><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="humheader" colspan="4">Fishery Considerations</font></th>
+        </tr>
+        <tr>
+            <th colspan="2">Proximity to Ports</th>
+            <th colspan="2">Nearest Marinas</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="2" class="top">
+                {% for port in nearest_ports %}
+                    {{port.0}} ({{port.1|floatformat:'1'}} {{length_units}})</br>
+                {% endfor %}
+            </td>
+            <td colspan="2" class="top">
+                {% for marina in nearest_marinas %}
+                    {{marina.0}} ({{marina.1|floatformat:'1'}} {{length_units}})</br>
+                {% endfor %}
+            </td>
+        </tr>
+        <tr><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th colspan="1">Marine Managed Areas</th>
+            <th colspan="1">ODFW Closures</th>
+            <th colspan="1">EFH Conservation Areas</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="top">
+                {% for mma in intersecting_mmas %}
+                    {{mma}}</br>
+                {% endfor %}
+            </td>
+            <td class="top">
+                {% for closure in intersecting_closures %}
+                    {{closure}}</br>
+                {% endfor %}
+            </td>
+            <td class="top">
+                {% for area in intersecting_conservation_areas %}
+                    {{area}}</br>
+                {% endfor %}
+            </td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th>Nearest (non-intersecting) MMAs</th>
+            <th>Nearest (non-intersecting) ODFW Closure</th>
+            <th>Nearest (non-intersecting) Conservation Area</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="top">
+                {% for mma in nearest_mmas %}
+                    {{mma.0}} ({{mma.1|floatformat:'1'}} {{length_units}})</br>
+                {% endfor %}
+            </td>
+            <td class="top">
+               {{nearest_closure.0}} ({{nearest_closure.1|floatformat:'1'}} {{length_units}})
+            </td>
+            <td class="top">
+                {{nearest_conservation_area.0}} ({{nearest_conservation_area.1|floatformat:'1'}} {{length_units}})</br>
+            </td>
+        </tr>
+        <tr><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+<br></br>
+
+
+</div>
+
+<style type="text/css">
+table.marinemap-table {
+    font-size:12px;
+    width:100%;
+    border:solid 1px #fff;
+    margin:3px;
+}
+
+table.marinemap-table th.humheader {
+    background-color:#FEAB30;
+    color:#F0F0F0;
+    font-family:helvetica;
+    font-weight:bold;
+}
+
+table.marinemap-table th {
+    background-color:#D0D0D0;
+    color:#344E63;
+    font-weight:bold;
+}
+
+table.marinemap-table th.left {
+    background-color:#D0D0D0;
+    color:#344E63;
+    font-weight:bold;
+    text-align:left;
+}
+
+table.marinemap-table td {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    text-align:center;
+}
+
+table.marinemap-table td.left {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    text-align:left;
+    vertical-align: text-top;
+}
+
+table.marinemap-table td.top {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    vertical-align: text-top;
+}
+
+table.marinemap-table thead tr {
+    background:#FAFAFA url(../images/toolbar-bg.png) repeat-x scroll left bottom;
+    text-align:center;
+}
+
+table.marinemap-table tbody {
+    background-color:white;
+}
+
+table.marinemap-table tr.zebra {
+    background-color:#eee;
+}
+</style>
+
+

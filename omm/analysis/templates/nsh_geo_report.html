@@ -1,0 +1,91 @@
+{% extends 'geo_report.html' %}
+{% block title %}{{nsh.name}} Geographic Analysis{% endblock title %}
+
+<!-- Inheriting General Spatial Characteristics from geo_report -->
+
+{% block GeographicSetting %}
+<h3>Geographic Setting</h3>
+<div class='freetext'>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <tr class="grey">
+            {% if county.1 %}
+            <td><b>Adjacent Counties</b></td>
+            {% else %}
+            <td><b>Adjacent County</b></td>
+            {% endif %}
+            <td></td>
+            {% if county.1 %}
+            <td><b>County Shoreline Percentages</b></td>
+            {% else %}
+            <td><b>County Shoreline Percentage</b></td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td>{{county.0}}</td>
+            <td></td>
+            <td>{{county_shoreline_percentages.0|floatformat:'1'}} %</td>
+        </tr>
+        {% if county.1 %}
+        <tr>
+            <td>{{county.1}}</td>
+            <td></td>
+            <td>{{county_shoreline_percentages.1|floatformat:'1'}} %</td>
+        </tr>
+        {% endif %}
+        {% if county.2 %}
+        <tr>
+            <td>{{county.2}}</td>
+            <td></td>
+            <td>{{county_shoreline_percentages.2|floatformat:'1'}} %</td>
+        </tr>
+        {% endif %}
+        <p>
+        <tr class="grey">
+            <td><b>Nearest Incorporated Cities</b></td>
+            <td></td>
+            <td><b>Nearest Ports</b></td>
+        </tr>
+        <tr>
+            <td>{{cities.0.0}}  ({{cities.0.1|floatformat:'1'}} {{length_units}})</td>
+            <td></td>
+            <td>{{ports.0.0}}  ({{ports.0.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <tr class="grey">
+            <td>{{cities.1.0}}  ({{cities.1.1|floatformat:'1'}} {{length_units}})</td>
+            <td></td>
+            <td>{{ports.1.0}}  ({{ports.1.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <tr>
+            <td>{{cities.2.0}}  ({{cities.2.1|floatformat:'1'}} {{length_units}})</td>
+            <td></td>
+            <td>{{ports.2.0}}  ({{ports.2.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+{% endblock GeographicSetting %}
+
+{% block ExportableReports %}
+<p>
+<div style='font-size: small'>
+    <a target='_blank' href='{% url printable_nsh_report nsh.id "geo" %}'>Printable Geography Report</a>
+    &nbsp; 
+</div>
+<p>
+<div style='font-size: small'>
+    <a target='_blank' href='{% url printable_nsh_report nsh.id "all" %}'>Printable Comprehensive Report</a>
+    &nbsp; 
+    <a target='_blank' href='{% url pdf_nsh_report nsh.id "all" %}'> (PDF) </a> 
+    &nbsp; 
+    <a target='_blank' href='{% url excel_nsh_report nsh.id "all" %}'> (Excel) </a>  
+    
+    <br>(Comprehensive reports combine Geographical, Physical, Biological, 
+    and Human Use reports for a given Nearshore Habitat into a single 
+    printable and/or exportable document.)</br>    
+</div>
+<br></br>
+{% endblock ExportableReports %}
+
+
