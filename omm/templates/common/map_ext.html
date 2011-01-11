@@ -139,8 +139,7 @@ If you ever need to change your shape, we also keep a copy of the lines you draw
             });
         }});
         
-        editor.el.find('li span.name:contains(Marine Protected Areas)').parent().droppable({scope:'tsp_aoi', activeClass: '.ui-state-highlight', hoverClass: 'drophover', tolerance: 'pointer', drop: function(event, ui){
-            // var array = event.target;
+        editor.el.find('li span.name:contains(Areas of Inquiry)').parent().droppable({scope:'tsp_aoi', activeClass: '.ui-state-highlight', hoverClass: 'drophover', tolerance: 'pointer', drop: function(event, ui){            // var array = event.target;
             // var array_pk = getId(array, editor);
             var mpa = ui.draggable[0];
             var mpa_pk = getId(mpa, editor);
