@@ -1,0 +1,31 @@
+{% extends 'bio_report.html' %}
+{% block title %}{{aes.name}} Biological Analysis{% endblock title %}
+
+<!-- Inheriting Terrestrial Biological Characteristics from bio_report -->
+
+<!-- Inheriting Intertidal Biological Characteristics from bio_report -->
+
+<!-- Inheriting Subtidal Biological Characteristics from bio_report -->
+
+{% block ExportableReports %}
+<p>
+<div style='font-size: small'>
+    <a target='_blank' href='{% url printable_aes_report aes.id "bio" %}'>Printable Biology Report</a>
+    &nbsp; 
+    <!--<a target='_blank' href='{% url pdf_aes_report aes.id "bio" %}'> (View PDF) </a>    -->
+</div>
+<p>
+<div style='font-size: small'>
+    <a target='_blank' href='{% url printable_aes_report aes.id "all" %}'>Printable Comprehensive Report</a>
+    &nbsp; 
+    <a target='_blank' href='{% url pdf_aes_report aes.id "all" %}'> (PDF) </a> 
+    &nbsp; 
+    <a target='_blank' href='{% url excel_aes_report aes.id "all" %}'> (Excel) </a> 
+    
+    <br>(Comprehensive reports combine Geographical, Physical, Biological, 
+    and Human Use reports for a given Energy Site into a single 
+    printable and/or exportable document.)</br>   
+</div>
+<p>
+{% endblock ExportableReports %}
+

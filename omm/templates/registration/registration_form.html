@@ -1,0 +1,14 @@
+{% extends "registration/reg_base.html" %}
+
+{% block title %}Register to Use MarineMap{% endblock %}
+
+{% block content %}
+
+<p> By registering, you will be able to create your own areas of inquiry, run and print the results of related analysis, and share your shapes with others.</p>
+<form action="{% url registration_register %}" method="post">
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+
+{% endblock %}
+

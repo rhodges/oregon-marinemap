@@ -1,0 +1,159 @@
+<h1 align="center">{{ aes.name }} Energy Site Physical Analysis Report</h1>
+
+<div align="middle" >
+    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ aes.id }}&amp;autozoom=true&amp;width=308&amp;height=400">
+    &nbsp; &nbsp;
+    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ aes.id }}&amp;width=154&amp;height=200">
+</div>
+
+<div class="freetext">
+<h4>Report Summary</h4>
+<table class='allowed_uses'>
+<tr><td width=150>Type:</td><td>Physical</td></tr>
+<tr><td width=150>Energy Site:</td><td>{{ aes.name }}</td></tr>
+<tr><td width=150>ID #:</td><td>{{ aes.id }}</td></tr>
+</table>
+</div>
+
+<div class='freetext'>
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="phyheader" colspan="5"><font color="#B0B0B0" size="2" face="helvetica">Intertidal Physical Characteristics</font></th>
+        </tr>
+        <tr>
+            <th>Length of Intertidal Shoreline</th>
+            <th>Percent of Oregon Coast Shoreline</th>
+            <th>Shoreline Types & Proportions</th>
+            <th>Number of Islands</th>
+            <th>Total Island Area</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="top">{{length|floatformat:'2'}} ({{length_units}})</td>
+            {% if percent_shoreline == default_value %}
+            <td class="top">{{default_value}}</td>
+            {% else %}
+            <td class="top">{{percent_shoreline|floatformat:'2'}} %</td>
+            {% endif %}
+            <td>
+            {% if shoreline_proportions.0.1 == default_value %}
+                {{default_value}}
+            {% else %}
+            {% for proportion in shoreline_proportions %}
+                {{proportion.0|floatformat:'0'}}% &nbsp; &nbsp; {{proportion.1}} &nbsp; &nbsp; ({{proportion.2|floatformat:'2'}} {{length_units}}) </br>
+            {% endfor %}
+            {% endif %}
+            </td>
+            <td class="top">{{islands}} islands</td>
+            {% if island_area == default_value %}
+            <td class="top">{{default_value}}</td>
+            {% else %}
+            <td class="top">{{island_area|floatformat:'3'}} ({{area_units}})</td>
+            {% endif %}
+        </tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="phyheader" colspan="6">Subtidal Physical Characteristics</font></th>
+        </tr>
+        <tr>
+            <th>Subtidal Area</th>
+            <th>Percent Shallow <br/>Percent Deep</th>
+            <th>Seafloor Lithology</th>
+            <th>Average Depth</th>
+            <th>Min Depth <br/> Max Depth</th>
+            <th>Proximity to Shore</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="top">{{subtidal_area|floatformat:'1'}} ({{area_units}})</td>
+            <td class="top">
+            {% if subtidal_area == 0.0 %}
+                {{default_value}}
+            {% else %}
+                {{perc_shallow|floatformat:'1'}} % &nbsp; shallow<br/> {{perc_deep|floatformat:'1'}} % &nbsp; deep
+            {% endif %}
+            </td>
+            <td class="top">
+            {% if not lithology_proportions.0 %}
+                {{default_value}}
+            {% endif %}
+            {% for proportion in lithology_proportions %}
+                {{proportion.0|floatformat:'1'}}% &nbsp; {{proportion.1}} &nbsp; ({{proportion.2|floatformat:'2'}} {{length_units}}) </br>
+            {% endfor %}
+            </td>
+            {% if subtidal_area == 0.0 %}
+            <td class="top">{{default_value}}</td>
+            <td class="top">{{default_value}}</td>
+            {% else %}
+            <td class="top">{{average_depth|floatformat:'1'}} meters</td>
+            <td class="top">{{min_depth|floatformat:'1'}} meters <br/> {{max_depth|floatformat:'1'}} meters</td>
+            {% endif %}
+            <td class="top">{{distance_to_shore|floatformat:'1'}} ({{length_units}})</td>
+        </tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+<br></br>
+
+</div>
+
+<style type="text/css">
+table.marinemap-table {
+    font-size:12px;
+    width:100%;
+    border:solid 1px #fff;
+    margin:3px;
+}
+
+table.marinemap-table th.phyheader {
+    background-color:#4D50DF;
+    color:#B0B0B0;
+    font-family:helvetica;
+    font-weight:bold;
+}
+
+table.marinemap-table th {
+    background-color:#D0D0D0;
+    color:#344E63;
+    font-weight:bold;
+}
+
+table.marinemap-table td {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    text-align:center;
+}
+
+table.marinemap-table td.top {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    vertical-align: text-top;
+}
+
+table.marinemap-table thead tr {
+    background:#FAFAFA url(../images/toolbar-bg.png) repeat-x scroll left bottom;
+    text-align:center;
+}
+
+table.marinemap-table tbody {
+    background-color:white;
+}
+
+table.marinemap-table tr.zebra {
+    background-color:#eee;
+}
+</style>
+
+

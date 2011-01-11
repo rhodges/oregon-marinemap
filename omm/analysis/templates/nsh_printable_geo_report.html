@@ -1,0 +1,145 @@
+<h1 align="center">{{ nsh.name }} Nearshore Habitat Geography Analysis Report</h1>
+
+<div class="img" align="middle">
+    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ nsh.id }}&amp;autozoom=true&amp;width=308&amp;height=400">
+    &nbsp; &nbsp;
+    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ nsh.id }}&amp;width=154&amp;height=200">
+</div>
+
+<div class="freetext">
+<h4>Report Summary</h4>
+<table class='allowed_uses'>
+<tr><td width=150>Type:</td><td>Geography</td></tr>
+<tr><td width=150>Nearshore Habitat:</td><td>{{ nsh.name }}</td></tr>
+<tr><td width=150>ID #:</td><td>{{ nsh.id }}</td></tr>
+</table>
+</div>
+
+<div class='freetext'>
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="geoheader" colspan="5">General Spatial Characteristics</th>
+        </tr>
+        <tr>
+            <th>Area</th>
+            <th>Perimeter</th>
+            <th>Intertidal</th>
+            <th>Islands</th>
+            <th>Percent of Territorial Sea</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{area|floatformat:'2'}} ({{area_units}})</td>
+            <td>{{perimeter|floatformat:'2'}} ({{length_units}})</td>
+            <td>{{intertidal}}</td>
+            <td>{{islands}}</td>
+            <td>{{ratio|floatformat:'2'}} %</td>
+        </tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="geoheader" colspan="4">Geographic Setting</font></th>
+        </tr>
+        <tr>
+            <th>Adjacent County</th>
+            <th>County Shoreline Percentage</th>
+            <th>Nearest Ports</th>
+            <th>Nearest Incorporated Cities</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{county.0}}</td>
+            <td>{{county_shoreline_percentages.0|floatformat:'1'}} %</td>
+            <td>{{ports.0.0}}  ({{ports.0.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{cities.0.0}}  ({{cities.0.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <tr>
+            <td>{{county.1}}</td>
+            <td>{% if county.1 %} {{county_shoreline_percentages.1|floatformat:'1'}} % {% endif %}</td>
+            <td>{{ports.1.0}}  ({{ports.1.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{cities.1.0}}  ({{cities.1.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <tr>
+            <td>{{county.2}}</td>
+            <td>{% if county.2 %} {{county_shoreline_percentages.2|floatformat:'1'}} % {% endif %}</td>
+            <td>{{ports.2.0}}  ({{ports.2.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{cities.2.0}}  ({{cities.2.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+<br></br>
+</div>
+
+<style type="text/css">
+div.img {
+    margin-left: auto;
+    margin-right: auto;
+    zoom: 80%;
+}
+
+table.marinemap-table {
+    font-size:12px;
+    width:100%;
+    border:solid 1px #fff;
+    margin:3px;
+    padding-top:4px;
+}
+
+table.marinemap-table th.geoheader {
+    background-color:#518E58;
+    color:#B0B0B0;
+    font-family:helvetica;
+    font-weight:bold;
+}
+
+table.marinemap-table th {
+    background-color:#D0D0D0;
+    color:#344E63;
+    font-weight:bold;
+}
+
+table.marinemap-table th.left {
+    background-color:#D0D0D0;
+    color:#344E63;
+    font-weight:bold;
+    text-align:left;
+}
+
+table.marinemap-table td {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    text-align:center;
+}
+
+table.marinemap-table td.left {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    text-align:left;
+}
+
+table.marinemap-table thead tr {
+    background:#FAFAFA url(../images/toolbar-bg.png) repeat-x scroll left bottom;
+    text-align:center;
+}
+
+table.marinemap-table tbody {
+    background-color:white;
+}
+
+table.marinemap-table tr.zebra {
+    background-color:#eee;
+}
+</style>
+
+

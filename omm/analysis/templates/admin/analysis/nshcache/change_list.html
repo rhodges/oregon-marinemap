@@ -1,0 +1,67 @@
+{% extends "admin/base_site.html" %}
+{% load adminmedia admin_list i18n %}
+
+{% if not is_popup %}
+  {% block breadcrumbs %}
+    <div class="breadcrumbs">
+      <a href="../../">
+        {% trans "Home" %}
+      </a>
+       &rsaquo; 
+       <a href="../">
+         {{ app_label|capfirst }}
+      </a>
+      &rsaquo; 
+      {{ cl.opts.verbose_name_plural|capfirst }}
+    </div>
+  {% endblock %}
+{% endif %}
+
+{% block coltype %}flex{% endblock %}
+
+{% block content %}
+  <div id="content-main">
+    <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
+      
+      <form action="../../../analysis/admin_clear_cache/nsh/geo/" method="post">{% csrf_token %}
+      {% if cl.formset %}
+        {{ cl.formset.management_form }}
+      {% endif %}
+      Remove Nearshore Habitat Cache Data Related to <b>Geography</b>:  
+      &nbsp; <input type="submit" value="Clear Geography Cache">
+      </form>
+      
+      <form action="../../../analysis/admin_clear_cache/nsh/phy/" method="post">{% csrf_token %}
+      {% if cl.formset %}
+        {{ cl.formset.management_form }}
+      {% endif %}
+      Remove Nearshore Habitat Cache Data Related to <b>Physical</b>:  
+      &nbsp; <input type="submit" value="Clear Physical Cache">
+      </form>
+      
+      <form action="../../../analysis/admin_clear_cache/nsh/bio/" method="post">{% csrf_token %}
+      {% if cl.formset %}
+        {{ cl.formset.management_form }}
+      {% endif %}
+      Remove Nearshore Habitat Cache Data Related to <b>Biology</b>:  
+      &nbsp; <input type="submit" value="Clear Biology Cache">
+      </form>
+      
+      <form action="../../../analysis/admin_clear_cache/nsh/hum/" method="post">{% csrf_token %}
+      {% if cl.formset %}
+        {{ cl.formset.management_form }}
+      {% endif %}
+      Remove Nearshore Habitat Cache Data Related to <b>Human Uses</b>:  
+      &nbsp; <input type="submit" value="Clear Human Use Cache">
+      </form>
+      <br/>
+      <form action="../../../analysis/admin_clear_cache/nsh/all/" method="post">{% csrf_token %}
+      {% if cl.formset %}
+        {{ cl.formset.management_form }}
+      {% endif %}
+      Remove <b>All</b> Nearshore Habitat Cache Data:  
+      &nbsp; <input type="submit" value="Clear All Cache">
+      </form>
+    </div>
+  </div>
+{% endblock %}

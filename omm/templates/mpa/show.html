@@ -1,0 +1,57 @@
+{% extends 'common/panel.html' %}
+{% block title %}{{instance.name}}{% endblock title %}
+{% block panel %}
+    <h1>{{instance.name}}</h1>
+    {% if instance.array %}
+        <p>part of the <a class="myshapes-link" href="{{instance.array.get_absolute_url}}">{{instance.array.name}}</a>.</p>
+    {% endif %}
+    <div class="tabs">
+        <ul>
+            <li><a href="#Attributes"><span>Information</span></a></li>
+            <li><a href="#Habitats"><span>Nearshore Habitats</span></a></li>
+            <li><a href="#Sites"><span>Energy Sites</span></a></li>
+        </ul>
+        <div id="Attributes">
+            <ul class="metadata">
+              {% if instance.user.first_name and instance.user.last_name %} 
+                <li class="creator">Created By {{instance.user.first_name}} {{instance.user.last_name}}</li>
+              {% else %}
+                <li class="creator">Created By {{instance.user.username}}</li>
+              {% endif %}
+                <li class="created">Created {{instance.date_created|date:"d M, Y P"}}</li>
+                <li class="modified">Modified {{instance.date_modified|date:"d M, Y P"}}</li>
+                <br class="clear" />
+            </ul>
+            <h2>Description</h2>
+            <p>{{instance.description}}</p>
+            <h2>Other Information</h2>
+            <p><strong>Area ID:</strong> {{instance.pk}}</p>
+        </div>
+        <div id="Habitats" class="tabs">
+            <ul>
+                <li><a href="#Hab_Instructions"><span>Instructions</span></a></li>
+                <li><a href="{% url nsh_analysis instance.pk 'geo' %}"><span>Geography</span></a></li>
+                <li><a href="{% url nsh_analysis instance.pk 'phy' %}"><span>Physical</span></a></li>
+                <li><a href="{% url nsh_analysis instance.pk 'bio' %}"><span>Biology</span></a></li>
+                <li><a href="{% url nsh_analysis instance.pk 'hum' %}"><span>Human</span></a></li>
+            </ul>
+            <div id="Hab_Instructions">
+                <h3>Nearshore Habitat Analysis Instructions</h3>
+                <p>This page contains Nearshore Habitat analysis information specific to your Area of Interest. </p>
+            </div>
+        </div>
+        <div id="Sites" class="tabs">
+            <ul>
+                <li><a href="#AES_Instructions"><span>Instructions</span></a></li>
+                <li><a href="{% url aes_analysis instance.pk 'geo' %}"><span>Geography</span></a></li>
+                <li><a href="{% url aes_analysis instance.pk 'phy' %}"><span>Physical</span></a></li>
+                <li><a href="{% url aes_analysis instance.pk 'bio' %}"><span>Biology</span></a></li>
+                <li><a href="{% url aes_analysis instance.pk 'hum' %}"><span>Human</span></a></li>
+            </ul>
+            <div id="AES_Instructions">
+                <h3>Alternative Energy Site Analysis Instructions</h3>
+                <p>This page contains Alternative Energy Site analysis information specific to your Area of Interest. </p>
+            </div>
+        </div>
+    </div>
+{% endblock panel %}
