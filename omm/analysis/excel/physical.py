@@ -58,7 +58,7 @@ def phy_subtidal_data(ws, context, row=7):
         ws.write(row+1, 2, context['default_value'], data_style)
     offset = 0
     for proportion in context['lithology_proportions']:
-        ws.write(row+offset, 3, str('%.1f%%    %s    (%.2f %s)') %(proportion[0], proportion[1], proportion[2], context['length_units']), data_style)
+        ws.write(row+offset, 3, str('%.1f%%    %s    (%.2f %s)') %(proportion[0], proportion[1], proportion[2], context['area_units']), data_style)
         offset += 1
     if context['subtidal_area'] > 0.0:
         ws.write(row, 4, str('%.1f meters') % context['average_depth'], data_style)

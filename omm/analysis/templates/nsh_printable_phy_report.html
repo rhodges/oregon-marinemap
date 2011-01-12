@@ -90,7 +90,7 @@
                 {{default_value}}
             {% endif %}
             {% for proportion in lithology_proportions %}
-                {{proportion.0|floatformat:'1'}}% &nbsp; {{proportion.1}} &nbsp; ({{proportion.2|floatformat:'2'}} {{length_units}}) </br>
+                {{proportion.0|floatformat:'1'}}% &nbsp; {{proportion.1}} &nbsp; ({{proportion.2|floatformat:'2'}} {{area_units}}) </br>
             {% endfor %}
             </td>
             {% if subtidal_area == 0.0 %}
