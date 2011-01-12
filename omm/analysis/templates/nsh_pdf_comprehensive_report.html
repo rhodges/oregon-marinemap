@@ -39,20 +39,20 @@
         <tr>
             <td>{{geo.county.0}}</td>
             <td>{{geo.county_shoreline_percentages.0|floatformat:'1'}} %</td>
-            <td>{{geo.ports.0.0}}  ({{geo.ports.0.1|floatformat:'1'}}{{geo.length_units}})</td>
-            <td>{{geo.cities.0.0}}  ({{geo.cities.0.1|floatformat:'1'}}{{geo.length_units}})</td>
+            <td>{{geo.ports.0.0}}  ({{geo.ports.0.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.cities.0.0}}  ({{geo.cities.0.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
         <tr>
             <td>{{geo.county.1}}</td>
             <td>{% if geo.county.1 %} {{geo.county_shoreline_percentages.1|floatformat:'1'}} % {% endif %}</td>
-            <td>{{geo.ports.1.0}}  ({{geo.ports.1.1|floatformat:'1'}}{{geo.length_units}})</td>
-            <td>{{geo.cities.1.0}}  ({{geo.cities.1.1|floatformat:'1'}}{{geo.length_units}})</td>
+            <td>{{geo.ports.1.0}}  ({{geo.ports.1.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.cities.1.0}}  ({{geo.cities.1.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
         <tr>
             <td>{{geo.county.2}}</td>
             <td>{% if geo.county.2 %} {{geo.county_shoreline_percentages.2|floatformat:'1'}} % {% endif %}</td>
-            <td>{{geo.ports.2.0}}  ({{geo.ports.2.1|floatformat:'1'}}{{geo.length_units}})</td>
-            <td>{{geo.cities.2.0}}  ({{geo.cities.2.1|floatformat:'1'}}{{geo.length_units}})</td>
+            <td>{{geo.ports.2.0}}  ({{geo.ports.2.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.cities.2.0}}  ({{geo.cities.2.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
     </tbody>
 </table>
@@ -81,12 +81,12 @@
         <tr>
             <td>
             {% for park in hum.parks %}
-                {{park.0}} State Park &nbsp; ({{park.1|floatformat:'2'}}{{hum.length_units}})</br>
+                {{park.0}} State Park &nbsp; ({{park.1|floatformat:'2'}} {{hum.length_units}})</br>
             {% endfor %}
             </td>
             <td>
             {% for site in hum.access_sites %}
-                {{site.0}} &nbsp; ({{site.1|floatformat:'1'}}{{hum.length_units}})</br>
+                {{site.0}} &nbsp; ({{site.1|floatformat:'1'}} {{hum.length_units}})</br>
             {% endfor %}
             </td>
             <td>
@@ -160,7 +160,7 @@
         <tr>
             <td valign="top" colspan="1">
                 {% for port in hum.nearest_ports %}
-                    {{port.0}} ({{port.1|floatformat:'1'}}{{hum.length_units}})</br>
+                    {{port.0}} ({{port.1|floatformat:'1'}} {{hum.length_units}})</br>
                 {% endfor %}
             </td>
             <td valign="top" colspan="2">
