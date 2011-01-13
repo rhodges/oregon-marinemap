@@ -11,15 +11,15 @@
     <tbody>
         <tr class="grey">
             {% if county.1 %}
-            <td><b>Adjacent Counties</b></td>
+            <td><b>Adjacent Counties</b><sup>5</sup></td>
             {% else %}
-            <td><b>Adjacent County</b></td>
+            <td><b>Adjacent County</b><sup>5</sup></td>
             {% endif %}
             <td></td>
             {% if county.1 %}
-            <td><b>County Shoreline Percentages</b></td>
+            <td><b>County Shoreline Percentages</b><sup>6</sup></td>
             {% else %}
-            <td><b>County Shoreline Percentage</b></td>
+            <td><b>County Shoreline Percentage</b><sup>6</sup></td>
             {% endif %}
         </tr>
         <tr>
@@ -43,9 +43,9 @@
         {% endif %}
         <p>
         <tr class="grey">
-            <td><b>Nearest Incorporated Cities</b></td>
+            <td><b>Nearest Incorporated Cities</b><sup>7</sup></td>
             <td></td>
-            <td><b>Nearest Ports</b></td>
+            <td><b>Nearest Ports</b><sup>8</sup></td>
         </tr>
         <tr>
             <td>{{cities.0.0}}  ({{cities.0.1|floatformat:'1'}} {{length_units}})</td>
@@ -66,6 +66,13 @@
 </table>
 </div>
 {% endblock GeographicSetting %}
+
+{% block GeographicSettingFootnotes %}
+<p>5. The Area of Interest is within or adjacent to the following Oregon Counties.  If the Area borders 2 counties then both will be reported.  This is determined using the Oregon County Boundaries (2009) data at the 1:24,000 scale. </p>
+<p>6. The percentage of each counties shoreline within the Area of Interest is calculated using the NOAA ESI shoreline that has been clipped to the extent of each county.  </p>
+<p>7. The distance to the nearest 3 cities is calculated in miles.  The calculation uses the ODOT City Boundaries (2009) data set to determine the distance.</p>
+<p>8. The straight line distance to the nearest 3 ports is calculated from the Area of interest.  This is determined using the Oregon Port Locations, OCMP, 2008 data set.  </p>
+{% endblock GeographicSettingFootnotes %}
 
 {% block ExportableReports %}
 <p>

@@ -1,5 +1,6 @@
 {% extends 'common/panel.html' %}
 
+
 {% block panel %}
 
 {% block GeneralSpatial %}
@@ -9,9 +10,9 @@
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <tr class="grey">
-            <td><b>Area</b></td>
+            <td><b>Area</b><sup>1</sup></td>
             <td></td>
-            <td><b>Perimeter</b></td>
+            <td><b>Perimeter</b><sup>2</sup></td>
         </tr>
         <tr>
             <td>{{area|floatformat:'2'}} {{area_units}}</td>
@@ -20,9 +21,9 @@
         </tr>
         <p>
         <tr class="grey">
-            <td><b>Intertidal</b></td>
+            <td><b>Intertidal</b><sup>3</sup></td>
             <td></td>
-            <td><b>Islands</b></td>
+            <td><b>Islands</b><sup>4</sup></td>
         </tr>
         <tr>
             <td>{{intertidal}}</td>
@@ -48,8 +49,31 @@
 {% block GeographicSetting %}
 {% endblock GeographicSetting %}
 
+{% block FootnotesHeader %}
+<p><h3><b>Footnotes on Report Calculations</b></h3></p>
+{% endblock FootnotesHeader %}
+
+<div class='freetext'>
+
+{% block GeneralSpatialFootnotes %}
+<p>1. Area of the Area of interest is calculated in square miles. </p>
+<p>2. Perimeter of the Area of Interest is calculated in miles.  </p>
+<p>3. Intertidal Habitats: Does the Area of Interest intersect the shoreline, including the shoreline of islands.??  A yes/no result is determined from an intersect query.  This is determined using the 1:24,000 scale NOAA ESI shoreline.    </p>
+<p>4. The presence of islands within the Area of Interest is determined using the USFWS Oregon Islands National Wildlife Refuge data.  </p>
+{% endblock GeneralSpatialFootnotes %}
+
+{% block GeographicSettingFootnotes %}
+{% endblock GeographicSettingFootnotes %}
+
+</div>
+
 {% block ExportableReports %}
 {% endblock ExportableReports %}
 
 {% endblock panel %}
 
+{% block CSS %}
+<style type="text/css">
+h3 { font-weight: bold; }
+</style>
+{% endblock CSS %}
