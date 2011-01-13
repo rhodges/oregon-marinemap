@@ -11,9 +11,9 @@
     <tbody>
         <tr class="grey">
             {% if county.1 %}
-            <td><b>Adjacent Counties</b></td>
+            <td><b>Adjacent Counties</b><sup>5</sup></td>
             {% else %}
-            <td><b>Adjacent County</b></td>
+            <td><b>Adjacent County</b><sup>5</sup></td>
             {% endif %}
             <td><b>Nearest Urban Growth Boundaries</b></td>
         </tr>
@@ -32,7 +32,7 @@
         <p>
     
         <tr class="grey">
-            <td colspan="2"><b>Nearest Ports</b></td>
+            <td colspan="2"><b>Nearest Ports</b><sup>6</sup></td>
         </tr>
         {% for port in ports%}
         <tr>
@@ -55,6 +55,11 @@
 </table>
 </div>
 {% endblock GeographicSetting %}
+
+{% block GeographicSettingFootnotes %}
+<p>5. The Area of Interest is within or adjacent to the following Oregon Counties.  If the Area borders 2 counties then both will be reported.  This is determined using the Oregon County Boundaries (2009) data at the 1:24,000 scale. </p>
+<p>6. The straight line distance to the nearest 3 ports is calculated from the Area of interest.  This is determined using the Oregon Port Locations, OCMP, 2008 data set.  </p>
+{% endblock GeographicSettingFootnotes %}
 
 {% block ExportableReports %}
 <p>
