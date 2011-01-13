@@ -123,13 +123,15 @@ Called by display_phy_analysis
 def get_shoreline_length(nsh):
     shorelines = ClosedShoreline.objects.all()
     islands = Islands.objects.all()
-    mainland_shorelines = [shoreline for shoreline in shorelines if shoreline.geometry.intersects(nsh.geometry_final)]
+    mainland_shorelines = [shoreline for shoreline in shorelines if shoreline.geometry.buffer(1).intersects(nsh.geometry_final)]
     island_shorelines = [island for island in islands if island.geometry.intersects(nsh.geometry_final)]
     if len(mainland_shorelines) == len(island_shorelines) == 0:
         return None
-    mainland_shoreline_lengths = [shoreline.geometry.intersection(nsh.geometry_final).length for shoreline in mainland_shorelines]
+    mainland_shoreline_lengths = [shoreline.geometry.buffer(1).intersection(nsh.geometry_final).length for shoreline in mainland_shorelines]
     island_shoreline_lengths = [shoreline.geometry.intersection(nsh.geometry_final).length for shoreline in island_shorelines]
     total_length = sum(mainland_shoreline_lengths) + sum(island_shoreline_lengths)
+    #account for the buffering of the shoreline (this is pretty negligible)
+    total_length -= 2 * (len(mainland_shorelines)-1)
     total_length_converted_units = length_in_display_units(total_length)
     return total_length_converted_units
      
@@ -153,8 +155,8 @@ Called by display_phy_analysis
 '''    
 def get_shoreline_proportions(nsh):
     shorelines = Shoreline.objects.all()
-    inter_shorelines = [shoreline for shoreline in shorelines if shoreline.geometry.intersects(nsh.geometry_final)]
-    esi_length_tuples = [(esi_to_text(shoreline.esi[0]), length_in_display_units(shoreline.geometry.intersection(nsh.geometry_final).length)) for shoreline in inter_shorelines]
+    inter_shorelines = [shoreline for shoreline in shorelines if shoreline.geometry.buffer(1).intersects(nsh.geometry_final)]
+    esi_length_tuples = [(esi_to_text(shoreline.esi[0]), length_in_display_units(shoreline.geometry.buffer(1).intersection(nsh.geometry_final).length-2)) for shoreline in inter_shorelines]
     esi_length_dict = {}
     total_length = 0.0
     for tuple in esi_length_tuples:
