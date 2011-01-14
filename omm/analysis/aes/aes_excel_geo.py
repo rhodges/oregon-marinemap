@@ -18,7 +18,7 @@ def geo_setting_headers(ws, context, row=7):
         ws.write(row, 1, "Adjacent Counties", heading_column_style)
     else:
         ws.write(row, 1, "Adjacent County", heading_column_style)
-    ws.write(row, 2, 'Nearest Urban Growth Boundaries', heading_column_style)
+    ws.write(row, 2, 'Nearest Cities', heading_column_style)
     ws.write(row, 3, "Nearest Ports", heading_column_style)
     ws.write(row, 4, "Nearest Marinas", heading_column_style)
     
@@ -28,8 +28,8 @@ def geo_setting_data(ws, context, row=8):
         ws.write(row+offset, 1, county, data_style)
         offset += 1
     offset = 0
-    for ugb in context['nearest_ugbs']:
-        ws.write(row+offset, 2, str(ugb[0]) + ' (%.1f %s)' % (ugb[1], context['length_units']), data_style)
+    for city in context['cities']:
+        ws.write(row+offset, 2, str(city[0]) + ' (%.1f %s)' % (city[1], context['length_units']), data_style)
         offset += 1
     offset = 0
     for port in context['ports']:

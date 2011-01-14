@@ -30,24 +30,24 @@
         </tr>
         <tr>
             <th>Adjacent County</th>
-            <th>Urban Growth Boundaries</th>
+            <th>Nearest Cities</th>
             <th>Nearest Ports</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{county.0}}</td>
-            <td>{{ nearest_ugbs.0.0}} &nbsp; ({{ nearest_ugbs.0.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{ cities.0.0}} &nbsp; ({{ cities.0.1|floatformat:'1'}} {{length_units}})</td>
             <td>{{ports.0.0}}  ({{ports.0.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         <tr>
             <td>{{county.1}}</td>
-            <td>{{ nearest_ugbs.1.0}} &nbsp; ({{ nearest_ugbs.1.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{ cities.1.0}} &nbsp; ({{ cities.1.1|floatformat:'1'}} {{length_units}})</td>
             <td>{{ports.1.0}}  ({{ports.1.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         <tr>
             <td>{{county.2}}</td>
-            <td>{{ nearest_ugbs.2.0}} &nbsp; ({{ nearest_ugbs.2.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{ cities.2.0}} &nbsp; ({{ cities.2.1|floatformat:'1'}} {{length_units}})</td>
             <td>{{ports.2.0}}  ({{ports.2.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
     </tbody>
