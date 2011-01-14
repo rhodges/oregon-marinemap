@@ -10,7 +10,7 @@ def geo_spatial_headers(ws, row=3):
     ws.write(row, 3, "Intertidal", heading_column_style)
     ws.col(3).width = 35*256
     ws.write(row, 4, "Islands", heading_column_style)
-    ws.col(4).width = 35*256
+    ws.col(4).width = 40*256
     ws.write(row, 5, "Percent of Territorial Sea", heading_column_style)
     ws.col(5).width = 35*256
     
