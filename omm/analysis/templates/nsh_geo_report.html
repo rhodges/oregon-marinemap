@@ -11,15 +11,15 @@
     <tbody>
         <tr class="grey">
             {% if county.1 %}
-            <td><b>Adjacent Counties</b><sup>5</sup></td>
+            <td><b>Adjacent Counties</b><sup>&nbsp;5</sup></td>
             {% else %}
-            <td><b>Adjacent County</b><sup>5</sup></td>
+            <td><b>Adjacent County</b><sup>&nbsp;5</sup></td>
             {% endif %}
             <td></td>
             {% if county.1 %}
-            <td><b>County Shoreline Percentages</b><sup>6</sup></td>
+            <td><b>County Shoreline Percentages</b><sup>&nbsp;6</sup></td>
             {% else %}
-            <td><b>County Shoreline Percentage</b><sup>6</sup></td>
+            <td><b>County Shoreline Percentage</b><sup>&nbsp;6</sup></td>
             {% endif %}
         </tr>
         <tr>
@@ -43,9 +43,9 @@
         {% endif %}
         <p>
         <tr class="grey">
-            <td><b>Nearest Incorporated Cities</b><sup>7</sup></td>
+            <td><b>Nearest Incorporated Cities</b><sup>&nbsp;7</sup></td>
             <td></td>
-            <td><b>Nearest Ports</b><sup>8</sup></td>
+            <td><b>Nearest Ports</b><sup>&nbsp;8</sup></td>
         </tr>
         <tr>
             <td>{{cities.0.0}}  ({{cities.0.1|floatformat:'1'}} {{length_units}})</td>
