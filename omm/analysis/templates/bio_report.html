@@ -10,7 +10,7 @@
     <tbody>
         <!-- Plover -->
         <tr class="grey">
-            <td colspan="3"><b>Nearest Western Snowy Plover Critical Habitat &nbsp; </b></td>
+            <td colspan="3"><b>Nearest Western Snowy Plover Critical Habitat</b><sup>&nbsp;1</sup></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_snowy_plover|floatformat:'1'}} {{length_units}} &nbsp; </td>
@@ -19,7 +19,7 @@
         
         <!-- Murrelet -->
         <tr class="grey">
-            <td colspan="3"><b>Nearest Marbled Murrelet Critical Habitat &nbsp; </b></td>
+            <td colspan="3"><b>Nearest Marbled Murrelet Critical Habitat</b><sup>&nbsp;2</sup></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_marbled_murrelet|floatformat:'1'}} {{length_units}} &nbsp; </td>
@@ -37,9 +37,9 @@
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <tr class="grey">
-            <td><b>Pinniped Haulouts</b></td>
+            <td><b>Pinniped Haulouts</b><sup>&nbsp;3</sup></td>
             <td></td>
-            <td><b>Steller Sea Lion Rookeries</b></td>
+            <td><b>Steller Sea Lion Rookeries</b><sup>&nbsp;4</sup></td>
         </tr>
         <tr>
             {% if num_haulouts == 0 %}
@@ -56,7 +56,7 @@
         </tr>
         {% if num_haulouts != 0 %}
         <tr class="grey">
-            <td colspan="3"><b>Pinniped Haulout Details &nbsp; </b></td>
+            <td colspan="3"><b>Pinniped Haulout Details</b><sup>&nbsp;5</sup></td>
         </tr>
         {% endif %}
     </tbody>
@@ -81,7 +81,7 @@
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <tr class="grey">
-            <td colspan="2"><b>Steller Sea Lion Critical Habitats &nbsp; </b></td>
+            <td colspan="2"><b>Steller Sea Lion Critical Habitats</b><sup>&nbsp;6</sup></td>
         </tr>
         {% if num_sealion_habs == 0 %}
         <tr>
@@ -102,7 +102,7 @@
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <tr class="grey">
-            <td colspan="3"><b>Bird Colonies &nbsp; </b></td>
+            <td colspan="3"><b>Bird Colonies</b><sup>&nbsp;7</sup></td>
         </tr>
         <tr>
             {% if bird_colonies == 0 %}
@@ -113,7 +113,7 @@
         </tr>
         {% if bird_colonies != 0 %}
         <tr class="grey">
-            <td colspan="3"><b>Bird Colony Details &nbsp; </b></td>
+            <td colspan="3"><b>Bird Colony Details</b><sup>&nbsp;8</sup></td>
         </tr>
         {% endif %}
     </tbody>
@@ -145,7 +145,7 @@
     <tbody>
         <!-- Habitat Types -->
         <tr class="grey">
-            <td colspan="3"><b>Habitat Type & Proportions</b></td>
+            <td colspan="3"><b>Habitat Type & Proportions</b><sup>&nbsp;9</sup></td>
         </tr>
         <tr>
             <td colspan="3">
@@ -161,7 +161,7 @@
         
         <!-- Fish Species -->
         <tr class="grey">
-            <td colspan="3"><b>Predicted Fish Species <br>(Provided by <a target="_blank" href="http://www.nwfsc.noaa.gov/">NOAA's Northwest Fisheries Science Center</a>)</b></td>
+            <td colspan="3"><b>Predicted Fish Species</b><sup>&nbsp;10</sup><br>(Provided by <a target="_blank" href="http://www.nwfsc.noaa.gov/">NOAA's Northwest Fisheries Science Center</a>)</td>
         </tr>
         <tr class="{% cycle '' 'grey' %}">
             <td colspan="3">
@@ -177,8 +177,8 @@
         
         <!-- Sturgeon -->
         <tr class="grey">
-            <td><b>Green Sturgeon</b></td>
-            <td><b>Green Sturgeon Area Percentage</b></td>
+            <td><b>Green Sturgeon</b><sup>&nbsp;11</sup></td>
+            <td><b>Green Sturgeon Area Percentage</b><sup>&nbsp;12</sup></td>
         </tr>
         <tr>
             <td>{{green_sturgeon}}</td>
@@ -196,7 +196,7 @@
         </tr>
         {% else %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest Coho Populated Stream</b></td>
+            <td colspan="3"><b>Nearest Coho Populated Stream</b><sup>&nbsp;13</sup></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_coho_stream|floatformat:'1'}} {{length_units}} &nbsp; </td>
@@ -207,15 +207,15 @@
         <!-- Kelp -->
         {% if kelp_data.0.2 == default_value %}
          <tr class="grey">
-            <td colspan="3"><b>Kelp Surveys</b></td>
+            <td colspan="3"><b>Kelp Surveys</b><sup>&nbsp;14</sup></td>
         </tr>
         <tr>
             <td colspan="3">{{kelp_data.0.0}}</td>
         </tr>
         {% else %}
         <tr class="grey">
-            <td><b>Kelp Survey Year</b></td>
-            <td colspan="2"><b>Kelp Proportions</b></td>
+            <td><b>Kelp Survey Year</b><sup>&nbsp;14</sup></td>
+            <td colspan="2"><b>Kelp Proportions</b><sup>&nbsp;15</sup></td>
         </tr>
         {% for data in kelp_data %}
         <tr>
@@ -229,14 +229,14 @@
         <!-- Seagrass -->
         {% if seagrass_area == 0.0 %}
         <tr class="grey">
-            <td colspan="3"><b>Seagrass</b></td>
+            <td colspan="3"><b>Seagrass</b><sup>&nbsp;16</sup></td>
         </tr>
         <tr>
             <td colspan="3">None</td>
         </tr>
         {% else %}
         <tr class="grey">
-            <td colspan="3"><b>Seagrass Area</b></td>
+            <td colspan="3"><b>Seagrass Area</b><sup>&nbsp;16</sup></td>
         </tr>
         <tr>
             <td colspan="3">{{seagrass_area|floatformat:'2'}} {{area_units}}</td>
@@ -247,7 +247,46 @@
 </div>
 {% endblock SubtidalBiological %}
 
+{% block FootnotesHeader %}
+<p><h3>Footnotes on Report Calculations</h3></p>
+{% endblock FootnotesHeader %}
+
+<div class='freetext'>
+
+{% block TerrestrialBiologicalFootnotes %}
+<p>1. Distance to the nearest Western Snowy Plover Critical Habitat data, as determined using the Western Snowy Plover Final Critical Habitat, USFWS, 2005 data.  </p>
+<p>2. Distance from the Area of Interest to the nearest Marbled Murrelet Critical Habitat, as defined by the USFWS, 1996 data.  </p>
+{% endblock TerrestrialBiologicalFootnotes %}
+
+{% block IntertidalBiologicalFootnotes %}
+<p>3. Pinniped Haulouts.  Determines the number of Pinniped (Marine Mammal) haulouts within the Area of Interest.  Calculated using the ODFW generated Pinniped Haulout information, 2008. </p>
+<p>4. Steller Sea Lion Rookeries.  Determines from the ODFW generated Pinniped Haulout information (2008) whether there are any Steller Sea Lion haulouts within the Area of interest.  </p>
+<p>5. Pinniped Haulout Details: For those haulouts present within the Area of Interest, the name of the haulout and the species that occur there are listed.  Information provided from the ODFW generated Pinniped Haulout information, 2008. </p>
+<p>6. Determines whether there are any Steller Sea Lion Critical Habitat Areas within the Area of Interest.  Calculated using the data representation of Designated Steller Sea Lion Critical Habitat in Oregon.</p>
+<p>7. Seabird Colonies: Determines whether or not there are any nesting seabird colonies within the Area of Interest, and if present reports the number of colonies from the Catalog of Oregon Seabird Colonies (2007), USFWS.  </p>
+<p>8. Seabird Colony Details: For those seabird colonies present within the Area of Interest, the field reports the name of the colony and colony ID (from the Catalog), along with a listing of the species in the area. </p>
+{% endblock IntertidalBiologicalFootnotes %}
+
+{% block SubtidalBiologicalFootnotes %}
+<p>9. Habitat Type and Proportions within the Area of Interest are calculated using the data from the Surficial Geologic Habitat off Oregon, Version 3, OSU ATSML, 2008.  </p>
+<p>10. Predicted Fish Species:  The Area of Interest is used to send a report to the Habitat Use Database provided by the NOAA Northwest Fisheries Science Center.  That query returns a list of the predicted species based upon a set of criteria from within the Area of Interest.</p>
+<p>11.  Determines whether or not the Critical Habitat Areas designated for Green Sturgeon intersect with the Area of interest.  Two different layers are used in the determination, Estuary Critical Habitat data and the Coastal Zone Critical Habitat data.</p>
+<p>12. The overlap within the Area of Interest that is also Green Sturgeon Critical Habitat is calculated. </p>
+<p>13. The distance to the nearest stream with ESA listed Coho Salmon present is reported based on the Oregon Coastal Coho Critical Habitat data.  </p>
+<p>14. Lists the surveys within the Area of Interest where Canopy forming kelp was observed.  </p>
+<p>15. If there are kelp surveys that have identified canopy forming kelp within the Area of Interest, then the proportion of area within the Area of Interest where kelp is observed is reported, both as a percentage, and an area in square miles.  </p>
+<p>16. The presence of Seagrass within the Area of Interest is reported, based upon the data within Alternative B.4 (Seagrass Compilation) for West Coast Groundfish Essential Fish Habitat draft EIS, PSMFC, 2004.  If present, then the total area of seagrass is reported in square miles.  </p>
+{% endblock SubtidalBiologicalFootnotes %}
+
+</div>
+
 {% block ExportableReports %}
 {% endblock ExportableReports %}
+
+{% block CSS %}
+<style type="text/css">
+h3 { font-weight: bold; }
+</style>
+{% endblock CSS %}
 
 {% endblock panel %}
