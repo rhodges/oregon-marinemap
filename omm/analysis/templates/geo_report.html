@@ -10,9 +10,9 @@
 <table  style='width:450px' class='aoi_analysis_container'>
     <tbody>
         <tr class="grey">
-            <td><b>Area</b><sup>1</sup></td>
+            <td><b>Area</b><sup>&nbsp;1</sup></td>
             <td></td>
-            <td><b>Perimeter</b><sup>2</sup></td>
+            <td><b>Perimeter</b><sup>&nbsp;2</sup></td>
         </tr>
         <tr>
             <td>{{area|floatformat:'2'}} {{area_units}}</td>
@@ -21,9 +21,9 @@
         </tr>
         <p>
         <tr class="grey">
-            <td><b>Intertidal</b><sup>3</sup></td>
+            <td><b>Intertidal</b><sup>&nbsp;3</sup></td>
             <td></td>
-            <td><b>Islands</b><sup>4</sup></td>
+            <td><b>Islands</b><sup>&nbsp;4</sup></td>
         </tr>
         <tr>
             <td>{{intertidal}}</td>
@@ -50,7 +50,7 @@
 {% endblock GeographicSetting %}
 
 {% block FootnotesHeader %}
-<p><h3><b>Footnotes on Report Calculations</b></h3></p>
+<p><h3>Footnotes on Report Calculations</h3></p>
 {% endblock FootnotesHeader %}
 
 <div class='freetext'>
@@ -70,10 +70,11 @@
 {% block ExportableReports %}
 {% endblock ExportableReports %}
 
-{% endblock panel %}
-
 {% block CSS %}
 <style type="text/css">
 h3 { font-weight: bold; }
 </style>
 {% endblock CSS %}
+
+{% endblock panel %}
+
