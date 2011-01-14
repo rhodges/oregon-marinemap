@@ -15,24 +15,24 @@
             {% else %}
             <td><b>Adjacent County</b><sup>&nbsp;5</sup></td>
             {% endif %}
-            <td><b>Nearest Urban Growth Boundaries</b></td>
+            <td><b>Nearest Cities</b><sup>&nbsp;6</sup></td>
         </tr>
         <tr>
             <td>{{county.0}}</td>
-            <td>{{ nearest_ugbs.0.0}} &nbsp; ({{ nearest_ugbs.0.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{ cities.0.0}} &nbsp; ({{ cities.0.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         <tr>
             <td>{% if county.1 %}{{county.1}}{% endif %}</td>
-            <td>{{ nearest_ugbs.1.0}} &nbsp; ({{ nearest_ugbs.1.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{ cities.1.0}} &nbsp; ({{ cities.1.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         <tr>
             <td></td>
-            <td>{{ nearest_ugbs.2.0}} &nbsp; ({{ nearest_ugbs.2.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{ cities.2.0}} &nbsp; ({{ cities.2.1|floatformat:'1'}} {{length_units}})</td>
         </tr>
         <p>
     
         <tr class="grey">
-            <td colspan="2"><b>Nearest Ports</b><sup>&nbsp;6</sup></td>
+            <td colspan="2"><b>Nearest Ports</b><sup>&nbsp;7</sup></td>
         </tr>
         {% for port in ports%}
         <tr>
@@ -42,7 +42,7 @@
         <p>
         
         <tr class="grey">
-            <td colspan="2"><b>Nearest Marinas</b></td>
+            <td colspan="2"><b>Nearest Marinas</b><sup>&nbsp;8</sup></td>
         </tr>
         {% for marina in marinas %}
         <tr>
@@ -58,7 +58,9 @@
 
 {% block GeographicSettingFootnotes %}
 <p>5. The Area of Interest is within or adjacent to the following Oregon Counties.  If the Area borders 2 counties then both will be reported.  This is determined using the Oregon County Boundaries (2009) data at the 1:24,000 scale. </p>
-<p>6. The straight line distance to the nearest 3 ports is calculated from the Area of interest.  This is determined using the Oregon Port Locations, OCMP, 2008 data set.  </p>
+<p>6. The distance to the nearest 3 city is calculated in miles.  The calculation uses the ODOT City Boundary data (2009) to determine the distance. </p>
+<p>7. The straight line distance to the nearest 3 ports is calculated from the Area of interest.  This is determined using the Oregon Port Locations, OCMP, 2008 data set.  </p>
+<p>8. The distance to the nearest 3 marinas is calculated in miles.  The calculation uses the Oregon Marina Locations (2009), RITA-NTAD, data set to determine the name and straight line distance for each marina reported. </p>
 {% endblock GeographicSettingFootnotes %}
 
 {% block ExportableReports %}

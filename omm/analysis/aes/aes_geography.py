@@ -43,21 +43,23 @@ def get_aes_geo_context(aes, type):
 Run the analysis, create the cache, and return the results as a context dictionary so they may be rendered with template
 '''    
 def run_aes_geo_analysis(aes, type):
-    #get nearest urban growth boundaries
-    nearest_ugbs = get_nearest_ugbs(aes)
+    #get nearest 3 cities
+    cities = get_nearest_cities(aes)
     #get nearest 3 marinas
     marinas = get_nearest_marinas(aes)
     #visible from shore
     visible = is_visible_from_shore(aes)
     #compile context
-    context = {'aes': aes, 'nearest_ugbs': nearest_ugbs, 'marinas': marinas, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'visible': visible}
+    context = {'aes': aes, 'cities': cities, 'marinas': marinas, 'length_units': settings.DISPLAY_LENGTH_UNITS, 'visible': visible}
     return context
     
 '''
-'''
-def get_nearest_ugbs(aes):
-    return get_nearest_geometries_with_distances(aes, 'urbangrowthboundaries')
-        
+Determines the Nearest 3 Cities (in order of proximity) for the given nearshore habitat shape
+Called by display_nsh_geo_analysis
+'''    
+def get_nearest_cities(aes):
+    return get_nearest_geometries_with_distances(aes, 'cities')
+    
 '''
 Determines the Nearest 3 Ports (in order of proximity) for the given energy site shape
 Called by display_aes_geo_analysis
