@@ -8,7 +8,7 @@
     <tbody>
         <!-- Parks -->
         <tr class="grey">
-            <td colspan="3"><b>Nearest State Parks</b></td>
+            <td colspan="3"><b>Nearest State Parks</b><sup>&nbsp;1</sup></td>
         </tr>
         {% for park in parks %}
         <tr>
@@ -19,7 +19,7 @@
         
         <!-- Public Access -->
         <tr class="grey">
-            <td colspan="3"><b>Nearest Public Access Sites</b></td>
+            <td colspan="3"><b>Nearest Public Access Sites</b><sup>&nbsp;2</sup></td>
         </tr>
         {% for site in access_sites %}
         <tr>
@@ -30,7 +30,7 @@
         
         <!-- Rocky Shores -->
         <tr class="grey">
-            <td colspan="3"><b>Nearest Rocky Shore Areas</b></td>
+            <td colspan="3"><b>Nearest Rocky Shore Areas</b><sup>&nbsp;3</sup></td>
         </tr>
         {% for rockyshore in rockyshores %}
         <tr>
@@ -50,7 +50,7 @@
     
         <!-- Dredge Materials Data -->
         <tr class="grey">
-            <td colspan="3"><b>Dredge Materials Disposal Sites</b></td>
+            <td colspan="3"><b>Dredge Materials Disposal Sites</b><sup>&nbsp;4</sup></td>
         </tr>
         {% for data in intersecting_dmds %}
         <tr>
@@ -58,7 +58,7 @@
         </tr>
         {% endfor %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest (non-intersecting) DMD Site</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) DMD Site</b><sup>&nbsp;5</sup></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_dmd.0}} ({{nearest_dmd.1|floatformat:'2'}} {{length_units}})</td>
@@ -67,7 +67,7 @@
 
         <!-- Outfall Sites Data -->
         <tr class="grey">
-            <td colspan="3"><b>NPDES Outfall Sites</b></td>
+            <td colspan="3"><b>NPDES Outfall Sites</b><sup>&nbsp;6</sup></td>
         </tr>
         {% for data in intersecting_outfalls %}
         <tr>
@@ -75,7 +75,7 @@
         </tr>
         {% endfor %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest (non-intersecting) Outfall Site</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) Outfall Site</b><sup>&nbsp;7</sup></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_outfall.0}} ({{nearest_outfall.1|floatformat:'2'}} {{length_units}})</td>
@@ -84,7 +84,7 @@
         
         <!-- Undersea Cable Data -->
         <tr class="grey">
-            <td colspan="3"><b>Undersea Cable Routes</b></td>
+            <td colspan="3"><b>Undersea Cable Routes</b><sup>&nbsp;8</sup></td>
         </tr>
         {% for data in intersecting_cables %}
         <tr>
@@ -92,7 +92,7 @@
         </tr>
         {% endfor %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest (non-intersecting) Cable Route</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) Cable Route</b><sup>&nbsp;9</sup></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_cable.0}} ({{nearest_cable.1|floatformat:'2'}} {{length_units}})</td>
@@ -110,7 +110,7 @@
     <tbody>
         <!-- Ports -->
         <tr class="grey">
-            <td colspan="3"><b>Proximity to Ports</b></td>
+            <td colspan="3"><b>Proximity to Ports</b><sup>&nbsp;10</sup></td>
         </tr>
         {% for port in nearest_ports %}
             <tr>
@@ -121,7 +121,7 @@
         
         <!-- Marinas -->
         <tr class="grey">
-            <td colspan="3"><b>Nearest Marinas</b></td>
+            <td colspan="3"><b>Nearest Marinas</b><sup>&nbsp;11</sup></td>
         </tr>
         {% for marina in nearest_marinas %}
             <tr>
@@ -132,7 +132,7 @@
         
         <!-- MMAs -->
         <tr class="grey">
-            <td colspan="3"><b>Marine Managed Areas</b></td>
+            <td colspan="3"><b>Marine Managed Areas</b><sup>&nbsp;12</sup></td>
         </tr>
         {% for mma in intersecting_mmas %}
             <tr>
@@ -140,7 +140,7 @@
             </tr>
         {% endfor %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest (non-intersecting) MMAs</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) MMAs</b><sup>&nbsp;13</sup></td>
         </tr>
         {% for mma in nearest_mmas %}
             <tr>
@@ -151,7 +151,7 @@
         
         <!-- ODFW Fishery Closures -->
         <tr class="grey">
-            <td colspan="3"><b>ODFW Closures</b></td>
+            <td colspan="3"><b>ODFW Closures</b><sup>&nbsp;14</sup></td>
         </tr>
         {% for closure in intersecting_closures %}
             <tr>
@@ -159,7 +159,7 @@
             </tr>
         {% endfor %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest (non-intersecting) ODFW Closure</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) ODFW Closure</b><sup>&nbsp;15</sup></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_closure.0}} ({{nearest_closure.1|floatformat:'1'}} {{length_units}})</td>
@@ -168,7 +168,7 @@
         
         <!-- EFH Conservation Areas -->
         <tr class="grey">
-            <td colspan="3"><b>EFH Conservation Areas</b></td>
+            <td colspan="3"><b>EFH Conservation Areas</b><sup>&nbsp;16</sup></td>
         </tr>
         {% for area in intersecting_conservation_areas %}
             <tr>
@@ -177,7 +177,7 @@
         {% endfor %}
         <tr><td></td><td></td><td></td><td></td></tr>
         <tr class="grey">
-            <td colspan="3"><b>Nearest (non-intersecting) Conservation Area</b></td>
+            <td colspan="3"><b>Nearest (non-intersecting) Conservation Area</b><sup>&nbsp;17</sup></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_conservation_area.0}} ({{nearest_conservation_area.1|floatformat:'1'}} {{length_units}})</td>
@@ -187,6 +187,33 @@
 </table>
 
 </div>
+
+
+<p><h3>Footnotes on Report Calculations</h3></p>
+<div class='freetext'>
+<!-- Community & Recreational Considerations Footnotes -->
+<p>1. Reports all State Parks within the Area of Interest and Calculates the distance to the nearest (3) State Parks, based upon the State Parks of Oregon, OPRD, 2010 data.</p>
+<p>2. Reports all public access points within the Area of Interest and Calculates the distance to the nearest (3) sites, based upon the Beach Access Points data layer, OCMP, 2003.</p>
+<p>3. Reports all Rocky Shores Areas within the Area of Interest, and the nearest (3) sites based upon the Rocky Shore Areas of the Oregon Coast data, OCMP, 2008.  </p>
+<!-- Transportation & Infrastructure Considerations -->
+<p>4. Reports all Dredge Material Disposal sites within the Area of Interest.  Determined using the Dredge Material Disposal Sites, ACOE, 2008 data.  </p>
+<p>5. Reports the distance and name of the nearest Dredge Material Disposal Site based upon the Dredge Material Disposal Sites, ACOE, 2008 data. </p>
+<p>6. Reports all National Pollutant Discharge Elimination System (NPDES) outfall locations within the Area of Interest.  Determined using the NPDES Outfalls in Coastal Watersheds, DEQ, 2008 data.  </p>
+<p>7. Reports the distance and name of the nearest national Pollutant Discharge Elimination System (NPDES) outfall location.  Report based upon the NPDES Outfalls in Coastal Watersheds, DEQ, 2008 data.  </p>
+<p>8. Reports all undersea telecommunication cables within the Area of Interest. Determined using the Underwater Fiber Optic Cables off the Oregon Coast, OFCC, 2005 data.  </p>
+<p>9. Reports the distance and name of the nearest nundersea telecommunication cables within the Area of Interest. Determined using the Underwater Fiber Optic Cables off the Oregon Coast, OFCC, 2005 data.  </p>
+<!-- Fishery Considerations Footnotes -->
+<p>10. Reports the distance to the nearest (3) port locations based upon the Oregon Port Locations, OCMP, 2008 data set.  </p>
+<p>11. Reports the distance to the nearest (3) marina locations based upon the Oregon Marina Locations (2009), RITA-NTAD, data set.  Both the name and straight line distance for each marina listed is reported. </p>
+<p>12. Reports the presence of all state marine managed areas (habitat refuges, marine gardens, and research reserves) within the Area of Interest.  This information is determined from the State Designated Marine Managed Areas, ODFW, 2008 data set. </p>
+<p>13. Reports the distance to the nearest (3) state marine managed areas (habitat refuges, marine gardens, and research reserves).  Both the name and straight line distance for each marine managed area is reported, based upon the State Designated Marine Managed Areas, ODFW, 2008 data set.  </p>
+<p>14. Reports the presence of all state fishery closures within the Area of Interest.  This information is determined from the ??? data set(s).  </p>
+<p>15. Reports the distance to the nearest ODFW fishery closure areas.  Both the name and straight line distance for each closure area is reported, based upon the ??? data set.  </p>
+<p>16. Reports the presence of all Essential Fish Habitat Conservation areas within the Area of Interest.  This information is determined from the EFH Conservation Areas for the Pacific Coast Fishery Management Plan (amendment 19) data set.  </p>
+<p>17. Reports the distance and name of the nearest Essential Fish Habitat Conservation area within.  This information is determined from the EFH Conservation Areas for the Pacific Coast Fishery Management Plan (amendment 19) data set.  </p>
+</div>
+
+
 <p>
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_nsh_report nsh.id "hum" %}'>Printable Human Uses Report</a>
@@ -205,6 +232,11 @@
     and Human Use reports for a given Nearshore Habitat into a single 
     printable and/or exportable document.)</br>   
 </div>
-<br></br>
+<p>
+
+<style type="text/css">
+h3 { font-weight: bold; }
+</style>
+
 {% endblock panel %}
 
