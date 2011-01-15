@@ -100,6 +100,7 @@ Handles POST requests
 '''
 def admin_clear_nsh_cache(request, type=None, template='admin/analysis/nshcache/cache_is_cleared.html'):
     from nsh.nsh_cache import clear_nsh_cache, remove_nsh_cache
+    from aes.aes_cache import remove_related_aes_cache
     from utils import ensure_type
     if not request.user.is_staff:
         return HttpResponse('You do not have permission to view this feature', status=401)
@@ -107,9 +108,11 @@ def admin_clear_nsh_cache(request, type=None, template='admin/analysis/nshcache/
         type = ensure_type(type)
         if type is None:
             clear_nsh_cache(i_am_sure=True)
+            remove_related_aes_cache(type)
             return render_to_response( template, RequestContext(request, {"type": "All"}) )  
         else:
             remove_nsh_cache(type=type)
+            remove_related_aes_cache(type)
             return render_to_response( template, RequestContext(request, {"type": type}) )  
     
 '''
