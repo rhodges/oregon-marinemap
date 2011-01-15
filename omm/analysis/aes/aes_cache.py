@@ -1,5 +1,5 @@
 from analysis.models import AESCache
-from analysis.utils import ensure_type
+from analysis.utils import ensure_type, type_is_hum
 
 '''
 Checks to see if cache for a given aes and type exists in AESCache table
@@ -56,6 +56,18 @@ def remove_aes_cache(aes=None, type=None):
     #remove entries from AESCache
     for entry in entries:
         AESCache.delete(entry)
+       
+'''
+Called from admin_clear_nsh_cache 
+Ensures that when nsh cache is emptied that would also affect aes reports, that related aes cache is emptied as well
+'''       
+def remove_related_aes_cache(type=None):
+    if type is None:
+        remove_aes_cache(type='Geography')
+        remove_aes_cache(type='Physical')
+        remove_aes_cache(type='Biology')
+    elif not type_is_hum(type):
+        remove_aes_cache(type=type)        
        
 '''
 Clear all entries from cache table
