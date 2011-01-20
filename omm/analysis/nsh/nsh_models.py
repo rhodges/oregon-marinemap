@@ -150,17 +150,10 @@ class RockyShores(models.Model):
         app_label = 'analysis'   
 
 #Used for Physical Reports    
-    
+       
 class ClosedShoreline(models.Model):
-    objectid = models.IntegerField()
-    fnode = models.IntegerField()
-    tnode = models.IntegerField()
-    lpoly = models.IntegerField()
-    rpoly = models.IntegerField()
     length = models.FloatField()
-    esi_ln = models.IntegerField()
-    esi_ln_id = models.IntegerField()
-    shape_leng = models.FloatField()
+    new_cl_esi = models.IntegerField()
     geometry = models.MultiLineStringField(srid=settings.GEOMETRY_DB_SRID, null=True, blank=True, verbose_name="Closed Shoreline")
     objects = models.GeoManager() 
     
