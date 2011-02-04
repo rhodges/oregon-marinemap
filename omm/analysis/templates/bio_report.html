@@ -159,7 +159,7 @@
         </tr>
         <p>
         
-        <!-- Fish Species -->
+        <!-- Fish Species 
         <tr class="grey">
             <td colspan="3"><b>Predicted Fish Species</b><sup>&nbsp;10</sup><br>(Provided by <a target="_blank" href="http://www.nwfsc.noaa.gov/">NOAA's Northwest Fisheries Science Center</a>)</td>
         </tr>
@@ -174,11 +174,11 @@
             </td>
         </tr>
         <p>
-        
+        -->
         <!-- Sturgeon -->
         <tr class="grey">
-            <td><b>Green Sturgeon</b><sup>&nbsp;11</sup></td>
-            <td><b>Green Sturgeon Area Percentage</b><sup>&nbsp;12</sup></td>
+            <td><b>Green Sturgeon</b><sup>&nbsp;10</sup></td>
+            <td><b>Green Sturgeon Area Percentage</b><sup>&nbsp;11</sup></td>
         </tr>
         <tr>
             <td>{{green_sturgeon}}</td>
@@ -196,7 +196,7 @@
         </tr>
         {% else %}
         <tr class="grey">
-            <td colspan="3"><b>Nearest Coho Populated Stream</b><sup>&nbsp;13</sup></td>
+            <td colspan="3"><b>Nearest Coho Populated Stream</b><sup>&nbsp;12</sup></td>
         </tr>
         <tr>
             <td colspan="3">{{nearest_coho_stream|floatformat:'1'}} {{length_units}} &nbsp; </td>
@@ -207,15 +207,15 @@
         <!-- Kelp -->
         {% if kelp_data.0.2 == default_value %}
          <tr class="grey">
-            <td colspan="3"><b>Kelp Surveys</b><sup>&nbsp;14</sup></td>
+            <td colspan="3"><b>Kelp Surveys</b><sup>&nbsp;13</sup></td>
         </tr>
         <tr>
             <td colspan="3">{{kelp_data.0.0}}</td>
         </tr>
         {% else %}
         <tr class="grey">
-            <td><b>Kelp Survey Year</b><sup>&nbsp;14</sup></td>
-            <td colspan="2"><b>Kelp Proportions</b><sup>&nbsp;15</sup></td>
+            <td><b>Kelp Survey Year</b><sup>&nbsp;13</sup></td>
+            <td colspan="2"><b>Kelp Proportions</b><sup>&nbsp;14</sup></td>
         </tr>
         {% for data in kelp_data %}
         <tr>
@@ -229,14 +229,14 @@
         <!-- Seagrass -->
         {% if seagrass_area == 0.0 %}
         <tr class="grey">
-            <td colspan="3"><b>Seagrass</b><sup>&nbsp;16</sup></td>
+            <td colspan="3"><b>Seagrass</b><sup>&nbsp;15</sup></td>
         </tr>
         <tr>
             <td colspan="3">None</td>
         </tr>
         {% else %}
         <tr class="grey">
-            <td colspan="3"><b>Seagrass Area</b><sup>&nbsp;16</sup></td>
+            <td colspan="3"><b>Seagrass Area</b><sup>&nbsp;15</sup></td>
         </tr>
         <tr>
             <td colspan="3">{{seagrass_area|floatformat:'2'}} {{area_units}}</td>
@@ -269,13 +269,13 @@
 
 {% block SubtidalBiologicalFootnotes %}
 <p>9. Habitat Type and Proportions within the Area of Interest are calculated based on the Lithology class of the <a target="_blank" href="http://www.google.com/url?q=http%3A%2F%2Fwww.coastalatlas.net%2Fmetadata%2FSurficialGeolgicHabitatoffOregon%2CVersion3%2COSUATSML%2C2008.htm&sa=D&sntz=1&usg=AFQjCNEaAY-8mapFbbUqHBWR-4isNfIRjQ">Surficial Geologic Habitat Layer (v.3.0)</a> data set.  </p>
-<p>10. Predicted Fish Species:  The Area of Interest is used to send a report to the <a target="_blank" href="http://www.google.com/url?q=https%3A%2F%2Fwww.webapps.nwfsc.noaa.gov%2Fpacoos%2Ffaces%2FFishData.jsp%3Fspid%3D118&sa=D&sntz=1&usg=AFQjCNG8bOsMYF-3dBuIoSRXvlR4aoG92A">Habitat Use Database</a> provided by the <a target="_blank" href="http://www.google.com/url?q=http%3A%2F%2Fwww.nwfsc.noaa.gov%2F&sa=D&sntz=1&usg=AFQjCNERNhpD6SgfdTtRDkDVDqP8vjTfDQ">NOAA Northwest Fisheries Science Center</a>.  That query returns a list of the predicted species based upon a set of criteria from within the Area of Interest.</p>
-<p>11.  Determines whether or not the Critical Habitat Areas designated for Green Sturgeon intersect with the Area of interest.  Two different layers are used in the determination, Estuary Critical Habitat data and the Coastal Zone Critical Habitat data.</p>
-<p>12. The overlap within the Area of Interest that is also Green Sturgeon Critical Habitat is calculated. </p>
-<p>13. The distance to the nearest stream with ESA listed Coho Salmon present is reported based on the Oregon Coastal Coho Critical Habitat data.  </p>
-<p>14. Lists the surveys within the Area of Interest where Canopy forming kelp was observed.  </p>
-<p>15. If there are kelp surveys that have identified canopy forming kelp within the Area of Interest, then the proportion of area within the Area of Interest where kelp is observed is reported, both as a percentage, and an area in square miles.  </p>
-<p>16. The presence of Seagrass within the Area of Interest is reported, based upon the data within Alternative B.4 (Seagrass Compilation) for West Coast Groundfish Essential Fish Habitat draft EIS, PSMFC, 2004.  If present, then the total area of seagrass is reported in square miles.  </p>
+<!--<p>10. Predicted Fish Species:  The Area of Interest is used to send a report to the <a target="_blank" href="http://www.google.com/url?q=https%3A%2F%2Fwww.webapps.nwfsc.noaa.gov%2Fpacoos%2Ffaces%2FFishData.jsp%3Fspid%3D118&sa=D&sntz=1&usg=AFQjCNG8bOsMYF-3dBuIoSRXvlR4aoG92A">Habitat Use Database</a> provided by the <a target="_blank" href="http://www.google.com/url?q=http%3A%2F%2Fwww.nwfsc.noaa.gov%2F&sa=D&sntz=1&usg=AFQjCNERNhpD6SgfdTtRDkDVDqP8vjTfDQ">NOAA Northwest Fisheries Science Center</a>.  That query returns a list of the predicted species based upon a set of criteria from within the Area of Interest.</p>-->
+<p>10.  Determines whether or not the Critical Habitat Areas designated for Green Sturgeon intersect with the Area of interest.  Two different layers are used in the determination, Estuary Critical Habitat data and the Coastal Zone Critical Habitat data.</p>
+<p>11. The overlap within the Area of Interest that is also Green Sturgeon Critical Habitat is calculated. </p>
+<p>12. The distance to the nearest stream with ESA listed Coho Salmon present is reported based on the Oregon Coastal Coho Critical Habitat data.  </p>
+<p>13. Lists the surveys within the Area of Interest where Canopy forming kelp was observed.  </p>
+<p>14. If there are kelp surveys that have identified canopy forming kelp within the Area of Interest, then the proportion of area within the Area of Interest where kelp is observed is reported, both as a percentage, and an area in square miles.  </p>
+<p>15. The presence of Seagrass within the Area of Interest is reported, based upon the data within Alternative B.4 (Seagrass Compilation) for West Coast Groundfish Essential Fish Habitat draft EIS, PSMFC, 2004.  If present, then the total area of seagrass is reported in square miles.  </p>
 {% endblock SubtidalBiologicalFootnotes %}
 
 </div>
