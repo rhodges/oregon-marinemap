@@ -257,7 +257,7 @@
         </tr>
         <tr>
             <th>Habitat Types & Proportions</th>
-            <th>Predicted Fish Species <br></br>(Provided by <a target="_blank" href="http://www.nwfsc.noaa.gov/">NOAA's Northwest Fisheries Science Center)</a></th>
+            <th><!--Predicted Fish Species <br></br>(Provided by <a target="_blank" href="http://www.nwfsc.noaa.gov/">NOAA's Northwest Fisheries Science Center)</a>--></th>
         </tr>
     </thead>
     <tbody>
@@ -271,12 +271,12 @@
             {% endfor %}
             </td>
             <td>
-            {% if not bio.fish_list.0 %}
+            <!--{% if not bio.fish_list.0 %}
                 {{bio.default_value}}
             {% endif %}
             {% for fish in bio.fish_list %}
                 {{fish}}</br>
-            {% endfor %}
+            {% endfor %}-->
             </td>
         </tr>
     </tbody>

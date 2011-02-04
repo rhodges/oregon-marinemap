@@ -262,13 +262,13 @@
             <th class="bioheader" colspan="2">Subtidal Biological Characteristics</th>
         </tr>
         <tr>
-            <th>Habitat Types & Proportions</th>
-            <th>Predicted Fish Species <br>(Provided by <a target="_blank" href="http://www.nwfsc.noaa.gov/">NOAA's Northwest Fisheries Science Center)</p></a></th>
+            <th colspan="2">Habitat Types & Proportions</th>
+            <!--<th>Predicted Fish Species <br>(Provided by <a target="_blank" href="http://www.nwfsc.noaa.gov/">NOAA's Northwest Fisheries Science Center)</p></a></th>-->
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td valign="top" class="top">
+            <td colspan="2" valign="top" class="top">
             {% if not bio.habitat_proportions.0 %}
                 {{bio.default_value}}
             {% endif %}
@@ -276,14 +276,14 @@
                 {{details.0|floatformat:'2'}}% &nbsp; &nbsp; &nbsp; {{details.1}} &nbsp; &nbsp; &nbsp; ({{details.2|floatformat:'2'}} {{bio.area_units}})</br>
             {% endfor %}
             </td>
-            <td valign="top" class="top">
+            <!--<td valign="top" class="top"><!--
             {% if not bio.fish_list.0 %}
                 {{bio.default_value}}
             {% endif %}
             {% for fish in bio.fish_list %}
                 {{fish}} &nbsp;</br>
             {% endfor %}
-            </td>
+            </td>-->
         </tr>
     </tbody>
 </table>
