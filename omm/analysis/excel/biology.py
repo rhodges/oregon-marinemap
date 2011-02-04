@@ -66,21 +66,21 @@ def bio_subtidal_headers(ws, context, row=10):
     row += subtidal_offset
     ws.write(row-1, 0, "Subtidal Biological Characteristics", minor_heading_style)
     ws.write(row, 1, "Habitat Types & Proportions", heading_column_style)
-    ws.write(row, 2, "Predicted Fish Species\n(Provided by NOAA's Northwest Fisheries Science Center)", heading_column_style)
-    ws.write(row, 3, "Green Sturgeon", heading_column_style)
-    ws.write(row+3, 3, "Green Sturgeon Area Percentage", heading_column_style)
-    ws.write(row, 4, "Nearest Coho Populated Stream", heading_column_style)
-    ws.col(4).width = 45*256
-    ws.write(row, 5, "Seagrass", heading_column_style)
-    ws.col(5).width = 35*256
+    #ws.write(row, 2, "Predicted Fish Species\n(Provided by NOAA's Northwest Fisheries Science Center)", heading_column_style)
+    ws.write(row, 2, "Green Sturgeon", heading_column_style)
+    ws.write(row+3, 2, "Green Sturgeon Area Percentage", heading_column_style)
+    ws.write(row, 3, "Nearest Coho Populated Stream", heading_column_style)
+    ws.col(3).width = 45*256
+    ws.write(row, 4, "Seagrass", heading_column_style)
+    ws.col(4).width = 35*256
     if context['kelp_data'][0][2] == context['default_value']:
-        ws.write(row, 6, "Kelp Surveys", heading_column_style)
-        ws.col(6).width = 35*256
+        ws.write(row, 5, "Kelp Surveys", heading_column_style)
+        ws.col(5).width = 35*256
     else:
-        ws.write(row, 6, "Kelp Survey Year", heading_column_style)
+        ws.write(row, 5, "Kelp Survey Year", heading_column_style)
+        ws.col(5).width = 35*256
+        ws.write(row, 6, "Kelp Proportions", heading_column_style)
         ws.col(6).width = 35*256
-        ws.write(row, 7, "Kelp Proportions", heading_column_style)
-        ws.col(7).width = 35*256
     
 def bio_subtidal_data(ws, context, row=11):
     row += subtidal_offset
@@ -95,20 +95,20 @@ def bio_subtidal_data(ws, context, row=11):
     if len(context['fish_list']) == 0:
         ws.write(row+offset, 2, '---', data_style)
         offset += 1
-    for fish in context['fish_list']:
-        ws.write(row+offset, 2, fish, data_style)
-        offset += 1
-    ws.write(row, 3, context['green_sturgeon'], data_style)
-    ws.write(row+3, 3, context['green_sturgeon_perc']/100, perc_style)
-    ws.write(row, 4, str('%.1f %s') % (context['nearest_coho_stream'], context['length_units']), data_style)
-    ws.write(row, 5, str('%.1f %s') % (context['seagrass_area'], context['area_units']), data_style)
+    #for fish in context['fish_list']:
+    #    ws.write(row+offset, 2, fish, data_style)
+    #    offset += 1
+    ws.write(row, 2, context['green_sturgeon'], data_style)
+    ws.write(row+3, 2, context['green_sturgeon_perc']/100, perc_style)
+    ws.write(row, 3, str('%.1f %s') % (context['nearest_coho_stream'], context['length_units']), data_style)
+    ws.write(row, 4, str('%.1f %s') % (context['seagrass_area'], context['area_units']), data_style)
     if context['kelp_data'][0][2] == context['default_value']:
-        ws.write(row, 6, context['kelp_data'][0][0], data_style)
+        ws.write(row, 5, context['kelp_data'][0][0], data_style)
     else:
         offset = 0
         for data in context['kelp_data']:
-            ws.write(row+offset, 6, data[0], data_style)
-            ws.write(row+offset, 7, str('%.2f %s    %.2f%%') % (data[1], context['area_units'], data[2]), data_style)
+            ws.write(row+offset, 5, data[0], data_style)
+            ws.write(row+offset, 6, str('%.2f %s    %.2f%%') % (data[1], context['area_units'], data[2]), data_style)
             offset += 1
             
             
