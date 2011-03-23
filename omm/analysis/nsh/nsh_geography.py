@@ -82,7 +82,10 @@ def get_county_shoreline_percentages(nsh, counties):
         nsh_shoreline_length = sum([shoreline.geometry.intersection(nsh_county_intersection).length for shoreline in shorelines if shoreline.geometry.intersects(nsh_county_intersection)])
         nsh_island_length = sum([island.geometry.intersection(nsh_county_intersection).length for island in islands if island.geometry.intersects(nsh_county_intersection)])
         total_nsh_shoreline_length = nsh_shoreline_length + nsh_island_length
-        percentage = total_nsh_shoreline_length / total_shoreline_length * 100
+        if total_shoreline_length > 0:
+            percentage = total_nsh_shoreline_length / total_shoreline_length * 100
+        else:
+            percentage = 0
         shoreline_percentages.append(percentage)
     return shoreline_percentages
     
