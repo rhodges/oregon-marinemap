@@ -146,7 +146,11 @@
             <td colspan='3'><b>Proximity to Shore</b><sup>&nbsp;10</sup></td>
         </tr>
         <tr>
-            <td colspan='3'>{{distance_to_shore|floatformat:'1'}} {{length_units}}</td>
+            {% if distance_to_shore != default_value %}
+                <td colspan='3'>{{distance_to_shore}}{{distance_to_shore|floatformat:'1'}} {{length_units}}</td>
+            {% else %}
+                <td colspan='3'>{{default_value}}</td>
+            {% endif %}
         </tr>
     </tbody>
 </table>
