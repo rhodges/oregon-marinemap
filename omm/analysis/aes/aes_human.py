@@ -143,8 +143,11 @@ def get_protected_areas_data(aes):
         inter_areas = list(set(inter_areas))
     buffered_aes = aes.geometry_final.buffer(60000)
     nearest_areas = [(length_in_display_units(area.geometry.distance(aes.geometry_final)), area.site_name) for area in protected_areas if (area.site_name not in inter_areas) and (area.geometry.intersects(buffered_aes))]
-    nearest_areas.sort()
-    nearest_area = (nearest_areas[0][1], nearest_areas[0][0])
+    if len(nearest_areas) > 0:
+        nearest_areas.sort()
+        nearest_area = (nearest_areas[0][1], nearest_areas[0][0])
+    else:
+        nearest_area = ('---','---')
     return inter_areas, nearest_area
    
 '''
