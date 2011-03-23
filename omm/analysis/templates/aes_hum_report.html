@@ -80,7 +80,11 @@
             <td colspan="3"><b>Nearest (non-intersecting) Protected Area</b><sup>&nbsp;7</sup></td>
         </tr>
         <tr>
-            <td colspan="3">{{nearest_protected_area.0}} &nbsp; ({{nearest_protected_area.1|floatformat:'1'}} {{length_units}})</td>
+            {% if nearest_protected_area.0 != default_value %}
+                <td colspan="3">{{nearest_protected_area.0}} &nbsp; ({{nearest_protected_area.1|floatformat:'1'}} {{length_units}})</td>
+            {% else %}
+                <td colspan="3">{{default_value}}</td>
+            {% endif %}
         </tr> 
         <p>
         
