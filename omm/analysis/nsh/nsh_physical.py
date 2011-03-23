@@ -238,8 +238,11 @@ def get_distance_to_shore(nsh):
     buffered_bbox = bbox.buffer(8000) #buffer by 5 miles (8000 meters)
     inter_shorelines = [shoreline for shoreline in shorelines if shoreline.geometry.intersects(buffered_bbox)]
     distances = [shoreline.geometry.distance(nsh.geometry_final) for shoreline in inter_shorelines]
-    distances.sort()
-    return length_in_display_units(distances[0])
+    if len(distances) > 0:
+        distances.sort()
+        return length_in_display_units(distances[0])
+    else:
+        return '---'
     
 '''
 Called from get_distance_to_shore
