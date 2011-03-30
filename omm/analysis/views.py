@@ -23,24 +23,20 @@ def aes_analysis(request, aes_id, type):
 '''    
 def excel_nsh_report(request, nsh_id, type):
     from nsh.nsh_analysis import excel_report
-    from lingcod.common.utils import get_mpa_class
-    from lingcod.sharing.utils import can_user_view
-    user_can_view, response = can_user_view(get_mpa_class(), nsh_id, request.user)
+    nsh = get_object_or_404(AOI, pk=nsh_id)
+    user_can_view, response = nsh.is_viewable(request.user)
     if not user_can_view:
         return response
-    nsh = get_object_or_404(AOI, pk=nsh_id)
     return excel_report(request, nsh, type)
     
 '''
 '''    
 def excel_aes_report(request, aes_id, type):
     from aes.aes_analysis import excel_report
-    from lingcod.common.utils import get_mpa_class
-    from lingcod.sharing.utils import can_user_view
-    user_can_view, response = can_user_view(get_mpa_class(), aes_id, request.user)
+    aes = get_object_or_404(AOI, pk=aes_id)
+    user_can_view, response = aes.is_viewable(request.user)
     if not user_can_view:
         return response
-    aes = get_object_or_404(AOI, pk=aes_id)
     return excel_report(request, aes, type)
     
     
@@ -48,24 +44,20 @@ def excel_aes_report(request, aes_id, type):
 '''
 def pdf_nsh_report(request, nsh_id, type):
     from nsh.nsh_analysis import pdf_report
-    from lingcod.common.utils import get_mpa_class
-    from lingcod.sharing.utils import can_user_view
-    user_can_view, response = can_user_view(get_mpa_class(), nsh_id, request.user)
+    nsh = get_object_or_404(AOI, pk=nsh_id)
+    user_can_view, response = nsh.is_viewable(request.user)
     if not user_can_view:
         return response
-    nsh = get_object_or_404(AOI, pk=nsh_id)
     return pdf_report(request, nsh, type)
     
 '''
 '''
 def pdf_aes_report(request, aes_id, type):
     from aes.aes_analysis import pdf_report
-    from lingcod.common.utils import get_mpa_class
-    from lingcod.sharing.utils import can_user_view
-    user_can_view, response = can_user_view(get_mpa_class(), aes_id, request.user)
+    aes = get_object_or_404(AOI, pk=aes_id)
+    user_can_view, response = aes.is_viewable(request.user)
     if not user_can_view:
         return response
-    aes = get_object_or_404(AOI, pk=aes_id)
     return pdf_report(request, aes, type)
     
 '''
@@ -73,12 +65,10 @@ Accessed via named url when user selects View Printable Report from analysis tem
 '''    
 def print_nsh_report(request, nsh_id, type):
     from nsh.nsh_analysis import printable_report
-    from lingcod.common.utils import get_mpa_class
-    from lingcod.sharing.utils import can_user_view
-    user_can_view, response = can_user_view(get_mpa_class(), nsh_id, request.user)
+    nsh = get_object_or_404(AOI, pk=nsh_id)
+    user_can_view, response = nsh.is_viewable(request.user)
     if not user_can_view:
         return response
-    nsh = get_object_or_404(AOI, pk=nsh_id)
     return printable_report(request, nsh, type)
     
 '''
@@ -86,12 +76,10 @@ Accessed via named url when user selects View Printable Report from analysis tem
 '''    
 def print_aes_report(request, aes_id, type):
     from aes.aes_analysis import printable_report
-    from lingcod.common.utils import get_mpa_class
-    from lingcod.sharing.utils import can_user_view
-    user_can_view, response = can_user_view(get_mpa_class(), aes_id, request.user)
+    aes = get_object_or_404(AOI, pk=aes_id)
+    user_can_view, response = aes.is_viewable(request.user)
     if not user_can_view:
         return response
-    aes = get_object_or_404(AOI, pk=aes_id)
     return printable_report(request, aes, type)
     
 '''
