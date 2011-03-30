@@ -1,16 +1,39 @@
 from django.db import models
 from django.contrib.gis.db import models
 
-from lingcod.mpa.models import Mpa as BaseMpa
-from lingcod.array.models import MpaArray as BaseMpaArray
+from lingcod.features.models import PolygonFeature, FeatureCollection
+from lingcod.features import register
 from lingcod.manipulators.manipulators import ClipToStudyRegionManipulator
 from omm_manipulators.manipulators import *
 from lingcod.unit_converter.models import area_in_display_units
 
 #if the names of the following two classes are changed, the related settings should also be changed (MPA_CLASS, ARRAY_CLASS)
 
-class AOI(BaseMpa):
+class AOIDesignation(models.Model):
+    """Model used to represent the designation of the MPA
+        ======================  ==============================================
+        Attribute               Description
+        ======================  ==============================================
+        ``name``                Designation of the MPA
+
+        ``acronym``             The acronym for this MPA designation
+        ======================  ==============================================
+    """
+    name = models.TextField(verbose_name="Designation Name")
+    acronym = models.CharField(max_length=10, unique=True, verbose_name="Designation Acronym")
+    url = models.URLField(verify_exists=False,verbose_name="URL to more info on this MPA Designation")
+    sort = models.IntegerField(blank=True, null=True, help_text="Some reporting features need the designations displayed in a particular order.")
+
+    class Meta:
+        ordering = ['sort']
+
+    def __unicode__(self):
+        return "(%s) %s" % (self.acronym, self.name)
+
+@register
+class AOI(PolygonFeature):
     description = models.TextField(default="", null=True, blank=True)
+    designation = models.ForeignKey(AOIDesignation, blank=True, null=True)
     
     @property
     def export_version(self):
@@ -40,11 +63,18 @@ class AOI(BaseMpa):
     
     class Options:
         manipulators = []
-        optional_manipulators = [ ExcludeTerrestrialManipulator, ExcludeEstuariesManipulator, ExcludeFederalWatersManipulator, ExcludeStateWatersManipulator]
-        #optional_manipulators = [ ClipToTerritorialSeaManipulator, ]
+        optional_manipulators = [ 
+                'omm_manipulators.manipulators.ExcludeTerrestrialManipulator', 
+                'omm_manipulators.manipulators.ExcludeEstuariesManipulator', 
+                'omm_manipulators.manipulators.ExcludeFederalWatersManipulator', 
+                'omm_manipulators.manipulators.ExcludeStateWatersManipulator']
         geometry_input_methods = ['load_shp']
+        verbose_name = 'Area of Interest'
+        form = 'tsp.forms.MpaForm'
+        
 
-class AOIArray(BaseMpaArray):
+@register
+class AOIArray(FeatureCollection):
         
     @property
     def export_query_set(self):
@@ -52,6 +82,11 @@ class AOIArray(BaseMpaArray):
             aoi.export_version # update these records
         qs = AOIShapefile.objects.filter(group=self)
         return qs
+
+    class Options:
+        verbose_name = 'Area of Interest'
+        valid_children = ( 'tsp.models.AOI', 'tsp.models.AOIArray' )
+        form = 'tsp.forms.ArrayForm'
     
 
 class AOIShapefile(models.Model):

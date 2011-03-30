@@ -1,19 +1,18 @@
-from lingcod.mpa.forms import MpaForm as BaseMpaForm
-from lingcod.array.forms import ArrayForm as BaseArrayForm
+from lingcod.features.forms import FeatureForm
 from models import AOI, AOIArray
 from django import forms
 
 #if the names of the following two classes are changed, the related settings should also be changed (MPA_FORM, ARRAY_FORM)
 
-class ArrayForm(BaseArrayForm):
+class ArrayForm(FeatureForm):
     name = forms.CharField(label='AOI Group Name')
-    class Meta(BaseArrayForm.Meta):
+    class Meta(FeatureForm.Meta):
         model = AOIArray
         exclude = ('sharing_groups',)
 
-class AOIForm(BaseMpaForm):
+class AOIForm(FeatureForm):
     name = forms.CharField(label='Area Name')
-    class Meta:
+    class Meta(FeatureForm.Meta):
         model = AOI
         fields = ('user', 'name', 'description', 'geometry_orig', 'geometry_final', 'manipulators')
         exclude = ('sharing_groups','content_type','object_id','designation')
