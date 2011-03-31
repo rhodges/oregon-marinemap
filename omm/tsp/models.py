@@ -1,10 +1,12 @@
 from django.db import models
+from django.conf import settings
 from django.contrib.gis.db import models
 
 from lingcod.features.models import PolygonFeature, FeatureCollection
 from lingcod.features import register
+from lingcod.layers.models import PrivateLayerList
 from lingcod.manipulators.manipulators import ClipToStudyRegionManipulator
-from omm_manipulators.manipulators import *
+#from omm_manipulators.manipulators import *
 from lingcod.unit_converter.models import area_in_display_units
 
 #if the names of the following two classes are changed, the related settings should also be changed (MPA_CLASS, ARRAY_CLASS)
@@ -69,7 +71,7 @@ class AOI(PolygonFeature):
                 'omm_manipulators.manipulators.ExcludeFederalWatersManipulator', 
                 'omm_manipulators.manipulators.ExcludeStateWatersManipulator']
         geometry_input_methods = ['load_shp']
-        verbose_name = 'Area of Interest'
+        verbose_name = 'Area of Interest (AOI)'
         form = 'tsp.forms.MpaForm'
         
 
@@ -84,8 +86,10 @@ class AOIArray(FeatureCollection):
         return qs
 
     class Options:
-        verbose_name = 'Area of Interest'
-        valid_children = ( 'tsp.models.AOI', 'tsp.models.AOIArray' )
+        verbose_name = 'Folder'
+        valid_children = ( 'tsp.models.AOI', 
+                'tsp.models.AOIArray',
+                'tsp.models.UserKml')
         form = 'tsp.forms.ArrayForm'
     
 
@@ -105,3 +109,7 @@ class AOIShapefile(models.Model):
     date_modified = models.DateTimeField(blank=True, null=True, auto_now_add=True)
     objects = models.GeoManager()
 
+@register
+class UserKml(PrivateLayerList):
+    class Options:
+        form = 'tsp.forms.UserKmlForm'
