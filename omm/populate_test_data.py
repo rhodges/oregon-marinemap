@@ -7,15 +7,16 @@ import settings
 setup_environ(settings)
 
 #==================================#
-from tsp.models import AOI, AOIArray
+from tsp.models import AOI, AOIArray, UserKml
 from django.contrib.gis.geos import GEOSGeometry 
 from django.contrib.auth.models import User, Group
 from lingcod.common.utils import enable_sharing
+from django.core.files import File
 
 def main():
     user = User.objects.get(username='perry')
 
-    for model in [AOI, AOIArray]:
+    for model in [AOI, AOIArray, UserKml]:
         a = model.objects.all()
         for i in a:
             i.delete()
@@ -62,6 +63,13 @@ def main():
     user.groups.add(group2)
     enable_sharing(group2)
     array1.share_with(group2)
+
+    userkml = UserKml(user=user, name="Moab KML track")
+    userkml.save()
+    path = os.path.dirname(os.path.abspath(__file__))
+    f = File(open(path + '/fixtures/test_moab.kml'))
+    userkml.kml_file.save('test.kml', f)
+    userkml.add_to_collection(array1)
 
 
 if __name__ == '__main__':
