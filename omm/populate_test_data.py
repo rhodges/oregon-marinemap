@@ -33,6 +33,13 @@ def main():
     # geometry_final will be set with manipulator
     aoi2.save()
 
+    g2 = GEOSGeometry('SRID=4326;POLYGON((-124.112 45.084, -124.030 45.084, -124.030 45.171, -124.112 45.171,-124.112 45.084))')
+    g2.transform(settings.GEOMETRY_DB_SRID)
+    aoi3 = AOI(user=user, name="AOI3 Not Shared", geometry_orig=g2) 
+    # geometry_final will be set with manipulator
+    aoi3.save()
+    print "######", aoi3.uid
+
     array1 = AOIArray(user=user, name="AOI Group 1")
     array1.save()
 
