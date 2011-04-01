@@ -63,6 +63,20 @@ class AOI(PolygonFeature):
         # This is a round about way of gettting a queryset with just this one AOI
         return AOIShapefile.objects.filter(pk=self.export_version.pk)
     
+    @classmethod
+    def mapnik_style(self):
+        import mapnik
+        polygon_style = mapnik.Style()
+        ps = mapnik.PolygonSymbolizer(mapnik.Color('#DC640C'))
+        ps.fill_opacity = 0.6
+        ls = mapnik.LineSymbolizer(mapnik.Color('#ff0000'),0.2)
+        ls.stroke_opacity = 1.0
+        r = mapnik.Rule()
+        r.symbols.append(ps)
+        r.symbols.append(ls)
+        polygon_style.rules.append(r)
+        return polygon_style
+
     class Options:
         manipulators = []
         optional_manipulators = [ 
