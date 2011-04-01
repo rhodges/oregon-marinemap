@@ -1,4 +1,4 @@
-from lingcod.features.forms import FeatureForm
+from lingcod.features.forms import FeatureForm, SpatialFeatureForm
 from models import AOI, AOIArray, UserKml
 from django import forms
 
@@ -8,14 +8,11 @@ class ArrayForm(FeatureForm):
     name = forms.CharField(label='AOI Group Name')
     class Meta(FeatureForm.Meta):
         model = AOIArray
-        exclude = ('sharing_groups',)
 
-class AOIForm(FeatureForm):
+class AOIForm(SpatialFeatureForm):
     name = forms.CharField(label='Area Name')
-    class Meta(FeatureForm.Meta):
+    class Meta(SpatialFeatureForm.Meta):
         model = AOI
-        fields = ('user', 'name', 'description', 'geometry_orig', 'geometry_final', 'manipulators')
-        exclude = ('sharing_groups','content_type','object_id','designation')
 
 class UserKmlForm(FeatureForm):
     class Meta(FeatureForm.Meta):
