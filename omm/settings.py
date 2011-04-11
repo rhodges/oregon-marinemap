@@ -3,10 +3,13 @@ from lingcod.common.default_settings import *
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-#moved to settings_local
-DATABASE_ENGINE = 'postgresql_psycopg2'
-#DATABASE_NAME = 'oregon-marinemap'
-#DATABASE_USER = 'postgres'
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'oregon-marinemap',
+        'USER': 'postgres',
+     }
+}
 
 GEOMETRY_DB_SRID = 99999
 
@@ -26,11 +29,6 @@ INSTALLED_APPS += ( 'tsp',
                     'fishing_layers',
                     'omm_manipulators',
                     'non_consumptive')
-
-MPA_CLASS = 'tsp.models.AOI'
-ARRAY_CLASS = 'tsp.models.AOIArray'
-MPA_FORM = 'tsp.forms.AOIForm'
-ARRAY_FORM = 'tsp.forms.ArrayForm'
 
 COMPRESS_CSS['application']['source_filenames'] += (
     'omm/css/aoi_analysis.css',
