@@ -55,6 +55,15 @@ class AOI(PolygonFeature):
         polygon_style.rules.append(r)
         return polygon_style
 
+    @property
+    def hash(self):
+        """"
+        We only care about unique geometry+uid combinations;
+        changing attributes don't really matter for the aes/nsh reports.
+        """
+        important = "%s%s" % (self.uid, self.geometry_final.wkt)
+        return important.__hash__()
+
     class Options:
         manipulators = []
         optional_manipulators = [ 
