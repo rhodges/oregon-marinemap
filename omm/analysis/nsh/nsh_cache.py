@@ -7,7 +7,7 @@ Checks to see if cache for a given nsh and type exists in NSHCache table
 def nsh_cache_exists(nsh, type):
     type = ensure_type(type)
     try:
-        cache = NSHCache.objects.get(wkt_hash=nsh.geometry_final.wkt.__hash__(), type=type)
+        cache = NSHCache.objects.get(wkt_hash=nsh.hash, type=type)
         return True
     except:
         return False
@@ -18,7 +18,7 @@ Retrieves cache for a given nsh and type from the NSHCache table
 def get_nsh_cache(nsh, type):
     type = ensure_type(type)
     try:
-        cache = NSHCache.objects.get(wkt_hash=nsh.geometry_final.wkt.__hash__(), type=type)
+        cache = NSHCache.objects.get(wkt_hash=nsh.hash, type=type)
         return cache.context
     except:
         from django.core.exceptions import ObjectDoesNotExist
@@ -31,7 +31,7 @@ Creates and saves a cache entry for a given nsh, type, and context from the NSHC
 def create_nsh_cache(nsh, type, context):
     cache = NSHCache()
     cache.type = ensure_type(type)
-    cache.wkt_hash = nsh.geometry_final.wkt.__hash__()
+    cache.wkt_hash = nsh.hash
     cache.context = context
     cache.save()
     
@@ -46,13 +46,13 @@ def remove_nsh_cache(nsh=None, type=None):
         raise Exception("For clearing all cached data, use clear_nsh_cache instead.")
     elif type is None:
         #remove all entries with given geometry
-        entries = NSHCache.objects.filter(wkt_hash=nsh.geometry_final.wkt.__hash__())
+        entries = NSHCache.objects.filter(wkt_hash=nsh.hash)
     elif nsh is None:
         #remove all entries with given type
         entries = NSHCache.objects.filter(type=type)
     else:
         #remove only the entry with the given type and the same geometry
-        entries = NSHCache.objects.filter(wkt_hash=nsh.geometry_final.wkt.__hash__(), type=type)
+        entries = NSHCache.objects.filter(wkt_hash=nsh.hash, type=type)
     #remove entries from NSHCache
     for entry in entries:
         NSHCache.delete(entry)

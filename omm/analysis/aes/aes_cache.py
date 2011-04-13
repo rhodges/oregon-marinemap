@@ -7,7 +7,7 @@ Checks to see if cache for a given aes and type exists in AESCache table
 def aes_cache_exists(aes, type):
     type = ensure_type(type)
     try:
-        cache = AESCache.objects.get(wkt_hash=aes.geometry_final.wkt.__hash__(), type=type)
+        cache = AESCache.objects.get(wkt_hash=aes.hash, type=type)
         return True
     except:
         return False
@@ -18,7 +18,7 @@ Retrieves cache for a given aes and type from the AESCache table
 def get_aes_cache(aes, type):
     type = ensure_type(type)
     try:
-        cache = AESCache.objects.get(wkt_hash=aes.geometry_final.wkt.__hash__(), type=type)
+        cache = AESCache.objects.get(wkt_hash=aes.hash, type=type)
         return cache.context
     except:
         from django.core.exceptions import ObjectDoesNotExist
@@ -31,7 +31,7 @@ Creates and saves a cache entry for a given aes, type, and context from the AESC
 def create_aes_cache(aes, type, context):
     cache = AESCache()
     cache.type = ensure_type(type)
-    cache.wkt_hash = aes.geometry_final.wkt.__hash__()
+    cache.wkt_hash = aes.hash
     cache.context = context
     cache.save()
     
@@ -46,13 +46,13 @@ def remove_aes_cache(aes=None, type=None):
         raise Exception("For clearing all cached data, use clear_aes_cache instead.")
     elif type is None:
         #remove all entries with given geometry
-        entries = AESCache.objects.filter(wkt_hash=aes.geometry_final.wkt.__hash__())
+        entries = AESCache.objects.filter(wkt_hash=aes.hash)
     elif aes is None:
         #remove all entries with given type
         entries = AESCache.objects.filter(type=type)
     else:
         #remove only the entry with the given type and the same geometry
-        entries = AESCache.objects.filter(wkt_hash=aes.geometry_final.wkt.__hash__(), type=type)
+        entries = AESCache.objects.filter(wkt_hash=aes.hash, type=type)
     #remove entries from AESCache
     for entry in entries:
         AESCache.delete(entry)
