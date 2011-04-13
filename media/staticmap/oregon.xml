@@ -113,7 +113,7 @@
     <StyleName>bathymetry_style</StyleName>
     <Datasource>
         <Parameter name="type">shape</Parameter>
-        <Parameter name="file">/User/perry/src/omm-media/staticmap/data/bathymetry</Parameter>
+        <Parameter name="file">/usr/local/media/oregon/staticmap/data/bathymetry</Parameter>
     </Datasource>
 </Layer>
 
@@ -121,7 +121,7 @@
     <StyleName>land_style</StyleName>
     <Datasource>
         <Parameter name="type">shape</Parameter>
-        <Parameter name="file">/User/perry/src/omm-media/staticmap/data/west_coast</Parameter>
+        <Parameter name="file">/usr/local/media/oregon/staticmap/data/west_coast</Parameter>
     </Datasource>
 </Layer>
 
@@ -129,7 +129,7 @@
     <StyleName>boundary_style</StyleName>
     <Datasource>
         <Parameter name="type">shape</Parameter>
-        <Parameter name="file">/User/perry/src/omm-media/staticmap/data/state_bounds</Parameter>
+        <Parameter name="file">/usr/local/media/oregon/staticmap/data/state_bounds</Parameter>
     </Datasource>
 </Layer>
 
@@ -137,7 +137,7 @@
     <StyleName>road_style</StyleName>
     <Datasource>
         <Parameter name="type">shape</Parameter>
-        <Parameter name="file">/User/perry/src/omm-media/staticmap/data/roads</Parameter>
+        <Parameter name="file">/usr/local/media/oregon/staticmap/data/roads</Parameter>
     </Datasource>
 </Layer>
 
@@ -145,7 +145,7 @@
     <StyleName>park_style</StyleName>
     <Datasource>
         <Parameter name="type">shape</Parameter>
-        <Parameter name="file">/User/perry/src/omm-media/staticmap/data/state_parks</Parameter>
+        <Parameter name="file">/usr/local/media/oregon/staticmap/data/state_parks</Parameter>
     </Datasource>
 </Layer>
 
@@ -153,7 +153,7 @@
     <StyleName>city_style</StyleName>
     <Datasource>
         <Parameter name="type">shape</Parameter>
-        <Parameter name="file">/User/perry/src/omm-media/staticmap/data/city_boundaries</Parameter>
+        <Parameter name="file">/usr/local/media/oregon/staticmap/data/city_boundaries</Parameter>
     </Datasource>
 </Layer>
 
@@ -164,7 +164,6 @@
       <Parameter name="table">(select geometry, name from mm_study_region) as region</Parameter>
       <!-- REPLACE DATABASE_CONNECTION -->
       <Parameter name="type">postgis</Parameter>
-      <Parameter name="host">localhost</Parameter>
       <Parameter name="dbname">oregon</Parameter>
       <Parameter name="user">postgres</Parameter> 
     </Datasource>
@@ -174,7 +173,7 @@
     <StyleName>port_style</StyleName>
     <Datasource>
         <Parameter name="type">shape</Parameter>
-        <Parameter name="file">/User/perry/src/omm-media/staticmap/data/world_ports</Parameter>
+        <Parameter name="file">/usr/local/media/oregon/staticmap/data/world_ports</Parameter>
     </Datasource>
 </Layer>
 
