@@ -1,22 +1,17 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.gis.db import models
-
 from lingcod.features.models import PolygonFeature, FeatureCollection
-from lingcod.features import register
+from lingcod.features import register, alternate
 from lingcod.layers.models import PrivateLayerList
 from lingcod.manipulators.manipulators import ClipToStudyRegionManipulator
-#from omm_manipulators.manipulators import *
 from lingcod.unit_converter.models import area_in_display_units
-
-#if the names of the following two classes are changed, the related settings should also be changed (MPA_CLASS, ARRAY_CLASS)
 
 @register
 class AOI(PolygonFeature):
     description = models.TextField(default="", null=True, blank=True)
     
-    @property
-    def export_version(self):
+    def convert_to_shp(self):
         '''
         Port the AOIs attributes over to the AOIShapefile model so we can export the shapefile.
         '''
@@ -26,20 +21,15 @@ class AOI(PolygonFeature):
             msf.aoi_id_num = self.pk
             msf.geometry = self.geometry_final
             #short_name = self.name
-            if self.array:
-                msf.group = self.array
-                msf.group_name = self.array.name
+            if self.collection:
+                msf.group = self.collection
+                msf.group_name = self.collection.name
             #units based on the settings variable DISPLAY_AREA_UNITS (currently sq miles)
             msf.area_sq_mi = area_in_display_units(self.geometry_final)
             msf.author = self.user.username
             msf.aoi_modification_date = self.date_modified
             msf.save()
         return msf
-    
-    @property
-    def export_query_set(self):
-        # This is a round about way of gettting a queryset with just this one AOI
-        return AOIShapefile.objects.filter(pk=self.export_version.pk)
     
     @classmethod
     def mapnik_style(self):
@@ -75,18 +65,18 @@ class AOI(PolygonFeature):
         verbose_name = 'Area of Interest (AOI)'
         show_template = 'mpa/show.html'
         form = 'tsp.forms.AOIForm'
+        links = (
+            alternate('Shapefile',
+                'tsp.views.omm_shapefile',
+                select='multiple single',
+                type='application/zip',
+            ),
+        )
         
 
 @register
 class AOIArray(FeatureCollection):
         
-    @property
-    def export_query_set(self):
-        for aoi in self.mpa_set.all():
-            aoi.export_version # update these records
-        qs = AOIShapefile.objects.filter(group=self)
-        return qs
-
     class Options:
         verbose_name = 'Folder'
         valid_children = ( 'tsp.models.AOI', 
@@ -94,6 +84,13 @@ class AOIArray(FeatureCollection):
                 'tsp.models.UserKml')
         form = 'tsp.forms.ArrayForm'
         show_template = 'array/show.html'
+        links = (
+            alternate('Shapefile',
+                'tsp.views.omm_shapefile',
+                select='multiple single',
+                type='application/zip',
+            ),
+        )
     
 
 class AOIShapefile(models.Model):
