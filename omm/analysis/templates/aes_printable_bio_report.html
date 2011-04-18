@@ -1,0 +1,22 @@
+{% extends 'printable_bio_report.html' %}
+
+{% block Header %}
+<h1 align="center">{{ aes.name }} Energy Site Biology Analysis Report</h1>
+
+<div align="middle" >
+    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ aes.id }}&amp;autozoom=true&amp;width=308&amp;height=400">
+    &nbsp; &nbsp;
+    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ aes.id }}&amp;width=154&amp;height=200">
+</div>
+
+<div class="freetext">
+<h4>Report Summary</h4>
+<table class='allowed_uses'>
+<tr><td width=150>Type:</td><td>Biology</td></tr>
+<tr><td width=150>Energy Site:</td><td>{{ aes.name }}</td></tr>
+<tr><td width=150>ID #:</td><td>{{ aes.id }}</td></tr>
+</table>
+</div>
+{% endblock Header %}
+
+<!-- Terrestrial, Intertidal, and Subtidal reports inherited from printable_bio_report -->
