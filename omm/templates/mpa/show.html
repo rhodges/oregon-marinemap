@@ -2,8 +2,8 @@
 {% block title %}{{instance.name}}{% endblock title %}
 {% block panel %}
     <h1>{{instance.name}}</h1>
-    {% if instance.array %}
-        <p>part of the <a class="myshapes-link" href="{{instance.array.get_absolute_url}}">{{instance.array.name}}</a>.</p>
+    {% if instance.collection %}
+        <p>part of the <a class="myshapes-link" href="{{instance.collection.get_absolute_url}}">{{instance.collection.name}}</a>.</p>
     {% endif %}
     <div class="tabs">
         <ul>
