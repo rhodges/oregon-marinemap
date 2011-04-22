@@ -65,6 +65,7 @@ class AOI(PolygonFeature):
         verbose_name = 'Area of Interest (AOI)'
         show_template = 'mpa/show.html'
         form = 'tsp.forms.AOIForm'
+        icon_url = 'common/images/mpa-.png'
         links = (
             alternate('Shapefile',
                 'tsp.views.omm_shapefile',
@@ -72,7 +73,7 @@ class AOI(PolygonFeature):
                 type='application/zip',
             ),
         )
-        
+
 
 @register
 class AOIArray(FeatureCollection):
@@ -91,6 +92,15 @@ class AOIArray(FeatureCollection):
                 type='application/zip',
             ),
         )
+
+    @classmethod
+    def css(klass):
+        return """ li.KmlDocument > .icon { 
+        background: url('%(media)skmltree/dist/images/sprites/kml.png?1302821411') no-repeat -566px 0px ! important;
+        }
+        li.%(uid)s > .icon { 
+        background: url('%(media)skmltree/dist/images/sprites/kml.png?1302821411') no-repeat 0px 0px ! important;
+        } """ % { 'uid': klass.model_uid(), 'media': settings.MEDIA_URL }
     
 
 class AOIShapefile(models.Model):

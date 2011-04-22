@@ -26,6 +26,7 @@ TEMPLATE_DIRS = ( os.path.realpath(os.path.join(os.path.dirname(__file__), 'temp
 
 INSTALLED_APPS += ( 'tsp', 
                     'analysis',
+                    'lingcod.analysistools',
                     'fishing_layers',
                     'omm_manipulators',
                     'non_consumptive')
