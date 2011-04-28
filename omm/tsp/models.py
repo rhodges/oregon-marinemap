@@ -61,7 +61,7 @@ class AOI(PolygonFeature):
                 'omm_manipulators.manipulators.ExcludeEstuariesManipulator', 
                 'omm_manipulators.manipulators.ExcludeFederalWatersManipulator', 
                 'omm_manipulators.manipulators.ExcludeStateWatersManipulator']
-        geometry_input_methods = ['load_shp']
+        geometry_input_methods = ['loadshp']
         verbose_name = 'Area of Interest (AOI)'
         show_template = 'mpa/show.html'
         form = 'tsp.forms.AOIForm'
