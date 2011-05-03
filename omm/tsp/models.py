@@ -123,4 +123,5 @@ class AOIShapefile(models.Model):
 class UserKml(PrivateLayerList):
     class Options:
         form = 'tsp.forms.UserKmlForm'
+        show_template = 'userkml/show.html'
         verbose_name = 'KML Upload' 
