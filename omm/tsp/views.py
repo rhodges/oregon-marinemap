@@ -32,5 +32,4 @@ def omm_shapefile(request, instances):
         )
     shp_response = ShpResponder(qs)
     shp_response.file_name = slugify(filename[0:8])
-    print "\n"*5
     return shp_response()

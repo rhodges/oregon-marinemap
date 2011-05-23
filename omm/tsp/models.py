@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.gis.db import models
+from django.utils.html import escape
 from lingcod.features.models import PolygonFeature, FeatureCollection
 from lingcod.features import register, alternate
 from lingcod.layers.models import PrivateLayerList
@@ -31,6 +32,46 @@ class AOI(PolygonFeature):
             msf.save()
         return msf
     
+    @property
+    def kml(self):
+        return """
+        <Placemark id="%s">
+            <visibility>1</visibility>
+            <name>%s</name>
+            <styleUrl>#%s-default</styleUrl>
+            <ExtendedData>
+                <Data name="name"><value>%s</value></Data>
+                <Data name="user"><value>%s</value></Data>
+                <Data name="desc"><value>%s</value></Data>
+                <Data name="modified"><value>%s</value></Data>
+            </ExtendedData>
+            %s 
+        </Placemark>
+        """ % (self.uid, escape(self.name), self.model_uid(), 
+               escape(self.name), self.user, escape(self.description), self.date_modified, 
+               self.geom_kml)
+
+    @property
+    def kml_style(self):
+        return """
+        <Style id="%s-default">
+            <BalloonStyle>
+                <bgColor>ffeeeeee</bgColor>
+                <text> <![CDATA[
+                    <font color="#1A3752"><strong>$[name]</strong></font><br />
+                    <p>$[desc]</p>
+                    <font size=1>Created by $[user] on $[modified]</font>
+                ]]> </text>
+            </BalloonStyle>
+            <PolyStyle>
+                <color>778B1A55</color>
+            </PolyStyle>
+            <LineStyle>
+                <color>ffffffff</color>
+            </LineStyle>
+        </Style>
+        """ % (self.model_uid())
+
     @classmethod
     def mapnik_style(self):
         import mapnik
