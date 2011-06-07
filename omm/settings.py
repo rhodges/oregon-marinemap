@@ -36,6 +36,10 @@ COMPRESS_CSS['application']['source_filenames'] += (
     'omm/css/aoi_analysis.css',
 )
 
+# KML SETTINGS
+KML_SIMPLIFY_TOLERANCE = 0 # meters
+KML_SIMPLIFY_TOLERANCE_DEGREES = 0.0 # Very roughly ~ 20 meters
+
 # The following is used to assign a name to the default folder under My Shapes 
 KML_UNATTACHED_NAME = 'Areas of Inquiry'
 
