@@ -5,6 +5,9 @@
     {% if is_public_layers %}        
     lingcod.addLayer('{% url public-data-layers %}');   
     {% endif %}
+    {% if user.is_authenticated and is_privatekml %}
+    lingcod.addLayer('{% url layers-privatekml-list session_key=session_key %}');            
+    {% endif %}
 {% endblock layersConfig %}
 
 {% block tabs %}

@@ -55,4 +55,6 @@ STATICMAP_HEIGHT_BUFFER = .12
 STATICMAP_OUTLINE_X_OFFSET = .07
 STATICMAP_OUTLINE_Y_OFFSET = .14
 
+PRIVATE_KML_ROOT = '/usr/local/privatekml'
+
 from settings_local import *
