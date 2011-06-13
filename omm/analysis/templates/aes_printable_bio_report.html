@@ -4,9 +4,9 @@
 <h1 align="center">{{ aes.name }} Energy Site Biology Analysis Report</h1>
 
 <div align="middle" >
-    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ aes.id }}&amp;autozoom=true&amp;width=308&amp;height=400">
+    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ aes.uid }}&amp;autozoom=true&amp;width=308&amp;height=400">
     &nbsp; &nbsp;
-    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ aes.id }}&amp;width=154&amp;height=200">
+    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ aes.uid }}&amp;width=154&amp;height=200&amp;show_extent=True">
 </div>
 
 <div class="freetext">

@@ -2,11 +2,15 @@
 from lingcod.common.default_settings import *
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+APP_NAME = "Oregon MarineMap"
 
-#moved to settings_local
-DATABASE_ENGINE = 'postgresql_psycopg2'
-#DATABASE_NAME = 'oregon-marinemap'
-#DATABASE_USER = 'postgres'
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'oregon-marinemap',
+        'USER': 'postgres',
+     }
+}
 
 GEOMETRY_DB_SRID = 99999
 
@@ -23,18 +27,18 @@ TEMPLATE_DIRS = ( os.path.realpath(os.path.join(os.path.dirname(__file__), 'temp
 
 INSTALLED_APPS += ( 'tsp', 
                     'analysis',
+                    'lingcod.analysistools',
                     'fishing_layers',
                     'omm_manipulators',
                     'non_consumptive')
 
-MPA_CLASS = 'tsp.models.AOI'
-ARRAY_CLASS = 'tsp.models.AOIArray'
-MPA_FORM = 'tsp.forms.AOIForm'
-ARRAY_FORM = 'tsp.forms.ArrayForm'
-
 COMPRESS_CSS['application']['source_filenames'] += (
     'omm/css/aoi_analysis.css',
 )
+
+# KML SETTINGS
+KML_SIMPLIFY_TOLERANCE = 0 # meters
+KML_SIMPLIFY_TOLERANCE_DEGREES = 0.0 # Very roughly ~ 20 meters
 
 # The following is used to assign a name to the default folder under My Shapes 
 KML_UNATTACHED_NAME = 'Areas of Inquiry'
@@ -50,5 +54,7 @@ STATICMAP_HEIGHT_BUFFER = .12
 #which is basically a rectangle on another map that outlines the extent of the zoomed in area (see oregon.xml)
 STATICMAP_OUTLINE_X_OFFSET = .07
 STATICMAP_OUTLINE_Y_OFFSET = .14
+
+PRIVATE_KML_ROOT = '/usr/local/privatekml'
 
 from settings_local import *

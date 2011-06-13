@@ -14,10 +14,13 @@
 # GOOGLE_API_KEY = 'ABQIAAAAu2dobIiH7nisivwmaz2gDhT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSLaQmJjJuOq03hTEjc-cNV8eegYg' 
 
 # You'll want to specify any database connection info here:
-# DATABASE_ENGINE = 'postgresql_psycopg2'
-# DATABASE_NAME = 'oregon-marinemap'
-# DATABASE_USER = 'postgres'
-# DATABASE_PASSWORD = 'my-secret-password'
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'oregon',
+        'USER': 'postgres',
+     }
+}
 
 # This should be a local folder created for use with the install_media command 
 # MEDIA_ROOT = '/usr/local/src/oregon-marinemap-media/media/'

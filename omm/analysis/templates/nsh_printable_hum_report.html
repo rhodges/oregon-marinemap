@@ -1,9 +1,9 @@
 <h1 align="center">{{ nsh.name }} Nearshore Habitat Human Uses Analysis Report</h1>
 
 <div align="middle" >
-    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ nsh.id }}&amp;autozoom=true&amp;width=308&amp;height=400">
+    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ nsh.uid }}&amp;autozoom=true&amp;width=308&amp;height=400">
     &nbsp; &nbsp;
-    <img align="top" src="{% url staticmap-show 'default' %}?mpas={{ nsh.id }}&amp;width=154&amp;height=200">
+    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ nsh.uid }}&amp;width=154&amp;height=200&amp;show_extent=True">
 </div>
 
 <div class="freetext">
