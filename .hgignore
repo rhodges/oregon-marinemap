@@ -17,5 +17,5 @@ dist/*
 media/layers/uploaded-kml/*.kml
 media/layers/uploaded-kml/*.kmz
 media/spacing/pickled_graphs/*
-omm.conf
-omm_wsgi.py
+omm.apache*
+*wsgi.py
