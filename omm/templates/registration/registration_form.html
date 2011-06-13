@@ -1,9 +1,10 @@
-{% extends "registration/reg_base.html" %}
+{# extends "registration/reg_base.html" #}
+{% extends 'common/panel.html' %}
 
-{% block title %}Register to Use MarineMap{% endblock %}
+{% block title %}Register to Use Oregon MarineMap{% endblock %}
 
-{% block content %}
-
+{% block panel %}
+<h3>Register to use Oregon MarineMap</h3>
 <p> By registering, you will be able to create your own areas of inquiry, run and print the results of related analysis, and share your shapes with others.</p>
 <form action="{% url registration_register %}" method="post">
     {{ form.as_p }}

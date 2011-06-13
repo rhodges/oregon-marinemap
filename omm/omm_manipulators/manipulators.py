@@ -21,6 +21,7 @@ class ExcludeFederalWatersManipulator(ClipToShapeManipulator):
         name = 'ExcludeFederalWatersManipulator'
         display_name = 'Exclude Federal Waters'
         description = 'Removes any part of your shape that is beyond the territorial sea line.'
+        supported_geom_fields = ['PolygonField']
 
         html_templates = {
             '0':'omm_manipulators/exclude_federal_waters.html',
@@ -113,6 +114,7 @@ class ExcludeStateWatersManipulator(BaseManipulator):
         name = 'ExcludeStateWatersManipulator'
         display_name = 'Exclude State Waters'
         description = 'Removes any part of your shape that is within state waters.'
+        supported_geom_fields = ['PolygonField']
 
         html_templates = {
             '0':'omm_manipulators/exclude_state_waters.html',
@@ -136,6 +138,7 @@ class ExcludeTerrestrialManipulator(DifferenceFromShapeManipulator):
         name = 'ExcludeTerrestrialManipulator'
         display_name = 'Exclude Land Areas'
         description = 'Removes any part of your shape that is terrestrial.'
+        supported_geom_fields = ['PolygonField']
 
         html_templates = {
             '0':'omm_manipulators/exclude_terrestrial.html',
@@ -159,6 +162,7 @@ class ExcludeEstuariesManipulator(DifferenceFromShapeManipulator):
         name = 'ExcludeEstuariesManipulator'
         display_name = 'Exclude Estuaries'
         description = 'Removes any part of your shape that is estuarine.'
+        supported_geom_fields = ['PolygonField']
 
         html_templates = {
             '0':'omm_manipulators/exclude_estuaries.html',
@@ -173,6 +177,8 @@ class ClipToTerritorialSeaManipulator(ClipToStudyRegionManipulator):
         name = 'ClipToTerritorialSea'
         display_name = "Clip to Territorial Sea"
         #description = "Clip your shape to the study region"
+        supported_geom_fields = ['PolygonField']
+
         html_templates = {
             '0':'omm_manipulators/territorialsea_clip.html', 
             '2':'omm_manipulators/outside_territorialsea.html', 

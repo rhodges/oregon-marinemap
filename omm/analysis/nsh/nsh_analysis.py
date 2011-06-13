@@ -9,6 +9,7 @@ from analysis.utils import type_is_geo, type_is_phy, type_is_bio, type_is_hum
 from analysis.excel.utils import build_excel_response
 from nsh_cache import nsh_cache_exists, get_nsh_cache
 from django.template.defaultfilters import slugify
+from lingcod.common.utils import fetch_resources
 
 '''
 calls display_<type>_analysis for a given type
@@ -72,39 +73,10 @@ def pdf_report(request, nsh, type, template='nsh_pdf_comprehensive_report.html')
     #       see omm_requirements.txt for further details
     pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), dest=result, link_callback=fetch_resources)
     if not pdf.err:
-        return HttpResponse(result.getvalue(), mimetype='application/pdf')
+        res = HttpResponse(result.getvalue(), mimetype='application/pdf')
+        res['Content-Disposition'] = 'filename=nsh_report_%s.pdf' % nsh.uid
+        return res
     return HttpResponse('This PDF request is temporarily un-available.') 
-    
-'''
-Returns a path to desired resource (image file)
-Called from within pisaDocument via link_callback parameter (from pdf_report)
-'''    
-def fetch_resources(uri, rel):
-    import os
-    import settings
-    from lingcod.staticmap.temp_save import save_to_temp
-    params = get_params_from_uri(uri)
-    if len(params) > 0:
-        path = save_to_temp(params)
-    else:
-        path = os.path.join(settings.MEDIA_ROOT, uri.replace(settings.MEDIA_URL, ""))
-    return path
-    
-'''
-Returns a dictionary representation of the parameters attached to the given uri
-Called by fetch_resources
-'''    
-def get_params_from_uri(uri):
-    from urlparse import urlparse
-    results = urlparse(uri)
-    params = {}
-    if results.query == '':
-        return params
-    params_list = results.query.split('&')
-    for param in params_list:
-        pair = param.split('=')
-        params[pair[0]] = pair[1]
-    return params
     
 '''
 retrieves the type-specific context from cache, or if not yet cached, by running the analysis

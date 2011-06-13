@@ -11,7 +11,7 @@ class Migration(SchemaMigration):
         # Adding model 'AOI'
         db.create_table('tsp_aoi', (
             ('geometry_orig', self.gf('django.contrib.gis.db.models.fields.PolygonField')(srid=99999, null=True, blank=True)),
-            ('designation', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['mpa.MpaDesignation'], null=True, blank=True)),
+            ('designation', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'],null=True, blank=True)),
             ('date_modified', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
             ('description', self.gf('django.db.models.fields.TextField')(default='', null=True, blank=True)),
             ('object_id', self.gf('django.db.models.fields.PositiveIntegerField')(null=True, blank=True)),
