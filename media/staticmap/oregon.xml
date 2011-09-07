@@ -164,8 +164,8 @@
       <Parameter name="table">(select geometry, name from mm_study_region) as region</Parameter>
       <!-- REPLACE DATABASE_CONNECTION -->
       <Parameter name="type">postgis</Parameter>
-      <Parameter name="dbname">oregon</Parameter>
-      <Parameter name="user">postgres</Parameter> 
+      <Parameter name="dbname">marinemap</Parameter>
+      <Parameter name="user">gisdev</Parameter> 
     </Datasource>
 </Layer>
 

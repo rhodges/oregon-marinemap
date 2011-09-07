@@ -1,0 +1,2 @@
+1.1.7 introduces a regression - either downgrade to PIL 1.1.6 or implement this patch
+ http://hg.effbot.org/pil-2009-raclette/changeset/fb7ce579f5f9 

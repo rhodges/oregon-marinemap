@@ -1,0 +1,93 @@
+[
+  {
+    "pk": 29, 
+    "model": "layers.privatekml", 
+    "fields": {
+      "priority": 0.0, 
+      "base_kml": "/mnt/omm/EBS_fishingmaps/display/private_maps/Distressed_Qualify032307_hc/Distressed_Qualify032307_hc.kmz", 
+      "name": "Distressed Communities - NMTC", 
+      "sharing_groups": [
+        18, 
+        21
+      ]
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "layers.privatekml", 
+    "fields": {
+      "priority": 0.0, 
+      "base_kml": "/mnt/omm/EBS_fishingmaps/display/private_maps/Boating_Access_Facilities_OMB_2011/Boating_Access_Facilities_OMB_2011.kml", 
+      "name": "Boating Access Facilities, OMB, 2011  - DRAFT", 
+      "sharing_groups": [
+        21, 
+        5
+      ]
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "layers.privatekml", 
+    "fields": {
+      "priority": 0.0, 
+      "base_kml": "/mnt/omm/EBS_fishingmaps/display/private_maps/doc_30/doc_30.kml", 
+      "name": "Charter Fishing Planning Unit Data", 
+      "sharing_groups": [
+        21, 
+        17
+      ]
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "layers.privatekml", 
+    "fields": {
+      "priority": 0.0, 
+      "base_kml": "/mnt/omm/EBS_fishingmaps/display/private_maps/doc_28/doc_28.kml", 
+      "name": "Commercial Fishing Planning Unit Data", 
+      "sharing_groups": [
+        21, 
+        17
+      ]
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "layers.privatekml", 
+    "fields": {
+      "priority": 0.0, 
+      "base_kml": "/mnt/omm/EBS_fishingmaps/display/private_maps/DRAFT_developed_access_points_03252011_sm/DRAFT_developed_access_points_03252011_sm.kml", 
+      "name": "DRAFT Public Access, DLCD 2010", 
+      "sharing_groups": [
+        21, 
+        22
+      ]
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "layers.privatekml", 
+    "fields": {
+      "priority": 0.0, 
+      "base_kml": "/mnt/omm/EBS_fishingmaps/display/private_maps/fishcred/doc.kml", 
+      "name": "Statewide Fishing Data", 
+      "sharing_groups": [
+        21, 
+        17
+      ]
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "layers.privatekml", 
+    "fields": {
+      "priority": 0.0, 
+      "base_kml": "/mnt/omm/EBS_fishingmaps/display/private_maps/depoe_bay/doc.kml", 
+      "name": "Private Ecotrust Fishing Data", 
+      "sharing_groups": [
+        10, 
+        21
+      ]
+    }
+  }
+]
