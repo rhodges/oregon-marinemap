@@ -10,6 +10,9 @@
             <li><a href="#Attributes"><span>Information</span></a></li>
             <li><a href="#Habitats"><span>Nearshore Habitats</span></a></li>
             <li><a href="#Sites"><span>Energy Sites</span></a></li>
+            {% if instance.user.is_staff %}
+            <li><a href="#Economy"><span>Economy</span></a></li>
+            {% endif %}
         </ul>
         <div id="Attributes">
             <ul class="metadata">
@@ -53,5 +56,24 @@
                 <p>This page contains Alternative Energy Site analysis information specific to your Area of Interest. </p>
             </div>
         </div>
+        {% if instance.user.is_staff %}
+        <div id="Economy" class="tabs">
+            <ul>
+                <li><a href="#SH_Instructions"><span>Intro</span></a></li>
+                <li><a href="{% url shoreside_analysis instance.pk 'com-noaa' %}"><span>Com (NOAA)</span></a></li>
+                <li><a href="{% url shoreside_analysis instance.pk 'com-feam' %}"><span>Com (FEAM)</span></a></li>
+                <li><a href="{% url shoreside_analysis instance.pk 'chrt' %}"><span>Charter</span></a></li>
+                <li><a href="{% url shoreside_analysis instance.pk 'rec' %}"><span>Rec</span></a></li>
+            </ul>
+            <div id="SH_Instructions">
+                <h3>Shoreside Economic Analysis</h3>
+                <p>This page contains shoreside economic analysis reports specific to your Area of Interest. </p>
+                <p>Commercial (NOAA) reports...</p>
+                <p>Commercial (FEAM) reports...</p>
+                <p>Charter reports...</p>
+                <p>Recreational reports...</p>
+            </div>
+        </div>
+        {% endif %}
     </div>
 {% endblock panel %}

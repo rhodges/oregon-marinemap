@@ -1,0 +1,56 @@
+{% extends 'common/panel.html' %}
+{% load currency %}
+{% block panel %}
+
+<h3>{{agency}} Commercial Fishing Analysis</h3>
+<div class='freetext'>
+<p>
+<table  style='width:430px' class='econ_analysis_container'>
+    <thead>
+        <tr>
+            <th>Port/Fishery</th>
+            <th>Average Annual Gross Estimated Revenue</th>
+            <th>Estimated Economic Output</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for port, fisheries in ports %}
+            <tr>
+                <td><b>{{port}}</b></td>
+                <td></td>
+                <td></td>
+            </tr>        
+            {% for fishery_report in fisheries %}
+                <tr class="{% cycle 'grey' '' %}">
+                    <td>{{fishery_report.0}}</td>
+                    <td class='currency'>{{fishery_report.2|currency}}&nbsp;&nbsp;</td>
+                    <td class='currency'>{{fishery_report.3|currency}}&nbsp;&nbsp;</td>
+                </tr>
+            {% endfor %}
+            <tr><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td></tr>
+        {% endfor %}
+        <tr>
+            <td><b>Statewide</b></td>
+            <td></td>
+            <td></td>
+        </tr>
+        {% for tuple in state_totals %}
+            <tr class="{% cycle '' 'grey' %}">
+                <td>{{tuple.0}}</td>
+                <td class='currency'>{{tuple.1.1|currency}}&nbsp;&nbsp;</td>
+                <td class='currency'>{{tuple.1.2|currency}}&nbsp;&nbsp;</td>
+            </tr>
+        {% endfor %}
+        <tr><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+</div>
+<p>
+
+<style type="text/css">
+h3 { font-weight: bold; }
+</style>
+
+{% endblock panel %}
