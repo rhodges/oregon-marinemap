@@ -28,7 +28,6 @@ TEMPLATE_DIRS = ( os.path.realpath(os.path.join(os.path.dirname(__file__), 'temp
 INSTALLED_APPS += ( 'tsp', 
                     'analysis',
                     'lingcod.analysistools',
-                    'lingcod.bookmarks',
                     'fishing_layers',
                     'omm_manipulators',
                     'non_consumptive')
@@ -57,5 +56,7 @@ STATICMAP_OUTLINE_X_OFFSET = .07
 STATICMAP_OUTLINE_Y_OFFSET = .14
 
 PRIVATE_KML_ROOT = '/usr/local/privatekml'
+
+BOOKMARK_FEATURE = True
 
 from settings_local import *
