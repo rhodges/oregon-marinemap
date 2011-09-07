@@ -8,7 +8,6 @@ urlpatterns = patterns('',
     (r'^analysis/', include('analysis.urls')),
     (r'^fishing/', include('fishing_layers.urls')),
     (r'^loadshp/', include('lingcod.loadshp.urls')),
-    (r'^bookmark/', include('lingcod.bookmarks.urls')),
     #(r'^non_consumptive/', include('non_consumptive.urls')),
 )
 
