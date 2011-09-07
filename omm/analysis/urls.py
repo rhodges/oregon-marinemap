@@ -5,6 +5,7 @@ urlpatterns = patterns('',
     #user requested nsh analysis
     url(r'nsh/(\d+)/(\w+)', nsh_analysis, name='nsh_analysis'),
     url(r'aes/(\d+)/(\w+)', aes_analysis, name='aes_analysis'),
+    url(r'econ/shoreside/(\d+)/([-\w]+)', shoreside_analysis, name='shoreside_analysis'),
     #user requested printable reports
     url(r'nsh/print_report/(\d+)/(\w+)', print_nsh_report, name='printable_nsh_report'),
     url(r'aes/print_report/(\d+)/(\w+)', print_aes_report, name='printable_aes_report'),

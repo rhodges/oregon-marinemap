@@ -30,10 +30,12 @@ INSTALLED_APPS += ( 'tsp',
                     'lingcod.analysistools',
                     'fishing_layers',
                     'omm_manipulators',
-                    'non_consumptive')
+                    'non_consumptive',
+                    'lingcod.raster_stats')
 
 COMPRESS_CSS['application']['source_filenames'] += (
     'omm/css/aoi_analysis.css',
+    'omm/css/econ_analysis.css',
 )
 
 # KML SETTINGS - using default settings of 20 meters for now...
@@ -56,6 +58,8 @@ STATICMAP_OUTLINE_X_OFFSET = .07
 STATICMAP_OUTLINE_Y_OFFSET = .14
 
 PRIVATE_KML_ROOT = '/usr/local/privatekml'
+
+SHORESIDE_GROUP = "Shoreside Economics"
 
 BOOKMARK_FEATURE = True
 
