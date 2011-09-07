@@ -57,4 +57,6 @@ STATICMAP_OUTLINE_Y_OFFSET = .14
 
 PRIVATE_KML_ROOT = '/usr/local/privatekml'
 
+BOOKMARK_FEATURE = True
+
 from settings_local import *
