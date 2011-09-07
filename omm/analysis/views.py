@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404, render_to_response
 from tsp.models import AOI
+import settings
 
 '''
 Accessed via named url when user selects a type (Geographic, Physical, Biological, Human Uses) to run nsh analysis on 
@@ -9,6 +10,10 @@ Accessed via named url when user selects a type (Geographic, Physical, Biologica
 def nsh_analysis(request, nsh_id, type):
     from nsh.nsh_analysis import display_nsh_analysis
     nsh = get_object_or_404(AOI, pk=nsh_id)
+    #check permissions
+    viewable, response = nsh.is_viewable(request.user)
+    if not viewable:
+        return response
     return display_nsh_analysis(request, nsh, type)
     
 '''
@@ -17,8 +22,41 @@ Accessed via named url when user selects a type (Geographic, Physical, Biologica
 def aes_analysis(request, aes_id, type):
     from aes.aes_analysis import display_aes_analysis
     aes = get_object_or_404(AOI, pk=aes_id)
+    #check permissions
+    viewable, response = aes.is_viewable(request.user)
+    if not viewable:
+        return response
     return display_aes_analysis(request, aes, type)
 
+'''
+'''    
+def shoreside_analysis(request, aoi_id, type):
+    from econ import commercial, charter, recreational
+    aoi = get_object_or_404(AOI, pk=aoi_id)
+    
+    #check permissions
+    viewable, response = aoi.is_viewable(request.user)
+    if not viewable:
+        return response
+    #use something similar to the following to limit url access to these reports 
+    #might have settings var for shoreside group 
+    if request.user.groups.filter(name=settings.SHORESIDE_GROUP).count() == 0:
+        return HttpResponse("access denied", status=403)
+    
+    if 'com' in type:
+        context = commercial.get_commercial_context(aoi, type)
+        template = 'econ/commercial_report.html'
+    elif type == 'chrt':
+        context = charter.get_charter_context(aoi)
+        template = 'econ/charter_report.html'
+    elif type == 'rec':
+        context = recreational.get_recreational_context(aoi)
+        template = 'econ/recreational_report.html'
+    else:
+        context = None
+        template = None
+    return render_to_response(template, RequestContext(request, context)) 
+    
 '''
 '''    
 def excel_nsh_report(request, nsh_id, type):
