@@ -10,10 +10,6 @@
     {% endif %}
 {% endblock layersConfig %}
 
-        {% block enhancedContent %}
-            options.displayEnhancedContent = true;
-        {% endblock enhancedContent %}
-
 {% block tabs %}
 {% if user.is_authenticated %}
 <li><a href="#MyShapes"><span>My Shapes</span></a></li> 
