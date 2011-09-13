@@ -2,7 +2,7 @@ from django import template
 import locale
 try:
     #this first command is for the aws servers
-    locale.setlocale(locale.LC_ALL, 'en_US')
+    locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 except:
     #this second command is probably what you'll need on your local machine
     locale.setlocale(locale.LC_ALL, '')
