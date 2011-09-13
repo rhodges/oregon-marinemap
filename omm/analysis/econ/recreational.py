@@ -53,7 +53,7 @@ def get_recreational_context(aoi, type='rec', prefix='rec'):
                 else:
                     state_totals.append((fishery, [multiplier, gross_revenue, total]))
         state_totals.sort()
-    context = {'aoi': aoi, 'default_value': default_value, 'ports': ports, 'state_totals': state_totals}
+    context = {type: {'aoi': aoi, 'default_value': default_value, 'ports': ports, 'state_totals': state_totals, 'pdf': False, 'printable': False}}
     create_econ_cache(aoi, type, context)
     return context
     

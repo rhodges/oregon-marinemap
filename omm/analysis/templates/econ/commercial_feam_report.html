@@ -2,10 +2,10 @@
 {% load currency %}
 {% block panel %}
 
-<h3>Charter Fishing Analysis</h3>
+<h3>{{feam.agency}} Commercial Fishing Analysis</h3>
 <div class='freetext'>
 <p>
-{% if chrt.printable or chrt.pdf %}
+{% if feam.printable or feam.pdf %}
 <table  style='width:430px' class='printable_econ_analysis_container'>
 {% else %}
 <table  style='width:430px' class='econ_analysis_container'>
@@ -13,19 +13,19 @@
     <thead>
         <tr>
             <th>Port/Fishery</th>
-            <th>Estimated Gross Economic Revenue</th>
-            <th>Estimated Economic Output</th>
+            <th>Average Annual Gross Economic Revenue</th>
+            <th>Estimated Personal Income</th>
         </tr>
     </thead>
     <tbody>
-        {% for port, fisheries in chrt.ports %}
+        {% for port, fisheries in feam.ports %}
             <tr>
                 <td class='port'><b>{{port}}</b></td>
                 <td></td>
                 <td></td>
             </tr>        
             {% for fishery_report in fisheries %}
-                <tr class="{% cycle '' 'grey' %}">
+                <tr class="{% cycle 'grey' '' %}">
                     <td class='fishery'>{{fishery_report.0}}</td>
                     <td class='currency'>{{fishery_report.2|currency}}&nbsp;&nbsp;</td>
                     <td class='currency'>{{fishery_report.3|currency}}&nbsp;&nbsp;</td>
@@ -39,7 +39,7 @@
             <td></td>
             <td></td>
         </tr>
-        {% for tuple in chrt.state_totals %}
+        {% for tuple in feam.state_totals %}
             <tr class="{% cycle '' 'grey' %}">
                 <td class='fishery'>{{tuple.0}}</td>
                 <td class='currency'>{{tuple.1.1|currency}}&nbsp;&nbsp;</td>
@@ -53,22 +53,22 @@
 </div>
 <p>
 
-{% if not chrt.pdf and not chrt.printable %}
+{% if not feam.pdf and not feam.printable %}
 <p>
 <div style='font-size: small'>
-    <a target='_blank' href='{% url printable_econ_report chrt.aoi.id "chrt" %}'>Printable Charter Fishing Report</a>
+    <a target='_blank' href='{% url printable_econ_report feam.aoi.id "feam" %}'>Printable Commercial (FEAM) Fishing Report</a>
     &nbsp; 
-    <a target='_blank' href='{% url pdf_econ_report chrt.aoi.id "chrt" %}'> (PDF) </a> 
+    <a target='_blank' href='{% url pdf_econ_report feam.aoi.id "feam" %}'> (PDF) </a> 
     &nbsp; 
-    <a target='_blank' href='{% url excel_econ_report chrt.aoi.id "chrt" %}'> (Excel) </a>  
+    <a target='_blank' href='{% url excel_econ_report feam.aoi.id "feam" %}'> (Excel) </a>  
 </div>
 <p>
 <div style='font-size: small'>
-    <a target='_blank' href='{% url printable_econ_report chrt.aoi.id "all" %}'>Printable Comprehensive Report</a>
+    <a target='_blank' href='{% url printable_econ_report feam.aoi.id "all" %}'>Printable Comprehensive Report</a>
     &nbsp; 
-    <a target='_blank' href='{% url pdf_econ_report chrt.aoi.id "all" %}'> (PDF) </a> 
+    <a target='_blank' href='{% url pdf_econ_report feam.aoi.id "all" %}'> (PDF) </a> 
     &nbsp; 
-    <a target='_blank' href='{% url excel_econ_report chrt.aoi.id "all" %}'> (Excel) </a>  
+    <a target='_blank' href='{% url excel_econ_report feam.aoi.id "all" %}'> (Excel) </a>  
     
     <br>(Comprehensive reports are a combination of Commercial-NOAA, Commercial-FEAM, Charter, and Recreational Fishing reports.)</br>   
 </div>
