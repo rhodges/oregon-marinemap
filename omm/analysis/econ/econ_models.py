@@ -19,3 +19,5 @@ class EconCache(models.Model):
         
     class Meta:
         app_label = 'analysis'
+        permissions = (('can_view', 'Can view'))
+        

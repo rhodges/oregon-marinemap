@@ -10,7 +10,7 @@
             <li><a href="#Attributes"><span>Information</span></a></li>
             <li><a href="#Habitats"><span>Nearshore Habitats</span></a></li>
             <li><a href="#Sites"><span>Energy Sites</span></a></li>
-            {% if instance.user.is_staff %}
+            {% if perms.econ_cache.can_view %}
             <li><a href="#Economy"><span>Economy</span></a></li>
             {% endif %}
         </ul>
@@ -97,7 +97,13 @@
                 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
                 <script type="text/javascript">
                 function toggleDiv(divId) {
-                   $("#"+divId).toggle();
+                    $("#"+divId).toggle();     
+                    if ($('#toggleText').css('display') == 'none') {
+                        $('#displayText').html('Hide Text');
+                    }
+                    else {
+                        $('#displayText').html('Learn More');
+                    }
                 }
                 </script>
                 </div>

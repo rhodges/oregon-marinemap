@@ -38,10 +38,8 @@ def shoreside_analysis(request, aoi_id, type):
     viewable, response = aoi.is_viewable(request.user)
     if not viewable:
         return response
-    #use something similar to the following to limit url access to these reports 
-    #might have settings var for shoreside group 
-    if request.user.groups.filter(name=settings.SHORESIDE_GROUP).count() == 0:
-        return HttpResponse("access denied", status=403)
+    if not request.user.has_perm('econcache.can_view'):
+        return HttpResponse("you do not have permission to view this object", status=403)
     
     if type == 'noaa':
         context = commercial.get_commercial_context(aoi, type)
