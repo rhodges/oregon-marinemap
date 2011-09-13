@@ -56,7 +56,7 @@
                 <p>This page contains Alternative Energy Site analysis information specific to your Area of Interest. </p>
             </div>
         </div>
-        {% if instance.user.is_staff %}
+        {% if perms.econ_cache.can_view %}
         <div id="Economy" class="tabs">
             <ul>
                 <li><a href="#SH_Instructions"><span>Intro</span></a></li>
