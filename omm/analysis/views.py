@@ -43,9 +43,12 @@ def shoreside_analysis(request, aoi_id, type):
     if request.user.groups.filter(name=settings.SHORESIDE_GROUP).count() == 0:
         return HttpResponse("access denied", status=403)
     
-    if 'com' in type:
+    if type == 'noaa':
         context = commercial.get_commercial_context(aoi, type)
-        template = 'econ/commercial_report.html'
+        template = 'econ/commercial_noaa_report.html'
+    elif type == 'feam':
+        context = commercial.get_commercial_context(aoi, type)
+        template = 'econ/commercial_feam_report.html'
     elif type == 'chrt':
         context = charter.get_charter_context(aoi)
         template = 'econ/charter_report.html'
@@ -77,6 +80,15 @@ def excel_aes_report(request, aes_id, type):
         return response
     return excel_report(request, aes, type)
     
+'''
+'''    
+def excel_econ_report(request, aoi_id, type):
+    from econ.econ_exports import excel_report
+    aoi = get_object_or_404(AOI, pk=aoi_id)
+    user_can_view, response = aoi.is_viewable(request.user)
+    if not user_can_view:
+        return response
+    return excel_report(request, aoi, type)    
     
 '''
 '''
@@ -99,6 +111,16 @@ def pdf_aes_report(request, aes_id, type):
     return pdf_report(request, aes, type)
     
 '''
+'''
+def pdf_econ_report(request, aoi_id, type):
+    from econ.econ_exports import pdf_report
+    aoi = get_object_or_404(AOI, pk=aoi_id)
+    user_can_view, response = aoi.is_viewable(request.user)
+    if not user_can_view:
+        return response
+    return pdf_report(request, aoi, type)
+    
+'''
 Accessed via named url when user selects View Printable Report from analysis templates
 '''    
 def print_nsh_report(request, nsh_id, type):
@@ -119,6 +141,17 @@ def print_aes_report(request, aes_id, type):
     if not user_can_view:
         return response
     return printable_report(request, aes, type)
+    
+'''
+'''
+def print_econ_report(request, aoi_id, type):
+    from econ.econ_exports import printable_report
+    aoi = get_object_or_404(AOI, pk=aoi_id)
+    user_can_view, response = aoi.is_viewable(request.user)
+    if not user_can_view:
+        return response
+    return printable_report(request, aoi, type)
+    
     
 '''
 Empties NSHCache table
