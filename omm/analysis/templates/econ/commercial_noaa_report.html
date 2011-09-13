@@ -16,8 +16,8 @@
     <thead>
         <tr>
             <th>Port/Fishery</th>
-            <th>Average Annual Gross Economic Revenue</th>
-            <th>Estimated Economic Output</th>
+            <th>Average Annual Gross Economic Revenue{% if not noaa.pdf and not noaa.printable %}<sup>&nbsp;1</sup>{% endif %}</th>
+            <th>Estimated Economic Output{% if not noaa.pdf and not noaa.printable %}<sup>&nbsp;2</sup>{% endif %}</th>
         </tr>
     </thead>
     <tbody>
@@ -53,7 +53,17 @@
 <p>
 
 {% if not noaa.pdf and not noaa.printable %}
+
+<p><h3>Footnotes on Commercial-NOAA Headers</h3></p>
+
+<div class='freetext'>
+<p>1. In the commercial sector average annual gross economic revenue (GER) was calculated using annual gross economic 
+      revenue (e.g., ex-vessel landings revenue) data for the years 2004-2008 and is displayed in 2008 dollar values. </p>
+<p>2. Estimated economic output (EEO) is a measure of the total direct and indirect economic activity associated with 
+      sales or expenditures in a certain sector.   </p>
+</div>
 <p>
+
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_econ_report noaa.aoi.id "noaa" %}'>Printable Commercial (NOAA) Fishing Report</a>
     &nbsp; 
