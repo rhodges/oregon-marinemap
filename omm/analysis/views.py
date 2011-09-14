@@ -38,7 +38,7 @@ def shoreside_analysis(request, aoi_id, type):
     viewable, response = aoi.is_viewable(request.user)
     if not viewable:
         return response
-    if not request.user.has_perm('econcache.can_view'):
+    if not request.user.has_perm('analysis.econcache_can_view'):
         return HttpResponse("you do not have permission to view this object", status=403)
     
     if type == 'noaa':
