@@ -1,0 +1,293 @@
+{% extends 'common/panel.html' %}
+
+{% block panel %}
+
+{% block TerrestrialBiological %}
+<h3>Terrestrial Biological Characteristics</h3>
+<div class='freetext'>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <!-- Plover -->
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Western Snowy Plover Critical Habitat</b><sup>&nbsp;1</sup></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_snowy_plover|floatformat:'1'}} {{length_units}} &nbsp; </td>
+        </tr>
+        <p>
+        
+        <!-- Murrelet -->
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Marbled Murrelet Critical Habitat</b><sup>&nbsp;2</sup></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_marbled_murrelet|floatformat:'1'}} {{length_units}} &nbsp; </td>
+        </tr>
+        <p>
+    </tbody>
+</table>
+</div>
+{% endblock TerrestrialBiological %}
+
+{% block IntertidalBiological %}
+<h3>Intertidal Biological Characteristics</h3>
+<div class='freetext'>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <tr class="grey">
+            <td><b>Pinniped Haulouts</b><sup>&nbsp;3</sup></td>
+            <td></td>
+            <td><b>Steller Sea Lion Rookeries</b><sup>&nbsp;4</sup></td>
+        </tr>
+        <tr>
+            {% if num_haulouts == 0 %}
+            <td>None ({{num_haulouts}} haulouts)</td>
+            {% else %}
+            <td>Yes ({{num_haulouts}} haulouts)</td>
+            {% endif %}
+            <td></td>
+            {% if num_rookeries == 0 %}
+            <td>None ({{num_rookeries}} rookeries)</td>
+            {% else %}
+            <td>Yes ({{num_rookeries}} rookeries)</td>
+            {% endif %}
+        </tr>
+        {% if num_haulouts != 0 %}
+        <tr class="grey">
+            <td colspan="3"><b>Pinniped Haulout Details</b><sup>&nbsp;5</sup></td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        {% for site in haulout_sites %}
+            <tr>
+                <td colspan="3">{{site.0.0}} , ({{site.0.1}})</td>
+            </tr>
+            {% for species in site.1 %}
+            <tr class="grey">
+                <td colspan="3">{{species}}</td>
+            </tr>
+            {% endfor %}
+        {% endfor %}
+        <tr><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <tr class="grey">
+            <td colspan="2"><b>Steller Sea Lion Critical Habitats</b><sup>&nbsp;6</sup></td>
+        </tr>
+        {% if num_sealion_habs == 0 %}
+        <tr>
+            <td colspan="2">None &nbsp;</td>
+        </tr>
+        {% else %}
+        {% for hab in sealion_habs %}
+        <tr>
+            <td>{{hab.0}}</td>
+            <td>{{hab.1}}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <tr class="grey">
+            <td colspan="3"><b>Bird Colonies</b><sup>&nbsp;7</sup></td>
+        </tr>
+        <tr>
+            {% if bird_colonies == 0 %}
+            <td colspan="3">None ({{bird_colonies}} colonies) &nbsp;</td>
+            {% else %}
+            <td colspan="3">Yes ({{bird_colonies}} colonies) &nbsp;</td>
+            {% endif %}
+        </tr>
+        {% if bird_colonies != 0 %}
+        <tr class="grey">
+            <td colspan="3"><b>Bird Colony Details</b><sup>&nbsp;8</sup></td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        {% for details in bird_details %}
+                <tr>
+                    <td colspan="3">{{details.0.0}} , (Colony #{{details.0.1}})</td>
+                </tr>
+                {% for bird in details.1 %}
+                <tr class="grey">
+                    <td colspan="3">{{bird}}</td>
+                </tr>
+                {% endfor %}
+        {% endfor %}
+        <tr><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+</div>
+<p>
+{% endblock IntertidalBiological %}
+
+{% block SubtidalBiological %}
+<h3>Subtidal Biological Characteristics</h3>
+<div class='freetext'>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <!-- Habitat Types -->
+        <tr class="grey">
+            <td colspan="3"><b>Habitat Type & Proportions</b><sup>&nbsp;9</sup></td>
+        </tr>
+        <tr>
+            <td colspan="3">
+            {% if not habitat_proportions.0 %}
+                {{default_value}}
+            {% endif %}
+            {% for details in habitat_proportions %}
+                {{details.0|floatformat:'2'}} % &nbsp; &nbsp; &nbsp; {{details.1}} &nbsp; &nbsp; &nbsp; ({{details.2|floatformat:'2'}} {{area_units}})<br>
+            {% endfor %}
+            </td>
+        </tr>
+        <p>
+        
+        <!-- Fish Species -->
+        <!--
+        <tr class="grey">
+            <td colspan="3"><b>Predicted Fish Species</b><sup>&nbsp;10</sup><br>(Provided by <a target="_blank" href="http://www.nwfsc.noaa.gov/">NOAA's Northwest Fisheries Science Center</a>)</td>
+        </tr>
+        <tr class="{% cycle '' 'grey' %}">
+            <td colspan="3">
+            {% if not fish_list.0 %}
+                {{default_value}}
+            {% endif %}
+            {% for fish in fish_list %}
+                {{fish}}<br>
+            {% endfor %}
+            </td>
+        </tr>
+        <p>
+        <!-- For some reason the right comment tag shows up in the template unless I add an extra open comment tag like this -->
+        <!-- Sturgeon -->
+        <tr class="grey">
+            <td><b>Green Sturgeon</b><sup>&nbsp;10</sup></td>
+            <td><b>Green Sturgeon Area Percentage</b><sup>&nbsp;11</sup></td>
+        </tr>
+        <tr>
+            <td>{{green_sturgeon}}</td>
+            <td>{{green_sturgeon_perc|floatformat:'1'}} %</td>
+        </tr>
+        <p>
+        
+        <!-- Coho -->
+        {% if intersecting_coho_streams != 'No' %}
+        <tr class="grey">
+            <td colspan="3"><b>Coho Populated Streams</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{intersecting_coho_streams}} &nbsp; </td>
+        </tr>
+        {% else %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Coho Populated Stream</b><sup>&nbsp;12</sup></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_coho_stream|floatformat:'1'}} {{length_units}} &nbsp; </td>
+        </tr>
+        {% endif %}
+        <p>
+        
+        <!-- Kelp -->
+        {% if kelp_data.0.2 == default_value %}
+         <tr class="grey">
+            <td colspan="3"><b>Kelp Surveys</b><sup>&nbsp;13</sup></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{kelp_data.0.0}}</td>
+        </tr>
+        {% else %}
+        <tr class="grey">
+            <td><b>Kelp Survey Year</b><sup>&nbsp;13</sup></td>
+            <td colspan="2"><b>Kelp Proportions</b><sup>&nbsp;14</sup></td>
+        </tr>
+        {% for data in kelp_data %}
+        <tr>
+            <td>{{data.0}}</td>
+            <td colspan="2">{{data.1|floatformat:'2'}} {{area_units}} &nbsp; &nbsp; {{data.2|floatformat:'2'}} %</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        <p>
+        
+        <!-- Seagrass -->
+        {% if seagrass_area == 0.0 %}
+        <tr class="grey">
+            <td colspan="3"><b>Seagrass</b><sup>&nbsp;15</sup></td>
+        </tr>
+        <tr>
+            <td colspan="3">None</td>
+        </tr>
+        {% else %}
+        <tr class="grey">
+            <td colspan="3"><b>Seagrass Area</b><sup>&nbsp;15</sup></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{seagrass_area|floatformat:'2'}} {{area_units}}</td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+</div>
+{% endblock SubtidalBiological %}
+
+{% block FootnotesHeader %}
+<p><h3>Footnotes on Report Calculations</h3></p>
+{% endblock FootnotesHeader %}
+
+<div class='freetext'>
+
+{% block TerrestrialBiologicalFootnotes %}
+<p>1. Distance to the nearest Western Snowy Plover Critical Habitat data, as determined using the <a target="_blank" href="http://www.google.com/url?q=http%3A%2F%2Fwww.coastalatlas.net%2Fmetadata%2FWesternSnowyPloverFinalCriticalHabitat%2CUSFWS%2C2005.htm&sa=D&sntz=1&usg=AFQjCNGIVzuB5xMzCv7gUmBOYtgbaNylCg">Western Snowy Plover Final Critical Habitat, USFWS, 2005</a> data.  </p>
+<p>2. Distance from the Area of Interest to the nearest <a target="_blank" href="http://www.google.com/url?q=http%3A%2F%2Fwww.coastalatlas.net%2Fmetadata%2FMarbledMurreletCriticalHabitat%2CUSFWS%2C1996.htm&sa=D&sntz=1&usg=AFQjCNFdMm2nhCovMZjP7eVJcsCTiW3H0w">Marbled Murrelet Critical Habitat, as defined by the USFWS, 1996</a> data.  </p>
+{% endblock TerrestrialBiologicalFootnotes %}
+
+{% block IntertidalBiologicalFootnotes %}
+<p>3. Pinniped Haulouts.  Determines the number of Pinniped (Marine Mammal) haulouts within the Area of Interest.  Calculated using the <a target="_blank" href="http://www.google.com/url?q=http%3A%2F%2Fwww.coastalatlas.net%2Fmetadata%2FPinnipedHauloutInformation%2CODFW%2C2008.htm&sa=D&sntz=1&usg=AFQjCNHdWInPGhkIJ84viETMEvVztTeiWQ">ODFW generated Pinniped Haulout information, 2008</a>.  </p>
+<p>4. Steller Sea Lion Rookeries.  Determines from the ODFW generated Pinniped Haulout information (2008) whether there are any <a target="_blank" href="http://www.google.com/url?q=http%3A%2F%2Fwww.coastalatlas.net%2Fmetadata%2FStellarSeaLionRookeries%2CODFW2007.htm&sa=D&sntz=1&usg=AFQjCNGnIZOqwkCe3-ZyrobJsiLdoV3Pxw">Steller Sea Lion haulouts</a> within the Area of interest.  </p>
+<p>5. Pinniped Haulout Details: For those haulouts present within the Area of Interest, the name of the haulout and the species that occur there are listed.  Information provided from the <a target="_blank" href="http://www.google.com/url?q=http%3A%2F%2Fwww.coastalatlas.net%2Fmetadata%2FPinnipedHauloutInformation%2CODFW%2C2008.htm&sa=D&sntz=1&usg=AFQjCNHdWInPGhkIJ84viETMEvVztTeiWQ">ODFW generated Pinniped Haulout information, 2008</a>.  </p>
+<p>6. Determines whether there are any Steller Sea Lion Critical Habitat Areas within the Area of Interest.  Calculated using the data <a target="_blank" href="http://www.google.com/url?q=http%3A%2F%2Fwww.coastalatlas.net%2Fmetadata%2FDesignatedStellerSeaLionCriticalHabitatinOregon%2CNMFS%2C1993.htm&sa=D&sntz=1&usg=AFQjCNGtELIIPz-e-RecUmj3SiMu9BnmVg">representation of Designated Steller Sea Lion Critical Habitat in Oregon</a>.  </p>
+<p>7. Seabird Colonies: Determines whether or not there are any nesting seabird colonies within the Area of Interest, and if present reports the number of colonies from the <a target="_blank" href="http://www.google.com/url?q=http%3A%2F%2Fwww.coastalatlas.net%2Fmetadata%2FCatalogofOregonSeabirdColonies(PointLayer)%2CUSFWS%2C2007.htm&sa=D&sntz=1&usg=AFQjCNGNWGnJ0RAg4ssH3fuIEAewceKSAw">Catalog of Oregon Seabird Colonies (2007), USFWS</a>.  </p>
+<p>8. Seabird Colony Details: For those seabird colonies present within the Area of Interest, the field reports the name of the colony and colony ID (from the Catalog), along with a listing of the species in the area. Determined using the <a target="_blank" href="http://www.google.com/url?q=http%3A%2F%2Fwww.coastalatlas.net%2Fmetadata%2FCatalogofOregonSeabirdColonies(PointLayer)%2CUSFWS%2C2007.htm&sa=D&sntz=1&usg=AFQjCNGNWGnJ0RAg4ssH3fuIEAewceKSAw">Catalog of Oregon Seabird Colonies (2007), USFWS</a>.  </p>
+{% endblock IntertidalBiologicalFootnotes %}
+
+{% block SubtidalBiologicalFootnotes %}
+<p>9. Habitat Type and Proportions within the Area of Interest are calculated based on the Lithology class of the <a target="_blank" href="http://www.google.com/url?q=http%3A%2F%2Fwww.coastalatlas.net%2Fmetadata%2FSurficialGeolgicHabitatoffOregon%2CVersion3%2COSUATSML%2C2008.htm&sa=D&sntz=1&usg=AFQjCNEaAY-8mapFbbUqHBWR-4isNfIRjQ">Surficial Geologic Habitat Layer (v.3.0)</a> data set.  </p>
+<!--<p>10. Predicted Fish Species:  The Area of Interest is used to send a report to the <a target="_blank" href="http://www.google.com/url?q=https%3A%2F%2Fwww.webapps.nwfsc.noaa.gov%2Fpacoos%2Ffaces%2FFishData.jsp%3Fspid%3D118&sa=D&sntz=1&usg=AFQjCNG8bOsMYF-3dBuIoSRXvlR4aoG92A">Habitat Use Database</a> provided by the <a target="_blank" href="http://www.google.com/url?q=http%3A%2F%2Fwww.nwfsc.noaa.gov%2F&sa=D&sntz=1&usg=AFQjCNERNhpD6SgfdTtRDkDVDqP8vjTfDQ">NOAA Northwest Fisheries Science Center</a>.  That query returns a list of the predicted species based upon a set of criteria from within the Area of Interest.</p>-->
+<p>10.  Determines whether or not the Critical Habitat Areas designated for Green Sturgeon intersect with the Area of interest.  Two different layers are used in the determination, Estuary Critical Habitat data and the Coastal Zone Critical Habitat data.</p>
+<p>11. The overlap within the Area of Interest that is also Green Sturgeon Critical Habitat is calculated. </p>
+<p>12. The distance to the nearest stream with ESA listed Coho Salmon present is reported based on the Oregon Coastal Coho Critical Habitat data.  </p>
+<p>13. Lists the surveys within the Area of Interest where Canopy forming kelp was observed.  </p>
+<p>14. If there are kelp surveys that have identified canopy forming kelp within the Area of Interest, then the proportion of area within the Area of Interest where kelp is observed is reported, both as a percentage, and an area in square miles.  </p>
+<p>15. The presence of Seagrass within the Area of Interest is reported, based upon the data within Alternative B.4 (Seagrass Compilation) for West Coast Groundfish Essential Fish Habitat draft EIS, PSMFC, 2004.  If present, then the total area of seagrass is reported in square miles.  </p>
+{% endblock SubtidalBiologicalFootnotes %}
+
+</div>
+
+{% block ExportableReports %}
+{% endblock ExportableReports %}
+
+{% block CSS %}
+<style type="text/css">
+h3 { font-weight: bold; }
+</style>
+{% endblock CSS %}
+
+{% endblock panel %}

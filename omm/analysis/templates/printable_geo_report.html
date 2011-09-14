@@ -1,0 +1,106 @@
+
+{% block Header %}
+{% endblock Header %}
+
+<div class='freetext'>
+
+{% block GeneralSpatial %}
+<br></br>
+<table class='marinemap-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="geoheader" colspan="5">General Spatial Characteristics</th>
+        </tr>
+        <tr>
+            <th>Area</th>
+            <th>Perimeter</th>
+            <th>Intertidal</th>
+            <th>Islands</th>
+            <th>Percent of Territorial Sea</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{area|floatformat:'2'}} ({{area_units}})</td>
+            <td>{{perimeter|floatformat:'2'}} ({{length_units}})</td>
+            <td>{{intertidal}}</td>
+            <td>{{islands}}</td>
+            <td>{{ratio|floatformat:'2'}} %</td>
+        </tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+{% endblock GeneralSpatial %}
+
+{% block OtherGeography %}
+{% endblock OtherGeography %}
+
+{% block CSS %}
+<style type="text/css">
+div.img {
+    margin-left: auto;
+    margin-right: auto;
+    zoom: 80%;
+}
+
+table.marinemap-table {
+    font-size:12px;
+    width:100%;
+    border:solid 1px #fff;
+    margin:3px;
+    padding-top:4px;
+}
+
+table.marinemap-table th.geoheader {
+    background-color:#518E58;
+    color:#B0B0B0;
+    font-family:helvetica;
+    font-weight:bold;
+}
+
+table.marinemap-table th {
+    background-color:#D0D0D0;
+    color:#344E63;
+    font-weight:bold;
+}
+
+table.marinemap-table th.left {
+    background-color:#D0D0D0;
+    color:#344E63;
+    font-weight:bold;
+    text-align:left;
+}
+
+table.marinemap-table td {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    text-align:center;
+}
+
+table.marinemap-table td.left {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    text-align:left;
+}
+
+table.marinemap-table thead tr {
+    background:#FAFAFA url(../images/toolbar-bg.png) repeat-x scroll left bottom;
+    text-align:center;
+}
+
+table.marinemap-table tbody {
+    background-color:white;
+}
+
+table.marinemap-table tr.zebra {
+    background-color:#eee;
+}
+</style>
+{% endblock CSS %}
+
+<br></br>
+<br></br>
+
+</div>
