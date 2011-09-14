@@ -10,6 +10,9 @@ table.econ_analysis_container {
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
 }
+table.econ_analysis.container tr {
+    padding: 20px;
+}
 table.econ_analysis_container td, th {
     text-align: left;
     border-width: 0px;
@@ -18,13 +21,19 @@ table.econ_analysis_container td, th {
     padding: 2px;
 }
 table.econ_analysis_container td.currency {
-    padding-left: 1em;
+    padding-right: 5px;
     text-align: right;
 }
 table.econ_analysis_container th {
     text-align: center;
     font-weight: bold;
     background: #FAFAFA url(http://closure-library.googlecode.com/svn/trunk/closure/goog/demos/css/../images/toolbar-bg.png) repeat-x scroll left bottom;
+}
+table.econ_analysis_container th.left {
+    text-align: left;
+}
+table.econ_analysis_container th.right {
+    text-align: right;
 }
 table.econ_analysis_container tr.grey {
     background: #ececec;
