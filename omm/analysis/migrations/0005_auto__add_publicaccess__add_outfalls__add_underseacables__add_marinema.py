@@ -1,0 +1,723 @@
+# encoding: utf-8
+import datetime
+from south.db import db
+from south.v2 import SchemaMigration
+from django.db import models
+
+class Migration(SchemaMigration):
+    
+    def forwards(self, orm):
+        
+        # Adding model 'PublicAccess'
+        db.create_table('analysis_publicaccess', (
+            ('surf', self.gf('django.db.models.fields.CharField')(max_length=6)),
+            ('hiking', self.gf('django.db.models.fields.CharField')(max_length=7)),
+            ('objectid', self.gf('django.db.models.fields.IntegerField')()),
+            ('bridge', self.gf('django.db.models.fields.CharField')(max_length=8)),
+            ('parking', self.gf('django.db.models.fields.CharField')(max_length=9)),
+            ('dat1', self.gf('django.db.models.fields.FloatField')()),
+            ('phone', self.gf('django.db.models.fields.CharField')(max_length=7)),
+            ('chtype', self.gf('django.db.models.fields.CharField')(max_length=9, null=True, blank=True)),
+            ('char', self.gf('django.db.models.fields.CharField')(max_length=8)),
+            ('marina', self.gf('django.db.models.fields.CharField')(max_length=8)),
+            ('wetland', self.gf('django.db.models.fields.CharField')(max_length=10)),
+            ('comments', self.gf('django.db.models.fields.CharField')(max_length=25, null=True, blank=True)),
+            ('dat1_id', self.gf('django.db.models.fields.FloatField')()),
+            ('owner', self.gf('django.db.models.fields.CharField')(max_length=12)),
+            ('restrm', self.gf('django.db.models.fields.CharField')(max_length=9)),
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('boat', self.gf('django.db.models.fields.CharField')(max_length=6, null=True, blank=True)),
+            ('loc', self.gf('django.db.models.fields.CharField')(max_length=31)),
+            ('horse', self.gf('django.db.models.fields.CharField')(max_length=7)),
+            ('lthouse', self.gf('django.db.models.fields.CharField')(max_length=9)),
+            ('addr', self.gf('django.db.models.fields.CharField')(max_length=8, null=True, blank=True)),
+            ('camping', self.gf('django.db.models.fields.CharField')(max_length=10)),
+            ('section', self.gf('django.db.models.fields.CharField')(max_length=9, null=True, blank=True)),
+            ('lon', self.gf('django.db.models.fields.FloatField')()),
+            ('lake', self.gf('django.db.models.fields.CharField')(max_length=6)),
+            ('numpk', self.gf('django.db.models.fields.CharField')(max_length=10)),
+            ('prop', self.gf('django.db.models.fields.CharField')(max_length=9, null=True, blank=True)),
+            ('boating', self.gf('django.db.models.fields.CharField')(max_length=9)),
+            ('bike', self.gf('django.db.models.fields.CharField')(max_length=5)),
+            ('forest', self.gf('django.db.models.fields.CharField')(max_length=8)),
+            ('ped', self.gf('django.db.models.fields.CharField')(max_length=5, null=True, blank=True)),
+            ('veh', self.gf('django.db.models.fields.CharField')(max_length=5, null=True, blank=True)),
+            ('status', self.gf('django.db.models.fields.CharField')(max_length=10, null=True, blank=True)),
+            ('map', self.gf('django.db.models.fields.CharField')(max_length=9, null=True, blank=True)),
+            ('photoid', self.gf('django.db.models.fields.CharField')(max_length=12, null=True, blank=True)),
+            ('city', self.gf('django.db.models.fields.CharField')(max_length=55)),
+            ('orv', self.gf('django.db.models.fields.CharField')(max_length=5)),
+            ('typeacc', self.gf('django.db.models.fields.CharField')(max_length=10)),
+            ('mgmt', self.gf('django.db.models.fields.CharField')(max_length=55)),
+            ('waterfrt', self.gf('django.db.models.fields.CharField')(max_length=11)),
+            ('kiosk', self.gf('django.db.models.fields.CharField')(max_length=6)),
+            ('handi', self.gf('django.db.models.fields.CharField')(max_length=7)),
+            ('dune', self.gf('django.db.models.fields.CharField')(max_length=6)),
+            ('benken1', self.gf('django.db.models.fields.IntegerField')()),
+            ('water', self.gf('django.db.models.fields.CharField')(max_length=7)),
+            ('photos', self.gf('django.db.models.fields.IntegerField')()),
+            ('rdendtp', self.gf('django.db.models.fields.CharField')(max_length=10, null=True, blank=True)),
+            ('tidepl', self.gf('django.db.models.fields.CharField')(max_length=7)),
+            ('bluff', self.gf('django.db.models.fields.CharField')(max_length=7)),
+            ('offshore', self.gf('django.db.models.fields.CharField')(max_length=11)),
+            ('lat', self.gf('django.db.models.fields.FloatField')()),
+            ('whale', self.gf('django.db.models.fields.CharField')(max_length=7)),
+            ('pathbch', self.gf('django.db.models.fields.CharField')(max_length=10)),
+            ('stairs', self.gf('django.db.models.fields.CharField')(max_length=7)),
+            ('dock', self.gf('django.db.models.fields.CharField')(max_length=6)),
+            ('rockhead', self.gf('django.db.models.fields.CharField')(max_length=11)),
+            ('town', self.gf('django.db.models.fields.CharField')(max_length=6, null=True, blank=True)),
+            ('county', self.gf('django.db.models.fields.CharField')(max_length=9)),
+            ('locpln', self.gf('django.db.models.fields.CharField')(max_length=8, null=True, blank=True)),
+            ('fees', self.gf('django.db.models.fields.CharField')(max_length=6)),
+            ('jetty', self.gf('django.db.models.fields.CharField')(max_length=7)),
+            ('trail', self.gf('django.db.models.fields.CharField')(max_length=6)),
+            ('geometry', self.gf('django.contrib.gis.db.models.fields.PointField')(srid=99999, null=True, blank=True)),
+            ('rocktide', self.gf('django.db.models.fields.CharField')(max_length=10)),
+            ('ramp', self.gf('django.db.models.fields.CharField')(max_length=8)),
+            ('visual', self.gf('django.db.models.fields.CharField')(max_length=7, null=True, blank=True)),
+            ('bay', self.gf('django.db.models.fields.CharField')(max_length=5, null=True, blank=True)),
+            ('shower', self.gf('django.db.models.fields.CharField')(max_length=9)),
+            ('range', self.gf('django.db.models.fields.CharField')(max_length=7, null=True, blank=True)),
+            ('siteid', self.gf('django.db.models.fields.FloatField')()),
+            ('tabben', self.gf('django.db.models.fields.CharField')(max_length=9)),
+            ('taxlot', self.gf('django.db.models.fields.CharField')(max_length=8, null=True, blank=True)),
+            ('river', self.gf('django.db.models.fields.CharField')(max_length=6)),
+        ))
+        db.send_create_signal('analysis', ['PublicAccess'])
+
+        # Adding model 'Outfalls'
+        db.create_table('analysis_outfalls', (
+            ('status', self.gf('django.db.models.fields.CharField')(max_length=4)),
+            ('legal_name', self.gf('django.db.models.fields.CharField')(max_length=71)),
+            ('permit_typ', self.gf('django.db.models.fields.CharField')(max_length=13)),
+            ('class_field', self.gf('django.db.models.fields.CharField')(max_length=10)),
+            ('objectid', self.gf('django.db.models.fields.IntegerField')()),
+            ('city', self.gf('django.db.models.fields.CharField')(max_length=14)),
+            ('geometry', self.gf('django.contrib.gis.db.models.fields.PointField')(srid=99999, null=True, blank=True)),
+            ('permit_no', self.gf('django.db.models.fields.IntegerField')()),
+            ('long', self.gf('django.db.models.fields.FloatField')()),
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('county', self.gf('django.db.models.fields.CharField')(max_length=9)),
+            ('lat', self.gf('django.db.models.fields.FloatField')()),
+            ('facility_i', self.gf('django.db.models.fields.IntegerField')()),
+            ('common_nam', self.gf('django.db.models.fields.CharField')(max_length=70)),
+            ('fac_type', self.gf('django.db.models.fields.CharField')(max_length=50)),
+            ('epa_number', self.gf('django.db.models.fields.CharField')(max_length=10)),
+            ('sic_code', self.gf('django.db.models.fields.IntegerField')()),
+            ('category', self.gf('django.db.models.fields.CharField')(max_length=20)),
+            ('perm_descr', self.gf('django.db.models.fields.CharField')(max_length=254)),
+        ))
+        db.send_create_signal('analysis', ['Outfalls'])
+
+        # Adding model 'UnderseaCables'
+        db.create_table('analysis_underseacables', (
+            ('shape_leng', self.gf('django.db.models.fields.FloatField')()),
+            ('geometry', self.gf('django.contrib.gis.db.models.fields.MultiLineStringField')(srid=99999, null=True, blank=True)),
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('objectid', self.gf('django.db.models.fields.IntegerField')()),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=30)),
+        ))
+        db.send_create_signal('analysis', ['UnderseaCables'])
+
+        # Adding model 'MarineManagedAreas'
+        db.create_table('analysis_marinemanagedareas', (
+            ('shape_area', self.gf('django.db.models.fields.FloatField')()),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=75)),
+            ('objectid', self.gf('django.db.models.fields.IntegerField')()),
+            ('geometry', self.gf('django.contrib.gis.db.models.fields.MultiPolygonField')(srid=99999, null=True, blank=True)),
+            ('shape_leng', self.gf('django.db.models.fields.FloatField')()),
+            ('shape_le_1', self.gf('django.db.models.fields.FloatField')()),
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+        ))
+        db.send_create_signal('analysis', ['MarineManagedAreas'])
+
+        # Adding model 'WaveEnergyPermits'
+        db.create_table('analysis_waveenergypermits', (
+            ('county', self.gf('django.db.models.fields.CharField')(max_length=40)),
+            ('no_devices', self.gf('django.db.models.fields.CharField')(max_length=75)),
+            ('shape_area', self.gf('django.db.models.fields.FloatField')()),
+            ('area_miles', self.gf('django.db.models.fields.FloatField')()),
+            ('objectid', self.gf('django.db.models.fields.IntegerField')()),
+            ('per_miles', self.gf('django.db.models.fields.FloatField')()),
+            ('geometry', self.gf('django.contrib.gis.db.models.fields.MultiPolygonField')(srid=99999, null=True, blank=True)),
+            ('company', self.gf('django.db.models.fields.CharField')(max_length=30)),
+            ('applicant', self.gf('django.db.models.fields.CharField')(max_length=50)),
+            ('ts', self.gf('django.db.models.fields.CharField')(max_length=10, null=True, blank=True)),
+            ('acres', self.gf('django.db.models.fields.FloatField')()),
+            ('project', self.gf('django.db.models.fields.CharField')(max_length=50)),
+            ('hectares', self.gf('django.db.models.fields.FloatField')()),
+            ('contact', self.gf('django.db.models.fields.CharField')(max_length=40)),
+            ('location', self.gf('django.db.models.fields.CharField')(max_length=30)),
+            ('app_date', self.gf('django.db.models.fields.DateField')()),
+            ('permit_no', self.gf('django.db.models.fields.IntegerField')()),
+            ('label', self.gf('django.db.models.fields.CharField')(max_length=50)),
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('shape_leng', self.gf('django.db.models.fields.FloatField')()),
+        ))
+        db.send_create_signal('analysis', ['WaveEnergyPermits'])
+
+        # Adding model 'ConservationAreas'
+        db.create_table('analysis_conservationareas', (
+            ('prohibit', self.gf('django.db.models.fields.CharField')(max_length=65, null=True, blank=True)),
+            ('shape_area', self.gf('django.db.models.fields.FloatField')()),
+            ('objectid', self.gf('django.db.models.fields.IntegerField')()),
+            ('geometry', self.gf('django.contrib.gis.db.models.fields.MultiPolygonField')(srid=99999, null=True, blank=True)),
+            ('area_name', self.gf('django.db.models.fields.CharField')(max_length=50, null=True, blank=True)),
+            ('state', self.gf('django.db.models.fields.CharField')(max_length=2, null=True, blank=True)),
+            ('shape_leng', self.gf('django.db.models.fields.FloatField')()),
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+        ))
+        db.send_create_signal('analysis', ['ConservationAreas'])
+
+        # Adding model 'StateParks'
+        db.create_table('analysis_stateparks', (
+            ('designatio', self.gf('django.db.models.fields.CharField')(max_length=50, null=True, blank=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=50)),
+            ('objectid', self.gf('django.db.models.fields.IntegerField')()),
+            ('gis_id', self.gf('django.db.models.fields.IntegerField')()),
+            ('editdate', self.gf('django.db.models.fields.DateField')(null=True, blank=True)),
+            ('hub_id', self.gf('django.db.models.fields.IntegerField')()),
+            ('createdate', self.gf('django.db.models.fields.DateField')(null=True, blank=True)),
+            ('retiredate', self.gf('django.db.models.fields.DateField')(null=True, blank=True)),
+            ('use_type', self.gf('django.db.models.fields.CharField')(max_length=50, null=True, blank=True)),
+            ('geometry', self.gf('django.contrib.gis.db.models.fields.MultiPolygonField')(srid=99999, null=True, blank=True)),
+            ('editperson', self.gf('django.db.models.fields.CharField')(max_length=25, null=True, blank=True)),
+            ('shape_area', self.gf('django.db.models.fields.FloatField')()),
+            ('datasource', self.gf('django.db.models.fields.IntegerField')()),
+            ('full_name', self.gf('django.db.models.fields.CharField')(max_length=100)),
+            ('shape_leng', self.gf('django.db.models.fields.FloatField')()),
+            ('creator', self.gf('django.db.models.fields.CharField')(max_length=50, null=True, blank=True)),
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+        ))
+        db.send_create_signal('analysis', ['StateParks'])
+
+        # Adding model 'Towlanes'
+        db.create_table('analysis_towlanes', (
+            ('dateapplic', self.gf('django.db.models.fields.CharField')(max_length=20, null=True, blank=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=17)),
+            ('objectid', self.gf('django.db.models.fields.IntegerField')()),
+            ('geometry', self.gf('django.contrib.gis.db.models.fields.MultiLineStringField')(srid=99999, null=True, blank=True)),
+            ('altitude', self.gf('django.db.models.fields.CharField')(max_length=6)),
+            ('lineclass', self.gf('django.db.models.fields.IntegerField')()),
+            ('lon', self.gf('django.db.models.fields.CharField')(max_length=12)),
+            ('label', self.gf('django.db.models.fields.CharField')(max_length=15)),
+            ('shape_leng', self.gf('django.db.models.fields.FloatField')()),
+            ('recnum', self.gf('django.db.models.fields.CharField')(max_length=6)),
+            ('longname', self.gf('django.db.models.fields.CharField')(max_length=17)),
+            ('lat', self.gf('django.db.models.fields.CharField')(max_length=12)),
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+        ))
+        db.send_create_signal('analysis', ['Towlanes'])
+
+        # Adding model 'DredgeMaterials'
+        db.create_table('analysis_dredgematerials', (
+            ('status', self.gf('django.db.models.fields.CharField')(max_length=25, null=True, blank=True)),
+            ('use', self.gf('django.db.models.fields.CharField')(max_length=25)),
+            ('shape_area', self.gf('django.db.models.fields.FloatField')()),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=25)),
+            ('objectid', self.gf('django.db.models.fields.IntegerField')()),
+            ('geometry', self.gf('django.contrib.gis.db.models.fields.MultiPolygonField')(srid=99999, null=True, blank=True)),
+            ('shape_leng', self.gf('django.db.models.fields.FloatField')()),
+            ('river', self.gf('django.db.models.fields.CharField')(max_length=20)),
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+        ))
+        db.send_create_signal('analysis', ['DredgeMaterials'])
+
+        # Adding model 'FisheryClosures'
+        db.create_table('analysis_fisheryclosures', (
+            ('shape_area', self.gf('django.db.models.fields.FloatField')()),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=50)),
+            ('objectid', self.gf('django.db.models.fields.IntegerField')()),
+            ('geometry', self.gf('django.contrib.gis.db.models.fields.MultiPolygonField')(srid=99999, null=True, blank=True)),
+            ('shape_leng', self.gf('django.db.models.fields.FloatField')()),
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+        ))
+        db.send_create_signal('analysis', ['FisheryClosures'])
+    
+    
+    def backwards(self, orm):
+        
+        # Deleting model 'PublicAccess'
+        db.delete_table('analysis_publicaccess')
+
+        # Deleting model 'Outfalls'
+        db.delete_table('analysis_outfalls')
+
+        # Deleting model 'UnderseaCables'
+        db.delete_table('analysis_underseacables')
+
+        # Deleting model 'MarineManagedAreas'
+        db.delete_table('analysis_marinemanagedareas')
+
+        # Deleting model 'WaveEnergyPermits'
+        db.delete_table('analysis_waveenergypermits')
+
+        # Deleting model 'ConservationAreas'
+        db.delete_table('analysis_conservationareas')
+
+        # Deleting model 'StateParks'
+        db.delete_table('analysis_stateparks')
+
+        # Deleting model 'Towlanes'
+        db.delete_table('analysis_towlanes')
+
+        # Deleting model 'DredgeMaterials'
+        db.delete_table('analysis_dredgematerials')
+
+        # Deleting model 'FisheryClosures'
+        db.delete_table('analysis_fisheryclosures')
+    
+    
+    models = {
+        'analysis.cities': {
+            'Meta': {'object_name': 'Cities'},
+            'acres': ('django.db.models.fields.FloatField', [], {}),
+            'effectv_dt': ('django.db.models.fields.CharField', [], {'max_length': '15'}),
+            'fips_code': ('django.db.models.fields.CharField', [], {'max_length': '5'}),
+            'geometry': ('django.contrib.gis.db.models.fields.MultiPolygonField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'gis_prc_dt': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {}),
+            'shape_area': ('django.db.models.fields.FloatField', [], {}),
+            'shape_leng': ('django.db.models.fields.FloatField', [], {})
+        },
+        'analysis.closedshoreline': {
+            'Meta': {'object_name': 'ClosedShoreline'},
+            'esi_ln': ('django.db.models.fields.IntegerField', [], {}),
+            'esi_ln_id': ('django.db.models.fields.IntegerField', [], {}),
+            'fnode': ('django.db.models.fields.IntegerField', [], {}),
+            'geometry': ('django.contrib.gis.db.models.fields.MultiLineStringField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'length': ('django.db.models.fields.FloatField', [], {}),
+            'lpoly': ('django.db.models.fields.IntegerField', [], {}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {}),
+            'rpoly': ('django.db.models.fields.IntegerField', [], {}),
+            'shape_leng': ('django.db.models.fields.FloatField', [], {}),
+            'tnode': ('django.db.models.fields.IntegerField', [], {})
+        },
+        'analysis.conservationareas': {
+            'Meta': {'object_name': 'ConservationAreas'},
+            'area_name': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
+            'geometry': ('django.contrib.gis.db.models.fields.MultiPolygonField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {}),
+            'prohibit': ('django.db.models.fields.CharField', [], {'max_length': '65', 'null': 'True', 'blank': 'True'}),
+            'shape_area': ('django.db.models.fields.FloatField', [], {}),
+            'shape_leng': ('django.db.models.fields.FloatField', [], {}),
+            'state': ('django.db.models.fields.CharField', [], {'max_length': '2', 'null': 'True', 'blank': 'True'})
+        },
+        'analysis.counties': {
+            'Meta': {'object_name': 'Counties'},
+            'cobcode': ('django.db.models.fields.CharField', [], {'max_length': '5'}),
+            'geometry': ('django.contrib.gis.db.models.fields.MultiPolygonField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '15'}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {}),
+            'objectid_1': ('django.db.models.fields.IntegerField', [], {}),
+            'shape_area': ('django.db.models.fields.FloatField', [], {}),
+            'shape_leng': ('django.db.models.fields.FloatField', [], {})
+        },
+        'analysis.dredgematerials': {
+            'Meta': {'object_name': 'DredgeMaterials'},
+            'geometry': ('django.contrib.gis.db.models.fields.MultiPolygonField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '25'}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {}),
+            'river': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
+            'shape_area': ('django.db.models.fields.FloatField', [], {}),
+            'shape_leng': ('django.db.models.fields.FloatField', [], {}),
+            'status': ('django.db.models.fields.CharField', [], {'max_length': '25', 'null': 'True', 'blank': 'True'}),
+            'use': ('django.db.models.fields.CharField', [], {'max_length': '25'})
+        },
+        'analysis.fisheryclosures': {
+            'Meta': {'object_name': 'FisheryClosures'},
+            'geometry': ('django.contrib.gis.db.models.fields.MultiPolygonField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {}),
+            'shape_area': ('django.db.models.fields.FloatField', [], {}),
+            'shape_leng': ('django.db.models.fields.FloatField', [], {})
+        },
+        'analysis.habitats': {
+            'Meta': {'object_name': 'Habitats'},
+            'area': ('django.db.models.fields.FloatField', [], {}),
+            'clay': ('django.db.models.fields.FloatField', [], {}),
+            'f_area': ('django.db.models.fields.FloatField', [], {}),
+            'geo_hab': ('django.db.models.fields.CharField', [], {'max_length': '10', 'null': 'True', 'blank': 'True'}),
+            'geometry': ('django.contrib.gis.db.models.fields.MultiPolygonField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'gravel': ('django.db.models.fields.FloatField', [], {}),
+            'hab_type': ('django.db.models.fields.CharField', [], {'max_length': '40'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'len': ('django.db.models.fields.FloatField', [], {}),
+            'lithology': ('django.db.models.fields.CharField', [], {'max_length': '19', 'null': 'True', 'blank': 'True'}),
+            'lithology2': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True', 'blank': 'True'}),
+            'num_sample': ('django.db.models.fields.FloatField', [], {}),
+            'objectid': ('django.db.models.fields.FloatField', [], {}),
+            'objectid_1': ('django.db.models.fields.IntegerField', [], {}),
+            'objectid_2': ('django.db.models.fields.FloatField', [], {}),
+            'properties': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
+            'sand': ('django.db.models.fields.FloatField', [], {}),
+            'shape_area': ('django.db.models.fields.FloatField', [], {}),
+            'shape_leng': ('django.db.models.fields.FloatField', [], {}),
+            'silt': ('django.db.models.fields.FloatField', [], {}),
+            'structure': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
+            'structure2': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True', 'blank': 'True'}),
+            'sum': ('django.db.models.fields.FloatField', [], {})
+        },
+        'analysis.islands': {
+            'Meta': {'object_name': 'Islands'},
+            'acreage': ('django.db.models.fields.FloatField', [], {}),
+            'area': ('django.db.models.fields.FloatField', [], {}),
+            'geometry': ('django.contrib.gis.db.models.fields.MultiPolygonField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'ifwsno': ('django.db.models.fields.CharField', [], {'max_length': '5'}),
+            'islandno': ('django.db.models.fields.CharField', [], {'max_length': '10', 'null': 'True', 'blank': 'True'}),
+            'namenoaa': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
+            'nwrname': ('django.db.models.fields.CharField', [], {'max_length': '3'}),
+            'nwrunit': ('django.db.models.fields.CharField', [], {'max_length': '3'}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {}),
+            'org_bnd': ('django.db.models.fields.IntegerField', [], {}),
+            'org_bnd_id': ('django.db.models.fields.IntegerField', [], {}),
+            'perimeter': ('django.db.models.fields.FloatField', [], {}),
+            'shape_area': ('django.db.models.fields.FloatField', [], {}),
+            'shape_leng': ('django.db.models.fields.FloatField', [], {}),
+            'status': ('django.db.models.fields.CharField', [], {'max_length': '5'}),
+            'tractno': ('django.db.models.fields.CharField', [], {'max_length': '15'})
+        },
+        'analysis.kelpsurveys': {
+            'Meta': {'object_name': 'KelpSurveys'},
+            'acres': ('django.db.models.fields.FloatField', [], {}),
+            'area': ('django.db.models.fields.FloatField', [], {}),
+            'geometry': ('django.contrib.gis.db.models.fields.MultiPolygonField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'hectares': ('django.db.models.fields.FloatField', [], {}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'kelp90': ('django.db.models.fields.IntegerField', [], {}),
+            'kelp96': ('django.db.models.fields.IntegerField', [], {}),
+            'kelp97': ('django.db.models.fields.IntegerField', [], {}),
+            'kelp98': ('django.db.models.fields.IntegerField', [], {}),
+            'kelp99': ('django.db.models.fields.IntegerField', [], {}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {}),
+            'perimeter': ('django.db.models.fields.FloatField', [], {}),
+            'shape_area': ('django.db.models.fields.FloatField', [], {}),
+            'shape_leng': ('django.db.models.fields.FloatField', [], {})
+        },
+        'analysis.lithology': {
+            'Meta': {'object_name': 'Lithology'},
+            'geometry': ('django.contrib.gis.db.models.fields.MultiPolygonField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'lith_inter': ('django.db.models.fields.CharField', [], {'max_length': '24'}),
+            'lithology': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {}),
+            'shape_area': ('django.db.models.fields.FloatField', [], {}),
+            'shape_leng': ('django.db.models.fields.FloatField', [], {})
+        },
+        'analysis.marinemanagedareas': {
+            'Meta': {'object_name': 'MarineManagedAreas'},
+            'geometry': ('django.contrib.gis.db.models.fields.MultiPolygonField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '75'}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {}),
+            'shape_area': ('django.db.models.fields.FloatField', [], {}),
+            'shape_le_1': ('django.db.models.fields.FloatField', [], {}),
+            'shape_leng': ('django.db.models.fields.FloatField', [], {})
+        },
+        'analysis.outfalls': {
+            'Meta': {'object_name': 'Outfalls'},
+            'category': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
+            'city': ('django.db.models.fields.CharField', [], {'max_length': '14'}),
+            'class_field': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
+            'common_nam': ('django.db.models.fields.CharField', [], {'max_length': '70'}),
+            'county': ('django.db.models.fields.CharField', [], {'max_length': '9'}),
+            'epa_number': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
+            'fac_type': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'facility_i': ('django.db.models.fields.IntegerField', [], {}),
+            'geometry': ('django.contrib.gis.db.models.fields.PointField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'lat': ('django.db.models.fields.FloatField', [], {}),
+            'legal_name': ('django.db.models.fields.CharField', [], {'max_length': '71'}),
+            'long': ('django.db.models.fields.FloatField', [], {}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {}),
+            'perm_descr': ('django.db.models.fields.CharField', [], {'max_length': '254'}),
+            'permit_no': ('django.db.models.fields.IntegerField', [], {}),
+            'permit_typ': ('django.db.models.fields.CharField', [], {'max_length': '13'}),
+            'sic_code': ('django.db.models.fields.IntegerField', [], {}),
+            'status': ('django.db.models.fields.CharField', [], {'max_length': '4'})
+        },
+        'analysis.pinnipedhaulouts': {
+            'Meta': {'object_name': 'PinnipedHaulouts'},
+            'ej_count': ('django.db.models.fields.FloatField', [], {}),
+            'ej_rookery': ('django.db.models.fields.IntegerField', [], {}),
+            'ej_use': ('django.db.models.fields.FloatField', [], {}),
+            'generality': ('django.db.models.fields.FloatField', [], {}),
+            'geometry': ('django.contrib.gis.db.models.fields.PointField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'lat': ('django.db.models.fields.FloatField', [], {}),
+            'location': ('django.db.models.fields.CharField', [], {'max_length': '254'}),
+            'lon': ('django.db.models.fields.FloatField', [], {}),
+            'ma_count': ('django.db.models.fields.FloatField', [], {}),
+            'ma_use': ('django.db.models.fields.FloatField', [], {}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {}),
+            'pv_count': ('django.db.models.fields.FloatField', [], {}),
+            'pv_use': ('django.db.models.fields.FloatField', [], {}),
+            'site': ('django.db.models.fields.CharField', [], {'max_length': '254'}),
+            'zc_count': ('django.db.models.fields.FloatField', [], {}),
+            'zc_use': ('django.db.models.fields.FloatField', [], {})
+        },
+        'analysis.ports': {
+            'Meta': {'object_name': 'Ports'},
+            'county': ('django.db.models.fields.CharField', [], {'max_length': '35'}),
+            'geometry': ('django.contrib.gis.db.models.fields.PointField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'harbor': ('django.db.models.fields.CharField', [], {'max_length': '5'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {})
+        },
+        'analysis.publicaccess': {
+            'Meta': {'object_name': 'PublicAccess'},
+            'addr': ('django.db.models.fields.CharField', [], {'max_length': '8', 'null': 'True', 'blank': 'True'}),
+            'bay': ('django.db.models.fields.CharField', [], {'max_length': '5', 'null': 'True', 'blank': 'True'}),
+            'benken1': ('django.db.models.fields.IntegerField', [], {}),
+            'bike': ('django.db.models.fields.CharField', [], {'max_length': '5'}),
+            'bluff': ('django.db.models.fields.CharField', [], {'max_length': '7'}),
+            'boat': ('django.db.models.fields.CharField', [], {'max_length': '6', 'null': 'True', 'blank': 'True'}),
+            'boating': ('django.db.models.fields.CharField', [], {'max_length': '9'}),
+            'bridge': ('django.db.models.fields.CharField', [], {'max_length': '8'}),
+            'camping': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
+            'char': ('django.db.models.fields.CharField', [], {'max_length': '8'}),
+            'chtype': ('django.db.models.fields.CharField', [], {'max_length': '9', 'null': 'True', 'blank': 'True'}),
+            'city': ('django.db.models.fields.CharField', [], {'max_length': '55'}),
+            'comments': ('django.db.models.fields.CharField', [], {'max_length': '25', 'null': 'True', 'blank': 'True'}),
+            'county': ('django.db.models.fields.CharField', [], {'max_length': '9'}),
+            'dat1': ('django.db.models.fields.FloatField', [], {}),
+            'dat1_id': ('django.db.models.fields.FloatField', [], {}),
+            'dock': ('django.db.models.fields.CharField', [], {'max_length': '6'}),
+            'dune': ('django.db.models.fields.CharField', [], {'max_length': '6'}),
+            'fees': ('django.db.models.fields.CharField', [], {'max_length': '6'}),
+            'forest': ('django.db.models.fields.CharField', [], {'max_length': '8'}),
+            'geometry': ('django.contrib.gis.db.models.fields.PointField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'handi': ('django.db.models.fields.CharField', [], {'max_length': '7'}),
+            'hiking': ('django.db.models.fields.CharField', [], {'max_length': '7'}),
+            'horse': ('django.db.models.fields.CharField', [], {'max_length': '7'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'jetty': ('django.db.models.fields.CharField', [], {'max_length': '7'}),
+            'kiosk': ('django.db.models.fields.CharField', [], {'max_length': '6'}),
+            'lake': ('django.db.models.fields.CharField', [], {'max_length': '6'}),
+            'lat': ('django.db.models.fields.FloatField', [], {}),
+            'loc': ('django.db.models.fields.CharField', [], {'max_length': '31'}),
+            'locpln': ('django.db.models.fields.CharField', [], {'max_length': '8', 'null': 'True', 'blank': 'True'}),
+            'lon': ('django.db.models.fields.FloatField', [], {}),
+            'lthouse': ('django.db.models.fields.CharField', [], {'max_length': '9'}),
+            'map': ('django.db.models.fields.CharField', [], {'max_length': '9', 'null': 'True', 'blank': 'True'}),
+            'marina': ('django.db.models.fields.CharField', [], {'max_length': '8'}),
+            'mgmt': ('django.db.models.fields.CharField', [], {'max_length': '55'}),
+            'numpk': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {}),
+            'offshore': ('django.db.models.fields.CharField', [], {'max_length': '11'}),
+            'orv': ('django.db.models.fields.CharField', [], {'max_length': '5'}),
+            'owner': ('django.db.models.fields.CharField', [], {'max_length': '12'}),
+            'parking': ('django.db.models.fields.CharField', [], {'max_length': '9'}),
+            'pathbch': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
+            'ped': ('django.db.models.fields.CharField', [], {'max_length': '5', 'null': 'True', 'blank': 'True'}),
+            'phone': ('django.db.models.fields.CharField', [], {'max_length': '7'}),
+            'photoid': ('django.db.models.fields.CharField', [], {'max_length': '12', 'null': 'True', 'blank': 'True'}),
+            'photos': ('django.db.models.fields.IntegerField', [], {}),
+            'prop': ('django.db.models.fields.CharField', [], {'max_length': '9', 'null': 'True', 'blank': 'True'}),
+            'ramp': ('django.db.models.fields.CharField', [], {'max_length': '8'}),
+            'range': ('django.db.models.fields.CharField', [], {'max_length': '7', 'null': 'True', 'blank': 'True'}),
+            'rdendtp': ('django.db.models.fields.CharField', [], {'max_length': '10', 'null': 'True', 'blank': 'True'}),
+            'restrm': ('django.db.models.fields.CharField', [], {'max_length': '9'}),
+            'river': ('django.db.models.fields.CharField', [], {'max_length': '6'}),
+            'rockhead': ('django.db.models.fields.CharField', [], {'max_length': '11'}),
+            'rocktide': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
+            'section': ('django.db.models.fields.CharField', [], {'max_length': '9', 'null': 'True', 'blank': 'True'}),
+            'shower': ('django.db.models.fields.CharField', [], {'max_length': '9'}),
+            'siteid': ('django.db.models.fields.FloatField', [], {}),
+            'stairs': ('django.db.models.fields.CharField', [], {'max_length': '7'}),
+            'status': ('django.db.models.fields.CharField', [], {'max_length': '10', 'null': 'True', 'blank': 'True'}),
+            'surf': ('django.db.models.fields.CharField', [], {'max_length': '6'}),
+            'tabben': ('django.db.models.fields.CharField', [], {'max_length': '9'}),
+            'taxlot': ('django.db.models.fields.CharField', [], {'max_length': '8', 'null': 'True', 'blank': 'True'}),
+            'tidepl': ('django.db.models.fields.CharField', [], {'max_length': '7'}),
+            'town': ('django.db.models.fields.CharField', [], {'max_length': '6', 'null': 'True', 'blank': 'True'}),
+            'trail': ('django.db.models.fields.CharField', [], {'max_length': '6'}),
+            'typeacc': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
+            'veh': ('django.db.models.fields.CharField', [], {'max_length': '5', 'null': 'True', 'blank': 'True'}),
+            'visual': ('django.db.models.fields.CharField', [], {'max_length': '7', 'null': 'True', 'blank': 'True'}),
+            'water': ('django.db.models.fields.CharField', [], {'max_length': '7'}),
+            'waterfrt': ('django.db.models.fields.CharField', [], {'max_length': '11'}),
+            'wetland': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
+            'whale': ('django.db.models.fields.CharField', [], {'max_length': '7'})
+        },
+        'analysis.rockyshores': {
+            'Meta': {'object_name': 'RockyShores'},
+            'bc': ('django.db.models.fields.IntegerField', [], {}),
+            'bm_cl': ('django.db.models.fields.IntegerField', [], {}),
+            'com_u': ('django.db.models.fields.IntegerField', [], {}),
+            'desig': ('django.db.models.fields.IntegerField', [], {}),
+            'ed_u': ('django.db.models.fields.IntegerField', [], {}),
+            'geometry': ('django.contrib.gis.db.models.fields.MultiPolygonField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'it_cl': ('django.db.models.fields.IntegerField', [], {}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '45'}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {}),
+            'pc': ('django.db.models.fields.IntegerField', [], {}),
+            'rec_u': ('django.db.models.fields.IntegerField', [], {}),
+            'reg': ('django.db.models.fields.FloatField', [], {}),
+            'rsindx': ('django.db.models.fields.IntegerField', [], {}),
+            'shape_area': ('django.db.models.fields.FloatField', [], {}),
+            'shape_leng': ('django.db.models.fields.FloatField', [], {}),
+            'site': ('django.db.models.fields.IntegerField', [], {}),
+            'size': ('django.db.models.fields.IntegerField', [], {}),
+            'te_species': ('django.db.models.fields.CharField', [], {'max_length': '12', 'null': 'True', 'blank': 'True'}),
+            'visitor': ('django.db.models.fields.IntegerField', [], {})
+        },
+        'analysis.seabirdcolonies': {
+            'Meta': {'object_name': 'SeabirdColonies'},
+            'actual_bir': ('django.db.models.fields.FloatField', [], {}),
+            'author': ('django.db.models.fields.CharField', [], {'max_length': '254'}),
+            'bcregion': ('django.db.models.fields.FloatField', [], {}),
+            'biblno': ('django.db.models.fields.FloatField', [], {}),
+            'cat07_mra': ('django.db.models.fields.IntegerField', [], {}),
+            'cen_notes': ('django.db.models.fields.CharField', [], {'max_length': '254', 'null': 'True', 'blank': 'True'}),
+            'colno': ('django.db.models.fields.CharField', [], {'max_length': '15'}),
+            'colno_gis': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
+            'complex': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'contact': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'convert': ('django.db.models.fields.CharField', [], {'max_length': '5', 'null': 'True', 'blank': 'True'}),
+            'country': ('django.db.models.fields.CharField', [], {'max_length': '15'}),
+            'county': ('django.db.models.fields.CharField', [], {'max_length': '25'}),
+            'dataent': ('django.db.models.fields.DateField', [], {'null': 'True', 'blank': 'True'}),
+            'datahack': ('django.db.models.fields.CharField', [], {'max_length': '25', 'null': 'True', 'blank': 'True'}),
+            'datapg': ('django.db.models.fields.FloatField', [], {}),
+            'date': ('django.db.models.fields.DateField', [], {}),
+            'dateinterp': ('django.db.models.fields.CharField', [], {'max_length': '1'}),
+            'desc': ('django.db.models.fields.CharField', [], {'max_length': '254'}),
+            'document': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'est_no_bre': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
+            'esttype': ('django.db.models.fields.CharField', [], {'max_length': '3'}),
+            'geometry': ('django.contrib.gis.db.models.fields.PointField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'issue': ('django.db.models.fields.CharField', [], {'max_length': '10', 'null': 'True', 'blank': 'True'}),
+            'keywords': ('django.db.models.fields.CharField', [], {'max_length': '254', 'null': 'True', 'blank': 'True'}),
+            'mapno': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'mostrecent': ('django.db.models.fields.CharField', [], {'max_length': '3'}),
+            'nonests': ('django.db.models.fields.FloatField', [], {}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {}),
+            'objectid_1': ('django.db.models.fields.IntegerField', [], {}),
+            'observers': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'pages': ('django.db.models.fields.CharField', [], {'max_length': '15', 'null': 'True', 'blank': 'True'}),
+            'photo_inte': ('django.db.models.fields.CharField', [], {'max_length': '150', 'null': 'True', 'blank': 'True'}),
+            'qual': ('django.db.models.fields.FloatField', [], {}),
+            'reps': ('django.db.models.fields.FloatField', [], {}),
+            'site_name': ('django.db.models.fields.CharField', [], {'max_length': '60'}),
+            'siteno': ('django.db.models.fields.CharField', [], {'max_length': '15'}),
+            'sp': ('django.db.models.fields.CharField', [], {'max_length': '4'}),
+            'species': ('django.db.models.fields.CharField', [], {'max_length': '40'}),
+            'spnotes': ('django.db.models.fields.CharField', [], {'max_length': '254', 'null': 'True', 'blank': 'True'}),
+            'state': ('django.db.models.fields.CharField', [], {'max_length': '4'}),
+            'survtype': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
+            'tax_no': ('django.db.models.fields.FloatField', [], {}),
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '120'}),
+            'use': ('django.db.models.fields.CharField', [], {'max_length': '3', 'null': 'True', 'blank': 'True'}),
+            'utmx': ('django.db.models.fields.FloatField', [], {}),
+            'utmy': ('django.db.models.fields.FloatField', [], {}),
+            'volume': ('django.db.models.fields.CharField', [], {'max_length': '10', 'null': 'True', 'blank': 'True'}),
+            'whatcount': ('django.db.models.fields.CharField', [], {'max_length': '3'}),
+            'year': ('django.db.models.fields.FloatField', [], {}),
+            'year_pub': ('django.db.models.fields.FloatField', [], {})
+        },
+        'analysis.shoreline': {
+            'Meta': {'object_name': 'Shoreline'},
+            'esi': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
+            'esi_field': ('django.db.models.fields.FloatField', [], {}),
+            'esi_id': ('django.db.models.fields.FloatField', [], {}),
+            'esi_line': ('django.db.models.fields.FloatField', [], {}),
+            'esi_line_i': ('django.db.models.fields.FloatField', [], {}),
+            'fnode': ('django.db.models.fields.FloatField', [], {}),
+            'fnode_1': ('django.db.models.fields.FloatField', [], {}),
+            'geometry': ('django.contrib.gis.db.models.fields.MultiLineStringField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'length': ('django.db.models.fields.FloatField', [], {}),
+            'line': ('django.db.models.fields.CharField', [], {'max_length': '1'}),
+            'lpoly': ('django.db.models.fields.FloatField', [], {}),
+            'lpoly_1': ('django.db.models.fields.FloatField', [], {}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {}),
+            'rpoly': ('django.db.models.fields.FloatField', [], {}),
+            'rpoly_1': ('django.db.models.fields.FloatField', [], {}),
+            'shape_leng': ('django.db.models.fields.FloatField', [], {}),
+            'source_id': ('django.db.models.fields.FloatField', [], {}),
+            'tnode': ('django.db.models.fields.FloatField', [], {}),
+            'tnode_1': ('django.db.models.fields.FloatField', [], {})
+        },
+        'analysis.stateparks': {
+            'Meta': {'object_name': 'StateParks'},
+            'createdate': ('django.db.models.fields.DateField', [], {'null': 'True', 'blank': 'True'}),
+            'creator': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
+            'datasource': ('django.db.models.fields.IntegerField', [], {}),
+            'designatio': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
+            'editdate': ('django.db.models.fields.DateField', [], {'null': 'True', 'blank': 'True'}),
+            'editperson': ('django.db.models.fields.CharField', [], {'max_length': '25', 'null': 'True', 'blank': 'True'}),
+            'full_name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'geometry': ('django.contrib.gis.db.models.fields.MultiPolygonField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'gis_id': ('django.db.models.fields.IntegerField', [], {}),
+            'hub_id': ('django.db.models.fields.IntegerField', [], {}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {}),
+            'retiredate': ('django.db.models.fields.DateField', [], {'null': 'True', 'blank': 'True'}),
+            'shape_area': ('django.db.models.fields.FloatField', [], {}),
+            'shape_leng': ('django.db.models.fields.FloatField', [], {}),
+            'use_type': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'})
+        },
+        'analysis.towlanes': {
+            'Meta': {'object_name': 'Towlanes'},
+            'altitude': ('django.db.models.fields.CharField', [], {'max_length': '6'}),
+            'dateapplic': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True', 'blank': 'True'}),
+            'geometry': ('django.contrib.gis.db.models.fields.MultiLineStringField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'label': ('django.db.models.fields.CharField', [], {'max_length': '15'}),
+            'lat': ('django.db.models.fields.CharField', [], {'max_length': '12'}),
+            'lineclass': ('django.db.models.fields.IntegerField', [], {}),
+            'lon': ('django.db.models.fields.CharField', [], {'max_length': '12'}),
+            'longname': ('django.db.models.fields.CharField', [], {'max_length': '17'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '17'}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {}),
+            'recnum': ('django.db.models.fields.CharField', [], {'max_length': '6'}),
+            'shape_leng': ('django.db.models.fields.FloatField', [], {})
+        },
+        'analysis.underseacables': {
+            'Meta': {'object_name': 'UnderseaCables'},
+            'geometry': ('django.contrib.gis.db.models.fields.MultiLineStringField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {}),
+            'shape_leng': ('django.db.models.fields.FloatField', [], {})
+        },
+        'analysis.waveenergypermits': {
+            'Meta': {'object_name': 'WaveEnergyPermits'},
+            'acres': ('django.db.models.fields.FloatField', [], {}),
+            'app_date': ('django.db.models.fields.DateField', [], {}),
+            'applicant': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'area_miles': ('django.db.models.fields.FloatField', [], {}),
+            'company': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
+            'contact': ('django.db.models.fields.CharField', [], {'max_length': '40'}),
+            'county': ('django.db.models.fields.CharField', [], {'max_length': '40'}),
+            'geometry': ('django.contrib.gis.db.models.fields.MultiPolygonField', [], {'srid': '99999', 'null': 'True', 'blank': 'True'}),
+            'hectares': ('django.db.models.fields.FloatField', [], {}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'label': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'location': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
+            'no_devices': ('django.db.models.fields.CharField', [], {'max_length': '75'}),
+            'objectid': ('django.db.models.fields.IntegerField', [], {}),
+            'per_miles': ('django.db.models.fields.FloatField', [], {}),
+            'permit_no': ('django.db.models.fields.IntegerField', [], {}),
+            'project': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'shape_area': ('django.db.models.fields.FloatField', [], {}),
+            'shape_leng': ('django.db.models.fields.FloatField', [], {}),
+            'ts': ('django.db.models.fields.CharField', [], {'max_length': '10', 'null': 'True', 'blank': 'True'})
+        }
+    }
+    
+    complete_apps = ['analysis']

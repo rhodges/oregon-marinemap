@@ -1,0 +1,28 @@
+
+{% block Header %}
+<h1 align="center">{{ title }} for {{ name }}</h1>
+
+<div class="img" align="middle">
+    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ noaa.aoi.uid }}&amp;autozoom=true&amp;width=308&amp;height=400">
+    &nbsp; &nbsp;
+    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ noaa.aoi.uid }}&amp;width=154&amp;height=200&amp;show_extent=True">
+</div>
+{% endblock Header %}
+
+{% if type == 'all' %}
+    {% for template in templates %}
+        {% include template %}
+    {% endfor %}
+{% endif %}
+
+{% if type != 'all' %}
+    {% include template %}
+{% endif %}
+
+<style type="text/css">
+div.img {
+    zoom: 80%;    
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>

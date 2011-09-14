@@ -1,0 +1,128 @@
+{% extends 'common/panel.html' %}
+{% load currency %}
+{% block panel %}
+
+<h3>Charter Fishing Analysis</h3>
+<div class='freetext'>
+<p>
+{% if chrt.printable or chrt.pdf %}
+<table  style='width:430px' class='printable_econ_analysis_container'>
+{% else %}
+<table  style='width:430px' class='econ_analysis_container'>
+{% endif %}
+    <thead>
+        <tr>
+            <th>Port/Fishery</th>
+            <th>Estimated GER{% if not chrt.pdf and not chrt.printable %}<sup>&nbsp;1</sup>{% endif %}</th>
+            <th>EEO{% if not chrt.pdf and not chrt.printable %}<sup>&nbsp;2</sup>{% endif %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for port, fisheries in chrt.ports %}
+            <tr>
+                <td class='port'><b>{{port}}</b></td>
+                <td></td>
+                <td></td>
+            </tr>        
+            {% for fishery_report in fisheries %}
+                <tr class="{% cycle '' 'grey' %}">
+                    <td class='fishery'>{{fishery_report.0}}</td>
+                    <td class='currency'>{{fishery_report.2|currency}}&nbsp;&nbsp;</td>
+                    <td class='currency'>{{fishery_report.3|currency}}&nbsp;&nbsp;</td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+        <tr>
+            <td class='port'><b>Statewide</b></td>
+            <td></td>
+            <td></td>
+        </tr>
+        {% for tuple in chrt.state_totals %}
+            <tr class="{% cycle '' 'grey' %}">
+                <td class='fishery'>{{tuple.0}}</td>
+                <td class='currency'>{{tuple.1.1|currency}}&nbsp;&nbsp;</td>
+                <td class='currency'>{{tuple.1.2|currency}}&nbsp;&nbsp;</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+<p>
+
+{% if not chrt.pdf and not chrt.printable %}
+<p><h3>Footnotes on Charter Headers</h3></p>
+
+<div class='freetext'>
+<p>1. Gross Economic Revenue   </p>
+<p>2. Estimated economic output (EEO) is a measure of the total direct and indirect economic activity associated with 
+      sales or expenditures in a certain sector.   </p>
+</div>
+
+<p>
+<div style='font-size: small'>
+    <a target='_blank' href='{% url printable_econ_report chrt.aoi.id "chrt" %}'>Printable Charter Fishing Report</a>
+    &nbsp; 
+    <a target='_blank' href='{% url pdf_econ_report chrt.aoi.id "chrt" %}'> (PDF) </a> 
+    &nbsp; 
+    <a target='_blank' href='{% url excel_econ_report chrt.aoi.id "chrt" %}'> (Excel) </a>  
+</div>
+<p>
+<div style='font-size: small'>
+    <a target='_blank' href='{% url printable_econ_report chrt.aoi.id "all" %}'>Printable Comprehensive Report</a>
+    &nbsp; 
+    <a target='_blank' href='{% url pdf_econ_report chrt.aoi.id "all" %}'> (PDF) </a> 
+    &nbsp; 
+    <a target='_blank' href='{% url excel_econ_report chrt.aoi.id "all" %}'> (Excel) </a>  
+    
+    <br>(Comprehensive reports are a combination of Commercial-NOAA, Commercial-FEAM, Charter, and Recreational Fishing reports.)</br>   
+</div>
+<br></br>
+{% endif %}
+
+<style type="text/css">
+h3 { font-weight: bold; }
+</style>
+
+<style type="text/css">
+div.img {
+    zoom: 80%;    
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table.printable_econ_analysis_container {
+    font-size:9px;
+    margin:3px;
+}
+
+table.printable_econ_analysis_container th {
+    background-color:#D0D0D0;
+    color:#344E63;
+    padding-top:3px;
+}
+
+table.printable_econ_analysis_container td {
+    background-color:#EBF5F5;
+    color:#344E63;
+    text-align:center;
+}
+
+table.printable_econ_analysis_container td.port {
+    padding-top:3px;
+    text-align:left;
+}
+
+table.printable_econ_analysis_container td.currency {
+    text-align:right;
+}
+
+table.printable_econ_analysis_container td.fishery {
+    text-align:right;
+}
+
+table.printable_econ_analysis_container tbody {
+    background-color:white;
+}
+</style>
+
+{% endblock panel %}
