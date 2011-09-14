@@ -10,7 +10,7 @@
             <li><a href="#Attributes"><span>Information</span></a></li>
             <li><a href="#Habitats"><span>Nearshore Habitats</span></a></li>
             <li><a href="#Sites"><span>Energy Sites</span></a></li>
-            {% if perms.econ_cache.can_view %}
+            {% if perms.analysis.econcache_can_view %}
             <li><a href="#Economy"><span>Economy</span></a></li>
             {% endif %}
         </ul>
@@ -56,7 +56,7 @@
                 <p>This page contains Alternative Energy Site analysis information specific to your Area of Interest. </p>
             </div>
         </div>
-        {% if perms.econ_cache.can_view %}
+        {% if perms.analysis.econcache_can_view %}
         <div id="Economy" class="tabs">
             <ul>
                 <li><a href="#SH_Instructions"><span>Intro</span></a></li>
