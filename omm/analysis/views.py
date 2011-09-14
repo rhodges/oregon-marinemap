@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404, render_to_response
 from tsp.models import AOI
+import settings
 
 '''
 Accessed via named url when user selects a type (Geographic, Physical, Biological, Human Uses) to run nsh analysis on 
@@ -9,6 +10,10 @@ Accessed via named url when user selects a type (Geographic, Physical, Biologica
 def nsh_analysis(request, nsh_id, type):
     from nsh.nsh_analysis import display_nsh_analysis
     nsh = get_object_or_404(AOI, pk=nsh_id)
+    #check permissions
+    viewable, response = nsh.is_viewable(request.user)
+    if not viewable:
+        return response
     return display_nsh_analysis(request, nsh, type)
     
 '''
@@ -17,8 +22,42 @@ Accessed via named url when user selects a type (Geographic, Physical, Biologica
 def aes_analysis(request, aes_id, type):
     from aes.aes_analysis import display_aes_analysis
     aes = get_object_or_404(AOI, pk=aes_id)
+    #check permissions
+    viewable, response = aes.is_viewable(request.user)
+    if not viewable:
+        return response
     return display_aes_analysis(request, aes, type)
 
+'''
+'''    
+def shoreside_analysis(request, aoi_id, type):
+    from econ import commercial, charter, recreational
+    aoi = get_object_or_404(AOI, pk=aoi_id)
+    
+    #check permissions
+    viewable, response = aoi.is_viewable(request.user)
+    if not viewable:
+        return response
+    if not request.user.has_perm('analysis.econcache_can_view'):
+        return HttpResponse("you do not have permission to view this object", status=403)
+    
+    if type == 'noaa':
+        context = commercial.get_commercial_context(aoi, type)
+        template = 'econ/commercial_noaa_report.html'
+    elif type == 'feam':
+        context = commercial.get_commercial_context(aoi, type)
+        template = 'econ/commercial_feam_report.html'
+    elif type == 'chrt':
+        context = charter.get_charter_context(aoi)
+        template = 'econ/charter_report.html'
+    elif type == 'rec':
+        context = recreational.get_recreational_context(aoi)
+        template = 'econ/recreational_report.html'
+    else:
+        context = None
+        template = None
+    return render_to_response(template, RequestContext(request, context)) 
+    
 '''
 '''    
 def excel_nsh_report(request, nsh_id, type):
@@ -39,6 +78,15 @@ def excel_aes_report(request, aes_id, type):
         return response
     return excel_report(request, aes, type)
     
+'''
+'''    
+def excel_econ_report(request, aoi_id, type):
+    from econ.econ_exports import excel_report
+    aoi = get_object_or_404(AOI, pk=aoi_id)
+    user_can_view, response = aoi.is_viewable(request.user)
+    if not user_can_view:
+        return response
+    return excel_report(request, aoi, type)    
     
 '''
 '''
@@ -61,6 +109,16 @@ def pdf_aes_report(request, aes_id, type):
     return pdf_report(request, aes, type)
     
 '''
+'''
+def pdf_econ_report(request, aoi_id, type):
+    from econ.econ_exports import pdf_report
+    aoi = get_object_or_404(AOI, pk=aoi_id)
+    user_can_view, response = aoi.is_viewable(request.user)
+    if not user_can_view:
+        return response
+    return pdf_report(request, aoi, type)
+    
+'''
 Accessed via named url when user selects View Printable Report from analysis templates
 '''    
 def print_nsh_report(request, nsh_id, type):
@@ -81,6 +139,17 @@ def print_aes_report(request, aes_id, type):
     if not user_can_view:
         return response
     return printable_report(request, aes, type)
+    
+'''
+'''
+def print_econ_report(request, aoi_id, type):
+    from econ.econ_exports import printable_report
+    aoi = get_object_or_404(AOI, pk=aoi_id)
+    user_can_view, response = aoi.is_viewable(request.user)
+    if not user_can_view:
+        return response
+    return printable_report(request, aoi, type)
+    
     
 '''
 Empties NSHCache table

@@ -30,10 +30,12 @@ INSTALLED_APPS += ( 'tsp',
                     'lingcod.analysistools',
                     'fishing_layers',
                     'omm_manipulators',
-                    'non_consumptive')
+                    'non_consumptive',
+                    'lingcod.raster_stats')
 
 COMPRESS_CSS['application']['source_filenames'] += (
     'omm/css/aoi_analysis.css',
+    'omm/css/econ_analysis.css',
 )
 
 # KML SETTINGS - using default settings of 20 meters for now...
