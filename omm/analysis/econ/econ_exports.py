@@ -31,7 +31,13 @@ def pdf_report(request, aoi, type):
     import cStringIO as StringIO
     context = get_or_create_cache(aoi, type)
     context = toggle_pdf_var(context)
-    template = get_econ_template(type)
+    #template = get_econ_template(type)
+    template = 'econ/pdf_report.html'
+    context['type'] = type
+    context['name'] = aoi.name
+    context['uid'] = aoi.uid
+    context['title'] = get_title(type)
+    context.update(add_includes(type))
     if type == 'all':
         html = render_to_string(template, context)
         filename = 'comprehensive_economic_report_%s.pdf' % aoi.uid
@@ -58,9 +64,14 @@ renders template with type-specific context
 called from views.print_econ_report
 '''    
 def printable_report(request, aoi, type):
-    template = get_printable_template(type)
+    #template = get_printable_template(type)
+    template = 'econ/printable_report.html'
     context = get_or_create_cache(aoi, type)
     toggle_printable_var(context)
+    context['type'] = type
+    context['name'] = aoi.name
+    context['title'] = get_title(type)
+    context.update(add_includes(type))
     return render_to_response(template, RequestContext(request, context))
     
 def toggle_printable_var(context):
@@ -116,6 +127,37 @@ def get_econ_template(type):
         raise ValueError("Invalid type, %s, sent to get_econ_template" %type)
     return template
 
+def get_title(type):
+    if type == 'noaa':
+        title = 'NOAA Commercial Fishing Analysis'
+    elif type == 'feam':
+        title = 'FEAM Commercial Fishing Analysis'
+    elif type == 'chrt':
+        title = 'Charter Fishing Analysis'
+    elif type == 'rec':
+        title = 'Recreational Fishing Analysis'   
+    elif type == 'all':
+        title = 'Comprehensive Fishing Analysis'
+    else:
+        raise ValueError("Invalid type, %s, sent to get_econ_template" %type)
+    return title    
+    
+def add_includes(type):
+    includes = {}
+    if type == 'noaa':
+        includes['template'] = 'econ/commercial_noaa_report.html'
+    elif type == 'feam':
+        includes['template'] = 'econ/commercial_feam_report.html'
+    elif type == 'chrt':
+        includes['template'] = 'econ/charter_report.html'
+    elif type == 'rec':
+        includes['template'] = 'econ/recreational_report.html'   
+    elif type == 'all':
+        includes['templates'] = ['econ/commercial_noaa_report.html', 'econ/commercial_feam_report.html', 'econ/charter_report.html', 'econ/recreational_report.html']
+    else:
+        raise ValueError("Invalid type, %s, sent to get_econ_template" %type)
+    return includes        
+    
 def get_printable_template(type):
     if type == 'noaa':
         template = 'econ/commercial_noaa_report.html'

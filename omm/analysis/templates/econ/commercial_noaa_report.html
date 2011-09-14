@@ -2,9 +2,6 @@
 {% load currency %}
 {% block panel %}
 
-{% block Header %}
-{% endblock Header %}
-
 <h3>{{noaa.agency}} Commercial Fishing Analysis</h3>
 <div class='freetext'>
 <p>
@@ -16,8 +13,8 @@
     <thead>
         <tr>
             <th>Port/Fishery</th>
-            <th>Average Annual Gross Economic Revenue{% if not noaa.pdf and not noaa.printable %}<sup>&nbsp;1</sup>{% endif %}</th>
-            <th>Estimated Economic Output{% if not noaa.pdf and not noaa.printable %}<sup>&nbsp;2</sup>{% endif %}</th>
+            <th>Average Annual GER{% if not noaa.pdf and not noaa.printable %}<sup>&nbsp;1</sup>{% endif %}</th>
+            <th>EEO{% if not noaa.pdf and not noaa.printable %}<sup>&nbsp;2</sup>{% endif %}</th>
         </tr>
     </thead>
     <tbody>
@@ -54,7 +51,7 @@
 
 {% if not noaa.pdf and not noaa.printable %}
 
-<p><h3>Footnotes on Commercial-NOAA Headers</h3></p>
+<p><h3>Footnotes on NOAA Commercial Headers</h3></p>
 
 <div class='freetext'>
 <p>1. In the commercial sector average annual gross economic revenue (GER) was calculated using annual gross economic 

@@ -1,0 +1,28 @@
+
+{% block Header %}
+<h1 align="center">{{ title }} for {{ name }}</h1>
+
+<div class="img">
+    <center>
+    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ uid }}&amp;autozoom=true&amp;width=308&amp;height=400">
+    &nbsp; &nbsp;
+    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ uid }}&amp;width=154&amp;height=200&amp;show_extent=True">
+    </center>
+</div>
+{% endblock Header %}
+
+{% if type == 'all' %}
+    {% for template in templates %}
+        {% include template %}
+    {% endfor %}
+{% endif %}
+
+{% if type != 'all' %}
+    {% include template %}
+{% endif %}
+
+<style type="text/css">
+div.img {
+    zoom: 80%; 
+}
+</style>

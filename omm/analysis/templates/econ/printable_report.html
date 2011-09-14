@@ -1,7 +1,6 @@
 
 {% block Header %}
-<h1 align="center">{{ aoi.name }}</h1>
-<h1 align="center">Comprehensive Economic Report</h1>
+<h1 align="center">{{ title }} for {{ name }}</h1>
 
 <div class="img" align="middle">
     <img align="top" src="{% url staticmap-show 'default' %}?uids={{ noaa.aoi.uid }}&amp;autozoom=true&amp;width=308&amp;height=400">
@@ -10,14 +9,15 @@
 </div>
 {% endblock Header %}
 
-{% include 'econ/commercial_noaa_report.html' %}
+{% if type == 'all' %}
+    {% for template in templates %}
+        {% include template %}
+    {% endfor %}
+{% endif %}
 
-{% include 'econ/commercial_feam_report.html' %}
-
-{% include 'econ/charter_report.html' %}
-
-{% include 'econ/recreational_report.html' %}
-
+{% if type != 'all' %}
+    {% include template %}
+{% endif %}
 
 <style type="text/css">
 div.img {
