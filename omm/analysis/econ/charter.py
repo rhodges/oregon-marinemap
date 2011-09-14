@@ -26,7 +26,7 @@ called by views.shoreside_analysis
 Builds and returns a context dictionary for charter fishing reports 
 '''   
 def get_charter_context(aoi, type='chrt', prefix='chrt'):
-    from econ_cache import *
+    from econ_cache import econ_cache_exists, get_econ_cache, create_econ_cache
     if econ_cache_exists(aoi, type):
         context = get_econ_cache(aoi, type)
         return context
