@@ -123,6 +123,7 @@ class AOIArray(FeatureCollection):
         verbose_name = 'Folder'
         valid_children = ( 'tsp.models.AOI', 
                 'tsp.models.AOIArray',
+                'lingcod.bookmarks.models.Bookmark',
                 'tsp.models.UserKml')
         form = 'tsp.forms.ArrayForm'
         show_template = 'array/show.html'
