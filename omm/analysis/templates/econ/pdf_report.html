@@ -1,12 +1,12 @@
 
 {% block Header %}
-<h1 align="center">{{ title }} for {{ name }}</h1>
+<h1 align="center">{{ title }} for {{ aoi.name }}</h1>
 
 <div class="img">
     <center>
-    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ uid }}&amp;autozoom=true&amp;width=308&amp;height=400">
+    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ aoi.uid }}&amp;autozoom=true&amp;width=308&amp;height=400">
     &nbsp; &nbsp;
-    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ uid }}&amp;width=154&amp;height=200&amp;show_extent=True">
+    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ aoi.uid }}&amp;width=154&amp;height=200&amp;show_extent=True">
     </center>
 </div>
 {% endblock Header %}

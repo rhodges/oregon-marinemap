@@ -34,8 +34,7 @@ def pdf_report(request, aoi, type):
     #template = get_econ_template(type)
     template = 'econ/pdf_report.html'
     context['type'] = type
-    context['name'] = aoi.name
-    context['uid'] = aoi.uid
+    context['aoi'] = aoi
     context['title'] = get_title(type)
     context.update(add_includes(type))
     if type == 'all':
@@ -69,7 +68,7 @@ def printable_report(request, aoi, type):
     context = get_or_create_cache(aoi, type)
     toggle_printable_var(context)
     context['type'] = type
-    context['name'] = aoi.name
+    context['aoi'] = aoi
     context['title'] = get_title(type)
     context.update(add_includes(type))
     return render_to_response(template, RequestContext(request, context))
