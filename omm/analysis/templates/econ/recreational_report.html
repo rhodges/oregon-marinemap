@@ -12,8 +12,8 @@
 {% endif %}
     <thead>
         <tr>
-            <th>Port/Fishery</th>
-            <th>Estimated Personal Income</th>
+            <th class="left">Port/Fishery</th>
+            <th class="right">Estimated Personal Income</th>
         </tr>
     </thead>
     <tbody>
@@ -25,7 +25,7 @@
             {% for fishery_report in fisheries %}
                 <tr class="{% cycle '' 'grey' %}">
                     <td class='fishery'>{{fishery_report.0}}</td>
-                    <td class='currency'>{{fishery_report.2|currency}}&nbsp;&nbsp;</td>
+                    <td class='currency'>{{fishery_report.2|floatformat:0|currency}}</td>
                 </tr>
             {% endfor %}
         {% endfor %}
@@ -36,7 +36,7 @@
         {% for tuple in rec.state_totals %}
             <tr class="{% cycle '' 'grey' %}">
                 <td class='fishery'>{{tuple.0}}</td>
-                <td class='currency'>{{tuple.1.1|currency}}&nbsp;&nbsp;</td>
+                <td class='currency'>{{tuple.1.1|floatformat:0|currency}}</td>
             </tr>
         {% endfor %}
     </tbody>
@@ -89,6 +89,14 @@ table.printable_econ_analysis_container th {
     padding-top:3px;
 }
 
+table.printable_econ_analysis_container th.left {
+    text-align:left;
+}
+
+table.printable_econ_analysis_container th.right {
+    text-align:right;
+}
+
 table.printable_econ_analysis_container td {
     background-color:#EBF5F5;
     color:#344E63;
@@ -101,6 +109,7 @@ table.printable_econ_analysis_container td.port {
 }
 
 table.printable_econ_analysis_container td.currency {
+    padding-right: 5px;
     text-align:right;
 }
 
