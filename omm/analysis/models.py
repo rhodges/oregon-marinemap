@@ -31,4 +31,10 @@ from aes.aes_models import UrbanGrowthBoundaries, Buoys, SignalEquipment, Beacon
 
 #import AES_Caching models
 from aes.aes_models import AESCache
+
+
+#ECON RELATED MODELS
+
+#import econ cache
+from econ.econ_models import EconCache
                      

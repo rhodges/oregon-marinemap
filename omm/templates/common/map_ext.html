@@ -10,10 +10,6 @@
     {% endif %}
 {% endblock layersConfig %}
 
-        {% block enhancedContent %}
-            options.displayEnhancedContent = true;
-        {% endblock enhancedContent %}
-
 {% block tabs %}
 {% if user.is_authenticated %}
 <li><a href="#MyShapes"><span>My Shapes</span></a></li> 
@@ -31,6 +27,10 @@
 </div>
 {% endblock shapeDefinitionPanelManipulators %}
 
+<!-- change the following to true to enable causes kmltree to open every description balloon with an iframe that can run js (used for embedding videos)-->
+{% block enhancedContent %}
+    options.displayEnhancedContent = false;
+{% endblock enhancedContent %}
 
 {% block shapeDefinitionPanelBeforeManipulatorContent %}   
 The following clipping operations were performed on your shape:                 
