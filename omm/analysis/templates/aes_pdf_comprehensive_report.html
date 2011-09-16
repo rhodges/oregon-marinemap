@@ -1,10 +1,9 @@
 {% extends 'pdf_comprehensive_report.html' %}
 
 {% block Header %}
-<h1 align="center">{{ geo.aes.name }}</h1>
-<h1 align="center">Energy Site Comprehensive Analysis Report</h1>
+<h1 align="center">Energy Site Comprehensive Analysis Report for {{ geo.aes.name }}</h1>
 
-<div class="img" align="middle" >
+<div align="middle" >
     <table width="100%">
         <tr>
             <td></td>
@@ -23,7 +22,7 @@
 
 {% block OtherGeography %}
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th class="geoheader" colspan="3">Geographic Setting</th>
@@ -52,7 +51,7 @@
         </tr>
     </tbody>
 </table>
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th>Nearest Marinas</th>
@@ -80,7 +79,7 @@
 
 {% block Human %}
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th class="humheader" colspan="8">Community Considerations</font></th>
@@ -117,7 +116,7 @@
 </table>
 
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th class="humheader" colspan="4">Planning Considerations</font></th>
@@ -178,7 +177,7 @@
 </table>
 
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th class="humheader" colspan="13">Transportation Considerations</font></th>
@@ -233,7 +232,7 @@
 </table>
 
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th class="humheader" colspan="5">Infrastructure Considerations</font></th>
@@ -292,7 +291,7 @@
 </table>
 
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th class="humheader" colspan="3">Fishery Considerations</font></th>
@@ -317,7 +316,7 @@
         </tr>
     </tbody>
 </table>
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th>ODFW Closures</th>

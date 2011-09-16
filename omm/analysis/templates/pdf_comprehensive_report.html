@@ -9,7 +9,7 @@
 
 {% block GeneralSpatial %}
 <br>
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th class="geoheader" colspan="5">General Spatial Characteristics</th>
@@ -41,7 +41,7 @@
 
 {% block IntertidalPhysical %}
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th class="phyheader" colspan="7">Intertidal Physical Characteristics</th>
@@ -86,7 +86,7 @@
 
 {% block SubtidalPhysical %}
 <br>
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th class="phyheader" colspan="7">Subtidal Physical Characteristics</th>
@@ -139,7 +139,7 @@
 
 {% block TerrestrialBiological %}
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th class="bioheader" colspan="2">Terrestrial Biological Characteristics</font></th>
@@ -160,7 +160,7 @@
 
 {% block IntertidalBiological %}
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th class="bioheader" colspan="3">Intertidal Biological Characteristics</th>
@@ -193,7 +193,7 @@
         </tr>
     </tbody>
 </table>    
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th>Steller Sea Lion Critical Habitats</th>
@@ -213,7 +213,7 @@
         </tr>
     </tbody>
 </table>    
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th colspan="2">Pinniped Haulout Details</th>
@@ -256,7 +256,7 @@
 
 {% block SubtidalBiological %}
 <br>
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th class="bioheader" colspan="2">Subtidal Biological Characteristics</th>
@@ -288,7 +288,7 @@
     </tbody>
 </table>
     
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th>Green Sturgeon</th>
@@ -313,7 +313,7 @@
     </tbody>
 </table>
     
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th>Kelp Survey Year</th>
@@ -336,7 +336,7 @@
         {% endif %}
     </tbody>
 </table>
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             {% if bio.seagrass_area == 0.0 %}
@@ -372,21 +372,8 @@
 
 {% block CSS %}
 <style type="text/css">
-div.img img.aoi {
-    zoom: 80%;
-}
 
-div.img img.sr {
-    zoom: 80%;
-    vertical-align: text-top;
-}
-
-table.summary-table {
-    font-family:helvetica;
-    font-size:11px;
-}
-
-table.marinemap-table {
+table.pdf-report-table {
     font-size:9px;
     width:100%;
     border:solid 1px #fff;
@@ -394,75 +381,75 @@ table.marinemap-table {
     padding-top:3px;
 }
 
-table.marinemap-table th.geoheader {
+table.pdf-report-table th.geoheader {
     background-color:#518E58;
     color:#B0B0B0;
     font-family:helvetica;
     font-weight:bold;
 }
 
-table.marinemap-table th.phyheader {
+table.pdf-report-table th.phyheader {
     background-color:#4D50DF;
     color:#B0B0B0;
     font-family:helvetica;
     font-weight:bold;
 }
 
-table.marinemap-table th.bioheader {
+table.pdf-report-table th.bioheader {
     background-color:#95291A;
     color:#B0B0B0;
     font-family:helvetica;
     font-weight:bold;
 }
 
-table.marinemap-table th.humheader {
+table.pdf-report-table th.humheader {
     background-color:#FEAB30;
     color:#F0F0F0;
     font-family:helvetica;
     font-weight:bold;
 }
 
-table.marinemap-table th {
+table.pdf-report-table th {
     background-color:#D0D0D0;
     color:#344E63;
 }
 
-table.marinemap-table th.left {
+table.pdf-report-table th.left {
     background-color:#D0D0D0;
     color:#344E63;
     font-weight:bold;
     text-align:left;
 }
 
-table.marinemap-table td {
+table.pdf-report-table td {
     background-color:#EBF5F5;
     color:#344E63;
     text-align:center;
 }
 
-table.marinemap-table td.left {
+table.pdf-report-table td.left {
     background-color:#EBF5F5;
     color:#344E63;
     text-align:left;
     vertical-align: text-top;
 }
 
-table.marinemap-table td.top {
+table.pdf-report-table td.top {
     background-color:#EBF5F5;
     color:#344E63;
     vertical-align: text-top;
 }
 
-table.marinemap-table thead tr {
+table.pdf-report-table thead tr {
     background:#FAFAFA url(../images/toolbar-bg.png) repeat-x scroll left bottom;
     text-align:center;
 }
 
-table.marinemap-table tbody {
+table.pdf-report-table tbody {
     background-color:white;
 }
 
-table.marinemap-table tr.zebra {
+table.pdf-report-table tr.zebra {
     background-color:#eee;
 }
 </style>

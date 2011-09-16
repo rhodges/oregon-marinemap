@@ -1,22 +1,3 @@
 {% extends 'printable_phy_report.html' %}
 
-{% block Header %}
-<h1 align="center">{{ nsh.name }} Nearshore Habitat Physical Analysis Report</h1>
-
-<div align="middle" >
-    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ nsh.uid }}&amp;autozoom=true&amp;width=308&amp;height=400">
-    &nbsp; &nbsp;
-    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ nsh.uid }}&amp;width=154&amp;height=200&amp;show_extent=True">
-</div>
-
-<div class="freetext">
-<h4>Report Summary</h4>
-<table class='allowed_uses'>
-<tr><td width=150>Type:</td><td>Physical</td></tr>
-<tr><td width=150>Nearshore Habitat:</td><td>{{ nsh.name }}</td></tr>
-<tr><td width=150>ID #:</td><td>{{ nsh.id }}</td></tr>
-</table>
-</div>
-{% endblock Header %}
-
 <!-- Intertidal and Subtidal reports inherited from printable_phy_report -->

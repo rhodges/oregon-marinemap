@@ -1,29 +1,10 @@
 {% extends 'printable_geo_report.html' %}
 
-{% block Header %}
-<h1 align="center">{{ nsh.name }} Nearshore Habitat Geography Analysis Report</h1>
-
-<div class="img" align="middle">
-    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ nsh.uid }}&amp;autozoom=true&amp;width=308&amp;height=400">
-    &nbsp; &nbsp;
-    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ nsh.uid }}&amp;width=154&amp;height=200&amp;show_extent=True">
-</div>
-
-<div class="freetext">
-<h4>Report Summary</h4>
-<table class='allowed_uses'>
-<tr><td width=150>Type:</td><td>Geography</td></tr>
-<tr><td width=150>Nearshore Habitat:</td><td>{{ nsh.name }}</td></tr>
-<tr><td width=150>ID #:</td><td>{{ nsh.id }}</td></tr>
-</table>
-</div>
-{% endblock Header %}
-
 <!-- Inheriting General Spatial Characteristics from printable_geo_report -->
 
 {% block OtherGeography %}
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='printable-report-table' rules=rows>
     <thead>
         <tr>
             <th class="geoheader" colspan="4">Geographic Setting</font></th>
@@ -37,22 +18,22 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{county.0}}</td>
-            <td>{{county_shoreline_percentages.0|floatformat:'1'}} %</td>
-            <td>{{ports.0.0}}  ({{ports.0.1|floatformat:'1'}} {{length_units}})</td>
-            <td>{{cities.0.0}}  ({{cities.0.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{geo.county.0}}</td>
+            <td>{{geo.county_shoreline_percentages.0|floatformat:'1'}} %</td>
+            <td>{{geo.ports.0.0}}  ({{geo.ports.0.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.cities.0.0}}  ({{geo.cities.0.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
         <tr>
-            <td>{{county.1}}</td>
-            <td>{% if county.1 %} {{county_shoreline_percentages.1|floatformat:'1'}} % {% endif %}</td>
-            <td>{{ports.1.0}}  ({{ports.1.1|floatformat:'1'}} {{length_units}})</td>
-            <td>{{cities.1.0}}  ({{cities.1.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{geo.county.1}}</td>
+            <td>{% if geo.county.1 %} {{geo.county_shoreline_percentages.1|floatformat:'1'}} % {% endif %}</td>
+            <td>{{geo.ports.1.0}}  ({{geo.ports.1.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.cities.1.0}}  ({{geo.cities.1.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
         <tr>
-            <td>{{county.2}}</td>
-            <td>{% if county.2 %} {{county_shoreline_percentages.2|floatformat:'1'}} % {% endif %}</td>
-            <td>{{ports.2.0}}  ({{ports.2.1|floatformat:'1'}} {{length_units}})</td>
-            <td>{{cities.2.0}}  ({{cities.2.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{geo.county.2}}</td>
+            <td>{% if geo.county.2 %} {{geo.county_shoreline_percentages.2|floatformat:'1'}} % {% endif %}</td>
+            <td>{{geo.ports.2.0}}  ({{geo.ports.2.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.cities.2.0}}  ({{geo.cities.2.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
         <tr><td></td><td></td><td></td><td></td><td></td></tr>
     </tbody>

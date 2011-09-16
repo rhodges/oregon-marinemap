@@ -1,12 +1,22 @@
 
+{% if type != 'all' %}
 {% block Header %}
+<h1 align="center">{{title}} Geography Analysis Report for {{aoi.name}}</h1>
+
+<div align="middle">
+    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ aoi.uid }}&amp;autozoom=true&amp;width=308&amp;height=400">
+    &nbsp; &nbsp;
+    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ aoi.uid }}&amp;width=154&amp;height=200&amp;show_extent=True">
+</div>
+
 {% endblock Header %}
+{% endif %}
 
 <div class='freetext'>
 
 {% block GeneralSpatial %}
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='printable-report-table' rules=rows>
     <thead>
         <tr>
             <th class="geoheader" colspan="5">General Spatial Characteristics</th>
@@ -21,13 +31,12 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{area|floatformat:'2'}} ({{area_units}})</td>
-            <td>{{perimeter|floatformat:'2'}} ({{length_units}})</td>
-            <td>{{intertidal}}</td>
-            <td>{{islands}}</td>
-            <td>{{ratio|floatformat:'2'}} %</td>
+            <td>{{geo.area|floatformat:'2'}} ({{geo.area_units}})</td>
+            <td>{{geo.perimeter|floatformat:'2'}} ({{geo.length_units}})</td>
+            <td>{{geo.intertidal}}</td>
+            <td>{{geo.islands}}</td>
+            <td>{{geo.ratio|floatformat:'2'}} %</td>
         </tr>
-        <tr><td></td><td></td><td></td><td></td><td></td></tr>
     </tbody>
 </table>
 {% endblock GeneralSpatial %}
@@ -35,15 +44,11 @@
 {% block OtherGeography %}
 {% endblock OtherGeography %}
 
+{% if not pdf %}
 {% block CSS %}
 <style type="text/css">
-div.img {
-    margin-left: auto;
-    margin-right: auto;
-    zoom: 80%;
-}
 
-table.marinemap-table {
+table.printable-report-table {
     font-size:12px;
     width:100%;
     border:solid 1px #fff;
@@ -51,54 +56,55 @@ table.marinemap-table {
     padding-top:4px;
 }
 
-table.marinemap-table th.geoheader {
+table.printable-report-table th.geoheader {
     background-color:#518E58;
     color:#B0B0B0;
     font-family:helvetica;
     font-weight:bold;
 }
 
-table.marinemap-table th {
+table.printable-report-table th {
     background-color:#D0D0D0;
     color:#344E63;
     font-weight:bold;
 }
 
-table.marinemap-table th.left {
+table.printable-report-table th.left {
     background-color:#D0D0D0;
     color:#344E63;
     font-weight:bold;
     text-align:left;
 }
 
-table.marinemap-table td {
+table.printable-report-table td {
     background-color:#EBF5F5;
     color:#344E63;
     font-weight:bold;
     text-align:center;
 }
 
-table.marinemap-table td.left {
+table.printable-report-table td.left {
     background-color:#EBF5F5;
     color:#344E63;
     font-weight:bold;
     text-align:left;
 }
 
-table.marinemap-table thead tr {
+table.printable-report-table thead tr {
     background:#FAFAFA url(../images/toolbar-bg.png) repeat-x scroll left bottom;
     text-align:center;
 }
 
-table.marinemap-table tbody {
+table.printable-report-table tbody {
     background-color:white;
 }
 
-table.marinemap-table tr.zebra {
+table.printable-report-table tr.zebra {
     background-color:#eee;
 }
 </style>
 {% endblock CSS %}
+{% endif %}
 
 <br></br>
 <br></br>
