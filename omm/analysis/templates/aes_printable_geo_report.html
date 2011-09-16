@@ -1,29 +1,10 @@
 {% extends 'printable_geo_report.html' %}
 
-{% block Header %}
-<h1 align="center">{{ aes.name }} Energy Site Geography Analysis Report</h1>
-
-<div class="img" align="middle">
-    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ aes.uid }}&amp;autozoom=true&amp;width=308&amp;height=400">
-    &nbsp; &nbsp;
-    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ aes.uid }}&amp;width=154&amp;height=200&amp;show_extent=True">
-</div>
-
-<div class="freetext">
-<h4>Report Summary</h4>
-<table class='allowed_uses'>
-<tr><td width=150>Type:</td><td>Geography</td></tr>
-<tr><td width=150>Energy Site:</td><td>{{ aes.name }}</td></tr>
-<tr><td width=150>ID #:</td><td>{{ aes.id }}</td></tr>
-</table>
-</div>
-{% endblock Header %}
-
 <!-- Inheriting General Spatial Characteristics from printable_geo_report -->
 
 {% block OtherGeography %}
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='printable-report-table' rules=rows>
     <thead>
         <tr>
             <th class="geoheader" colspan="5">Geographic Setting</font></th>
@@ -36,23 +17,23 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{county.0}}</td>
-            <td>{{ cities.0.0}} &nbsp; ({{ cities.0.1|floatformat:'1'}} {{length_units}})</td>
-            <td>{{ports.0.0}}  ({{ports.0.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{geo.county.0}}</td>
+            <td>{{geo.cities.0.0}} &nbsp; ({{geo.cities.0.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.ports.0.0}}  ({{geo.ports.0.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
         <tr>
-            <td>{{county.1}}</td>
-            <td>{{ cities.1.0}} &nbsp; ({{ cities.1.1|floatformat:'1'}} {{length_units}})</td>
-            <td>{{ports.1.0}}  ({{ports.1.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{geo.county.1}}</td>
+            <td>{{geo.cities.1.0}} &nbsp; ({{geo.cities.1.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.ports.1.0}}  ({{geo.ports.1.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
         <tr>
-            <td>{{county.2}}</td>
-            <td>{{ cities.2.0}} &nbsp; ({{ cities.2.1|floatformat:'1'}} {{length_units}})</td>
-            <td>{{ports.2.0}}  ({{ports.2.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{geo.county.2}}</td>
+            <td>{{geo.cities.2.0}} &nbsp; ({{geo.cities.2.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.ports.2.0}}  ({{geo.ports.2.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
     </tbody>
 </table>
-<table class='marinemap-table' rules=rows>
+<table class='printable-report-table' rules=rows>
     <thead>
         <tr>
             <th>Nearest Marinas</th>
@@ -60,13 +41,13 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{marinas.0.0}}  ({{marinas.0.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{geo.marinas.0.0}}  ({{geo.marinas.0.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
         <tr>
-            <td>{{marinas.1.0}}  ({{marinas.1.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{geo.marinas.1.0}}  ({{geo.marinas.1.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
         <tr>
-            <td>{{marinas.2.0}}  ({{marinas.2.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{geo.marinas.2.0}}  ({{geo.marinas.2.1|floatformat:'1'}} {{geo.length_units}})</td>
         </tr>
         <tr><td></td></tr>
     </tbody>

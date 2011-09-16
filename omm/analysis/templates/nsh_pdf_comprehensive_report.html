@@ -1,15 +1,14 @@
 {% extends 'pdf_comprehensive_report.html' %}
 
 {% block Header %}
-<h1 align="center">{{ geo.nsh.name }}</h1>
-<h1 align="center">Nearshore Habitat Comprehensive Analysis Report</h1>
+<h1 align="center">Nearshore Habitat Comprehensive Analysis Report for {{ aoi.name }}</h1>
 
-<div class="img" align="middle" >
+<div align="middle" >
     <table width="100%">
         <tr>
             <td></td>
             <td>
-                &nbsp; <img class="aoi" align="right" src="{% url staticmap-show 'default' %}?uids={{ geo.nsh.uid }}&amp;autozoom=true&amp;width=308&amp;height=400">
+                &nbsp; <img class="aoi" align="right" src="{% url staticmap-show 'default' %}?uids={{ aoi.uid }}&amp;autozoom=true&amp;width=308&amp;height=400">
             </td>
             <td></td>
         </tr>
@@ -23,7 +22,7 @@
 
 {% block OtherGeography %}
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th class="geoheader" colspan="4">Geographic Setting</th>
@@ -66,7 +65,7 @@
 
 {% block Human %}
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th class="humheader" colspan="3">Community & Recreational Considerations</th>
@@ -99,7 +98,7 @@
 </table>
 
 <br>
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th class="humheader" colspan="3">Existing or Proposed Transportation & Infrasructure Considerations</th>
@@ -146,7 +145,7 @@
 </table>
 
 <br>
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th class="humheader" colspan="3">Fishery Considerations</th>
@@ -172,7 +171,7 @@
     </tbody>
 </table>
 
-<table class='marinemap-table' rules=rows>
+<table class='pdf-report-table' rules=rows>
     <thead>
         <tr>
             <th>Marine Managed Areas</th>

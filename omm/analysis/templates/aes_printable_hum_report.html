@@ -1,23 +1,18 @@
-<h1 align="center">{{ aes.name }} Energy Site Human Uses Analysis Report</h1>
+
+{% if type != 'all' %}
+<h1 align="center">Energy Site Human Uses Analysis Report for {{ aoi.name }} </h1>
 
 <div align="middle" >
-    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ aes.uid }}&amp;autozoom=true&amp;width=308&amp;height=400">
+    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ aoi.uid }}&amp;autozoom=true&amp;width=308&amp;height=400">
     &nbsp; &nbsp;
-    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ aes.uid }}&amp;width=154&amp;height=200&amp;show_extent=True">
+    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ aoi.uid }}&amp;width=154&amp;height=200&amp;show_extent=True">
 </div>
 
-<div class="freetext">
-<h4>Report Summary</h4>
-<table class='allowed_uses'>
-<tr><td width=150>Type:</td><td>Human Uses</td></tr>
-<tr><td width=150>Energy Site:</td><td>{{ aes.name }}</td></tr>
-<tr><td width=150>ID #:</td><td>{{ aes.id }}</td></tr>
-</table>
-</div>
+{% endif %}
 
 <div class='freetext'>
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='printable-report-table' rules=rows>
     <thead>
         <tr>
             <th class="humheader" colspan="4">Community Considerations</font></th>
@@ -32,22 +27,22 @@
     <tbody>
         <tr>
             <td>
-            {% for ugb in urbangrowthboundaries %}
-                {{ugb.0}} &nbsp; ({{ugb.1|floatformat:'1'}} {{length_units}})</br>
+            {% for ugb in hum.urbangrowthboundaries %}
+                {{ugb.0}} &nbsp; ({{ugb.1|floatformat:'1'}} {{hum.length_units}})</br>
             {% endfor %}
             </td>
             <td>
-            {% for park in parks %}
-                {{park.0}} State Park &nbsp; ({{park.1|floatformat:'2'}} {{length_units}})</br>
+            {% for park in hum.parks %}
+                {{park.0}} State Park &nbsp; ({{park.1|floatformat:'2'}} {{hum.length_units}})</br>
             {% endfor %}
             </td>
             <td>
-            {% for site in access_sites %}
-                {{site.0}} &nbsp; ({{site.1|floatformat:'1'}} {{length_units}})</br>
+            {% for site in hum.access_sites %}
+                {{site.0}} &nbsp; ({{site.1|floatformat:'1'}} {{hum.length_units}})</br>
             {% endfor %}
             </td>
             <td class="top">
-            {{visible}}
+            {{hum.visible}}
             </td>
         </tr>
         <tr><td></td><td></td><td></td><td></td></tr>
@@ -55,7 +50,7 @@
 </table>
 
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='printable-report-table' rules=rows>
     <thead>
         <tr>
             <th class="humheader" colspan="4">Planning Considerations</font></th>
@@ -70,22 +65,22 @@
     <tbody>
         <tr>
             <td>
-            {% for rockyshore in rockyshores %}
-                {{rockyshore.0}} &nbsp; ({{rockyshore.1|floatformat:'1'}} {{length_units}})</br>
+            {% for rockyshore in hum.rockyshores %}
+                {{rockyshore.0}} &nbsp; ({{rockyshore.1|floatformat:'1'}} {{hum.length_units}})</br>
             {% endfor %}
             </td>
             <td class="top">
-            {% for area in intersecting_protected_areas %}
+            {% for area in hum.intersecting_protected_areas %}
                 {{area}}</br>
             {% endfor %}
             </td>
             <td class="top">
-            {% for mma in intersecting_mmas %}
+            {% for mma in hum.intersecting_mmas %}
                 {{mma}}</br>
             {% endfor %}
             </td>
             <td class="top">
-            {% for data in intersecting_wave_energy_sites %}
+            {% for data in hum.intersecting_wave_energy_sites %}
                 {% if data != 'None' %} 
                     {{data.0}} ({{data.1|floatformat:'2'}} %)</br>
                 {% else %}
@@ -104,13 +99,13 @@
     <tbody>
         <tr>
             <td>&nbsp;</td>
-            <td class="top">{{nearest_protected_area.0}} &nbsp; ({{nearest_protected_area.1|floatformat:'1'}} {{length_units}})</td>
+            <td class="top">{{hum.nearest_protected_area.0}} &nbsp; ({{hum.nearest_protected_area.1|floatformat:'1'}} {{hum.length_units}})</td>
             <td>
-            {% for mma in nearest_mmas %}
-                {{mma.0}} ({{mma.1|floatformat:'1'}} {{length_units}})</br>
+            {% for mma in hum.nearest_mmas %}
+                {{mma.0}} ({{mma.1|floatformat:'1'}} {{hum.length_units}})</br>
             {% endfor %}
             </td>
-            <td class="top">{{nearest_wave_energy_site.0}} ({{nearest_wave_energy_site.1|floatformat:'2'}} {{length_units}})</td>
+            <td class="top">{{hum.nearest_wave_energy_site.0}} ({{hum.nearest_wave_energy_site.1|floatformat:'2'}} {{hum.length_units}})</td>
         </tr>
         <tr><td></td><td></td><td></td><td></td></tr>
     </tbody>
@@ -118,7 +113,7 @@
 
 
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='printable-report-table' rules=rows>
     <thead>
         <tr>
             <th class="humheader" colspan="5">Transportation Considerations</font></th>
@@ -134,19 +129,19 @@
     <tbody>
         <tr>
             <td class="top">
-            {% for data in intersecting_buoys %}
+            {% for data in hum.intersecting_buoys %}
                 {{data}}</br>
             {% endfor %}
             </td>
             <td class="top">
-            {% for data in intersecting_beacons %}
+            {% for data in hum.intersecting_beacons %}
                 {{data}}</br>
             {% endfor %}
             </td>
-            <td class="top">{{signal_data}}</td>
-            <td class="top">{{towlanes}}</td>
+            <td class="top">{{hum.signal_data}}</td>
+            <td class="top">{{hum.towlanes}}</td>
             <td class="top">
-            {% for airport in intersecting_airports %} 
+            {% for airport in hum.intersecting_airports %} 
                 {{airport}}</br>
             {% endfor %}
             </td>
@@ -163,11 +158,11 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{nearest_buoy.0}} ({{nearest_buoy.1|floatformat:'2'}} {{length_units}})</td>
-            <td>{{nearest_beacon.0}} ({{nearest_beacon.1|floatformat:'2'}} {{length_units}})</td>
-            <td>{{num_signals}}</td>
+            <td>{{hum.nearest_buoy.0}} ({{hum.nearest_buoy.1|floatformat:'2'}} {{hum.length_units}})</td>
+            <td>{{hum.nearest_beacon.0}} ({{hum.nearest_beacon.1|floatformat:'2'}} {{hum.length_units}})</td>
+            <td>{{hum.num_signals}}</td>
             <td></td>
-            <td>{{nearest_airport.0}} ({{nearest_airport.1|floatformat:'1'}} {{length_units}})</td>
+            <td>{{hum.nearest_airport.0}} ({{hum.nearest_airport.1|floatformat:'1'}} {{hum.length_units}})</td>
         </tr>
         <tr><td></td><td></td><td></td><td></td><td></td></tr>
     </tbody>
@@ -175,7 +170,7 @@
 
 
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='printable-report-table' rules=rows>
     <thead>
         <tr>
             <th class="humheader" colspan="5">Infrastructure Considerations</font></th>
@@ -191,24 +186,24 @@
     <tbody>
         <tr>
             <td class="top">
-            {% for data in intersecting_dmds %}
+            {% for data in hum.intersecting_dmds %}
                 {{data}}</br>
             {% endfor %}
             </td>
             <td class="top">
-            {% for data in intersecting_outfalls %}
+            {% for data in hum.intersecting_outfalls %}
                 {{data}}</br>
             {% endfor %}
             </td>
             <td class="top">
-            {% for data in intersecting_cables %}
+            {% for data in hum.intersecting_cables %}
                 {{data}}</br>
             {% endfor %}
             </td>
-            <td class="top">{{transmissionline2010|floatformat:'1'}} {{length_units}}</td>
+            <td class="top">{{hum.transmissionline2010|floatformat:'1'}} {{hum.length_units}}</td>
             <td class="top">
-            {% for substation in substations %}
-                {{substation.0}} ({{substation.1|floatformat:'1'}} {{length_units}})</br>
+            {% for substation in hum.substations %}
+                {{substation.0}} ({{substation.1|floatformat:'1'}} {{hum.length_units}})</br>
             {% endfor %}
             </td>
         </tr>
@@ -224,18 +219,18 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{nearest_dmd.0}} ({{nearest_dmd.1|floatformat:'2'}} {{length_units}})</td>
-            <td>{{nearest_outfall.0}} ({{nearest_outfall.1|floatformat:'2'}} {{length_units}})</td>
-            <td>{{nearest_cable.0}} ({{nearest_cable.1|floatformat:'2'}} {{length_units}})</td>
-            <td>{{transmissionline2010|floatformat:'1'}} {{length_units}}</td>
-            <td>{{railroad|floatformat:'2'}} {{length_units}}</td>
+            <td>{{hum.nearest_dmd.0}} ({{hum.nearest_dmd.1|floatformat:'2'}} {{hum.length_units}})</td>
+            <td>{{hum.nearest_outfall.0}} ({{hum.nearest_outfall.1|floatformat:'2'}} {{hum.length_units}})</td>
+            <td>{{hum.nearest_cable.0}} ({{hum.nearest_cable.1|floatformat:'2'}} {{hum.length_units}})</td>
+            <td>{{hum.transmissionline2010|floatformat:'1'}} {{hum.length_units}}</td>
+            <td>{{hum.railroad|floatformat:'2'}} {{hum.length_units}}</td>
         </tr>
         <tr><td></td><td></td><td></td><td></td><td></td></tr>
     </tbody>
 </table>
 
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='printable-report-table' rules=rows>
     <thead>
         <tr>
             <th class="humheader" colspan="2">Fishery Considerations</font></th>
@@ -248,20 +243,20 @@
     <tbody>
         <tr>
             <td class="top">
-                {% for port in nearest_ports %}
-                    {{port.0}} ({{port.1|floatformat:'1'}} {{length_units}})</br>
+                {% for port in hum.nearest_ports %}
+                    {{port.0}} ({{port.1|floatformat:'1'}} {{hum.length_units}})</br>
                 {% endfor %}
             </td>
             <td class="top">
-                {% for marina in nearest_marinas %}
-                    {{marina.0}} ({{marina.1|floatformat:'1'}} {{length_units}})</br>
+                {% for marina in hum.nearest_marinas %}
+                    {{marina.0}} ({{marina.1|floatformat:'1'}} {{hum.length_units}})</br>
                 {% endfor %}
             </td>
         </tr>
         <tr><td></td><td></td><td></td></tr>
     </tbody>
 </table>
-<table class='marinemap-table' rules=rows>
+<table class='printable-report-table' rules=rows>
     <thead>
         <tr>
             <th>ODFW Closures</th>
@@ -271,12 +266,12 @@
     <tbody>
         <tr>
             <td class="top">
-                {% for closure in intersecting_closures %}
+                {% for closure in hum.intersecting_closures %}
                     {{closure}}</br>
                 {% endfor %}
             </td>
             <td class="top">
-                {% for area in intersecting_conservation_areas %}
+                {% for area in hum.intersecting_conservation_areas %}
                     {{area}}</br>
                 {% endfor %}
             </td>
@@ -291,10 +286,10 @@
     <tbody>
         <tr>
             <td class="top">
-               {{nearest_closure.0}} ({{nearest_closure.1|floatformat:'1'}} {{length_units}})
+               {{hum.nearest_closure.0}} ({{hum.nearest_closure.1|floatformat:'1'}} {{hum.length_units}})
             </td>
             <td class="top">
-                {{nearest_conservation_area.0}} ({{nearest_conservation_area.1|floatformat:'1'}} {{length_units}})</br>
+                {{hum.nearest_conservation_area.0}} ({{hum.nearest_conservation_area.1|floatformat:'1'}} {{hum.length_units}})</br>
             </td>
         </tr>
         <tr><td></td><td></td></tr>
@@ -304,42 +299,44 @@
 
 </div>
 
+{% if not pdf %}
+{% block CSS %}
 <style type="text/css">
-table.marinemap-table {
+table.printable-report-table {
     font-size:12px;
     width:100%;
     border:solid 1px #fff;
     margin:3px;
 }
 
-table.marinemap-table th.humheader {
+table.printable-report-table th.humheader {
     background-color:#FEAB30;
     color:#F0F0F0;
     font-family:helvetica;
     font-weight:bold;
 }
 
-table.marinemap-table th {
+table.printable-report-table th {
     background-color:#D0D0D0;
     color:#344E63;
     font-weight:bold;
 }
 
-table.marinemap-table th.left {
+table.printable-report-table th.left {
     background-color:#D0D0D0;
     color:#344E63;
     font-weight:bold;
     text-align:left;
 }
 
-table.marinemap-table td {
+table.printable-report-table td {
     background-color:#EBF5F5;
     color:#344E63;
     font-weight:bold;
     text-align:center;
 }
 
-table.marinemap-table td.left {
+table.printable-report-table td.left {
     background-color:#EBF5F5;
     color:#344E63;
     font-weight:bold;
@@ -347,25 +344,27 @@ table.marinemap-table td.left {
     vertical-align: text-top;
 }
 
-table.marinemap-table td.top {
+table.printable-report-table td.top {
     background-color:#EBF5F5;
     color:#344E63;
     font-weight:bold;
     vertical-align: text-top;
 }
 
-table.marinemap-table thead tr {
+table.printable-report-table thead tr {
     background:#FAFAFA url(../images/toolbar-bg.png) repeat-x scroll left bottom;
     text-align:center;
 }
 
-table.marinemap-table tbody {
+table.printable-report-table tbody {
     background-color:white;
 }
 
-table.marinemap-table tr.zebra {
+table.printable-report-table tr.zebra {
     background-color:#eee;
 }
 </style>
+{% endblock CSS %}
+{% endif %}
 
 

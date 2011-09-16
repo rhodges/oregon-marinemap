@@ -48,6 +48,19 @@ called by views.print_aes_report
 def printable_report(request, aes, type):
     template = get_printable_template(type)
     context = get_or_create_cache(aes, type)
+    if type_is_geo(type):
+        context = {'geo': context}
+    elif type_is_phy(type):
+        context = {'phy': context}
+    elif type_is_bio(type):
+        context = {'bio': context}
+    elif type_is_hum(type):
+        context = {'hum': context}
+    #toggle_printable_var(context)
+    context['type'] = type
+    context['aoi'] = aes
+    context['title'] = 'Energy Site'
+    #context.update(add_includes(type))
     return render_to_response(template, RequestContext(request, context))
     
 '''

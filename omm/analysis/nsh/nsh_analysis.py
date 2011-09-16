@@ -46,6 +46,19 @@ called by views.print_nsh_report
 def printable_report(request, nsh, type):
     template = get_printable_template(type)
     context = get_or_create_cache(nsh, type)
+    if type_is_geo(type):
+        context = {'geo': context}
+    elif type_is_phy(type):
+        context = {'phy': context}
+    elif type_is_bio(type):
+        context = {'bio': context}
+    elif type_is_hum(type):
+        context = {'hum': context}
+    #toggle_printable_var(context)
+    context['type'] = type
+    context['aoi'] = nsh
+    context['title'] = 'Nearshore Habitat'
+    #context.update(add_includes(type))
     return render_to_response(template, RequestContext(request, context))
     
 '''
@@ -67,6 +80,11 @@ def pdf_report(request, nsh, type, template='nsh_pdf_comprehensive_report.html')
     import ho.pisa as pisa 
     import cStringIO as StringIO
     context = get_or_create_cache(nsh, type)
+    context['type'] = type
+    context['aoi'] = nsh
+    context['pdf'] = True
+    #context['title'] = get_title(type)
+    #context.update(add_includes(type))
     html = render_to_string(template, context)
     result = StringIO.StringIO()
     #NOTE:  the following results in an error unless an error in PIL/Image.py file (PIL 1.7) is modified

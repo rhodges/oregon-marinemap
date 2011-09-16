@@ -1,12 +1,23 @@
 
+{% if type != 'all' %}
 {% block Header %}
+<h1 align="center">{{title}} Biology Analysis Report for {{ aoi.name }} </h1>
+
+<div align="middle">
+    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ aoi.uid }}&amp;autozoom=true&amp;width=308&amp;height=400">
+    &nbsp; &nbsp;
+    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ aoi.uid }}&amp;width=154&amp;height=200&amp;show_extent=True">
+</div>
+
 {% endblock Header %}
+{% endif %}
+
 
 <div class='freetext'>
 
 {% block TerrestrialBiological %}
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='printable-report-table' rules=rows>
     <thead>
         <tr>
             <th class="bioheader" colspan="2">Terrestrial Biological Characteristics</font></th>
@@ -18,8 +29,8 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{nearest_snowy_plover|floatformat:'1'}} {{length_units}} &nbsp; </td>
-            <td>{{nearest_marbled_murrelet|floatformat:'1'}} {{length_units}} &nbsp; </td>
+            <td>{{bio.nearest_snowy_plover|floatformat:'1'}} {{bio.length_units}} &nbsp; </td>
+            <td>{{bio.nearest_marbled_murrelet|floatformat:'1'}} {{bio.length_units}} &nbsp; </td>
         </tr>
         <tr><td></td><td></td></tr>
     </tbody>
@@ -28,7 +39,7 @@
         
 {% block IntertidalBiological %}
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='printable-report-table' rules=rows>
     <thead>
         <tr>
             <th class="bioheader" colspan="3">Intertidal Biological Characteristics</font></th>
@@ -41,27 +52,27 @@
     </thead>
     <tbody>
         <tr>
-            {% if num_haulouts == 0 %}
-            <td>No ({{num_haulouts}} haulouts)</td>
+            {% if bio.num_haulouts == 0 %}
+            <td>No ({{bio.num_haulouts}} haulouts)</td>
             {% else %}
-            <td>Yes ({{num_haulouts}} haulouts)</td>
+            <td>Yes ({{bio.num_haulouts}} haulouts)</td>
             {% endif %}
             
-            {% if num_rookeries == 0 %}
-            <td>No ({{num_rookeries}} rookeries)</td>
+            {% if bio.num_rookeries == 0 %}
+            <td>No ({{bio.num_rookeries}} rookeries)</td>
             {% else %}
-            <td>Yes ({{num_rookeries}} rookeries)</td>
+            <td>Yes ({{bio.num_rookeries}} rookeries)</td>
             {% endif %}
             
-            {% if bird_colonies == 0 %}
-            <td>No ({{bird_colonies}} colonies) &nbsp;</td>
+            {% if bio.bird_colonies == 0 %}
+            <td>No ({{bio.bird_colonies}} colonies) &nbsp;</td>
             {% else %}
-            <td>Yes ({{bird_colonies}} colonies) &nbsp;</td>
+            <td>Yes ({{bio.bird_colonies}} colonies) &nbsp;</td>
             {% endif %}
         </tr>
     </tbody>
 </table>
-<table class='marinemap-table' rules=rows>
+<table class='printable-report-table' rules=rows>
     <thead>
         <tr>
             <th>Steller Sea Lion Critical Habitats</th>
@@ -69,11 +80,11 @@
     </thead>
     <tbody>
         <tr>
-            {% if num_sealion_habs == 0 %}
+            {% if bio.num_sealion_habs == 0 %}
             <td>None</td>
             {% else %}
             <td>
-            {% for hab in sealion_habs %}
+            {% for hab in bio.sealion_habs %}
                 {{hab.0}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{hab.1}} </br>
             {% endfor %}
             </td>
@@ -81,7 +92,7 @@
         </tr>
     </tbody>
 </table>
-<table class='marinemap-table' rules=rows>
+<table class='printable-report-table' rules=rows>
     <thead>
         <tr>
             <th colspan="2">Pinniped Haulout Details</th>
@@ -91,10 +102,10 @@
     <tbody>
         <tr>
         <td class="top" colspan="2">
-        {% if num_haulouts == 0 %}
-            {{default_value}}
+        {% if bio.num_haulouts == 0 %}
+            {{bio.default_value}}
         {% else %}
-        {% for site in haulout_sites %}
+        {% for site in bio.haulout_sites %}
             {{site.0.0}} , ({{site.0.1}})</br>
             {% for species in site.1 %}
                 &nbsp; &nbsp; &nbsp; {{species}} </br>
@@ -105,10 +116,10 @@
         </td>
         
         <td colspan="2">
-        {% if bird_colonies == 0 %}
-            {{default_value}}
+        {% if bio.bird_colonies == 0 %}
+            {{bio.default_value}}
         {% else %}
-        {% for details in bird_details %}
+        {% for details in bio.bird_details %}
             {{details.0.0}} , (Colony #{{details.0.1}})</br>
             {% for bird in details.1 %}
                 &nbsp; &nbsp; &nbsp; {{bird}}</br>
@@ -126,7 +137,7 @@
 
 {% block SubtidalBiological %}
 <br></br>
-<table class='marinemap-table' rules=rows>
+<table class='printable-report-table' rules=rows>
     <thead>
         <tr>
             <th class="bioheader" colspan="5">Subtidal Biological Characteristics</font></th>
@@ -139,11 +150,11 @@
     <tbody>
         <tr>
             <td class="top">
-            {% if not habitat_proportions.0 %}
-                {{default_value}}
+            {% if not bio.habitat_proportions.0 %}
+                {{bio.default_value}}
             {% endif %}
-            {% for details in habitat_proportions %}
-                {{details.0|floatformat:'2'}} % &nbsp; &nbsp; &nbsp; {{details.1}} &nbsp; &nbsp; &nbsp; ({{details.2|floatformat:'2'}} {{area_units}})</br>
+            {% for details in bio.habitat_proportions %}
+                {{details.0|floatformat:'2'}} % &nbsp; &nbsp; &nbsp; {{details.1}} &nbsp; &nbsp; &nbsp; ({{details.2|floatformat:'2'}} {{bio.area_units}})</br>
             {% endfor %}
             </td>
             <td>
@@ -157,12 +168,12 @@
         </tr>
     </tbody>
 </table>
-<table class='marinemap-table' rules=rows>
+<table class='printable-report-table' rules=rows>
     <thead>
         <tr>
             <th>Green Sturgeon</th>
             <th>Green Sturgeon Area Percentage</th>
-            {% if intersecting_coho_streams != 'No' %}
+            {% if bio.intersecting_coho_streams != 'No' %}
             <th>Coho Populated Streams</th>
             {% else %}
             <th>Nearest Coho Populated Stream</th>
@@ -171,17 +182,17 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{green_sturgeon}}</td>
-            <td>{{green_sturgeon_perc|floatformat:'1'}} %</td>
-            {% if intersecting_coho_streams != 'No' %}
-            <td>{{intersecting_coho_streams}}</td>
+            <td>{{bio.green_sturgeon}}</td>
+            <td>{{bio.green_sturgeon_perc|floatformat:'1'}} %</td>
+            {% if bio.intersecting_coho_streams != 'No' %}
+            <td>{{bio.intersecting_coho_streams}}</td>
             {% else %}
-            <td>{{nearest_coho_stream|floatformat:'1'}} {{length_units}}</td>
+            <td>{{bio.nearest_coho_stream|floatformat:'1'}} {{bio.length_units}}</td>
             {% endif %}
         </tr>
     </tbody>
 </table>
-<table class='marinemap-table' rules=rows>
+<table class='printable-report-table' rules=rows>
     <thead>
         <tr>
             <th>Kelp Survey Year</th>
@@ -189,25 +200,25 @@
         </tr>
     </thead>
     <tbody>
-        {% if kelp_data.0.2 == default_value %}
+        {% if bio.kelp_data.0.2 == bio.default_value %}
         <tr>
-            <td>{{kelp_data.0.0}}</td>
-            <td>{{default_value}}</td>
+            <td>{{bio.kelp_data.0.0}}</td>
+            <td>{{bio.default_value}}</td>
         </tr>
         {% else %}
-        {% for data in kelp_data %}
+        {% for data in bio.kelp_data %}
         <tr class="{% cycle '' 'grey' %}">
             <td>{{data.0}}</td>
-            <td>{{data.1|floatformat:'2'}} {{area_units}} &nbsp; ({{data.2|floatformat:'2'}} % of Proposed Site)</td>
+            <td>{{data.1|floatformat:'2'}} {{bio.area_units}} &nbsp; ({{data.2|floatformat:'2'}} % of Proposed Site)</td>
         </tr>
         {% endfor %}
         {% endif %}
     </tbody>
 </table>
-<table class='marinemap-table' rules=rows>
+<table class='printable-report-table' rules=rows>
     <thead>
         <tr>
-            {% if seagrass_area == 0.0 %}
+            {% if bio.seagrass_area == 0.0 %}
             <th>SeaGrass</th>
             {% else %}
             <th>SeaGrass Area</th>
@@ -216,10 +227,10 @@
     </thead>
     <tbody>
         <tr>
-            {% if seagrass_area == 0.0 %}
+            {% if bio.seagrass_area == 0.0 %}
             <td>None</td>
             {% else %}
-            <td>{{seagrass_area|floatformat:'2'}} {{area_units}}</td>
+            <td>{{bio.seagrass_area|floatformat:'2'}} {{bio.area_units}}</td>
             {% endif %}
         </tr>
         <tr><td></td></tr>
@@ -230,43 +241,44 @@
 
 </div>
 
+{% if not pdf %}
 {% block CSS %}
 <style type="text/css">
-table.marinemap-table {
+table.printable-report-table {
     font-size:12px;
     width:100%;
     border:solid 1px #fff;
     margin:3px;
 }
 
-table.marinemap-table th.bioheader {
+table.printable-report-table th.bioheader {
     background-color:#95291A;
     color:#B0B0B0;
     font-family:helvetica;
     font-weight:bold;
 }
 
-table.marinemap-table th {
+table.printable-report-table th {
     background-color:#D0D0D0;
     color:#344E63;
     font-weight:bold;
 }
 
-table.marinemap-table th.left {
+table.printable-report-table th.left {
     background-color:#D0D0D0;
     color:#344E63;
     font-weight:bold;
     text-align:left;
 }
 
-table.marinemap-table td {
+table.printable-report-table td {
     background-color:#EBF5F5;
     color:#344E63;
     font-weight:bold;
     text-align:center;
 }
 
-table.marinemap-table td.left {
+table.printable-report-table td.left {
     background-color:#EBF5F5;
     color:#344E63;
     font-weight:bold;
@@ -274,26 +286,27 @@ table.marinemap-table td.left {
     vertical-align: text-top;
 }
 
-table.marinemap-table td.top {
+table.printable-report-table td.top {
     background-color:#EBF5F5;
     color:#344E63;
     font-weight:bold;
     vertical-align: text-top;
 }
 
-table.marinemap-table thead tr {
+table.printable-report-table thead tr {
     background:#FAFAFA url(../images/toolbar-bg.png) repeat-x scroll left bottom;
     text-align:center;
 }
 
-table.marinemap-table tbody {
+table.printable-report-table tbody {
     background-color:white;
 }
 
-table.marinemap-table tr.zebra {
+table.printable-report-table tr.zebra {
     background-color:#eee;
 }
 </style>
 {% endblock CSS %}
+{% endif %}
 
 
