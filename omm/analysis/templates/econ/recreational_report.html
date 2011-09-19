@@ -25,7 +25,8 @@
             {% for fishery_report in fisheries %}
                 <tr class="{% cycle '' 'grey' %}">
                     <td class='fishery'>{{fishery_report.0}}</td>
-                    <td class='currency'>{{fishery_report.2|floatformat:0|currency}}</td>
+                    <td class='currency'>{{fishery_report.2|floatformat:0|currency}}</td> 
+                    <!-- change index from 2 to 3 if multipliers are re-instated -->
                 </tr>
             {% endfor %}
         {% endfor %}
@@ -37,6 +38,7 @@
             <tr class="{% cycle '' 'grey' %}">
                 <td class='fishery'>{{tuple.0}}</td>
                 <td class='currency'>{{tuple.1.1|floatformat:0|currency}}</td>
+                    <!-- change index from 1.1 to 1.2 if multipliers are re-instated -->
             </tr>
         {% endfor %}
     </tbody>
