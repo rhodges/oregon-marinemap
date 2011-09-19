@@ -107,7 +107,7 @@ feam_multipliers = {'astr':{'dcrabt': 1.5,
                             'sabt': 1.3, 
                             'salt': 2.66, 
                             'srcat': 1.8 },
-                    'srcr':{'dcrabt': 1.22,#avg 
+                    'srcr':{'dcrabt': 1.21,#avg 
                             'hagt': 1.86, 
                             'phall': 1.37, #avg
                             'pshpt': 1.31, #ignored state value
@@ -136,7 +136,7 @@ feam_multipliers = {'astr':{'dcrabt': 1.5,
                     'bgdr':{'dcrabt': 1.11, #avg
                             'phall': 1.12, 
                             'pshpt': 1.14, 
-                            'rdead': 1.15,  #avg 
+                            'rdead': 1.14,  #avg 
                             'rlive': 1.11,  #avg - same
                             'rdeadl': 1.12, #ignored state value 
                             'rlivel': 1.11, #avg - same
@@ -145,7 +145,23 @@ feam_multipliers = {'astr':{'dcrabt': 1.5,
                             'salt': 2.52,   #ignored state value 
                             'srcat': 1.23, 
                             'shbt': 1.89, 
-                            'urchd': 1.55 }
+                            'urchd': .93 },
+                    'statewide':
+                           {'dcrabt': 1.75, 
+                            'hagt': 2.16, 
+                            'phall': 1.6, 
+                            'pshpt': 1.89, 
+                            'rdead': 1.72, 
+                            'rlive': 1.47, 
+                            'rdeadl': 1.87, 
+                            'rlivel': 1.45,
+                            'sabl': 1.59, 
+                            'sabt': 1.58, 
+                            'salt': 1.53, 
+                            'srcat': 2.21, 
+                            'shbt': 2.37, 
+                            'urchd': 1.55, 
+                            'wmidt': 4.4 },
                     }
                     
 
@@ -171,6 +187,7 @@ def get_commercial_context(aoi, type, prefix='com'):
                     agency = 'NOAA'
                 elif 'feam' in type:
                     multiplier = feam_multipliers[port_abbr][fishery_abbr]
+                    statewide_multiplier = feam_multipliers['statewide'][fishery_abbr]
                     agency = 'FEAM'
                 else:
                     raise ValueError('%s is not a valid value for type parameter in get_commercial_context' %type)
@@ -180,9 +197,14 @@ def get_commercial_context(aoi, type, prefix='com'):
                     update_ports(ports, port_name, fish_list)
                 else:
                     ports.append((port_name, [fish_list]))
+                #update statewide totals 
                 if fishery in get_keys(state_totals):
+                    if 'feam' in type:
+                        total = gross_revenue * statewide_multiplier
                     update_state_totals(state_totals, fishery, (multiplier, gross_revenue, total))
                 else:
+                    if 'feam' in type:
+                        total = gross_revenue * statewide_multiplier
                     state_totals.append((fishery, [multiplier, gross_revenue, total]))
         state_totals.sort()
     context = {type: {'aoi': aoi, 'agency': agency, 'default_value': default_value, 'ports': ports, 'state_totals': state_totals, 'pdf': False, 'printable': False}}
