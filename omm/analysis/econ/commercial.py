@@ -54,21 +54,100 @@ noaa_multipliers = {'dcrabt': 1.95,
                     'urchd': 1.87, 
                     'wmidt': 1.90  } 
 
-feam_multipliers = {'dcrabt': 1., 
-                    'hagt': 1., 
-                    'phall': 1., 
-                    'pshpt': 1., 
-                    'rdead': 1., 
-                    'rlive': 1., 
-                    'rdeadl': 1., 
-                    'rlivel': 1., 
-                    'sabl': 1., 
-                    'sabt': 1., 
-                    'salt': 1., 
-                    'srcat': 1., 
-                    'shbt': 1., 
-                    'urchd': 1., 
-                    'wmidt': 1.  }                     
+feam_multipliers = {'astr':{'dcrabt': 1.5, 
+                            'hagt': 1.76, 
+                            'phall': 1.44, 
+                            'pshpt': 1.56, 
+                            'rdead': 1.43, 
+                            'rlive': 1.25, 
+                            'rdeadl': 1.87,
+                            'rlivel': 1.,   #not included
+                            'sabl': 1.4, 
+                            'sabt': 1.4, 
+                            'salt': 1.38, 
+                            'srcat': 1.95, 
+                            'shbt': 2.05, 
+                            'wmidt': 3.2  },
+                    'tllr':{'dcrabt': 1.23, 
+                            'hagt': 1.66, 
+                            'phall': 1.28, 
+                            'pshpt': 1.33, 
+                            'rdead': 1.21, 
+                            'rlive': 1.1, 
+                            'rdeadl': 1.59, 
+                            'sabl': 1.19, 
+                            'sabt': 1.22, 
+                            'salt': 1.1, 
+                            'srcat': 1.39, 
+                            'shbt': 1.29, 
+                            'urchd': 1.23 },
+                    'dpor':{'dcrabt': 1.33,
+                            'phall': 1.42, 
+                            'rdead': 1.41, 
+                            'rlive': 1.2,
+                            'salt': 1.67,
+                            'urchd': 1.24 },
+                    'newr':{'dcrabt': 1.43, 
+                            'hagt': 1.75, 
+                            'phall': 1.37, 
+                            'pshpt': 1.5, 
+                            'rdead': 1.32, 
+                            'rlive': 1.26, 
+                            'rdeadl': 1.36, 
+                            'sabl': 1.29, 
+                            'sabt': 1.3, 
+                            'salt': 1.68, 
+                            'srcat': 1.73, 
+                            'shbt': 1.8, 
+                            'urchd': 1.24, 
+                            'wmidt': 3.69 },
+                    'flrr':{'dcrabt': 1.17, 
+                            'phall': 1.34, 
+                            'sabl': 1.18, 
+                            'sabt': 1.3, 
+                            'salt': 2.66, 
+                            'srcat': 1.8 },
+                    'srcr':{'dcrabt': 1.22,#avg 
+                            'hagt': 1.86, 
+                            'phall': 1.37, #avg
+                            'pshpt': 1.31, #ignored state value
+                            'rdead': 1.19, #ignored state value
+                            'rlive': 1.21, 
+                            'rdeadl': 1.23,#ignored state value
+                            'rlivel': 1.21, 
+                            'sabl': 1.18,  #avg - same
+                            'sabt': 1.17,  #avg - same
+                            'salt': 2.66,  #avg
+                            'srcat': 1.38, 
+                            'shbt': 1.41, 
+                            'urchd': 1.22, 
+                            'wmidt': 4.2  },
+                    'orfr':{'dcrabt': 1.12, 
+                            'hagt': 1.73, 
+                            'phall': 1.13, 
+                            'rdead': 1.17, 
+                            'rlive': 1.11, 
+                            'rdeadl': 1.17, 
+                            'rlivel': 1.11, 
+                            'sabl': 1.12, 
+                            'sabt': 1.12, 
+                            'salt': 2.5,
+                            'urchd': .93 },
+                    'bgdr':{'dcrabt': 1.11, #avg
+                            'phall': 1.12, 
+                            'pshpt': 1.14, 
+                            'rdead': 1.15,  #avg 
+                            'rlive': 1.11,  #avg - same
+                            'rdeadl': 1.12, #ignored state value 
+                            'rlivel': 1.11, #avg - same
+                            'sabl': 1.12,   #ignored state value 
+                            'sabt': 1.12,   
+                            'salt': 2.52,   #ignored state value 
+                            'srcat': 1.23, 
+                            'shbt': 1.89, 
+                            'urchd': 1.55 }
+                    }
+                    
 
    
 '''
@@ -86,15 +165,15 @@ def get_commercial_context(aoi, type, prefix='com'):
         port_abbr = port_abbrs[port_name]
         for fishery, fishery_abbr in fisheries:
             raster_name = prefix + '_' + fishery_abbr + '_' + port_abbr
-            if 'noaa' in type:
-                multiplier = noaa_multipliers[fishery_abbr]
-                agency = 'NOAA'
-            elif 'feam' in type:
-                multiplier = feam_multipliers[fishery_abbr]
-                agency = 'FEAM'
-            else:
-                raise ValueError('%s is not a valid value for type parameter in get_commercial_context' %type)
             if raster_exists(raster_name):
+                if 'noaa' in type:
+                    multiplier = noaa_multipliers[fishery_abbr]
+                    agency = 'NOAA'
+                elif 'feam' in type:
+                    multiplier = feam_multipliers[port_abbr][fishery_abbr]
+                    agency = 'FEAM'
+                else:
+                    raise ValueError('%s is not a valid value for type parameter in get_commercial_context' %type)
                 gross_revenue, total = get_rasterstats(aoi, raster_name, multiplier)
                 fish_list = [fishery, multiplier, gross_revenue, total]
                 if port_name in get_keys(ports):
