@@ -4,26 +4,26 @@ from utils import get_rasterstats, raster_exists, get_keys, update_ports, update
 
 default_value = '---'
 port_names = ['Astoria', 'Garibaldi/Tillamook', 'Salmon River', 'Depoe Bay', 'Newport', 'Florence', 'SOORC Ports', 'Gold Beach & Brookings']
-port_abbrs = {'Astoria': 'astr', 
-                    'Garibaldi/Tillamook': 'tllr', 
-                    'Salmon River': 'slmr', 
-                    'Depoe Bay': 'dpor', 
-                    'Newport': 'newr', 
-                    'Florence': 'flrr', 
-                    'SOORC Ports': 'srcr', 
-                    'Gold Beach & Brookings': 'bgdr' }
+port_abbrs = {  'Astoria': 'astr', 
+                'Garibaldi/Tillamook': 'tllr', 
+                'Salmon River': 'slmr', 
+                'Depoe Bay': 'dpor', 
+                'Newport': 'newr', 
+                'Florence': 'flrr', 
+                'SOORC Ports': 'srcr', 
+                'Gold Beach & Brookings': 'bgdr' }
 
-fisheries = [('Dungeness crab - trap', 'dcrab'),
-                        ('Flatfish - trap', 'flat'), 
-                        ('Pacific Halibut - longline', 'phal'),
-                        ('Rockfish - hook & line (dead)', 'rckf'),
-                        ('Salmon - troll', 'sal') ]                     
+fisheries = [   #('Dungeness crab - trap', 'dcrab'),
+                ('Flatfish - trap', 'flat'), 
+                ('Pacific Halibut - longline', 'phal'),
+                ('Rockfish - hook & line (dead)', 'rckf'),
+                ('Salmon - troll', 'sal') ]                     
 
-multipliers = {  'dcrab': 1.22, 
-                            'flat': 1.22, 
-                            'phal': 1.22, 
-                            'rckf': 1.22, 
-                            'sal': 1.22  } 
+multipliers = { 'dcrab': 1., 
+                'flat': 1., 
+                'phal': 1., 
+                'rckf': 1., 
+                'sal': 1.  } 
  
 '''
 called by views.shoreside_analysis
