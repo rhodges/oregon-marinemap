@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th class="left">Port/Fishery</th>
-            <th class="right">Average Annual GER{% if not feam.pdf and not feam.printable %}<sup>&nbsp;1</sup>{% endif %}</th>
+            <th class="right">Average Annual GER<sup>&nbsp;1</sup></th>
             <th class="right">Estimated Personal Income</th>
         </tr>
     </thead>
@@ -49,15 +49,15 @@
 </div>
 <p>
 
-{% if not feam.pdf and not feam.printable %}
 <p><h3>Footnotes</h3></p>
 
-<div class='freetext'>
+<div>
 <p>1. In the commercial sector average annual gross economic revenue (GER) was calculated using annual gross economic 
       revenue (e.g., ex-vessel landings revenue) data for the years 2004-2008 and is displayed in 2008 dollar values. </p>
 </div>
-
 <p>
+
+{% if not feam.pdf and not feam.printable %}
 <div style='font-size: small'>
     <a target='_blank' href='{% url printable_econ_report feam.aoi.id "feam" %}'>Printable Commercial (FEAM) Fishing Report</a>
     &nbsp; 

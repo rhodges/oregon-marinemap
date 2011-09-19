@@ -1,5 +1,5 @@
 import xlwt
-from analysis.excel.utils import major_heading_style, heading_column_style, port_style, fishery_style, currency_style
+from analysis.excel.utils import major_heading_style, heading_column_style, port_style, fishery_style, currency_style, notes_style
 
 def populate_noaa_sheet(ws, context):
     noaa_headers(ws, context)
@@ -33,4 +33,11 @@ def noaa_data(ws, context, row=3):
         ws.write(row+offset, 1, round(state_report[1][1]), currency_style)
         ws.write(row+offset, 2, round(state_report[1][2]), currency_style)
         offset += 1
+        
+    add_footnotes(ws, row+offset+1)
+    
+def add_footnotes(ws, row):
+    ws.write(row, 0, 'Notes:', major_heading_style)
+    ws.write(row+1, 0, '1. In the commercial sector average annual gross economic revenue (GER) was calculated using annual gross economic revenue (e.g., ex-vessel landings revenue) data for the years 2004-2008 and is displayed in 2008 dollar values.', notes_style)
+    ws.write(row+2, 0, '2. Estimated economic output (EEO) is a measure of the total direct and indirect economic activity associated with sales or expenditures in a certain sector.', notes_style)
     
