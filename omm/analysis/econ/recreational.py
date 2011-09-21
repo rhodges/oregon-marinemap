@@ -14,7 +14,7 @@ port_abbrs = {  'Astoria': 'astr',
                 'Gold Beach & Brookings': 'bgdr' }
 
 fisheries = [   #('Dungeness crab - trap', 'dcrab'),
-                ('Flatfish - trap', 'flat'), 
+                #('Flatfish - trap', 'flat'), 
                 ('Pacific Halibut - longline', 'phal'),
                 ('Rockfish - hook & line (dead)', 'rckf'),
                 ('Salmon - troll', 'sal') ]                     

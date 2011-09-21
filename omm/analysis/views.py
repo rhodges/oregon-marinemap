@@ -189,7 +189,22 @@ def admin_clear_aes_cache(request, type=None, template='admin/analysis/aescache/
         else:
             remove_aes_cache(type=type)
             return render_to_response( template, RequestContext(request, {"type": type}) )  
-    
-        
+ 
+'''
+Empties ECONCache table
+Handles POST requests
+'''
+def admin_clear_econ_cache(request, type=None, template='admin/analysis/econcache/cache_is_cleared.html'):
+    from econ.econ_cache import clear_econ_cache, remove_econ_cache
+    if not request.user.is_staff:
+        return HttpResponse('You do not have permission to view this feature', status=401)
+    if request.method == 'POST':
+        if type is None:
+            clear_econ_cache(i_am_sure=True)
+            return render_to_response( template, RequestContext(request, {"type": "All"}) )  
+        else:
+            remove_econ_cache(type=type)
+            return render_to_response( template, RequestContext(request, {"type": type}) )  
+                
     
    

@@ -10,3 +10,8 @@ class AESCacheAdmin (admin.ModelAdmin):
     list_display = ()
 
 admin.site.register(AESCache, AESCacheAdmin)
+
+class EconCacheAdmin (admin.ModelAdmin):
+    list_display = ()
+
+admin.site.register(EconCache, EconCacheAdmin)

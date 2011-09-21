@@ -38,8 +38,6 @@ def create_econ_cache(aoi, type, context):
 Remove a single geometry or single geometry with type from the cache table
 '''    
 def remove_econ_cache(aoi=None, type=None):
-    if type is not None and ensure_type(type) is None:
-        raise Exception("The type you entered is not a valid type.")
     if type is None and aoi is None:
         raise Exception("For clearing all cached data, use clear_econ_cache instead.")
     elif type is None:
