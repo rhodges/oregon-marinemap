@@ -21,4 +21,5 @@ urlpatterns = patterns('',
     #admin request cache events
     url(r'admin_clear_cache/nsh/(\w+)/', admin_clear_nsh_cache),
     url(r'admin_clear_cache/aes/(\w+)/', admin_clear_aes_cache),
+    url(r'admin_clear_cache/econ/(\w+)/', admin_clear_econ_cache),
 )  

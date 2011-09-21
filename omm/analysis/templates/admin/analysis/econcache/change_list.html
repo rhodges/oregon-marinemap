@@ -1,0 +1,67 @@
+{% extends "admin/base_site.html" %}
+{% load adminmedia admin_list i18n %}
+
+{% if not is_popup %}
+  {% block breadcrumbs %}
+    <div class="breadcrumbs">
+      <a href="../../">
+        {% trans "Home" %}
+      </a>
+       &rsaquo; 
+       <a href="../">
+         {{ app_label|capfirst }}
+      </a>
+      &rsaquo; 
+      {{ cl.opts.verbose_name_plural|capfirst }}
+    </div>
+  {% endblock %}
+{% endif %}
+
+{% block coltype %}flex{% endblock %}
+
+{% block content %}
+  <div id="content-main">
+    <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
+      
+      <form action="../../../analysis/admin_clear_cache/econ/noaa/" method="post">{% csrf_token %}
+      {% if cl.formset %}
+        {{ cl.formset.management_form }}
+      {% endif %}
+      Remove Economic Cache Data Related to <b>Commercial (NOAA)</b>:  
+      &nbsp; <input type="submit" value="Clear NOAA Cache">
+      </form>
+      
+      <form action="../../../analysis/admin_clear_cache/econ/feam/" method="post">{% csrf_token %}
+      {% if cl.formset %}
+        {{ cl.formset.management_form }}
+      {% endif %}
+      Remove Economic Cache Data Related to <b>Commercial (FEAM)</b>:  
+      &nbsp; <input type="submit" value="Clear FEAM Cache">
+      </form>
+      
+      <form action="../../../analysis/admin_clear_cache/econ/chrt/" method="post">{% csrf_token %}
+      {% if cl.formset %}
+        {{ cl.formset.management_form }}
+      {% endif %}
+      Remove Economic Cache Data Related to <b>Charter</b>:  
+      &nbsp; <input type="submit" value="Clear Charter Cache">
+      </form>
+      
+      <form action="../../../analysis/admin_clear_cache/econ/rec/" method="post">{% csrf_token %}
+      {% if cl.formset %}
+        {{ cl.formset.management_form }}
+      {% endif %}
+      Remove Economic Cache Data Related to <b>Recreation</b>:  
+      &nbsp; <input type="submit" value="Clear Recreation Cache">
+      </form>
+      <br/>
+      <form action="../../../analysis/admin_clear_cache/econ/all/" method="post">{% csrf_token %}
+      {% if cl.formset %}
+        {{ cl.formset.management_form }}
+      {% endif %}
+      Remove <b>All</b> Economic Cache Data:  
+      &nbsp; <input type="submit" value="Clear All Cache">
+      </form>
+    </div>
+  </div>
+{% endblock %}
