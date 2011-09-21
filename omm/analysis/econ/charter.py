@@ -4,22 +4,22 @@ from utils import get_rasterstats, raster_exists, get_keys, update_ports, update
 
 default_value = '---'
 port_names = ['Astoria', 'Depoe Bay', 'Newport', 'Florence', 'SOORC Ports', 'Gold Beach & Brookings']
-port_abbrs = {'Astoria': 'astr', 
-                    'Depoe Bay': 'dpor', 
-                    'Newport': 'newr', 
-                    'Florence': 'flrr', 
-                    'SOORC Ports': 'srcr', 
-                    'Gold Beach & Brookings': 'bgdr' }
+port_abbrs = {  'Astoria': 'astr', 
+                'Depoe Bay': 'dpor', 
+                'Newport': 'newr', 
+                'Florence': 'flrr', 
+                'SOORC Ports': 'srcr', 
+                'Gold Beach & Brookings': 'bgdr' }
 
-fisheries = [('Dungeness', 'dcrab'),
-                        ('Pacific Halibut', 'phal'), 
-                        ('Rockfish', 'rckf'),
-                        ('Salmon', 'sal')]                     
+fisheries = [   ('Dungeness', 'dcrab'),
+                ('Pacific Halibut', 'phal'), 
+                ('Rockfish', 'rckf'),
+                ('Salmon', 'sal')]                     
 
-multipliers = {  'dcrab': 1.55,
-                            'phal': 1.55, 
-                            'rckf': 1.55, 
-                            'sal': 1.55  } 
+multipliers = { 'dcrab': 1.55,
+                'phal': 1.55, 
+                'rckf': 1.55, 
+                'sal': 1.55  } 
 
 '''
 called by views.shoreside_analysis
