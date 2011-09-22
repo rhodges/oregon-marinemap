@@ -52,20 +52,7 @@ def remove_econ_cache(aoi=None, type=None):
     #remove entries from EconCache
     for entry in entries:
         EconCache.delete(entry)
-       
-'''
-Called from admin_clear_nsh_cache 
-Ensures that when cache is emptied that would affect other reports from same aoi, related econ cache is emptied as well
-'''       
-def remove_related_econ_cache(type=None):
-    if type is None:
-        remove_econ_cache(type='com-noaa')
-        remove_econ_cache(type='com-feam')
-        remove_econ_cache(type='chrt')
-        remove_econ_cache(type='rec')
-    elif not type_is_hum(type):
-        remove_econ_cache(type=type)        
-       
+     
 '''
 Clear all entries from cache table
 '''    
