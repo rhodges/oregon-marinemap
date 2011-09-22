@@ -199,7 +199,7 @@ def admin_clear_econ_cache(request, type=None, template='admin/analysis/econcach
     if not request.user.is_staff:
         return HttpResponse('You do not have permission to view this feature', status=401)
     if request.method == 'POST':
-        if type is None:
+        if type == 'all':
             clear_econ_cache(i_am_sure=True)
             return render_to_response( template, RequestContext(request, {"type": "All"}) )  
         else:
