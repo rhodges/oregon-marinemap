@@ -19,3 +19,5 @@ media/layers/uploaded-kml/*.kmz
 media/spacing/pickled_graphs/*
 omm.apache*
 *wsgi.py
+data/econ/*
+*.orig
