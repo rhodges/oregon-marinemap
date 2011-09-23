@@ -10,6 +10,10 @@
     {% endif %}
 {% endblock layersConfig %}
 
+{% block js_ready %}
+    $('a[href="#DataLayers"]').click();
+{% endblock %}
+
 {% block tabs %}
 {% if user.is_authenticated %}
 <li><a href="#MyShapes"><span>My Shapes</span></a></li> 
