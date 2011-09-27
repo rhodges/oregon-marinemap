@@ -9,11 +9,11 @@ port_abbrs = {  'Astoria': 'astr',
                 'SOORC Ports': 'srcr', 
                 'Gold Beach & Brookings': 'bgdr' }
 
-fisheries = [   #('Dungeness crab - trap', 'dcrab'),
-                #('Flatfish - trap', 'flat'), 
-                ('Pacific Halibut - longline', 'phal'),
-                ('Rockfish - hook & line (dead)', 'rckf'),
-                ('Salmon - troll', 'sal') ]                     
+fisheries = [   #('Dungeness crab', 'dcrab'),
+                #('Flatfish', 'flat'), 
+                ('Pacific Halibut', 'phal'),
+                ('Rockfish', 'rckf'),
+                ('Salmon', 'sal') ]                     
 
 multipliers = { 'dcrab': 1., 
                 'flat': 1., 
