@@ -1,0 +1,88 @@
+{% extends 'geo_report.html' %}
+{% block title %}{{aes.name}} Geographic Analysis{% endblock title %}
+
+<!-- Inheriting General Spatial Characteristics from geo_report -->
+
+{% block GeographicSetting %}
+<h3>Geographic Setting</h3>
+<div class='freetext'>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <tr class="grey">
+            {% if county.1 %}
+            <td><b>Adjacent Counties</b><sup>&nbsp;5</sup></td>
+            {% else %}
+            <td><b>Adjacent County</b><sup>&nbsp;5</sup></td>
+            {% endif %}
+            <td><b>Nearest Cities</b><sup>&nbsp;6</sup></td>
+        </tr>
+        <tr>
+            <td>{{county.0}}</td>
+            <td>{{ cities.0.0}} &nbsp; ({{ cities.0.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <tr>
+            <td>{% if county.1 %}{{county.1}}{% endif %}</td>
+            <td>{{ cities.1.0}} &nbsp; ({{ cities.1.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>{{ cities.2.0}} &nbsp; ({{ cities.2.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <p>
+    
+        <tr class="grey">
+            <td colspan="2"><b>Nearest Ports</b><sup>&nbsp;7</sup></td>
+        </tr>
+        {% for port in ports%}
+        <tr>
+            <td colspan="2">{{port.0}}  ({{port.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        {% endfor %}
+        <p>
+        
+        <tr class="grey">
+            <td colspan="2"><b>Nearest Marinas</b><sup>&nbsp;8</sup></td>
+        </tr>
+        {% for marina in marinas %}
+        <tr>
+            <td colspan="2">{{marina.0}}  ({{marina.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        {% endfor %}
+        <p>
+        
+    </tbody>
+</table>
+</div>
+{% endblock GeographicSetting %}
+
+{% block GeographicSettingFootnotes %}
+<p>5. The Area of Interest is within or adjacent to the following Oregon Counties.  If the Area borders 2 counties then both will be reported.  This is determined using the Oregon County Boundaries (2009) data at the 1:24,000 scale. </p>
+<p>6. The distance to the nearest 3 cities is calculated in miles.  The calculation uses the ODOT City Boundary data (2009) to determine the distance. </p>
+<p>7. The straight line distance to the nearest 3 ports is calculated from the Area of interest.  This is determined using the Oregon Port Locations, OCMP, 2008 data set.  </p>
+<p>8. The distance to the nearest 3 marinas is calculated in miles.  The calculation uses the Oregon Marina Locations (2009), RITA-NTAD, data set to determine the name and straight line distance for each marina reported. </p>
+{% endblock GeographicSettingFootnotes %}
+
+{% block ExportableReports %}
+<p>
+<div style='font-size: small'>
+    <a target='_blank' href='{% url printable_aes_report aes.id "geo" %}'>Printable Geography Report</a>
+    &nbsp; 
+    <!--<a target='_blank' href='{% url pdf_aes_report aes.id "geo" %}'> (View PDF) </a>    -->
+</div>
+<p>
+<div style='font-size: small'>
+    <a target='_blank' href='{% url printable_aes_report aes.id "all" %}'>Printable Comprehensive Report</a>
+    &nbsp; 
+    <a target='_blank' href='{% url pdf_aes_report aes.id "all" %}'> (PDF) </a> 
+    &nbsp; 
+    <a target='_blank' href='{% url excel_aes_report aes.id "all" %}'> (Excel) </a>  
+    
+    <br>(Comprehensive reports combine Geographical, Physical, Biological, 
+    and Human Use reports for a given Energy Site into a single 
+    printable and/or exportable document.)</br>   
+</div>
+<p>
+{% endblock ExportableReports %}
+
+

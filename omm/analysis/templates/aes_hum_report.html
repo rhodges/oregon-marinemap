@@ -1,0 +1,445 @@
+{% extends 'common/panel.html' %}
+{% block title %}{{aes.name}} Biological Analysis{% endblock title %}
+{% block panel %}
+
+<h3>Community Considerations</h3>
+<div class='freetext'>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <!-- Urban Growth Boundaries -->
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Urban Growth Boundaries</b><sup>&nbsp;1</sup></td>
+        </tr>
+        {% for ugb in urbangrowthboundaries %}
+        <tr>
+            <td colspan="3">{{ ugb.0}} &nbsp; ({{ ugb.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        {% endfor %}
+        <p>
+        
+        <!-- State Parks -->
+        <tr class="grey">
+            <td colspan="3"><b>Nearest State Parks</b><sup>&nbsp;2</sup></td>
+        </tr>
+        {% for park in parks %}
+        <tr>
+            <td colspan="3">{{park.0}} State Park &nbsp; ({{park.1|floatformat:'2'}} {{length_units}})</td>
+        </tr>
+        {% endfor %}
+        <p>
+        
+        <!-- Public Access -->
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Public Access Sites</b><sup>&nbsp;3</sup></td>
+        </tr>
+        {% for site in access_sites %}
+        <tr>
+            <td colspan="3">{{site.0}} &nbsp; ({{site.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        {% endfor %}
+        <p>
+        
+        <!-- Visible from Shore -->
+        <tr class="grey">
+            <td colspan="3"><b>Visible From Shore</b><sup>&nbsp;4</sup></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{visible}}</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<h3>Planning Considerations</h3>
+<div class='freetext'>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <!-- Rocky Shores -->
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Rocky Shore Areas</b><sup>&nbsp;5</sup></td>
+        </tr>
+        {% for rockyshore in rockyshores %}
+        <tr>
+            <td colspan="3">{{rockyshore.0}} &nbsp; ({{rockyshore.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        {% endfor %}
+        <p>
+        
+        <!-- Protected Areas -->
+        <tr class="grey">
+            <td colspan="3"><b>Protected Areas</b><sup>&nbsp;6</sup></td>
+        </tr>
+        {% for area in intersecting_protected_areas %}
+        <tr>
+            <td colspan="3">{{area}}</td>
+        </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) Protected Area</b><sup>&nbsp;7</sup></td>
+        </tr>
+        <tr>
+            {% if nearest_protected_area.0 != default_value %}
+                <td colspan="3">{{nearest_protected_area.0}} &nbsp; ({{nearest_protected_area.1|floatformat:'1'}} {{length_units}})</td>
+            {% else %}
+                <td colspan="3">{{default_value}}</td>
+            {% endif %}
+        </tr> 
+        <p>
+        
+        <!-- Marine Managed Areas -->
+        <tr class="grey">
+            <td colspan="3"><b>Marine Managed Areas</b><sup>&nbsp;8</sup></td>
+        </tr>
+        {% for mma in intersecting_mmas %}
+        <tr>
+            <td colspan="3">{{mma}}</td>
+        </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) MMAs</b><sup>&nbsp;9</sup></td>
+        </tr>
+        {% for mma in nearest_mmas %}
+        <tr>
+            <td colspan="3">{{mma.0}} ({{mma.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        {% endfor %}
+        <p>
+        
+        <!-- Wave Energy Data -->
+        <tr class="grey">
+            <td colspan="3"><b>Wave Energy Sites</b><sup>&nbsp;10</sup></td>
+        </tr>
+        {% for data in intersecting_wave_energy_sites %}
+        <tr>
+            {% if data != 'None' %} 
+            <td colspan="3">{{data.0}} ({{data.1|floatformat:'2'}} %)</td>
+            {% else %}
+            <td colspan="3">{{data}}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) Wave Energy Site</b><sup>&nbsp;11</sup></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_wave_energy_site.0}} ({{nearest_wave_energy_site.1|floatformat:'2'}} {{length_units}})</td>
+        </tr>
+        
+    </tbody>
+</table>
+</div>
+    
+
+<h3>Transportation Considerations</h3>
+<div class='freetext'>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <!-- Buoys --> 
+        <tr class="grey">
+            <td colspan="3"><b>Buoys</b></td>
+        </tr>        
+        {% for data in intersecting_buoys %}
+        <tr>
+            <td colspan="3">{{data}}</td>
+        </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) Buoy</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_buoy.0}} ({{nearest_buoy.1|floatformat:'2'}} {{length_units}})</td>
+        </tr>
+        <p>
+        
+        <!-- Beacons -->
+        <tr class="grey">
+            <td colspan="3"><b>Beacons</b></td>
+        </tr>        
+        {% for data in intersecting_beacons %}
+        <tr>
+            <td colspan="3">{{data}}</td>
+        </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) Beacon</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_beacon.0}} ({{nearest_beacon.1|floatformat:'2'}} {{length_units}})</td>
+        </tr>
+        <p>
+        
+        <!-- Signal Equipment Data -->
+        <tr class="grey">
+            <td colspan="3"><b>Signal Equipment</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{signal_data}}</td>
+        </tr> 
+        <tr class="grey">
+            <td colspan="3"><b>Signal Equipment Count</b></td>
+        </tr>        
+        <tr>
+            <td colspan="3">{{num_signals}}</td>
+        </tr>
+        <p>
+        
+        <!-- Towlane Data -->
+        <tr class="grey">
+            <td colspan="3"><b>Tugboat Towlanes</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{towlanes}}</td>
+        </tr>  
+        <p>      
+        
+        <!-- Airport Data -->
+        <tr class="grey">
+            <td colspan="3"><b>Airports</b></td>
+        </tr>        
+        {% for airport in intersecting_airports %}
+        <tr>
+            <td colspan="3">{{airport}}</td>
+        </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) Airport</b></td>
+        </tr> 
+        <tr>
+            <td colspan="3">{{nearest_airport.0}} ({{nearest_airport.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>    
+        <p>
+        
+    </tbody>
+</table>
+</div>
+
+<h3>Infrastructure Considerations</h3>
+<div class='freetext'>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <!-- Dredge Materials Data -->
+        <tr class="grey">
+            <td colspan="3"><b>Dredge Materials Disposal Sites</b></td>
+        </tr>
+        {% for data in intersecting_dmds %}
+        <tr>
+            <td colspan="3">{{data}}</td>
+        </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) DMD Site</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_dmd.0}} ({{nearest_dmd.1|floatformat:'2'}} {{length_units}})</td>
+        </tr>
+        <p>
+
+        <!-- Outfall Sites Data -->
+        <tr class="grey">
+            <td colspan="3"><b>NPDES Outfall Sites</b></td>
+        </tr>
+        {% for data in intersecting_outfalls %}
+        <tr>
+            <td colspan="3">{{data}}</td>
+        </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) Outfall Site</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_outfall.0}} ({{nearest_outfall.1|floatformat:'2'}} {{length_units}})</td>
+        </tr>
+        <p>
+        
+        <!-- Undersea Cable Data -->
+        <tr class="grey">
+            <td colspan="3"><b>Undersea Cable Routes</b></td>
+        </tr>
+        {% for data in intersecting_cables %}
+        <tr>
+            <td colspan="3">{{data}}</td>
+        </tr>
+        {% endfor %}
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) Cable Route</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_cable.0}} ({{nearest_cable.1|floatformat:'2'}} {{length_units}})</td>
+        </tr>
+        <p>
+        
+        <!-- Transmission Line (1993) -->
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Transmission Line (1993)</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{transmissionline1993|floatformat:'1'}} {{length_units}}</td>
+        </tr>
+        
+        <!-- Transmission Line (2010) -->
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Transmission Line (2010)</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{transmissionline2010|floatformat:'1'}} {{length_units}}</td>
+        </tr>
+        <p>
+        
+        <!-- Electrical Substations -->
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Electrical Substations</b></td>
+        </tr>
+        {% for substation in substations %}
+        <tr>
+            <td colspan="3">{{substation.0}} ({{substation.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        {% endfor %}
+        <p>
+        
+        <!-- Railroads -->
+        <tr class="grey">
+            <td colspan="3"><b>Distance to Nearest Railroad</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{railroad|floatformat:'2'}} {{length_units}}</td>
+        </tr>
+        
+    </tbody>
+</table>
+</div>
+
+<h3>Fishery Considerations</h3>
+<div class='freetext'>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <!-- Ports -->
+        <tr class="grey">
+            <td colspan="3"><b>Proximity to Ports</b></td>
+        </tr>
+        {% for port in nearest_ports %}
+        <tr>
+            <td colspan="3">{{port.0}} ({{port.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        {% endfor %}
+        <p>
+        
+        <!-- Marinas -->
+        <tr class="grey">
+            <td colspan="3"><b>Nearest Marinas</b></td>
+        </tr>
+        {% for marina in nearest_marinas %}
+        <tr>
+            <td colspan="3">{{marina.0}} ({{marina.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        {% endfor %}
+        <p>
+        
+        <!-- ODFW Fishery Closures -->
+        <tr class="grey">
+            <td colspan="3"><b>ODFW Closures</b></td>
+        </tr>
+        {% for closure in intersecting_closures %}
+        <tr>
+            <td colspan="3">{{closure}}</td>
+        </tr>
+        {% endfor %}
+        <tr><td></td><td></td><td></td></tr>
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) ODFW Closure</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_closure.0}} ({{nearest_closure.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <p>
+        
+        <!-- EFH Conservation Areas -->
+        <tr class="grey">
+            <td colspan="3"><b>EFH Conservation Areas</b></td>
+        </tr>
+        {% for area in intersecting_conservation_areas %}
+        <tr>
+            <td colspan="3">{{area}}</td>
+        </tr>
+        {% endfor %}
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr class="grey">
+            <td colspan="3"><b>Nearest (non-intersecting) EFH Conservation Areas</b></td>
+        </tr>
+        <tr>
+            <td colspan="3">{{nearest_conservation_area.0}} ({{nearest_conservation_area.1|floatformat:'1'}} {{length_units}})</td>
+        </tr>
+        <tr><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+</div>
+
+<p><h3>Footnotes</h3></p>
+<div class='freetext'>
+<!-- Community Considerations Footnotes -->
+<p>1. The distance and name of the nearest 3 city urban growth boundaries is calculated in miles.  The calculation uses the DLCD urban growth boundary data (2009) to determine the results.  </p>
+<p>2. Reports all State Parks within the Area of Interest and Calculates the distance to the nearest (3) State Parks, based upon the State Parks of Oregon, OPRD, 2010 data.  </p>
+<p>3. Reports all public access points within the Area of Interest and Calculates the distance to the nearest (3) sites, based upon the Beach Access Points data layer, OCMP, 2003.  </p>
+<p>4. Reports whether the Area of Interest is visible from viewpoints onshore.  This is determined by intersecting the AOI with the Viewsheds of the Oregon Coast, OCMP, 2002 data set.  The viewsheds were calculated using a set of viewpoints onshore, those are available from the Viewpoints of the Oregon Coast, OCMP, 2002 data set.  </p>
+<!-- Planning Considerations Footnotes -->
+<p>5. Reports all Rocky Shores Areas within the Area of Interest, and the nearest (3) sites based upon the Rocky Shore Areas of the Oregon Coast data, OCMP, 2008.  </p>
+<p>6. Reports all protected areas (both terrestrial and marine) within the Area of Interest.  Determined using the Protected Areas from the Ownership Data built by the Oregon Natural Heritage Program for the Comprehensive Wildlife Conservation Plan (CWCP) developed by ODFW (2005).</p>
+<p>7. Reports the distance and name of the nearest protected areas (both terrestrial and marine) within the Area of Interest.  Determined using the Protected Areas from the Ownership Data built by the Oregon Natural Heritage Program for the Comprehensive Wildlife Conservation Plan (CWCP) developed by ODFW (2005).</p>
+<p>8. Reports the presence of all state marine managed areas (habitat refuges, marine gardens, and research reserves) within the Area of Interest.  This information is determined from the State Designated Marine Managed Areas, ODFW, 2008 data set.</p>
+<p>9. Reports the distance to the nearest (3) state marine managed areas (habitat refuges, marine gardens, and research reserves).  Both the name and straight line distance for each marine managed area is reported, based upon the State Designated Marine Managed Areas, ODFW, 2008 data set.  </p>
+<p>10. Reports all wave energy site applications within the Area of Interest.  Determined using the Oregon Wave Energy Preliminary Permit Sites, FERC, 2010 data set.  </p>
+<p>11. Reports the distance to and name of the nearest wave energy site application.  Determined using the Oregon Wave Energy Preliminary Permit Sites, FERC, 2010 data set.  </p>
+<!-- Transportation Considerations Footnotes -->
+<p></p>
+<!-- Infrastructure Considerations Footnotes -->
+<p>12. Reports all Dredge Material Disposal sites within the Area of Interest.  Determined using the Dredge Material Disposal Sites, ACOE, 2008 data.  </p>
+<p>13. Reports the distance and name of the nearest Dredge Material Disposal Site based upon the Dredge Material Disposal Sites, ACOE, 2008 data. </p>
+<p>14. Reports all National Pollutant Discharge Elimination System (NPDES) outfall locations within the Area of Interest.  Determined using the NPDES Outfalls in Coastal Watersheds, DEQ, 2008 data.  </p>
+<p>15. Reports the distance and name of the nearest national Pollutant Discharge Elimination System (NPDES) outfall location.  Report based upon the NPDES Outfalls in Coastal Watersheds, DEQ, 2008 data.  </p>
+<p>16. Reports all undersea telecommunication cables within the Area of Interest. Determined using the Underwater Fiber Optic Cables off the Oregon Coast, OFCC, 2005 data.  </p>
+<p>17. Reports the distance and name of the nearest undersea telecommunication cables within the Area of Interest. Determined using the Underwater Fiber Optic Cables off the Oregon Coast, OFCC, 2005 data.  </p>
+<p>18. Reports the distance from the Area of Interest to the nearest electrical transmission line, based upon the Oregon Power Transmission lines, USGS DOQ, 1993 data set.  </p>
+<p>19. Reports the distance from the Area of Interest to the nearest electrical transmission line, based upon the Oregon BPA Power Transmission lines, BPA, 2009 data set.  </p>
+<p>20. Reports the distance from the Area of Interest to the nearest (3) electrical substations, based upon the Oregon Electrical Power Facilities, BPA, 2009 data set.  </p>
+<p>21. Reports the distance from the Area of Interest to the nearest railroad line, as determined from the Oregon Railroad lines identified in the National Transportation Atlas Databases (NTAD) 2009 data set.  </p>
+<!-- Fishery Considerations Footnotes -->
+<p>22. Reports the distance to the nearest (3) port locations based upon the Oregon Port Locations, OCMP, 2008 data set.  </p>
+<p>23. Reports the distance to the nearest (3) marina locations based upon the Oregon Marina Locations (2009), RITA-NTAD, data set.  Both the name and straight line distance for each marina listed is reported.  </p>
+<p>24. Reports the presence of all state fishery closures within the Area of Interest.  This information is determined from the ??? data set(s).  </p>
+<p>25. Reports the distance to the nearest ODFW fishery closure areas.  Both the name and straight line distance for each closure area is reported, based upon the ??? data set.  </p>
+<p>26. Reports the presence of all Essential Fish Habitat Conservation areas within the Area of Interest.  This information is determined from the EFH Conservation Areas for the Pacific Coast Fishery Management Plan (amendment 19) data set.  </p>
+<p>27. Reports the distance and name of the nearest Essential Fish Habitat Conservation area within.  This information is determined from the EFH Conservation Areas for the Pacific Coast Fishery Management Plan (amendment 19) data set.  </p>
+</div>
+
+
+
+<p>
+<div style='font-size: small'>
+    <a target='_blank' href='{% url printable_aes_report aes.id "hum" %}'>Printable Human Uses Report</a>
+    &nbsp; 
+    <!--<a target='_blank' href='{% url pdf_aes_report aes.id "hum" %}'> (View PDF) </a>    -->
+</div>
+<p>
+<div style='font-size: small'>
+    <a target='_blank' href='{% url printable_aes_report aes.id "all" %}'>Printable Comprehensive Report</a>
+    &nbsp; 
+    <a target='_blank' href='{% url pdf_aes_report aes.id "all" %}'> (PDF) </a> 
+    &nbsp; 
+    <a target='_blank' href='{% url excel_aes_report aes.id "all" %}'> (Excel) </a> 
+    
+    <br>(Comprehensive reports combine Geographical, Physical, Biological, 
+    and Human Use reports for a given Energy Site into a single 
+    printable and/or exportable document.)</br>   
+</div>
+<p>
+
+<style type="text/css">
+h3 { font-weight: bold; }
+</style>
+
+{% endblock panel %}
+

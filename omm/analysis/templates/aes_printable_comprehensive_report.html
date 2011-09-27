@@ -1,0 +1,29 @@
+
+{% block Header %}
+<h1 align="center">Energy Site Comprehensive Analysis Report for {{ aoi.name }} </h1>
+
+<div class="img" align="middle" >
+    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ aoi.uid }}&amp;autozoom=true&amp;width=308&amp;height=400">
+    &nbsp; &nbsp;
+    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ aoi.uid }}&amp;width=154&amp;height=200&amp;show_extent=True">
+</div>
+
+{% endblock Header %}
+
+
+<!-- Geographic Report -->
+
+{% include 'aes_printable_geo_report.html' %}
+
+<!-- Physical Report -->
+
+{% include 'aes_printable_phy_report.html' %}
+
+<!-- Biology Report -->
+
+{% include 'aes_printable_bio_report.html' %}
+
+<!-- Human Uses Report -->
+
+{% include 'aes_printable_hum_report.html' %}
+

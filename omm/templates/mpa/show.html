@@ -1,0 +1,122 @@
+{% extends 'common/panel.html' %}
+{% block title %}{{instance.name}}{% endblock title %}
+{% block panel %}
+    <h1>{{instance.name}}</h1>
+    {% if instance.collection %}
+        <p>part of the <a class="myshapes-link" href="{{instance.collection.get_absolute_url}}">{{instance.collection.name}}</a>.</p>
+    {% endif %}
+    <div class="tabs">
+        <ul>
+            <li><a href="#Attributes"><span>Information</span></a></li>
+            <li><a href="#Habitats"><span>Nearshore Habitats</span></a></li>
+            <li><a href="#Sites"><span>Energy Sites</span></a></li>
+            {% if perms.analysis.econcache_can_view %}
+            <li><a href="#Economy"><span>Economy</span></a></li>
+            {% endif %}
+        </ul>
+        <div id="Attributes">
+            <ul class="metadata">
+              {% if instance.user.first_name and instance.user.last_name %} 
+                <li class="creator">Created By {{instance.user.first_name}} {{instance.user.last_name}}</li>
+              {% else %}
+                <li class="creator">Created By {{instance.user.username}}</li>
+              {% endif %}
+                <li class="created">Created {{instance.date_created|date:"d M, Y P"}}</li>
+                <li class="modified">Modified {{instance.date_modified|date:"d M, Y P"}}</li>
+                <br class="clear" />
+            </ul>
+            <h2>Description</h2>
+            <p>{{instance.description}}</p>
+            <h2>Other Information</h2>
+            <p><strong>Area ID:</strong> {{instance.pk}}</p>
+        </div>
+        <div id="Habitats" class="tabs">
+            <ul>
+                <li><a href="#Hab_Instructions"><span>Instructions</span></a></li>
+                <li><a href="{% url nsh_analysis instance.pk 'geo' %}"><span>Geography</span></a></li>
+                <li><a href="{% url nsh_analysis instance.pk 'phy' %}"><span>Physical</span></a></li>
+                <li><a href="{% url nsh_analysis instance.pk 'bio' %}"><span>Biology</span></a></li>
+                <li><a href="{% url nsh_analysis instance.pk 'hum' %}"><span>Human</span></a></li>
+            </ul>
+            <div id="Hab_Instructions">
+                <h3>Nearshore Habitat Analysis Instructions</h3>
+                <p>This page contains Nearshore Habitat analysis information specific to your Area of Interest. </p>
+            </div>
+        </div>
+        <div id="Sites" class="tabs">
+            <ul>
+                <li><a href="#AES_Instructions"><span>Instructions</span></a></li>
+                <li><a href="{% url aes_analysis instance.pk 'geo' %}"><span>Geography</span></a></li>
+                <li><a href="{% url aes_analysis instance.pk 'phy' %}"><span>Physical</span></a></li>
+                <li><a href="{% url aes_analysis instance.pk 'bio' %}"><span>Biology</span></a></li>
+                <li><a href="{% url aes_analysis instance.pk 'hum' %}"><span>Human</span></a></li>
+            </ul>
+            <div id="AES_Instructions">
+                <h3>Alternative Energy Site Analysis Instructions</h3>
+                <p>This page contains Alternative Energy Site analysis information specific to your Area of Interest. </p>
+            </div>
+        </div>
+        {% if perms.analysis.econcache_can_view %}
+        <div id="Economy" class="tabs">
+            <ul>
+                <li><a href="#SH_Instructions"><span>Intro</span></a></li>
+                <li><a href="{% url shoreside_analysis instance.pk 'noaa' %}"><span>Com (NOAA)</span></a></li>
+                <li><a href="{% url shoreside_analysis instance.pk 'feam' %}"><span>Com (FEAM)</span></a></li>
+                <li><a href="{% url shoreside_analysis instance.pk 'chrt' %}"><span>Charter</span></a></li>
+                <li><a href="{% url shoreside_analysis instance.pk 'rec' %}"><span>Rec</span></a></li>
+            </ul>
+            <div id="SH_Instructions">
+            <table width="450">
+            <tr>
+            <td>
+                <h3>Economic Impact Analyses</h3>
+                <p>These reports display estimates of the potential maximum economic impact of your Area of Interest to certain 
+                   human use activities and include estimates of gross economic revenue (GER), estimated economic output (EEO), 
+                   and estimated personal income (EPI) for certain sectors.  </p>
+                <ul>
+                    <li><p><b>Com (NOAA)</b> reports GER and EEO from commercial fishing at the harvesting level. These estimates 
+                        use economic multipliers provided by NOAA for the state of Oregon.</li>
+                    <li><p><b>Com (FEAM)</b> reports GER and EPI from commercial fishing harvesting and processing activities. 
+                        These estimates are derived from the Fisheries Economic Assessment Model (FEAM) produced by The Research Group (2005).</li>
+                    <li><p><b>Charter</b> reports GER and EEO from charter fishing. These estimates use the economic multiplier provided 
+                        by Gentner and Steinback (2008). </li>
+                    <li><p><b>Rec</b> reports EPI from recreational fishing trips.</li>
+                </ul>
+                <p>A full report on the methods and multipliers used in these analyses are forthcoming.  A link to that report 
+                   will be added here as soon as it becomes available.</p>
+                <!-- <p>For more information on the methods and multipliers used, please refer to the Shoreside Economic Analysis for the 
+                   Oregon Territorial Sea Plan report which may be found here.</p>-->
+                <div>
+                <p>
+                <p><a id="displayText" href="javascript:toggleDiv('toggleText');">Learn More</a></p>
+                <div id="toggleText" style="display: none">
+                <p>The estimated economic output (EEO) resulting from an economic activity is measured by applying economic 
+                   multipliers to estimated GERs. The purpose of applying multipliers is to capture the ripple effects of economic 
+                   activity; simply, a direct change in one industry affects other industries. For example, a multiplier of 1.5 
+                   implies that every $1.00 of GER in a sector, i.e. commercial fishing, generates an additional $0.50 in economic 
+                   activity throughout the economy, for a total economic output of $1.50. Estimated personal income (EPI) is a 
+                   measure of the portion of direct and indirect economic activity associated with sales or expenditures in a 
+                   certain sector that accrues to households in terms of wages, salaries, and profits. </p>
+                </div>
+                </p>
+                <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+                <script type="text/javascript">
+                function toggleDiv(divId) {
+                    $("#"+divId).toggle();     
+                    if ($('#toggleText').css('display') != 'none') {
+                        $('#displayText').html('Hide Text');
+                    }
+                    else {
+                        $('#displayText').html('Learn More');
+                    }
+                }
+                </script>
+                </div>
+            </td>
+            </tr>
+            </table>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+{% endblock panel %}

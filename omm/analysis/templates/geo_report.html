@@ -1,0 +1,80 @@
+{% extends 'common/panel.html' %}
+
+
+{% block panel %}
+
+{% block GeneralSpatial %}
+<h3>General Spatial Characteristics</h3>
+<div class='freetext'>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <tr class="grey">
+            <td><b>Area</b><sup>&nbsp;1</sup></td>
+            <td></td>
+            <td><b>Perimeter</b><sup>&nbsp;2</sup></td>
+        </tr>
+        <tr>
+            <td>{{area|floatformat:'2'}} {{area_units}}</td>
+            <td></td>
+            <td>{{perimeter|floatformat:'2'}} {{length_units}}</td>
+        </tr>
+        <p>
+        <tr class="grey">
+            <td><b>Intertidal</b><sup>&nbsp;3</sup></td>
+            <td></td>
+            <td><b>Islands</b><sup>&nbsp;4</sup></td>
+        </tr>
+        <tr>
+            <td>{{intertidal}}</td>
+            <td></td>
+            <td>{{islands}}</td>
+        </tr>
+        <p>
+        <tr class="grey">
+            <td></td>
+            <td></td>
+            <td><b>Percent of Territorial Sea</b></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>{{ratio|floatformat:'2'}} %</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+{% endblock GeneralSpatial %}
+
+{% block GeographicSetting %}
+{% endblock GeographicSetting %}
+
+{% block FootnotesHeader %}
+<p><h3>Footnotes</h3></p>
+{% endblock FootnotesHeader %}
+
+<div class='freetext'>
+
+{% block GeneralSpatialFootnotes %}
+<p>1. Area of the Area of interest is calculated in square miles. </p>
+<p>2. Perimeter of the Area of Interest is calculated in miles.  </p>
+<p>3. Intertidal Habitats: Does the Area of Interest intersect the shoreline, including the shoreline of islands.??  A yes/no result is determined from an intersect query.  This is determined using the 1:24,000 scale NOAA ESI shoreline.    </p>
+<p>4. The presence of islands within the Area of Interest is determined using the USFWS Oregon Islands National Wildlife Refuge data.  </p>
+{% endblock GeneralSpatialFootnotes %}
+
+{% block GeographicSettingFootnotes %}
+{% endblock GeographicSettingFootnotes %}
+
+</div>
+
+{% block ExportableReports %}
+{% endblock ExportableReports %}
+
+{% block CSS %}
+<style type="text/css">
+h3 { font-weight: bold; }
+</style>
+{% endblock CSS %}
+
+{% endblock panel %}
+

@@ -1,0 +1,32 @@
+{% extends 'bio_report.html' %}
+{% block title %}{{nsh.name}} Biological Analysis{% endblock title %}
+
+<!-- Inheriting Terrestrial Biological Characteristics from bio_report -->
+
+<!-- Inheriting Intertidal Biological Characteristics from bio_report -->
+
+<!-- Inheriting Subtidal Biological Characteristics from bio_report -->
+
+{% block ExportableReports %}
+<p>
+<div style='font-size: small'>
+    <a target='_blank' href='{% url printable_nsh_report nsh.id "bio" %}'>Printable Biology Report</a>
+    &nbsp; 
+    <!--<a target='_blank' href='{% url pdf_nsh_report nsh.id "bio" %}'> (View PDF) </a>    -->
+</div>
+<p>
+<div style='font-size: small'>
+    <a target='_blank' href='{% url printable_nsh_report nsh.id "all" %}'>Printable Comprehensive Report</a>
+    &nbsp; 
+    <a target='_blank' href='{% url pdf_nsh_report nsh.id "all" %}'> (PDF) </a>
+    &nbsp; 
+    <a target='_blank' href='{% url excel_nsh_report nsh.id "all" %}'> (Excel) </a>   
+    
+    <br>(Comprehensive reports combine Geographical, Physical, Biological, 
+    and Human Use reports for a given Nearshore Habitat into a single 
+    printable and/or exportable document.)</br>   
+</div>
+<br></br>
+{% endblock ExportableReports %}
+
+

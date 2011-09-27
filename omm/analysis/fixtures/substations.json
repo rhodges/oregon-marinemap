@@ -1,0 +1,1982 @@
+[
+    {
+        "pk": 1, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Acton", 
+            "objectid": 2, 
+            "geometry": "POINT (315017.4827999994158745 526821.4976000003516674)", 
+            "sta_code": "ACTN", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Adair", 
+            "objectid": 3, 
+            "geometry": "POINT (208147.9984000008553267 430355.0259000007063150)", 
+            "sta_code": "ADAR", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Albany", 
+            "objectid": 5, 
+            "geometry": "POINT (214588.2036000005900860 420695.7216999996453524)", 
+            "sta_code": "ALBA", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Allston", 
+            "objectid": 9, 
+            "geometry": "POINT (234470.3128999993205070 584965.7873999997973442)", 
+            "sta_code": "ALSN", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Alvey", 
+            "objectid": 10, 
+            "geometry": "POINT (218241.2999000009149313 350887.8287000004202127)", 
+            "sta_code": "ALVY", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Mountain Avenue", 
+            "objectid": 13, 
+            "geometry": "POINT (229363.0207000002264977 149875.8714000005275011)", 
+            "sta_code": "MTAV", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Bakeoven", 
+            "objectid": 16, 
+            "geometry": "POINT (393585.6835999991744757 469717.5449999999254942)", 
+            "sta_code": "BAOV", 
+            "owner": "Wasco Electric Cooperative, Inc", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Bakeoven", 
+            "objectid": 17, 
+            "geometry": "POINT (393585.6835999991744757 469717.5449999999254942)", 
+            "sta_code": "BAKE", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Compensation Station"
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Bandon", 
+            "objectid": 18, 
+            "geometry": "POINT (98798.8796999994665384 261467.1564000006765127)", 
+            "sta_code": "BAND", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Big Eddy", 
+            "objectid": 23, 
+            "geometry": "POINT (379354.9049999993294477 519990.1809000000357628)", 
+            "sta_code": "BIGE", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Big Eddy 500 kV", 
+            "objectid": 24, 
+            "geometry": "POINT (379968.1193000003695488 519611.4765000008046627)", 
+            "sta_code": "BGED", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Switchyard"
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Blue River", 
+            "objectid": 28, 
+            "geometry": "POINT (274957.8059000000357628 364129.7822999991476536)", 
+            "sta_code": "BLRI", 
+            "owner": "Lane Electric Cooperative", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Boardman", 
+            "objectid": 29, 
+            "geometry": "POINT (494511.7212000004947186 541700.6136000007390976)", 
+            "sta_code": "BOAD", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Buckley", 
+            "objectid": 36, 
+            "geometry": "POINT (394096.6085999999195337 477414.7788999993354082)", 
+            "sta_code": "BKLY", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Captain Jack", 
+            "objectid": 40, 
+            "geometry": "POINT (336615.3618999999016523 129689.9467999991029501)", 
+            "sta_code": "CPJK", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Carlton", 
+            "objectid": 43, 
+            "geometry": "POINT (218166.3058000002056360 493981.7938000001013279)", 
+            "sta_code": "CARL", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Cascade Locks", 
+            "objectid": 45, 
+            "geometry": "POINT (322481.9921000003814697 531109.5701000001281500)", 
+            "sta_code": "CALK", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Chemawa", 
+            "objectid": 53, 
+            "geometry": "POINT (227949.0225000008940697 463517.8940999992191792)", 
+            "sta_code": "CHEM", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Chenoweth", 
+            "objectid": 54, 
+            "geometry": "POINT (372667.4990999996662140 523542.0409999992698431)", 
+            "sta_code": "CHEN", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Clatsop", 
+            "objectid": 56, 
+            "geometry": "POINT (172580.3087000008672476 593824.8384000007063150)", 
+            "sta_code": "CLSO", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Condon", 
+            "objectid": 58, 
+            "geometry": "POINT (444400.8760999999940395 475197.2299000006169081)", 
+            "sta_code": "COND", 
+            "owner": "Columbia Basin Electric Cooperative", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Cottage Grove", 
+            "objectid": 61, 
+            "geometry": "POINT (212857.6622999999672174 323283.7095999997109175)", 
+            "sta_code": "COTG", 
+            "owner": "Pacific Power and Light Company (PacifiCorp)", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Dalreed", 
+            "objectid": 68, 
+            "geometry": "POINT (466995.0159000009298325 533595.9361000005155802)", 
+            "sta_code": "DLRD", 
+            "owner": "Pacific Power and Light Company (PacifiCorp)", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Detroit", 
+            "objectid": 69, 
+            "geometry": "POINT (284427.4386999998241663 427259.4098000004887581)", 
+            "sta_code": "DETR", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 25, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Dixonville", 
+            "objectid": 70, 
+            "geometry": "POINT (194815.6396999992430210 265768.5100999996066093)", 
+            "sta_code": "DIXV", 
+            "owner": "Pacific Power and Light Company (PacifiCorp)", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 26, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Drain", 
+            "objectid": 74, 
+            "geometry": "POINT (191355.8533999994397163 315054.8099000006914139)", 
+            "sta_code": "DRAN", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 27, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Fairview", 
+            "objectid": 82, 
+            "geometry": "POINT (125914.4525000005960464 270920.5733000002801418)", 
+            "sta_code": "FAVW", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 28, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Forest Grove", 
+            "objectid": 88, 
+            "geometry": "POINT (225242.1060000006109476 520636.7267000004649162)", 
+            "sta_code": "FORG", 
+            "owner": "City of Forest Grove and BPA", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 29, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Fossil", 
+            "objectid": 89, 
+            "geometry": "POINT (447689.4495999999344349 448758.9878000002354383)", 
+            "sta_code": "FOSS", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 30, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Freewater", 
+            "objectid": 91, 
+            "geometry": "POINT (591507.9572000000625849 551510.0913999993354082)", 
+            "sta_code": "FREW", 
+            "owner": "City of Milton-Freewater", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 31, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Gardiner", 
+            "objectid": 93, 
+            "geometry": "POINT (128010.1278000008314848 329684.8312999997287989)", 
+            "sta_code": "GARD", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 32, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Gold Beach", 
+            "objectid": 96, 
+            "geometry": "POINT (90064.3451000005006790 184528.5862000007182360)", 
+            "sta_code": "GOBE", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 33, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Grand Ronde", 
+            "objectid": 101, 
+            "geometry": "POINT (180555.6508000008761883 472619.8571000006049871)", 
+            "sta_code": "GRRD", 
+            "owner": "Portland General Electric Company", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 34, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Green Peter", 
+            "objectid": 103, 
+            "geometry": "POINT (258973.4483000002801418 398296.9835999999195337)", 
+            "sta_code": "GRPT", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Powerhouse"
+        }
+    }, 
+    {
+        "pk": 35, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Grizzly", 
+            "objectid": 104, 
+            "geometry": "POINT (380523.7813000008463860 394692.1198999993503094)", 
+            "sta_code": "GRIZ", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 36, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Willard Johnson", 
+            "objectid": 105, 
+            "geometry": "POINT (346872.8099000006914139 523661.6195999998599291)", 
+            "sta_code": "GUTH", 
+            "owner": "Hood River Electic Cooperative", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 37, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Hampton", 
+            "objectid": 106, 
+            "geometry": "POINT (426842.7504999991506338 311986.1724999994039536)", 
+            "sta_code": "HAMP", 
+            "owner": "Central Electric Cooperative, Inc", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 38, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Hanna", 
+            "objectid": 110, 
+            "geometry": "POINT (176390.4308000002056360 236078.0170000009238720)", 
+            "sta_code": "HANA", 
+            "owner": "Glenbrook Nickel", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 39, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Harney", 
+            "objectid": 111, 
+            "geometry": "POINT (528334.2986999992281199 280847.8834000006318092)", 
+            "sta_code": "HARN", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 40, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Harrisburg", 
+            "objectid": 112, 
+            "geometry": "POINT (208609.9142000004649162 385555.3639000002294779)", 
+            "sta_code": "HARB", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 41, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Hat Rock", 
+            "objectid": 114, 
+            "geometry": "POINT (536334.6722999997437000 548770.5207000002264977)", 
+            "sta_code": "HTRK", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 42, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Hills Creek", 
+            "objectid": 118, 
+            "geometry": "POINT (263364.3069000001996756 315632.1881000008434057)", 
+            "sta_code": "HLSC", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 43, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "John Day", 
+            "objectid": 123, 
+            "geometry": "POINT (409159.5223999992012978 526458.1544000003486872)", 
+            "sta_code": "JDAY", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 44, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Keeler", 
+            "objectid": 126, 
+            "geometry": "POINT (240316.9002999998629093 522362.1131999995559454)", 
+            "sta_code": "KEEL", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 45, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Klamath Falls", 
+            "objectid": 130, 
+            "geometry": "POINT (304849.4448000006377697 144764.7003000006079674)", 
+            "sta_code": "KFLS", 
+            "owner": "Pacific Power and Light Company (PacifiCorp)", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 46, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Lane", 
+            "objectid": 131, 
+            "geometry": "POINT (201365.9316000007092953 358061.4156999997794628)", 
+            "sta_code": "LANE", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 47, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Langlois", 
+            "objectid": 132, 
+            "geometry": "POINT (92321.0461999997496605 240317.1219999995082617)", 
+            "sta_code": "LANG", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 48, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Lebanon", 
+            "objectid": 134, 
+            "geometry": "POINT (234341.5073000006377697 406161.5504999998956919)", 
+            "sta_code": "LEBA", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 49, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Lookout Point", 
+            "objectid": 139, 
+            "geometry": "POINT (238193.7117999996989965 340233.4158999994397163)", 
+            "sta_code": "LKPT", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Switchyard"
+        }
+    }, 
+    {
+        "pk": 50, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Lost Creek", 
+            "objectid": 140, 
+            "geometry": "POINT (234884.1314000003039837 201903.4966000001877546)", 
+            "sta_code": "LCPH", 
+            "owner": "US Corps of Engineers", 
+            "type": "Powerhouse"
+        }
+    }, 
+    {
+        "pk": 51, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Malin", 
+            "objectid": 146, 
+            "geometry": "POINT (342205.9836999997496605 121262.9037999995052814)", 
+            "sta_code": "MALN", 
+            "owner": "Western Area Power Administration and BPA", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 52, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Mapleton", 
+            "objectid": 148, 
+            "geometry": "POINT (150736.2818999998271465 359042.3277000002563000)", 
+            "sta_code": "MAPL", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 53, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Marion", 
+            "objectid": 150, 
+            "geometry": "POINT (249970.4070999994874001 437933.3049999997019768)", 
+            "sta_code": "MARN", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 54, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Mcloughlin", 
+            "objectid": 151, 
+            "geometry": "POINT (265078.5332999993115664 496982.1260999999940395)", 
+            "sta_code": "MCLO", 
+            "owner": "Portland General Electric Company  and BPA", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 55, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "McMinnville", 
+            "objectid": 152, 
+            "geometry": "POINT (215409.7883000001311302 486537.2665999997407198)", 
+            "sta_code": "MCMI", 
+            "owner": "City of McMinnville and BPA", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 56, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "McNary", 
+            "objectid": 153, 
+            "geometry": "POINT (520726.5931000001728535 549683.0421999990940094)", 
+            "sta_code": "MCNY", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 57, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Milton", 
+            "objectid": 157, 
+            "geometry": "POINT (592864.2927000001072884 547730.1931999996304512)", 
+            "sta_code": "MILT", 
+            "owner": "City of Milton-Freewater", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 58, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Necanicum", 
+            "objectid": 164, 
+            "geometry": "POINT (168301.8472000006586313 567208.7508000005036592)", 
+            "sta_code": "NECA", 
+            "owner": "West Oregon Electric Cooperative and BPA", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 59, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Norway", 
+            "objectid": 166, 
+            "geometry": "POINT (117853.0043000001460314 259876.7632999997586012)", 
+            "sta_code": "NORW", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 60, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Oregon City", 
+            "objectid": 172, 
+            "geometry": "POINT (247760.7664000000804663 497581.4719999991357327)", 
+            "sta_code": "OREC", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 61, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Ostrander", 
+            "objectid": 175, 
+            "geometry": "POINT (277072.2788999993354082 498586.9192999992519617)", 
+            "sta_code": "OSTD", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 62, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Parkdale", 
+            "objectid": 179, 
+            "geometry": "POINT (343941.2550000008195639 513253.9031000006943941)", 
+            "sta_code": "PARK", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 63, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Pendleton", 
+            "objectid": 182, 
+            "geometry": "POINT (563248.2737000007182360 521141.7161999996751547)", 
+            "sta_code": "PEND", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 64, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Pilot Butte", 
+            "objectid": 183, 
+            "geometry": "POINT (361164.5514000002294779 348364.4043000005185604)", 
+            "sta_code": "PILB", 
+            "owner": "Pacific Power and Light Company (PacifiCorp)", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 65, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Pine Hollow", 
+            "objectid": 184, 
+            "geometry": "POINT (377491.2112000007182360 502161.8793000001460314)", 
+            "sta_code": "PIHO", 
+            "owner": "Wasco Electric Cooperative, Inc", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 66, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Port Orford", 
+            "objectid": 186, 
+            "geometry": "POINT (89715.5018000006675720 224649.3036000002175570)", 
+            "sta_code": "POOF", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 67, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Redmond", 
+            "objectid": 199, 
+            "geometry": "POINT (364177.1872000005096197 371931.7526999991387129)", 
+            "sta_code": "RDMD", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 68, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Reedsport", 
+            "objectid": 200, 
+            "geometry": "POINT (126645.5341999996453524 324671.1270000003278255)", 
+            "sta_code": "REED", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 69, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Reston", 
+            "objectid": 202, 
+            "geometry": "POINT (166889.9874000009149313 263452.2816000003367662)", 
+            "sta_code": "REST", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 70, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Rivergate", 
+            "objectid": 205, 
+            "geometry": "POINT (250939.8443999998271465 528733.8217999991029501)", 
+            "sta_code": "RIVG", 
+            "owner": "Portland General Electric Company", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 71, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Rogue", 
+            "objectid": 207, 
+            "geometry": "POINT (91601.0131999999284744 192655.1498000007122755)", 
+            "sta_code": "ROGE", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 72, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Roundup", 
+            "objectid": 209, 
+            "geometry": "POINT (563987.3663999997079372 516764.2245000004768372)", 
+            "sta_code": "ROUN", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 73, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Salem", 
+            "objectid": 213, 
+            "geometry": "POINT (220217.2883999999612570 454874.8710999991744757)", 
+            "sta_code": "SALE", 
+            "owner": "Salem Electric Company and BPA", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 74, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Santiam", 
+            "objectid": 216, 
+            "geometry": "POINT (251554.3254000004380941 434823.4708999991416931)", 
+            "sta_code": "SANT", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 75, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Slatt", 
+            "objectid": 227, 
+            "geometry": "POINT (454650.4119000006467104 527267.1304000001400709)", 
+            "sta_code": "SLAT", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 76, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Springfield", 
+            "objectid": 235, 
+            "geometry": "POINT (219781.1651000007987022 355891.5473999995738268)", 
+            "sta_code": "SPFL", 
+            "owner": "Springfield Electric Board", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 77, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "St. Johns", 
+            "objectid": 239, 
+            "geometry": "POINT (251153.4039999991655350 528682.3648000005632639)", 
+            "sta_code": "STJO", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 78, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Tahkenitch", 
+            "objectid": 244, 
+            "geometry": "POINT (130416.9478999990969896 329598.3986000008881092)", 
+            "sta_code": "TAHK", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 79, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Thatcher Junction", 
+            "objectid": 250, 
+            "geometry": "POINT (222511.9515000004321337 521527.3917999994009733)", 
+            "sta_code": "THJN", 
+            "owner": "City of Forest Grove", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 80, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Tillamook", 
+            "objectid": 253, 
+            "geometry": "POINT (167002.0708000008016825 517898.2060000002384186)", 
+            "sta_code": "TILL", 
+            "owner": "Tillamook County PUD and BPA", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 81, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Toledo", 
+            "objectid": 254, 
+            "geometry": "POINT (151723.4758000001311302 425770.8505000006407499)", 
+            "sta_code": "TOLE", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 82, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Trojan", 
+            "objectid": 257, 
+            "geometry": "POINT (244933.8337999992072582 576610.2172999996691942)", 
+            "sta_code": "TROJ", 
+            "owner": "Portland General Electric Company", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 83, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Tumble Creek", 
+            "objectid": 258, 
+            "geometry": "POINT (289617.6234000008553267 427028.8278999999165535)", 
+            "sta_code": "TUMB", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 84, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Walnut City", 
+            "objectid": 267, 
+            "geometry": "POINT (212065.9333999995142221 486482.5839000009000301)", 
+            "sta_code": "WACY", 
+            "owner": "City of McMinnville", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 85, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Warren", 
+            "objectid": 271, 
+            "geometry": "POINT (243211.8201999999582767 552190.4104999992996454)", 
+            "sta_code": "WARN", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 86, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Wauna", 
+            "objectid": 272, 
+            "geometry": "POINT (205724.5395999997854233 592470.2792000006884336)", 
+            "sta_code": "WAUN", 
+            "owner": "Clatskanie PUD", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 87, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Wendson", 
+            "objectid": 273, 
+            "geometry": "POINT (138793.2820999994874001 358400.6183000002056360)", 
+            "sta_code": "WEND", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 88, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Wren", 
+            "objectid": 280, 
+            "geometry": "POINT (190507.0238000005483627 419147.4765000008046627)", 
+            "sta_code": "WREN", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 89, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Meridian", 
+            "objectid": 282, 
+            "geometry": "POINT (226145.5845999997109175 168214.9335999991744757)", 
+            "sta_code": "MERD", 
+            "owner": "Pacific Power and Light Company (PacifiCorp)", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 90, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Tongue Point", 
+            "objectid": 285, 
+            "geometry": "POINT (179574.5990999992936850 599458.2167000006884336)", 
+            "sta_code": "TGPT", 
+            "owner": "Pacific Power and Light Company (PacifiCorp)", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 91, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Bonnevile Dam", 
+            "objectid": 289, 
+            "geometry": "POINT (314963.2017000000923872 527389.9509999994188547)", 
+            "sta_code": "BOPH", 
+            "owner": "US Corps of Engineers", 
+            "type": "Powerhouse"
+        }
+    }, 
+    {
+        "pk": 92, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Dexter", 
+            "objectid": 290, 
+            "geometry": "POINT (234427.3388000000268221 341486.9697999991476536)", 
+            "sta_code": "DXPH", 
+            "owner": "US Corps of Engineers", 
+            "type": "Powerhouse"
+        }
+    }, 
+    {
+        "pk": 93, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "John Day", 
+            "objectid": 291, 
+            "geometry": "POINT (412974.1366000007838011 530260.0977999996393919)", 
+            "sta_code": "JDPH", 
+            "owner": "US Corps of Engineers", 
+            "type": "Powerhouse"
+        }
+    }, 
+    {
+        "pk": 94, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Green Valley", 
+            "objectid": 298, 
+            "geometry": "POINT (185627.8980999998748302 288506.4447000008076429)", 
+            "sta_code": "GRNV", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 95, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Hood River", 
+            "objectid": 300, 
+            "geometry": "POINT (348052.7739000003784895 530741.6798999998718500)", 
+            "sta_code": "HORV", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 96, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "The Dalles", 
+            "objectid": 301, 
+            "geometry": "POINT (371642.1536999996751547 520993.9355999995023012)", 
+            "sta_code": "TDAL", 
+            "owner": "Wasco Electric Cooperative, Inc and BPA", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 97, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Burnt Woods", 
+            "objectid": 304, 
+            "geometry": "POINT (176271.6369000002741814 421979.3486000001430511)", 
+            "sta_code": "BUWD", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 98, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Stateline", 
+            "objectid": 313, 
+            "geometry": "POINT (578228.7592999991029501 552503.0460000000894070)", 
+            "sta_code": "STAT", 
+            "owner": "Columbia REA and  BPA", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 99, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Ione", 
+            "objectid": 314, 
+            "geometry": "POINT (483923.2580999992787838 505533.2618000004440546)", 
+            "sta_code": "IONE", 
+            "owner": "Columbia Basin Electric Cooperative and BPA", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 100, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "La Grande", 
+            "objectid": 315, 
+            "geometry": "POINT (616026.7302999999374151 479542.1196999996900558)", 
+            "sta_code": "LAGD", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 101, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Sherwood", 
+            "objectid": 316, 
+            "geometry": "POINT (243666.8883999995887280 502220.0282000005245209)", 
+            "sta_code": "SHWD", 
+            "owner": "Portland General Electric Company", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 102, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Willakenzie", 
+            "objectid": 318, 
+            "geometry": "POINT (216247.0251000002026558 360434.7982000000774860)", 
+            "sta_code": "WILK", 
+            "owner": "Eugene Water & Electric Board", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 103, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Hideaway", 
+            "objectid": 320, 
+            "geometry": "POINT (214326.7793000005185604 350666.6034999992698431)", 
+            "sta_code": "HIDE", 
+            "owner": "Lane Electric Cooperative", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 104, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Boyer", 
+            "objectid": 323, 
+            "geometry": "POINT (172141.8594000004231930 474669.3407000005245209)", 
+            "sta_code": "BOYR", 
+            "owner": "Pacific Power and Light Company (PacifiCorp)", 
+            "type": "Switching Station"
+        }
+    }, 
+    {
+        "pk": 105, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Clatskanie", 
+            "objectid": 328, 
+            "geometry": "POINT (220725.2523999996483326 584919.4094999991357327)", 
+            "sta_code": "CLAT", 
+            "owner": "Clatskanie PUD", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 106, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Hughes", 
+            "objectid": 330, 
+            "geometry": "POINT (220188.3399000000208616 457890.0939000006765127)", 
+            "sta_code": "BRCL", 
+            "owner": "Salem Electric Company", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 107, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Cheshire", 
+            "objectid": 332, 
+            "geometry": "POINT (202716.0557000003755093 373805.3739999998360872)", 
+            "sta_code": "CHES", 
+            "owner": "Emerald People's Utility District", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 108, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Beaver", 
+            "objectid": 335, 
+            "geometry": "POINT (165703.6084000002592802 497712.8533999994397163)", 
+            "sta_code": "BEAV", 
+            "owner": "Tillamook County PUD", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 109, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Cougar", 
+            "objectid": 339, 
+            "geometry": "POINT (280902.1973000001162291 361248.7723999992012978)", 
+            "sta_code": "CUGR", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 110, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Alderwood", 
+            "objectid": 340, 
+            "geometry": "POINT (191476.9607999995350838 369922.4565999992191792)", 
+            "sta_code": "ALDW", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 111, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "De Moss", 
+            "objectid": 342, 
+            "geometry": "POINT (412351.1076999995857477 508187.3030999992042780)", 
+            "sta_code": "DEMO", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 112, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Dexter", 
+            "objectid": 344, 
+            "geometry": "POINT (234420.0946999993175268 341518.3904999997466803)", 
+            "sta_code": "DEXT", 
+            "owner": "Lane Electric Cooperative", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 113, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Dorena", 
+            "objectid": 346, 
+            "geometry": "POINT (220440.5504000000655651 326255.1873000003397465)", 
+            "sta_code": "DORE", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 114, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Eugene", 
+            "objectid": 353, 
+            "geometry": "POINT (208420.3333000000566244 360287.0317000001668930)", 
+            "sta_code": "EUGE", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 115, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Fern Ridge", 
+            "objectid": 354, 
+            "geometry": "POINT (191603.4173000007867813 356404.4068999998271465)", 
+            "sta_code": "FERD", 
+            "owner": "Lane Electric Cooperative", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 116, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Fern Hill", 
+            "objectid": 355, 
+            "geometry": "POINT (179280.0324000008404255 596864.9119000006467104)", 
+            "sta_code": "FRNH", 
+            "owner": "Pacific Power and Light Company (PacifiCorp)", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 117, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Florence", 
+            "objectid": 356, 
+            "geometry": "POINT (132770.0617999993264675 356158.1011999994516373)", 
+            "sta_code": "FLOE", 
+            "owner": "Central Lincoln PUD", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 118, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Froman", 
+            "objectid": 358, 
+            "geometry": "POINT (220515.4989999998360872 414656.1643000002950430)", 
+            "sta_code": "FROM", 
+            "owner": "Consumer's Power, Inc", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 119, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Garibaldi", 
+            "objectid": 359, 
+            "geometry": "POINT (163983.6896000001579523 529571.9968999996781349)", 
+            "sta_code": "GARI", 
+            "owner": "Tillamook County PUD", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 120, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Hebo", 
+            "objectid": 373, 
+            "geometry": "POINT (163626.4767000004649162 491345.1682999990880489)", 
+            "sta_code": "HEBO", 
+            "owner": "Tillamook County PUD and BPA", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 121, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Junction City", 
+            "objectid": 375, 
+            "geometry": "POINT (204889.8658000007271767 370365.0167999994009733)", 
+            "sta_code": "JUCY", 
+            "owner": "Blachly-Lane County  Cooperative Electric Association", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 122, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Lathum", 
+            "objectid": 380, 
+            "geometry": "POINT (211694.6888999994844198 325525.6885999999940395)", 
+            "sta_code": "LATH", 
+            "owner": "Emerald People's Utility District", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 123, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Monmouth", 
+            "objectid": 385, 
+            "geometry": "POINT (210304.7696000002324581 448108.5088999997824430)", 
+            "sta_code": "MONM", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 124, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Martin Creek", 
+            "objectid": 388, 
+            "geometry": "POINT (208232.2619000002741814 323092.1890999991446733)", 
+            "sta_code": "MNCR", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 125, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Driscoll", 
+            "objectid": 390, 
+            "geometry": "POINT (205403.5733000002801418 591878.5852000005543232)", 
+            "sta_code": "DRIS", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 126, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Oakridge", 
+            "objectid": 394, 
+            "geometry": "POINT (258797.3554999995976686 320464.1972000002861023)", 
+            "sta_code": "OAKE", 
+            "owner": "Lane Electric Cooperative", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 127, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Pearl", 
+            "objectid": 396, 
+            "geometry": "POINT (247940.6157000008970499 497173.6237000003457069)", 
+            "sta_code": "PERL", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 128, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Ponderosa", 
+            "objectid": 397, 
+            "geometry": "POINT (386108.2291000001132488 365853.6315000001341105)", 
+            "sta_code": "POND", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 129, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Parker", 
+            "objectid": 399, 
+            "geometry": "POINT (205290.5189999993890524 365701.8172999992966652)", 
+            "sta_code": "PRKR", 
+            "owner": "Blachly-Lane County  Cooperative Electric Association", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 130, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Rainier", 
+            "objectid": 400, 
+            "geometry": "POINT (242093.1250999998301268 581018.2421000003814697)", 
+            "sta_code": "RAIN", 
+            "owner": "Portland General Electric Company", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 131, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Salem Alumina", 
+            "objectid": 404, 
+            "geometry": "POINT (226281.2945000007748604 458942.7830999996513128)", 
+            "sta_code": "SAAL", 
+            "owner": "Salem Electric Company", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 132, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Summer Lake", 
+            "objectid": 409, 
+            "geometry": "POINT (377618.6028000004589558 231442.0326000005006790)", 
+            "sta_code": "SUML", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 133, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Troutdale", 
+            "objectid": 411, 
+            "geometry": "POINT (278773.8453999999910593 520622.8607000000774860)", 
+            "sta_code": "TROU", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 134, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Celilo", 
+            "objectid": 416, 
+            "geometry": "POINT (379512.7513999994844198 518636.0336000006645918)", 
+            "sta_code": "CELO", 
+            "owner": "Bonneville Power Administration", 
+            "type": "DC Converter Station"
+        }
+    }, 
+    {
+        "pk": 135, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Astoria", 
+            "objectid": 420, 
+            "geometry": "POINT (173104.1032999996095896 597181.9388999994844198)", 
+            "sta_code": "ASTO", 
+            "owner": "Pacific Power and Light Company (PacifiCorp)", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 136, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Filbert", 
+            "objectid": 427, 
+            "geometry": "POINT (224163.7681000009179115 519073.0405000001192093)", 
+            "sta_code": "FILB", 
+            "owner": "City of Forest Grove", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 137, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Foster", 
+            "objectid": 428, 
+            "geometry": "POINT (249042.0067999996244907 395109.8475000001490116)", 
+            "sta_code": "FOPH", 
+            "owner": "US Corps of Engineers", 
+            "type": "Powerhouse"
+        }
+    }, 
+    {
+        "pk": 138, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Windishar", 
+            "objectid": 439, 
+            "geometry": "POINT (216704.8195999991148710 488134.2969000004231930)", 
+            "sta_code": "WISH", 
+            "owner": "City of McMinnville", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 139, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "La Pine", 
+            "objectid": 442, 
+            "geometry": "POINT (341047.1308999992907047 305356.8756000008434057)", 
+            "sta_code": "LAPI", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 140, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Rainbow Valley", 
+            "objectid": 444, 
+            "geometry": "POINT (200224.6977999992668629 352726.8878000006079674)", 
+            "sta_code": "RAVA", 
+            "owner": "Lane Electric Cooperative", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 141, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Two Mile Road", 
+            "objectid": 448, 
+            "geometry": "POINT (97995.6604999992996454 256094.8901000004261732)", 
+            "sta_code": "TMRS", 
+            "owner": "City of Bandon and BPA", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 142, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Maupin", 
+            "objectid": 451, 
+            "geometry": "POINT (383300.4510999992489815 473812.0241999998688698)", 
+            "sta_code": "MOPN", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 143, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Tygh Valley", 
+            "objectid": 452, 
+            "geometry": "POINT (379109.9317000005394220 476369.6157000008970499)", 
+            "sta_code": "TYVA", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 144, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Walton", 
+            "objectid": 453, 
+            "geometry": "POINT (172576.9719999991357327 358426.7920999992638826)", 
+            "sta_code": "WALT", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 145, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Mohler", 
+            "objectid": 454, 
+            "geometry": "POINT (167393.1030000001192093 545519.7307999990880489)", 
+            "sta_code": "MOHL", 
+            "owner": "Tillamook County PUD", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 146, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "North Brookings", 
+            "objectid": 456, 
+            "geometry": "POINT (95292.1346000004559755 147529.7788999993354082)", 
+            "sta_code": "NBRK", 
+            "owner": "Coos-Curry Electric Cooperative, Inc and BPA", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 147, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Mt. Vernon", 
+            "objectid": 457, 
+            "geometry": "POINT (225131.7455000001937151 354109.5427999999374151)", 
+            "sta_code": "MVER", 
+            "owner": "Springfield Electric Board", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 148, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Fort Rock", 
+            "objectid": 468, 
+            "geometry": "POINT (381670.3320000004023314 256788.3297000005841255)", 
+            "sta_code": "FORT", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Compensation Station"
+        }
+    }, 
+    {
+        "pk": 149, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Sand Spring", 
+            "objectid": 471, 
+            "geometry": "POINT (389719.4154000002890825 309441.6064999997615814)", 
+            "sta_code": "SASP", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Compensation Station"
+        }
+    }, 
+    {
+        "pk": 150, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Sycan", 
+            "objectid": 472, 
+            "geometry": "POINT (374062.3401999995112419 213796.5187999997287989)", 
+            "sta_code": "SYCN", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Compensation Station"
+        }
+    }, 
+    {
+        "pk": 151, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Timber", 
+            "objectid": 473, 
+            "geometry": "POINT (211148.2730999998748302 548021.7299000006169081)", 
+            "sta_code": "TIMB", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 152, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "North Butte", 
+            "objectid": 478, 
+            "geometry": "POINT (249030.6281000003218651 395748.7353000007569790)", 
+            "sta_code": "NBUT", 
+            "owner": "Consumer's Power, Inc and BPA", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 153, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Trask River", 
+            "objectid": 486, 
+            "geometry": "POINT (168981.4699000008404255 512995.2608000002801418)", 
+            "sta_code": "SOTL", 
+            "owner": "Tillamook County PUD", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 154, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Fargo", 
+            "objectid": 487, 
+            "geometry": "POINT (244137.5599000006914139 488090.5283000003546476)", 
+            "sta_code": "FAGO", 
+            "owner": "Portland General Electric Company", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 155, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Lookingglass", 
+            "objectid": 492, 
+            "geometry": "POINT (171091.8495000004768372 262832.8065000008791685)", 
+            "sta_code": "LOOK", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 156, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Coyote Springs", 
+            "objectid": 498, 
+            "geometry": "POINT (492540.8450000006705523 541983.6625999994575977)", 
+            "sta_code": "CSGP", 
+            "owner": "Portland General Electric Company", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 157, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Fort Rock", 
+            "objectid": 499, 
+            "geometry": "POINT (383522.5307000000029802 257460.6679999995976686)", 
+            "sta_code": "FRTR", 
+            "owner": "Midstate Electric Cooperative", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 158, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Jones Canyon", 
+            "objectid": 502, 
+            "geometry": "POINT (449804.4602000005543232 524322.7059000004082918)", 
+            "sta_code": "JCSB", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 159, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Foster", 
+            "objectid": 504, 
+            "geometry": "POINT (248986.7893000002950430 394839.1532000005245209)", 
+            "sta_code": "FOSE", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 160, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Brasada", 
+            "objectid": 506, 
+            "geometry": "POINT (376091.9976000003516674 357295.8779000006616116)", 
+            "sta_code": "BSDA", 
+            "owner": "Central Electric Cooperative, Inc", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 161, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Discovery", 
+            "objectid": 507, 
+            "geometry": "POINT (372703.2182999998331070 523151.3114000000059605)", 
+            "sta_code": "DSNW", 
+            "owner": "Northern Wasco County PUD", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 162, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "John Day 230 kV", 
+            "objectid": 508, 
+            "geometry": "POINT (409299.8144000004976988 526209.6961000002920628)", 
+            "sta_code": "JDTW", 
+            "owner": "Bonneville Power Administration", 
+            "type": "Switchyard"
+        }
+    }, 
+    {
+        "pk": 163, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Klondike", 
+            "objectid": 516, 
+            "geometry": "POINT (419271.6038000006228685 515632.8847000002861023)", 
+            "sta_code": "KLON", 
+            "owner": "Pacific Power and Light Company (PacifiCorp)", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 164, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Bethel (PGE)", 
+            "objectid": 519, 
+            "geometry": "POINT (233747.4922000002115965 453781.0855000000447035)", 
+            "sta_code": "BETH", 
+            "owner": "Portland General Electric Company", 
+            "type": "Substation"
+        }
+    }, 
+    {
+        "pk": 165, 
+        "model": "analysis.substations", 
+        "fields": {
+            "name": "Condon Wind", 
+            "objectid": 520, 
+            "geometry": "POINT (442993.8325999993830919 476920.2027000002563000)", 
+            "sta_code": "CONW", 
+            "owner": "Seawest Power Inc.", 
+            "type": "Substation"
+        }
+    }
+]

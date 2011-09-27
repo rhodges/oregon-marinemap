@@ -1,0 +1,112 @@
+
+{% if type != 'all' %}
+{% block Header %}
+<h1 align="center">{{title}} Geography Analysis Report for {{aoi.name}}</h1>
+
+<div align="middle">
+    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ aoi.uid }}&amp;autozoom=true&amp;width=308&amp;height=400">
+    &nbsp; &nbsp;
+    <img align="top" src="{% url staticmap-show 'default' %}?uids={{ aoi.uid }}&amp;width=154&amp;height=200&amp;show_extent=True">
+</div>
+
+{% endblock Header %}
+{% endif %}
+
+<div class='freetext'>
+
+{% block GeneralSpatial %}
+<br></br>
+<table class='printable-report-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="geoheader" colspan="5">General Spatial Characteristics</th>
+        </tr>
+        <tr>
+            <th>Area</th>
+            <th>Perimeter</th>
+            <th>Intertidal</th>
+            <th>Islands</th>
+            <th>Percent of Territorial Sea</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{geo.area|floatformat:'2'}} ({{geo.area_units}})</td>
+            <td>{{geo.perimeter|floatformat:'2'}} ({{geo.length_units}})</td>
+            <td>{{geo.intertidal}}</td>
+            <td>{{geo.islands}}</td>
+            <td>{{geo.ratio|floatformat:'2'}} %</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock GeneralSpatial %}
+
+{% block OtherGeography %}
+{% endblock OtherGeography %}
+
+{% if not pdf %}
+{% block CSS %}
+<style type="text/css">
+
+table.printable-report-table {
+    font-size:12px;
+    width:100%;
+    border:solid 1px #fff;
+    margin:3px;
+    padding-top:4px;
+}
+
+table.printable-report-table th.geoheader {
+    background-color:#518E58;
+    color:#B0B0B0;
+    font-family:helvetica;
+    font-weight:bold;
+}
+
+table.printable-report-table th {
+    background-color:#D0D0D0;
+    color:#344E63;
+    font-weight:bold;
+}
+
+table.printable-report-table th.left {
+    background-color:#D0D0D0;
+    color:#344E63;
+    font-weight:bold;
+    text-align:left;
+}
+
+table.printable-report-table td {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    text-align:center;
+}
+
+table.printable-report-table td.left {
+    background-color:#EBF5F5;
+    color:#344E63;
+    font-weight:bold;
+    text-align:left;
+}
+
+table.printable-report-table thead tr {
+    background:#FAFAFA url(../images/toolbar-bg.png) repeat-x scroll left bottom;
+    text-align:center;
+}
+
+table.printable-report-table tbody {
+    background-color:white;
+}
+
+table.printable-report-table tr.zebra {
+    background-color:#eee;
+}
+</style>
+{% endblock CSS %}
+{% endif %}
+
+<br></br>
+<br></br>
+
+</div>

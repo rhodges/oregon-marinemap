@@ -1,0 +1,41 @@
+{% extends 'printable_geo_report.html' %}
+
+<!-- Inheriting General Spatial Characteristics from printable_geo_report -->
+
+{% block OtherGeography %}
+<br></br>
+<table class='printable-report-table' rules=rows>
+    <thead>
+        <tr>
+            <th class="geoheader" colspan="4">Geographic Setting</font></th>
+        </tr>
+        <tr>
+            <th>Adjacent County</th>
+            <th>County Shoreline Percentage</th>
+            <th>Nearest Ports</th>
+            <th>Nearest Incorporated Cities</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{geo.county.0}}</td>
+            <td>{{geo.county_shoreline_percentages.0|floatformat:'1'}} %</td>
+            <td>{{geo.ports.0.0}}  ({{geo.ports.0.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.cities.0.0}}  ({{geo.cities.0.1|floatformat:'1'}} {{geo.length_units}})</td>
+        </tr>
+        <tr>
+            <td>{{geo.county.1}}</td>
+            <td>{% if geo.county.1 %} {{geo.county_shoreline_percentages.1|floatformat:'1'}} % {% endif %}</td>
+            <td>{{geo.ports.1.0}}  ({{geo.ports.1.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.cities.1.0}}  ({{geo.cities.1.1|floatformat:'1'}} {{geo.length_units}})</td>
+        </tr>
+        <tr>
+            <td>{{geo.county.2}}</td>
+            <td>{% if geo.county.2 %} {{geo.county_shoreline_percentages.2|floatformat:'1'}} % {% endif %}</td>
+            <td>{{geo.ports.2.0}}  ({{geo.ports.2.1|floatformat:'1'}} {{geo.length_units}})</td>
+            <td>{{geo.cities.2.0}}  ({{geo.cities.2.1|floatformat:'1'}} {{geo.length_units}})</td>
+        </tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+{% endblock OtherGeography %}

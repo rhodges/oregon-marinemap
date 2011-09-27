@@ -1,0 +1,193 @@
+{% extends 'common/panel.html' %}
+
+{% block panel %}
+
+{% block IntertidalPhysical %}
+<h3>Intertidal Physical Characteristics</h3>
+<div class='freetext'>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <tr class="grey">
+            <td><b>Length of Intertidal Shoreline</b><sup>&nbsp;1</sup></td>
+            <td></td>
+            <td><b>Percent of Oregon Coast Shoreline</b><sup>&nbsp;2</sup></td>
+        </tr>
+        <tr>
+            {% if percent_shoreline == default_value %}
+            <td>0.0 {{length_units}}</td>
+            <td></td>
+            <td>0.0 %</td>
+            {% else %}
+            <td>{{length|floatformat:'2'}} {{length_units}}</td>
+            <td></td>
+            <td>{{percent_shoreline|floatformat:'2'}} %</td>
+            {% endif %}
+        </tr>
+    </tbody>
+</table>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <tr class="grey">
+            <td colspan="3"><b>Shoreline Types and Proportions </b><sup>&nbsp;3</sup></td>
+        </tr>
+        {% for proportion in shoreline_proportions %}
+        {% if proportion.1 == default_value %}
+        <tr class="{% cycle '' 'grey' %}">
+            <td></td>
+            <td>&nbsp; &nbsp; {{proportion.1}}</td>
+            <td></td>
+        </tr>
+        {% else %}
+        <tr class="{% cycle '' 'grey' %}">
+            <td>&nbsp; &nbsp; {{proportion.0|floatformat:'0'}}%</td>
+            <td>&nbsp; &nbsp; {{proportion.1}}</td>
+            <td>({{proportion.2|floatformat:'2'}} {{length_units}})</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        <tr><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <tr class="grey">
+            <td><b>Number of Islands</b><sup>&nbsp;4</sup></td>
+            <td></td>
+            <td><b>Total Island Area</b><sup>&nbsp;5</sup></td>
+        </tr>
+        <tr>
+            <td>{{islands}}</td>
+            <td></td>
+            {% if island_area == 0.0 %}
+            <td>{{island_area}} {{area_units}}</td>
+            {% else %}
+            <td>{{island_area|floatformat:'3'}} {{area_units}}</td>
+            {% endif %}
+        </tr>
+    </tbody>
+</table>
+</div>
+{% endblock IntertidalPhysical %}
+
+{% block SubtidalPhysical %}
+<h3>Subtidal Physical Characteristics</h3>
+<div class='freetext'>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <tr class="grey">
+            <td><b>Subtidal Area</b><sup>&nbsp;6</sup></td>
+            <td></td>
+            <td><b>Percent Shallow <br/>Percent Deep</b><sup>&nbsp;7</sup></td>
+        </tr>
+        <tr>
+            <td>{{subtidal_area|floatformat:'1'}} {{area_units}}</td>
+            <td></td>
+            <td class="top">
+            {% if subtidal_area == 0.0 %}
+                {{default_value}}
+            {% else %}
+                {{perc_shallow|floatformat:'1'}} % &nbsp; shallow<br/> {{perc_deep|floatformat:'1'}} % &nbsp; deep</td>
+            {% endif %}
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        <tr class="grey">
+            <td colspan="3"><b>Seafloor Lithology </b><sup>&nbsp;8</sup></td>
+        </tr>
+        {% if not lithology_proportions.0 %}
+        <tr><td colspan="3">{{default_value}}</td></tr>
+        {% endif %}
+        {% for proportion in lithology_proportions %}
+        <tr class="{% cycle '' 'grey' %}">
+            <td>&nbsp; {{proportion.0|floatformat:'1'}}%</td>
+            <td>&nbsp; {{proportion.1}}</td>
+            <td>({{proportion.2|floatformat:'2'}} {{area_units}})</td>
+        </tr>
+        {% endfor %}
+        <tr><td></td><td></td><td></td></tr>
+    </tbody>
+</table>
+<p>
+<table  style='width:450px' class='aoi_analysis_container'>
+    <tbody>
+        {% if min_depth != default_value %}
+        <tr class="grey">
+            <td><b>Average Depth</b><sup>&nbsp;9</sup></td>
+            <td><b>Min Depth</b></td>
+            <td><b>Max Depth</b></td>
+        </tr>
+        <tr>
+            <td>{{average_depth|floatformat:'1'}} meters</td>
+            <td>{{min_depth|floatformat:'1'}} meters</td>
+            <td>{{max_depth|floatformat:'1'}} meters</td>
+        </tr>
+        {% else %}
+        <tr class="grey">
+            <td><b>Average Depth</b><sup>&nbsp;9</sup></td>
+            <td><b>Min Depth</b></td>
+            <td><b>Max Depth</b></td>
+        </tr>
+        <tr>
+            <td>{{default_value}}</td>
+            <td>{{default_value}}</td>
+            <td>{{default_value}}</td>
+        </tr>
+        {% endif %}
+        <p>
+        <tr class="grey">
+            <td colspan='3'><b>Proximity to Shore</b><sup>&nbsp;10</sup></td>
+        </tr>
+        <tr>
+            {% if distance_to_shore != default_value %}
+                <td colspan='3'>{{distance_to_shore}}{{distance_to_shore|floatformat:'1'}} {{length_units}}</td>
+            {% else %}
+                <td colspan='3'>{{default_value}}</td>
+            {% endif %}
+        </tr>
+    </tbody>
+</table>
+</div>
+{% endblock SubtidalPhysical %}
+
+{% block FootnotesHeader %}
+<p><h3>Footnotes</h3></p>
+{% endblock FootnotesHeader %}
+
+<div class='freetext'>
+
+{% block IntertidalPhysicalFootnotes %}
+<p>1. Total length of all shoreline touched by the Area of Interest (including island shorelines). This is determined using the 1:24,000 scale NOAA ESI shoreline. </p>
+<p>2. Length of AOI shoreline calculated in Item 1 above divided by Total length of Oregon shoreline, expressed as a percentage. This is calculated using NOAA's ESI shoreline - closed at estuary mouths.  </p>
+<p>3. Shoreline types within the AOI classified by the NOAA ESI categories.  Only the most seaward types are reported for each section of shoreline.  Shoreline proportions are determined in relation to the total length of shoreline represented in the AOI.  </p>
+<p>4. Number of Islands is determined by counting the number of island polygons within the AOI, as documented in the USFWS Oregon Islands National Wildlife Refuge data. </p>
+<p>5. Area of the island polygons present within the AOI calculated from the USFWS Islands NWR data.</p>
+{% endblock IntertidalPhysicalFootnotes %}
+
+{% block SubtidalPhysicalFootnotes %}
+<p>6. Total area of the AOI, minus the area of islands calculated in Item 5 above from USFWS Islands NWR data.</p>
+<p>7. The percentage of Shallow or Deep areas is the percentage of the AOI geographic area that falls deeper or shallower than the 25 meters in depth. Calculated from a 100m bathymetry Digital Elevation Model.</p>
+<p>8. Seafloor lithology is a listing of all the seafloor sediment classes found within the AOI. The area calculations are based on the Lithology class of the <a target="_blank" href="http://www.google.com/url?q=http%3A%2F%2Fwww.coastalatlas.net%2Fmetadata%2FSurficialGeolgicHabitatoffOregon%2CVersion3%2COSUATSML%2C2008.htm&sa=D&sntz=1&usg=AFQjCNEaAY-8mapFbbUqHBWR-4isNfIRjQ">Surficial Geological Habitat Layer (v.3.0)</a>. Reports Area of each bottom type within the AOI, as well as percentage of the AOI composed of each type. </p>
+<p>9. Depth Values: Calculated by taking the average of the depth values, Minimum of depth values, and maximum depth values within the AOI geographic area, from the bathymetric values of the 100m Digital Elevation Model.  </p>
+<p>10. This value is the distance in miles from the closest edge of the AOI to the mainland of the NOAA ESI shoreline. </p>
+{% endblock SubtidalPhysicalFootnotes %}
+
+</div>
+
+{% block ExportableReports %}
+{% endblock ExportableReports %}
+
+{% block CSS %}
+<style type="text/css">
+h3 { font-weight: bold; }
+</style>
+{% endblock CSS %}
+
+{% endblock panel %}
