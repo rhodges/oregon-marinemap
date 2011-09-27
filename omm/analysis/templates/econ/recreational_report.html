@@ -1,5 +1,7 @@
 {% extends 'common/panel.html' %}
 {% load currency %}
+{% load percentage %}
+{% load humanize %}
 {% block panel %}
 
 <h3>Recreational Fishing Analysis</h3>
@@ -12,8 +14,9 @@
 {% endif %}
     <thead>
         <tr>
-            <th class="left">Port/Fishery</th>
-            <th class="right">Estimated Personal Income</th>
+            <th class="left" width="44%">Port/Fishery</th>
+            <th class="right" width="24%">EPI<sup>&nbsp;1</sup></th>
+            <th class="right" width="22%">Perc<sup>&nbsp;2</sup></th>
         </tr>
     </thead>
     <tbody>
@@ -21,30 +24,39 @@
             <tr>
                 <td class='port'><b>{{port}}</b></td>
                 <td></td>
+                <td></td>
             </tr>        
             {% for fishery_report in fisheries %}
                 <tr class="{% cycle '' 'grey' %}">
                     <td class='fishery'>{{fishery_report.0}}</td>
-                    <td class='currency'>{{fishery_report.2|floatformat:0|currency}}</td> 
-                    <!-- change index from 2 to 3 if multipliers are re-instated -->
+                    <td class='currency'>${{fishery_report.2|floatformat:0|intcomma}}</td> <!-- change index from 2 to 3 if multipliers are re-instated -->
+                    <td class='currency'>{{fishery_report.4|percentage:1}}</td>
                 </tr>
             {% endfor %}
         {% endfor %}
         <tr>
             <td class='port'><b>Statewide</b></td>
             <td></td>
+            <td></td>
         </tr>
         {% for tuple in rec.state_totals %}
             <tr class="{% cycle '' 'grey' %}">
                 <td class='fishery'>{{tuple.0}}</td>
-                <td class='currency'>{{tuple.1.1|floatformat:0|currency}}</td>
-                    <!-- change index from 1.1 to 1.2 if multipliers are re-instated -->
+                <td class='currency'>${{tuple.1.1|floatformat:0|intcomma}}</td> <!-- change index from 1.1 to 1.2 if multipliers are re-instated -->
+                <td class='currency'>{{tuple.1.3|percentage:1}}</td>
             </tr>
         {% endfor %}
     </tbody>
 </table>
 </div>
 <p>
+
+<div>
+<i>
+<p>1. Estimated Personal Income.   </p>
+<p>2. This percentage indicates the percent value of a given fishery at a given port.   </p>
+</i>
+</div>
 
 {% if not rec.pdf and not rec.printable %}
 <p>

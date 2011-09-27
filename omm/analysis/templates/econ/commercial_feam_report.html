@@ -1,5 +1,7 @@
 {% extends 'common/panel.html' %}
 {% load currency %}
+{% load percentage %}
+{% load humanize %}
 {% block panel %}
 
 <h3>{{feam.agency}} Commercial Fishing Analysis</h3>
@@ -12,9 +14,10 @@
 {% endif %}
     <thead>
         <tr>
-            <th class="left">Port/Fishery</th>
-            <th class="right">Average Annual GER<sup>&nbsp;1</sup></th>
-            <th class="right">Estimated Personal Income</th>
+            <th class="left" width="44%">Port/Fishery</th>
+            <th class="right" width="19%">GER<sup>&nbsp;1</sup></th>
+            <th class="right" width="19%">EPI<sup>&nbsp;2</sup></th>
+            <th class="right" width="18%">Perc<sup>&nbsp;3</sup></th>
         </tr>
     </thead>
     <tbody>
@@ -23,12 +26,14 @@
                 <td class='port'><b>{{port}}</b></td>
                 <td></td>
                 <td></td>
+                <td></td>
             </tr>        
             {% for fishery_report in fisheries %}
                 <tr class="{% cycle 'grey' '' %}">
                     <td class='fishery'>{{fishery_report.0}}</td>
-                    <td class='currency'>{{fishery_report.2|floatformat:0|currency}}</td>
-                    <td class='currency'>{{fishery_report.3|floatformat:0|currency}}</td>
+                    <td class='currency'>${{fishery_report.2|floatformat:0|intcomma}}</td>
+                    <td class='currency'>${{fishery_report.3|floatformat:0|intcomma}}</td>
+                    <td class='currency'>{{fishery_report.4|percentage:1}}</td>
                 </tr>
             {% endfor %}
         {% endfor %}
@@ -36,12 +41,14 @@
             <td class='port'><b>Statewide</b></td>
             <td></td>
             <td></td>
+            <td></td>
         </tr>
         {% for tuple in feam.state_totals %}
             <tr class="{% cycle '' 'grey' %}">
                 <td class='fishery'>{{tuple.0}}</td>
-                <td class='currency'>{{tuple.1.1|floatformat:0|currency}}</td>
-                <td class='currency'>{{tuple.1.2|floatformat:0|currency}}</td>
+                <td class='currency'>${{tuple.1.1|floatformat:0|intcomma}}</td>
+                <td class='currency'>${{tuple.1.2|floatformat:0|intcomma}}</td>
+                <td class='currency'>{{tuple.1.3|percentage:1}}</td>
             </tr>
         {% endfor %}
     </tbody>
@@ -55,6 +62,8 @@
 <i>
 <p>1. In the commercial sector average annual gross economic revenue (GER) was calculated using annual gross economic 
       revenue (e.g., ex-vessel landings revenue) data for the years 2004-2008 and is displayed in 2008 dollar values. </p>
+<p>2. Estimated Personal Income.   </p>
+<p>3. This percentage indicates the percent value of a given fishery at a given port.   </p>
 </i>
 </div>
 <p>
