@@ -66,6 +66,9 @@
                 <li><a href="{% url shoreside_analysis instance.pk 'rec' %}"><span>Rec</span></a></li>
             </ul>
             <div id="SH_Instructions">
+            <table width="450">
+            <tr>
+            <td>
                 <h3>Economic Impact Analyses</h3>
                 <p>These reports display estimates of the potential maximum economic impact of your Area of Interest to certain 
                    human use activities and include estimates of gross economic revenue (GER), estimated economic output (EEO), 
@@ -100,7 +103,7 @@
                 <script type="text/javascript">
                 function toggleDiv(divId) {
                     $("#"+divId).toggle();     
-                    if ($('#toggleText').css('display') == 'none') {
+                    if ($('#toggleText').css('display') != 'none') {
                         $('#displayText').html('Hide Text');
                     }
                     else {
@@ -109,7 +112,9 @@
                 }
                 </script>
                 </div>
-                
+            </td>
+            </tr>
+            </table>
             </div>
         </div>
         {% endif %}
