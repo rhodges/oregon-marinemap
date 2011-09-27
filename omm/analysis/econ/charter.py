@@ -1,25 +1,10 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from utils import get_rasterstats, raster_exists, get_keys, update_ports, update_state_totals, get_value
+from econ_data.charter_data import port_names, port_abbrs, fisheries, multipliers, charter_totals
 
 default_value = '---'
-port_names = ['Astoria', 'Depoe Bay', 'Newport', 'Florence', 'SOORC Ports', 'Gold Beach & Brookings']
-port_abbrs = {  'Astoria': 'astr', 
-                'Depoe Bay': 'dpor', 
-                'Newport': 'newr', 
-                'Florence': 'flrr', 
-                'SOORC Ports': 'srcr', 
-                'Gold Beach & Brookings': 'bgdr' }
 
-fisheries = [   ('Dungeness', 'dcrab'),
-                ('Pacific Halibut', 'phal'), 
-                ('Rockfish', 'rckf'),
-                ('Salmon', 'sal')]                     
-
-multipliers = { 'dcrab': 1.55,
-                'phal': 1.55, 
-                'rckf': 1.55, 
-                'sal': 1.55  } 
 
 '''
 called by views.shoreside_analysis
@@ -39,7 +24,9 @@ def get_charter_context(aoi, type='chrt', prefix='chrt'):
             multiplier = multipliers[fishery_abbr]
             if raster_exists(raster_name):
                 gross_revenue, total = get_rasterstats(aoi, raster_name, multiplier)
-                fish_list = [fishery, multiplier, gross_revenue, total]
+                fishery_total = charter_totals[port_abbr][fishery_abbr]
+                percentage = gross_revenue / fishery_total
+                fish_list = [fishery, multiplier, gross_revenue, total, percentage]
                 if port_name in get_keys(ports):
                     update_ports(ports, port_name, fish_list)
                 else:
@@ -49,7 +36,20 @@ def get_charter_context(aoi, type='chrt', prefix='chrt'):
                 else:
                     state_totals.append((fishery, [multiplier, gross_revenue, total]))
         state_totals.sort()
+    add_state_percentages(state_totals)
     context = {type: {'aoi': aoi, 'default_value': default_value, 'ports': ports, 'state_totals': state_totals, 'pdf': False, 'printable': False}}
     create_econ_cache(aoi, type, context)
     return context
+
+def add_state_percentages(state_totals):
+    for tuple in state_totals:
+        fishery_abbr = get_fishery_abbr(tuple[0])
+        statewide_total = charter_totals['state'][fishery_abbr]
+        percentage = tuple[1][1] / statewide_total
+        tuple[1].append(percentage)
     
+def get_fishery_abbr(fishery_name):
+    for fishery in fisheries:
+        if fishery[0] == fishery_name:
+            return fishery[1]
+    raise ValueError('incorrect value, %s, sent to get_fishery_abbr in charter.py' % fishery_name)    
