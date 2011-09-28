@@ -1,5 +1,5 @@
 import xlwt
-from analysis.excel.utils import major_heading_style, heading_column_style, port_style, fishery_style, currency_style, percentage_style
+from analysis.excel.utils import major_heading_style, heading_column_style, port_style, fishery_style, currency_style, notes_style, percentage_style
 
 def populate_rec_sheet(ws, context):
     rec_headers(ws, context)
@@ -34,3 +34,9 @@ def rec_data(ws, context, row=3):
         ws.write(row+offset, 2, state_report[1][3], percentage_style)
         offset += 1
     
+    add_footnotes(ws, row+offset+1)
+    
+def add_footnotes(ws, row):
+    ws.write(row, 0, 'Notes:', major_heading_style)
+    ws.write(row+1, 0, '1. Estimated Personal Income (EPI).', notes_style)
+    ws.write(row+2, 0, '2. The percentage indicates the percent value of a given fishery at a given port.', notes_style)
