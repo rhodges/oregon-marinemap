@@ -11,6 +11,7 @@ data_style = xlwt.easyxf('alignment: horizontal center, wrap true;',num_format_s
 currency_style = xlwt.easyxf('alignment: horizontal right, wrap true;',num_format_str='$#,##0.00__')
 integer_data_style = xlwt.easyxf('alignment: horizontal center;',num_format_str='#,##0')
 perc_style = xlwt.easyxf('alignment: horizontal center;',num_format_str='0.00%')
+percentage_style = xlwt.easyxf('alignment: horizontal right;',num_format_str='0.0%')
 integer_perc_style = xlwt.easyxf('alignment: horizontal center;',num_format_str='0%')
 
 
