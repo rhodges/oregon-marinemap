@@ -1,5 +1,5 @@
 import xlwt
-from analysis.excel.utils import major_heading_style, heading_column_style, port_style, fishery_style, currency_style, notes_style
+from analysis.excel.utils import major_heading_style, heading_column_style, port_style, fishery_style, currency_style, notes_style, percentage_style
 
 def populate_feam_sheet(ws, context):
     feam_headers(ws, context)
@@ -13,6 +13,8 @@ def feam_headers(ws, context, row=3):
     ws.col(1).width = 35*256
     ws.write(row-1, 2, "Estimated Personal Income", heading_column_style)
     ws.col(2).width = 35*256
+    ws.write(row-1, 3, "Percentage", heading_column_style)
+    ws.col(3).width = 35*256
     
 def feam_data(ws, context, row=3):
     offset = 0
@@ -23,7 +25,8 @@ def feam_data(ws, context, row=3):
         for fishery_report in fisheries:
             ws.write(row+offset, 0, fishery_report[0], fishery_style)
             ws.write(row+offset, 1, round(fishery_report[2]), currency_style)
-            ws.write(row+offset, 2, round(fishery_report[3]), currency_style)   
+            ws.write(row+offset, 2, round(fishery_report[3]), currency_style) 
+            ws.write(row+offset, 3, fishery_report[4], percentage_style)     
             offset += 1
     offset += 1
     ws.write(row+offset, 0, 'Statewide', port_style)
@@ -32,6 +35,7 @@ def feam_data(ws, context, row=3):
         ws.write(row+offset, 0, state_report[0], fishery_style)
         ws.write(row+offset, 1, round(state_report[1][1]), currency_style)
         ws.write(row+offset, 2, round(state_report[1][2]), currency_style)
+        ws.write(row+offset, 3, state_report[1][3], percentage_style)
         offset += 1
     
     add_footnotes(ws, row+offset+1)

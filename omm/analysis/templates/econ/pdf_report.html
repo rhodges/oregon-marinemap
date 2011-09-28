@@ -11,14 +11,14 @@
 </div>
 {% endblock Header %}
 
-{% if type == 'all' %}
+{% if sector == 'all' %}
     {% for template in templates %}
         <p>{% include template %}
         <p>&nbsp;
     {% endfor %}
 {% endif %}
 
-{% if type != 'all' %}
+{% if sector != 'all' %}
     {% include template %}
 {% endif %}
 

@@ -19,7 +19,11 @@ def excel_report(request, aoi, type):
     from econ_excel import generate_econ_excel_doc
     context = get_or_create_cache(aoi, type)
     excel_doc = generate_econ_excel_doc(context, type)
-    return build_excel_response(slugify("EconomicReport.xls"),excel_doc) 
+    if type == 'all':
+        filename = 'comprehensive_economic_report_%s.xls' % aoi.uid
+    else:
+        filename = '%s_economic_report_%s.xls' % (type, aoi.uid)
+    return build_excel_response(slugify(filename),excel_doc) 
 
 '''
 renders printable template as pdf
@@ -33,7 +37,7 @@ def pdf_report(request, aoi, type):
     context = toggle_pdf_var(context)
     #template = get_econ_template(type)
     template = 'econ/pdf_report.html'
-    context['type'] = type
+    context['sector'] = type
     context['aoi'] = aoi
     context['title'] = get_title(type)
     context.update(add_includes(type))

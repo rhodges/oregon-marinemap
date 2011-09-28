@@ -2,6 +2,8 @@
 {% load currency %}
 {% load percentage %}
 {% load humanize %}
+
+{% block title %}{% if type == 'all' %}Comprehensive Fishing Report{% else %}NOAA Commercial Fishing Report{% endif %}{% endblock %}
 {% block panel %}
 
 <h3>{{noaa.agency}} Commercial Fishing Analysis</h3>
@@ -72,7 +74,7 @@
 
 {% if not noaa.pdf and not noaa.printable %}
 <div style='font-size: small'>
-    <a target='_blank' href='{% url printable_econ_report noaa.aoi.id "noaa" %}'>Printable Commercial (NOAA) Fishing Report</a>
+    <a target='_blank' href='{% url printable_econ_report noaa.aoi.id "noaa" %}'>Printable NOAA Commercial Fishing Report</a>
     &nbsp; 
     <a target='_blank' href='{% url pdf_econ_report noaa.aoi.id "noaa" %}'> (PDF) </a> 
     &nbsp; 
