@@ -44,4 +44,4 @@ def add_footnotes(ws, row):
     ws.write(row, 0, 'Notes:', major_heading_style)
     ws.write(row+1, 0, '1. In the commercial sector average annual gross economic revenue (GER) was calculated using annual gross economic revenue (e.g., ex-vessel landings revenue) data for the years 2004-2008 and is displayed in 2008 dollar values.', notes_style)
     ws.write(row+2, 0, '2. Estimated economic output (EEO) is a measure of the total direct and indirect economic activity associated with sales or expenditures in a certain sector.', notes_style)
-    ws.write(row+3, 0, '3. The percentage indicates the percent value of a given fishery at a given port.', notes_style)
+    ws.write(row+3, 0, '3. The percent values represent the percentage of gross economic revenue (GER) found in your Area of Inquiry for a particular port-fishery or state-fishery combination.', notes_style)
