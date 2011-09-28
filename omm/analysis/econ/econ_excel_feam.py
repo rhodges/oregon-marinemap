@@ -43,4 +43,5 @@ def feam_data(ws, context, row=3):
 def add_footnotes(ws, row):
     ws.write(row, 0, 'Notes:', major_heading_style)
     ws.write(row+1, 0, '1. In the commercial sector average annual gross economic revenue (GER) was calculated using annual gross economic revenue (e.g., ex-vessel landings revenue) data for the years 2004-2008 and is displayed in 2008 dollar values.', notes_style)
-    
+    ws.write(row+2, 0, '2. Estimated Personal Income (EPI).', notes_style)
+    ws.write(row+3, 0, '3. The percentage indicates the percent value of a given fishery at a given port.', notes_style)
