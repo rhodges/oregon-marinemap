@@ -38,5 +38,5 @@ def rec_data(ws, context, row=3):
     
 def add_footnotes(ws, row):
     ws.write(row, 0, 'Notes:', major_heading_style)
-    ws.write(row+1, 0, '1. Estimated Personal Income (EPI).', notes_style)
-    ws.write(row+2, 0, '2. The percent values represent the percentage of Estimate Personal Income (EPI) found in your Area of Inquiry for a particular port-fishery or state-fishery combination.', notes_style)
+    ws.write(row+1, 0, '1. Estimated personal income (EPI) is a measure of the portion of direct and indirect economic activity associated with sales or expenditures in a certain sector that accrues to households in terms of wages, salaries, and profits. These estimates use trip information from the ODFW Oregon Recreational Boater Survey Program and were derived from the Recreational Fisheries Economic Assessment Model (RecFEAM) produced by The Research Group (2009).', notes_style)
+    ws.write(row+2, 0, '2. The percent values represent the percentage of Estimate Personal Income (EPI) found in your Area of Interest for a particular port-fishery or state-fishery combination.', notes_style)
