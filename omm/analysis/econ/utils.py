@@ -6,7 +6,10 @@ from lingcod.raster_stats.models import RasterDataset, zonal_stats
 def get_rasterstats(aoi, name, multiplier=1):
     raster = RasterDataset.objects.get(name=name)
     rasterstats = zonal_stats(aoi.geometry_final, raster)
-    gross_revenue = rasterstats.sum
+    if rasterstats is None or rasterstats.sum is None:
+        gross_revenue = 0
+    else:
+        gross_revenue = rasterstats.sum
     total = gross_revenue * multiplier
     return gross_revenue, total
     
